@@ -13,3 +13,7 @@ body {
   justify-content: space-between;
   color: #fff;
 }
+
+footer {
+  background-image: url("../components/Footer/assets/footer.svg");
+} 
