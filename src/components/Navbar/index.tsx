@@ -4,16 +4,60 @@ import Logo from "./assets/moviewave-logo.png";
 import { IoSearchCircleSharp } from "react-icons/io5";
 import Link from "next/link";
 import { FaRegUserCircle } from "react-icons/fa";
+import { BsMenuButtonWideFill } from "react-icons/bs";
 
 const navItemStyle = "text-3xl w-44 text-center";
 
 export function Navbar() {
   return (
-    <header className="flex flex-col">
-      <Link href="/" className="flex justify-center content-center mt-2">
-        <Image src={Logo} alt="Logotipo da Movie Wave" className="w-36" />
+    <header className="flex items-center lg:flex-col">
+      <div className="dropdown lg:hidden">
+        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+          <BsMenuButtonWideFill size={30} />
+        </div>
+        <ul
+          tabIndex={0}
+          className="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-black shadow rounded-box w-52"
+        >
+          <li>
+            <Link href="/filmes" className={``}>
+              Filmes
+            </Link>
+          </li>
+          <li>
+            <Link href="/series" className={``}>
+              Séries
+            </Link>
+          </li>
+          <li>
+            <Link href="/categorias" className={``}>
+              Categorias
+            </Link>
+          </li>
+          <li>
+            <Link href="/favoritos" className={``}>
+              Favoritos
+            </Link>
+          </li>
+          <hr />
+          <li>
+            <Link href="/perfil" className={``}>
+              Perfil
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <Link
+        href="/"
+        className="flex w-full justify-center content-center mt-0.5 lg:mt-2"
+      >
+        <Image
+          src={Logo}
+          alt="Logotipo da Movie Wave"
+          className="w-24 lg:w-36"
+        />
       </Link>
-      <div className="flex justify-between content-center -mt-24 mx-14">
+      <div className="hidden lg:flex justify-between content-center -mt-24 mx-14">
         <Link href="pesquisar">
           <IoSearchCircleSharp style={{ color: "white" }} size={50} />
         </Link>
