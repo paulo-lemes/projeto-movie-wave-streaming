@@ -4,7 +4,7 @@ import { IoLogoWhatsapp } from "react-icons/io";
 
 const iconSize = 30;
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer className="flex flex-col py-14 gap-11 items-center justify-center">
       <div className="flex gap-2">
