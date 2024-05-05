@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import Logo from "./assets/moviewave-logo.png";
-import { IoSearchCircleSharp } from "react-icons/io5";
 import Link from "next/link";
+import { IoSearchCircleSharp } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsMenuButtonWideFill } from "react-icons/bs";
 
@@ -10,7 +10,7 @@ const navItemStyle = "text-3xl w-44 text-center";
 
 export function Navbar() {
   return (
-    <header className="flex items-center lg:flex-col">
+    <header className="flex items-center lg:flex-col lg:items-stretch">
       <div className="dropdown lg:hidden">
         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
           <BsMenuButtonWideFill size={30} />
