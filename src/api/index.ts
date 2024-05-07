@@ -1,6 +1,6 @@
 const baseURL = "https://api.themoviedb.org/3/";
 
-const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+const apiToken = process.env.API_TOKEN;
 
 const headers = {
   accept: "application/json",
