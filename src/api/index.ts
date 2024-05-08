@@ -7,12 +7,32 @@ const headers = {
   Authorization: `Bearer ${apiToken}`,
 };
 
-export async function requestAPI(method: string, path: string) {
-  fetch(baseURL + path, {
-    method,
+type contentProps = {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  origin_country?: string;
+  original_language: string;
+  original_title?: string;
+  original_name?: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  first_air_date?: string;
+  release_date?: string;
+  title?: string;
+  name?: string;
+  video?: boolean;
+  vote_average: number;
+  vote_count: number;
+};
+
+export async function getMoviesOrSeries(path: string): Promise<contentProps[] | void> {
+  const response = await fetch(baseURL + path, {
+    method: "GET",
     headers,
   })
-    .then((response) => response.json())
-    .then((response) => console.log(response))
-    .catch((err) => console.error(err));
+
+  return response.json()
 }
