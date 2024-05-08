@@ -7,7 +7,7 @@ export function FeaturedMovies(data: dataProps) {
   return (
     <div>
       {data && data?.results.map((movie: content) => (
-        <p>{movie.title}</p>
+        <p key={movie.id}>{movie.title}</p>
       ))}
     </div>
   );
