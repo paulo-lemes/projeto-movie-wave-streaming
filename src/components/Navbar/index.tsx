@@ -1,12 +1,12 @@
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
 import Logo from "./assets/moviewave-logo.png";
 import Link from "next/link";
 import { IoSearchCircleSharp } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsMenuButtonWideFill } from "react-icons/bs";
 
-const navItemStyle = "text-3xl w-44 text-center";
+const navItemStyle = "text-3xl w-40 text-center";
 
 export function Navbar() {
   return (
@@ -57,8 +57,8 @@ export function Navbar() {
           className="w-24 lg:w-36"
         />
       </Link>
-      <div className="hidden lg:flex justify-between content-center -mt-24 mx-14">
-        <Link href="pesquisar">
+      <div className="hidden lg:flex w-full justify-between content-center -mt-24 px-8">
+        <Link href="/pesquisar">
           <IoSearchCircleSharp style={{ color: "white" }} size={50} />
         </Link>
         <nav className="flex justify-center">
