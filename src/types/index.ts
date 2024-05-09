@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type content = {
   adult: boolean;
   backdrop_path: string;
@@ -20,7 +22,6 @@ export type content = {
 };
 
 export type dataProps = {
-  dates: object;
-  page: number;
   results: content[];
+  children: ReactNode;
 };

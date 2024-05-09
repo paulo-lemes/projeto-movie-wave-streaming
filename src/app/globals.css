@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 :root {
 }
 
@@ -17,4 +27,4 @@ body {
 footer {
   background: url("../components/Footer/assets/footer.svg") no-repeat;
   background-size: cover;
-} 
+}

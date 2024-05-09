@@ -1,14 +1,21 @@
 import { getApiContent } from "@/api";
-import { FeaturedMovies } from "@/components/FeaturedMovies";
+import { ContentRow } from "@/components/ContentRow";
 import { Suspense } from "react";
 
 export default async function Home() {
-  const featuredMovies = await getApiContent("movie/now_playing?language=pt-BR&page=1")
+  const featuredMoviesData = getApiContent("movie/now_playing?language=pt-BR&page=1")
+  const topRatedMoviesData = getApiContent("movie/top_rated?language=pt-BR&page=1")
+
+  const [featuredMovies, topRatedMovies] = await Promise.all([featuredMoviesData, topRatedMoviesData])
+
+  console.log(featuredMovies.results);
+  console.log(topRatedMovies.results);
 
   return (
-    <main className="mb-auto">
+    <main className="mb-auto pb-20">
       <Suspense fallback={<div>Loading...</div>}>
-        <FeaturedMovies {...featuredMovies} />
+        <ContentRow {...featuredMovies}>Em destaque</ContentRow>
+        <ContentRow {...topRatedMovies}>Melhores avaliados</ContentRow>
       </Suspense>
     </main>
   );
