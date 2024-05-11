@@ -25,3 +25,9 @@ export type dataProps = {
   results: content[];
   children: ReactNode;
 };
+
+export type modalProps ={
+  children: ReactNode;
+  onClose: () => void;
+  isOpen: boolean;
+}

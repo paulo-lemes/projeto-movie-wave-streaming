@@ -68,7 +68,7 @@ export function Navbar() {
           <Link href="/filmes" className={`${navItemStyle} mt-12`}>
             Filmes
           </Link>
-          <Link href="/" className={`${navItemStyle} mt-24`}>
+          <Link href="/" className={`${navItemStyle} pt-24`}>
             Home
           </Link>
           <Link href="/series" className={`${navItemStyle} mt-12`}>
