@@ -10,13 +10,22 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .mask {
+    mask-image: linear-gradient(
+      to bottom,
+      var(--primary) 36%,
+      transparent 100%
+    );
+  }
 }
 
 :root {
+  --primary: #141414;
 }
 
 body {
-  background: #141414;
+  background: var(--primary);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
