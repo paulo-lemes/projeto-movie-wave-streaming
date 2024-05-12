@@ -14,8 +14,8 @@ export default async function Home() {
   return (
     <main className="mb-auto pb-20">
       <Suspense fallback={<div>Loading...</div>}>
-        <ContentRow {...featuredMovies}>Em destaque</ContentRow>
-        <ContentRow {...topRatedMovies}>Melhores avaliados</ContentRow>
+        <ContentRow {...featuredMovies}>Filmes em destaque</ContentRow>
+        <ContentRow {...topRatedMovies}>Filmes mais bem avaliados</ContentRow>
       </Suspense>
     </main>
   );

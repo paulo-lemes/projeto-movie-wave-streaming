@@ -31,6 +31,7 @@ body {
   min-height: 100vh;
   justify-content: space-between;
   color: #fff;
+  scroll-behavior: smooth;
 }
 
 footer {
