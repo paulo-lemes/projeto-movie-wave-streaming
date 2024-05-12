@@ -19,19 +19,20 @@ export function Card({
   return (
     <>
       <div
-        className="flex flex-col gap-3 max-w-64 cursor-pointer"
+        className="flex flex-col gap-3 max-w-64 cursor-pointer hover:ring-2 ring-white"
         onClick={handleModalOpen}
       >
         <Image
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}
           alt={`Capa de ${title || name}`}
-          width={250}
-          height={250}
+          width={430}
+          height={646}
+          priority
           className=""
         />
       </div>
       <Modal isOpen={isModalOpen} onClose={handleModalClose}>
-        <div className="bg-black rounded max-w-2xl max-h-[90vh]">
+        <div className="bg-black rounded sm:max-w-2xl max-h-[90vh] max-w-[95vw]">
           <div
             className="relative float-right -mb-14 mt-2 mr-2 z-50 cursor-pointer"
             onClick={handleModalClose}
@@ -43,7 +44,8 @@ export function Card({
             alt={`Capa de ${title || name}`}
             width={700}
             height={250}
-            className="mask max-h-[45vh]"
+            priority
+            className="mask  max-h-[45vh] w-full"
           />
           <div className="flex flex-col p-10 pt-0 max-h-[45vh]">
             <h4 className="font-bold text-2xl -mt-4 mb-2">{title || name}</h4>
