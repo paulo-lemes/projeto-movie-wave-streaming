@@ -6,7 +6,7 @@ import { IoSearchCircleSharp } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsMenuButtonWideFill } from "react-icons/bs";
 
-const navItemStyle = "text-3xl w-40 text-center";
+const navItemStyle = "text-3xl w-40 text-center h-max";
 
 export function Navbar() {
   return (

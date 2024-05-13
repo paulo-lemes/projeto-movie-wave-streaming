@@ -45,7 +45,7 @@ export function Card({
             width={700}
             height={250}
             priority
-            className="mask  max-h-[45vh] w-full"
+            className="mask h-[45vh] max-h-[45vh] w-full"
           />
           <div className="flex flex-col p-10 pt-0 max-h-[45vh]">
             <h4 className="font-bold text-2xl -mt-4 mb-2">{title || name}</h4>
