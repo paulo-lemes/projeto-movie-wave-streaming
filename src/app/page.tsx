@@ -18,15 +18,15 @@ export default async function Home() {
   ]);
 
   console.log(trending.results);
-  console.log(featuredMovies.results);
   console.log(topRatedMovies.results);
+  console.log(featuredMovies.results);
 
   return (
     <main className="mb-auto pb-20">
       <Suspense fallback={<div>Loading...</div>}>
         <ContentRow {...trending}>Em alta</ContentRow>
-        <ContentRow {...featuredMovies}>Filmes em destaque</ContentRow>
         <ContentRow {...topRatedMovies}>Filmes mais bem avaliados</ContentRow>
+        <ContentRow {...featuredMovies}>Filmes em destaque</ContentRow>
       </Suspense>
     </main>
   );

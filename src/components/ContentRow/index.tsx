@@ -36,7 +36,7 @@ export function ContentRow({ results, children }: dataProps) {
           type="button"
           className={
             scrollLeft
-              ? "opacity-0 hover:opacity-100"
+              ? "opacity-50 hover:opacity-100"
               : "opacity-0 cursor-default"
           }
           onClick={handleScrollLeft}
@@ -58,7 +58,7 @@ export function ContentRow({ results, children }: dataProps) {
           className={
             scrollLeft === carousel.current?.scrollWidth
               ? "opacity-0 cursor-default"
-              : "opacity-0 hover:opacity-100"
+              : "opacity-50 hover:opacity-100"
           }
           onClick={handleScrollRight}
         >
