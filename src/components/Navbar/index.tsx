@@ -20,7 +20,7 @@ export function Navbar() {
           className="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-black shadow rounded-box w-52"
         >
           <li>
-            <Link href="/filmes" className={``}>
+            <Link href="/movies" className={``}>
               Filmes
             </Link>
           </li>
@@ -30,18 +30,18 @@ export function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/categorias" className={``}>
+            <Link href="/categories" className={``}>
               Categorias
             </Link>
           </li>
           <li>
-            <Link href="/favoritos" className={``}>
+            <Link href="/favorites" className={``}>
               Favoritos
             </Link>
           </li>
           <hr />
           <li>
-            <Link href="/perfil" className={``}>
+            <Link href="/profile" className={``}>
               Perfil
             </Link>
           </li>
@@ -58,14 +58,14 @@ export function Navbar() {
         />
       </Link>
       <div className="hidden lg:flex w-full justify-between content-center -mt-24 px-8">
-        <Link href="/pesquisar">
+        <Link href="/search">
           <IoSearchCircleSharp style={{ color: "white" }} size={50} />
         </Link>
         <nav className="flex justify-center">
-          <Link href="/categorias" className={navItemStyle}>
+          <Link href="/categories" className={navItemStyle}>
             Categorias
           </Link>
-          <Link href="/filmes" className={`${navItemStyle} mt-12`}>
+          <Link href="/movies" className={`${navItemStyle} mt-12`}>
             Filmes
           </Link>
           <Link href="/" className={`${navItemStyle} pt-24`}>
@@ -74,11 +74,11 @@ export function Navbar() {
           <Link href="/series" className={`${navItemStyle} mt-12`}>
             Séries
           </Link>
-          <Link href="/favoritos" className={navItemStyle}>
+          <Link href="/favorites" className={navItemStyle}>
             Favoritos
           </Link>
         </nav>
-        <Link href="perfil">
+        <Link href="profile">
           <FaRegUserCircle style={{ color: "white" }} size={50} />
         </Link>
       </div>
