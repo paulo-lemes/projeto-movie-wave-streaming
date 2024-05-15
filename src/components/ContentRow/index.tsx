@@ -23,9 +23,14 @@ export function ContentRow({ results, children }: dataProps) {
 
   const handleScroll = (e: UIEvent) => {
     const divEventTarget = e.target as HTMLDivElement;
-    const currentScrollLeft = Math.round(divEventTarget.scrollLeft);
+    const currentScrollLeft = Math.ceil(divEventTarget.scrollLeft);
     setScrollLeft(currentScrollLeft);
   };
+
+  const btnRightScrollDisabled =
+    scrollLeft ===
+    (carousel.current &&
+      carousel.current?.scrollWidth - carousel.current?.offsetWidth);
 
   return (
     <section className="p-10 pl-0.5 pr-0">
@@ -33,7 +38,9 @@ export function ContentRow({ results, children }: dataProps) {
       <div className="flex items-center">
         <button
           type="button"
-          className="absolute left-0 h-[384px] bg-gradient-to-l from-transparent to-base-100"
+          className={`absolute left-0 h-full bg-gradient-to-l from-transparent to-base-100 ${
+            !scrollLeft && "opacity-0"
+          }`}
           disabled={!scrollLeft}
           onClick={handleScrollLeft}
         >
@@ -55,12 +62,10 @@ export function ContentRow({ results, children }: dataProps) {
         </div>
         <button
           type="button"
-          className="absolute right-0 h-[384px] bg-gradient-to-r from-transparent to-base-100"
-          disabled={
-            scrollLeft ===
-            (carousel.current &&
-              carousel.current?.scrollWidth - carousel.current?.offsetWidth)
-          }
+          className={`absolute right-0 h-full bg-gradient-to-r from-transparent to-base-100 ${
+            btnRightScrollDisabled && "opacity-0"
+          }`}
+          disabled={btnRightScrollDisabled}
           onClick={handleScrollRight}
         >
           <IoMdArrowDropright
