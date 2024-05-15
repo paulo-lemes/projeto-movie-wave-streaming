@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import Logo from "./assets/moviewave-logo.png";
+import LogoWhite from "./assets/moviewave-logo.png";
+// import LogoBlack from "./assets/moviewave-logo-black.png";
 import Link from "next/link";
 import { IoSearchCircleSharp } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -17,7 +18,7 @@ export function Navbar() {
         </div>
         <ul
           tabIndex={0}
-          className="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-black shadow rounded-box w-52"
+          className="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-base-300 shadow rounded-box w-52"
         >
           <li>
             <Link href="/movies" className={``}>
@@ -52,14 +53,14 @@ export function Navbar() {
         className="flex w-full justify-center content-center mt-0.5 lg:mt-2"
       >
         <Image
-          src={Logo}
+          src={LogoWhite}
           alt="Logotipo da Movie Wave"
           className="w-24 lg:w-36"
         />
       </Link>
       <div className="hidden lg:flex w-full justify-between content-center -mt-24 px-8">
         <Link href="/search">
-          <IoSearchCircleSharp style={{ color: "white" }} size={50} />
+          <IoSearchCircleSharp size={50} />
         </Link>
         <nav className="flex justify-center">
           <Link href="/categories" className={navItemStyle}>
@@ -79,7 +80,7 @@ export function Navbar() {
           </Link>
         </nav>
         <Link href="profile">
-          <FaRegUserCircle style={{ color: "white" }} size={50} />
+          <FaRegUserCircle size={50} />
         </Link>
       </div>
     </header>

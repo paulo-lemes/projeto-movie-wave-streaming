@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 
 export type content = {
   adult: boolean;
+  media_type?: string;
   backdrop_path: string;
   genre_ids: number[];
   id: number;
@@ -26,8 +27,8 @@ export type dataProps = {
   children: ReactNode;
 };
 
-export type modalProps ={
+export type modalProps = {
   children: ReactNode;
   onClose: () => void;
   isOpen: boolean;
-}
+};
