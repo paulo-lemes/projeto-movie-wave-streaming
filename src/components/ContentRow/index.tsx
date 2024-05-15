@@ -30,7 +30,8 @@ export function ContentRow({ results, children }: dataProps) {
 
   const handleScroll = (e: UIEvent) => {
     const divEventTarget = e.target as HTMLDivElement;
-    setScrollLeft(divEventTarget.scrollLeft);
+    const currentScrollLeft = Math.round(divEventTarget.scrollLeft);
+    setScrollLeft(currentScrollLeft);
   };
 
   return (
