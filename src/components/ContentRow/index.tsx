@@ -48,8 +48,8 @@ export function ContentRow({ results, children }: dataProps) {
           ref={carousel}
         >
           <div className="w-max flex gap-3 p-1">
-            {results?.map((movie) => (
-              <Card key={movie.id} {...movie} />
+            {results?.map((content) => (
+              <Card key={content.id} {...content} />
             ))}
           </div>
         </div>

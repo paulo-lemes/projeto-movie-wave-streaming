@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import ImageUnavailable from "../../../public/unavailable-image.png";
 import { content } from "@/types";
 import { Modal } from "../Modal";
 import { useModal } from "@/hooks/useModal";
@@ -16,6 +17,10 @@ export function Card({
 }: content) {
   const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
 
+  const cardImage = poster_path
+    ? `https://image.tmdb.org/t/p/original/${poster_path}`
+    : ImageUnavailable;
+
   return (
     <>
       <div
@@ -23,12 +28,16 @@ export function Card({
         onClick={handleModalOpen}
       >
         <Image
-          src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+          src={cardImage}
           alt={`Capa de ${title || name}`}
           width={430}
           height={646}
           priority
-          className=""
+          className="object-cover h-[384px] w-[256px] data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-100/10"
+          data-loaded="false"
+          onLoad={(event) => {
+            event.currentTarget.setAttribute("data-loaded", "true");
+          }}
         />
       </div>
       <Modal isOpen={isModalOpen} onClose={handleModalClose}>
@@ -39,16 +48,28 @@ export function Card({
           >
             <IoCloseCircleOutline size={30} aria-label="Fechar" />
           </div>
-          <Image
-            src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
-            alt={`Capa de ${title || name}`}
-            width={700}
-            height={250}
-            priority
-            className="mask h-[45vh] max-h-[45vh] w-full"
-          />
+          {backdrop_path && (
+            <Image
+              src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
+              alt={`Capa de ${title || name}`}
+              width={700}
+              height={250}
+              priority
+              className="mask h-[45vh] max-h-[45vh] w-full data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-100/10"
+              data-loaded="false"
+              onLoad={(event) => {
+                event.currentTarget.setAttribute("data-loaded", "true");
+              }}
+            />
+          )}
           <div className="flex flex-col p-10 pt-0 max-h-[45vh]">
-            <h4 className="font-bold text-2xl -mt-4 mb-2">{title || name}</h4>
+            <h4
+              className={`font-bold text-2xl ${
+                backdrop_path ? "-mt-4" : "mt-4"
+              } mb-2`}
+            >
+              {title || name}
+            </h4>
             <p className="overflow-y-auto">{overview}</p>
           </div>
         </div>
