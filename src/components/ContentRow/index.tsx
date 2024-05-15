@@ -11,20 +11,13 @@ export function ContentRow({ results, children }: dataProps) {
 
   const handleScrollLeft = () => {
     if (carousel.current) {
-      const offset = carousel.current.offsetWidth;
-      carousel.current.scrollLeft -= offset;
-      setScrollLeft((prev) => (prev - offset >= offset ? prev - offset : 0));
+      carousel.current.scrollLeft -= carousel.current.offsetWidth;
     }
   };
 
   const handleScrollRight = () => {
     if (carousel.current) {
-      const offset = carousel.current.offsetWidth;
-      const maxWidth = carousel.current.scrollWidth;
-      carousel.current.scrollLeft += offset;
-      setScrollLeft((prev) =>
-        prev + offset <= maxWidth - offset ? prev + offset : maxWidth - offset
-      );
+      carousel.current.scrollLeft += carousel.current.offsetWidth;
     }
   };
 
@@ -40,9 +33,8 @@ export function ContentRow({ results, children }: dataProps) {
       <div className="flex items-center">
         <button
           type="button"
-          className={`absolute left-0 h-[384px] bg-gradient-to-l from-transparent to-base-100 ${
-            !scrollLeft && "opacity-0 cursor-default"
-          }`}
+          className="absolute left-0 h-[384px] bg-gradient-to-l from-transparent to-base-100"
+          disabled={!scrollLeft}
           onClick={handleScrollLeft}
         >
           <IoMdArrowDropleft
@@ -63,12 +55,12 @@ export function ContentRow({ results, children }: dataProps) {
         </div>
         <button
           type="button"
-          className={`absolute right-0 h-[384px] bg-gradient-to-r from-transparent to-base-100 ${
+          className="absolute right-0 h-[384px] bg-gradient-to-r from-transparent to-base-100"
+          disabled={
             scrollLeft ===
-              (carousel.current &&
-                carousel.current?.scrollWidth -
-                  carousel.current?.offsetWidth) && "opacity-0 cursor-default"
-          }`}
+            (carousel.current &&
+              carousel.current?.scrollWidth - carousel.current?.offsetWidth)
+          }
           onClick={handleScrollRight}
         >
           <IoMdArrowDropright
