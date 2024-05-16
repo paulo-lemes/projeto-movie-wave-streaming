@@ -16,6 +16,8 @@ export function ContentSearch({ results, children }: dataProps) {
       </div>
     </section>
   ) : (
-    <h2 className="font-semibold text-3xl text-center mt-8">Nenhum resultado encontrado</h2>
+    <h2 className="font-semibold text-3xl text-center mt-8">
+      Nenhum resultado encontrado
+    </h2>
   );
 }
