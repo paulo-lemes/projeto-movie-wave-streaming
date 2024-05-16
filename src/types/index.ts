@@ -24,7 +24,7 @@ export type content = {
 
 export type dataProps = {
   results: content[];
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export type modalProps = {

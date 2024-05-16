@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { getApiContent } from "@/api";
 import { redirect } from "next/navigation";
-import { ContentRow } from "@/components/ContentRow";
 import { MdOutlineManageSearch } from "react-icons/md";
 import { ContentSearch } from "@/components/ContentSearch";
 
