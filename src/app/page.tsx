@@ -18,20 +18,14 @@ export default async function Home() {
     topRatedMoviesData,
   ]);
 
-  const highlightMovie =
-    featuredMovies.results[
-      Math.floor(Math.random() * featuredMovies.results.length)
-    ];
-
   console.log(trending.results);
   console.log(topRatedMovies.results);
   console.log(featuredMovies.results);
-  console.log(highlightMovie);
 
   return (
     <main className="mb-auto pb-20">
       <Suspense fallback={<div>Loading...</div>}>
-        <HighlightHome {...highlightMovie} />
+        <HighlightHome {...featuredMovies} />
         <ContentRow {...trending}>Em alta</ContentRow>
         <ContentRow {...topRatedMovies}>Filmes mais bem avaliados</ContentRow>
         <ContentRow {...featuredMovies}>Filmes em destaque</ContentRow>

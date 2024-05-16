@@ -3,12 +3,16 @@ import Image from "next/image";
 import WallpaperDefault from "./wallpaper-preview.jpg";
 import { content } from "@/types";
 
-export function HighlightHome({
-  backdrop_path,
-  title,
-  name,
-  overview,
-}: content) {
+interface HighlightProps {
+  results: content[];
+}
+
+export const dynamic = "force-dynamic";
+
+export function HighlightHome({ results }: HighlightProps) {
+  const { backdrop_path, title, name, overview } =
+    results[Math.floor(Math.random() * results.length)];
+
   return (
     <div className="h-[85vh] flex items-end px-4 sm:px-16 mb-6">
       <Image
