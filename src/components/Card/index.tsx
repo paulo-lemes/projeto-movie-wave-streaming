@@ -55,7 +55,7 @@ export function Card({
               width={700}
               height={250}
               priority
-              className="mask h-[45vh] max-h-[45vh] w-full data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-100/10"
+              className="mask-bottom h-[45vh] max-h-[45vh] w-full data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-100/10"
               data-loaded="false"
               onLoad={(event) => {
                 event.currentTarget.setAttribute("data-loaded", "true");

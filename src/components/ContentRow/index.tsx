@@ -34,11 +34,11 @@ export function ContentRow({ results, children }: dataProps) {
 
   return (
     <section className="p-10 pl-0.5 pr-0">
-      <h3 className="font-bold text-4xl mb-3 ml-12">{children}</h3>
+      <h3 className="font-bold text-3xl mb-3 ml-6 sm:ml-12">{children}</h3>
       <div className="flex items-center">
         <button
           type="button"
-          className={`absolute left-0 h-full bg-gradient-to-l from-transparent to-base-100 ${
+          className={`absolute left-0 h-[384px] bg-gradient-to-l from-transparent to-base-100 ${
             !scrollLeft && "opacity-0"
           }`}
           disabled={!scrollLeft}
@@ -50,7 +50,7 @@ export function ContentRow({ results, children }: dataProps) {
           />
         </button>
         <div
-          className="flex flex-col overflow-hidden overflow-x-auto no-scrollbar scroll-smooth px-10"
+          className="flex flex-col overflow-hidden overflow-x-auto no-scrollbar scroll-smooth px-4 sm:px-10"
           onScroll={(e) => handleScroll(e)}
           ref={carousel}
         >
@@ -62,7 +62,7 @@ export function ContentRow({ results, children }: dataProps) {
         </div>
         <button
           type="button"
-          className={`absolute right-0 h-full bg-gradient-to-r from-transparent to-base-100 ${
+          className={`absolute right-0 h-[384px] bg-gradient-to-r from-transparent to-base-100 ${
             btnRightScrollDisabled && "opacity-0"
           }`}
           disabled={btnRightScrollDisabled}
