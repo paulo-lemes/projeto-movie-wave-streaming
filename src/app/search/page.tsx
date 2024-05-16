@@ -28,7 +28,7 @@ export default async function Search({
   return (
     <main className="mb-auto pb-20">
       <form action={handleSearch}>
-        <label className="input input-bordered flex items-center gap-2 w-max m-auto mt-16">
+        <label className="input input-bordered input-secondary flex items-center gap-2 w-max m-auto mt-16">
           <input
             name="search"
             type="text"

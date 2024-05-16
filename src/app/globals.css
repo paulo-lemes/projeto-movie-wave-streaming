@@ -6,27 +6,32 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
-  
+
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 
-  .mask {
+  .mask-bottom {
     mask-image: linear-gradient(
       to bottom,
-      var(--primary) 36%,
+      oklch(var(--pc)) 36%,
       transparent 100%
+    );
+  }
+
+  .mask-top-bottom {
+    mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      oklch(var(--pc)) 40%,
+      oklch(var(--pc)) 50%,
+      transparent 90%
     );
   }
 }
 
-:root {
-  --primary: #141414;
-}
-
 body {
-  /* background: var(--primary); */
   display: flex;
   flex-direction: column;
   min-height: 100vh;

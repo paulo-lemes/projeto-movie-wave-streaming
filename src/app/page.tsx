@@ -1,5 +1,6 @@
 import { getApiContent } from "@/api";
 import { ContentRow } from "@/components/ContentRow";
+import { HighlightHome } from "@/components/HighlightHome";
 import { Suspense } from "react";
 
 export default async function Home() {
@@ -24,6 +25,9 @@ export default async function Home() {
   return (
     <main className="mb-auto pb-20">
       <Suspense fallback={<div>Loading...</div>}>
+        <HighlightHome
+          {...featuredMovies.results[Math.floor(Math.random() * 21)]}
+        />
         <ContentRow {...trending}>Em alta</ContentRow>
         <ContentRow {...topRatedMovies}>Filmes mais bem avaliados</ContentRow>
         <ContentRow {...featuredMovies}>Filmes em destaque</ContentRow>
