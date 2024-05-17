@@ -3,6 +3,7 @@ import { getApiContent } from "@/api";
 import { redirect } from "next/navigation";
 import { MdOutlineManageSearch } from "react-icons/md";
 import { ContentSearch } from "@/components/ContentSearch";
+import { Loading } from "@/components/Loading";
 
 export default async function Search({
   searchParams,
@@ -26,8 +27,8 @@ export default async function Search({
 
   return (
     <main className="mb-auto pb-20">
-      <form action={handleSearch}>
-        <label className="input input-bordered input-secondary flex items-center gap-2 w-max m-auto mt-16">
+      <form action={handleSearch} className="mt-32">
+        <label className="input input-bordered input-secondary flex w-[80vw] sm:w-[50vw] m-auto">
           <input
             name="search"
             type="text"
@@ -40,15 +41,15 @@ export default async function Search({
         </label>
       </form>
       {searchParams.text ? (
-        <Suspense fallback={<div>Loading...</div>}>
-          <ContentSearch {...searchData}>Principais resultados</ContentSearch>
+        <Suspense fallback={<Loading />}>
+          <ContentSearch {...searchData} />
         </Suspense>
       ) : (
-          <p className="text-center px-10 sm:px-16 py-6 m-auto text-xl">
-            Encontre facilmente seus filmes e séries favoritos. Digite o título ou palavra-chave e
-            descubra informações detalhadas. Explore nosso catálogo e encontre o que assistir em
-            segundos!
-          </p>
+        <p className="text-center px-10 sm:px-16 py-6 m-auto text-xl">
+          Encontre facilmente seus filmes e séries favoritos. Digite o título ou
+          palavra-chave e descubra informações detalhadas. Explore nosso
+          catálogo e encontre o que assistir em segundos!
+        </p>
       )}
     </main>
   );

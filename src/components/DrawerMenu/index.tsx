@@ -17,7 +17,7 @@ export function DrawerMenu() {
             aria-label="open sidebar"
             className="btn btn-square btn-ghost"
           >
-            <CiMenuBurger size={24} />
+            <CiMenuBurger size={32} />
           </label>
         </div>
       </div>
