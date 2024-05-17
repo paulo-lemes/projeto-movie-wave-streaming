@@ -11,7 +11,7 @@ export function Loading() {
       transition={{
         duration: 0.8,
       }}
-      className="flex items-center justify-center z-10"
+      className="flex items-center justify-center z-10 mt-10"
     >
       <span className="loading loading-spinner loading-lg text-neutral"></span>
     </motion.div>

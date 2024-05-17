@@ -20,6 +20,7 @@ export type content = {
   video?: boolean;
   vote_average: number;
   vote_count: number;
+  index: number;
 };
 
 export type dataProps = {

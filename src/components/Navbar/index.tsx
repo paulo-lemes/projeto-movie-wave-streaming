@@ -11,13 +11,14 @@ const navItemStyle =
 export function Navbar() {
   return (
     <header className="absolute top-0 left-0 right-0 flex flex-col items-stretch">
-      <div className="flex w-full flex-wrap items-center justify-between p-2 lg:px-8 lg:py-4 gap-2 sm:gap-0">
+      <div className="flex w-full items-center justify-between p-2 lg:px-8 lg:py-4 gap-2 sm:gap-0">
         <DrawerMenu />
         <Link href="/">
           <Image
             src={LogoWhite}
             alt="Logotipo da Movie Wave"
-            className="w-28 lg:w-32"
+            priority
+            className="w-32"
           />
         </Link>
         <nav>
@@ -46,13 +47,13 @@ export function Navbar() {
         </nav>
         <div className="flex gap-2">
           <Link href="/search">
-            <CiSearch size={40} className="w-6 lg:w-8" />
+            <CiSearch size={40} className="w-8" />
           </Link>
           <Link href="/watchlist">
-            <CiBookmarkPlus size={40} className="w-6 lg:w-8" />
+            <CiBookmarkPlus size={40} className="w-8" />
           </Link>
           <Link href="profile">
-            <CiUser size={40} className="w-6 lg:w-8" />
+            <CiUser size={40} className="w-8" />
           </Link>
         </div>
       </div>

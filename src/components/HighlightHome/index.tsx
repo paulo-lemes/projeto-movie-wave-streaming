@@ -18,7 +18,7 @@ export function HighlightHome({ results }: dataProps) {
     setContent(
       highlightContent[Math.floor(Math.random() * highlightContent.length)]
     );
-  }, []);
+  }, [results]);
 
   return (
     <motion.div
