@@ -10,7 +10,9 @@ export default async function Search({
 }: {
   searchParams: { text: string | undefined };
 }) {
-  const searchText = searchParams.text
+  const searchText = searchParams.text;
+  const resultText = `Principais resultados para "${searchText}"`;
+  
   const searchData = await getApiContent(
     `search/multi?query=${
       searchText || ""
@@ -31,9 +33,7 @@ export default async function Search({
       <SearchInput handleSearch={handleSearch} />
       {searchText ? (
         <Suspense fallback={<Loading />}>
-          <ContentSearch {...searchData}>
-            Principais resultados para "{searchText}"
-          </ContentSearch>
+          <ContentSearch {...searchData}>{resultText}</ContentSearch>
         </Suspense>
       ) : (
         <p className="text-center px-10 sm:px-16 py-6 m-auto text-xl">
