@@ -1,12 +1,11 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { content } from "@/types";
-import { Modal } from "../Modal";
 import { useModal } from "@/hooks/useModal";
+import { Modal } from "../Modal";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
 export function Card({
   title,
@@ -14,7 +13,7 @@ export function Card({
   poster_path,
   backdrop_path,
   overview,
-  index
+  index,
 }: content) {
   const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
 
@@ -31,7 +30,7 @@ export function Card({
               ? `https://image.tmdb.org/t/p/original/${poster_path}`
               : "../../../public/unavailable-image.png"
           }
-          alt={`Capa de ${title || name}`}
+          alt={`Poster de ${title || name}`}
           width={430}
           height={646}
           initial={{ opacity: 0 }}
@@ -54,17 +53,20 @@ export function Card({
             <IoCloseCircleOutline size={30} aria-label="Fechar" />
           </div>
           {backdrop_path && (
-            <Image
+            <motion.img
               src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
               alt={`Capa de ${title || name}`}
               width={700}
               height={250}
-              priority
-              className="mask-bottom h-[45vh] max-h-[45vh] w-full data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-100/10"
-              data-loaded="false"
-              onLoad={(event) => {
-                event.currentTarget.setAttribute("data-loaded", "true");
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                transition: {
+                  duration: 1,
+                  delay: 1,
+                },
               }}
+              className="mask-bottom max-h-[45vh] w-full"
             />
           )}
           <div className="flex flex-col p-10 pt-0 max-h-[45vh]">

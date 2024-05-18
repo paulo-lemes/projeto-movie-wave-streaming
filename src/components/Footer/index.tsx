@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { CiLinkedin } from "react-icons/ci";
 import { PiWhatsappLogoLight } from "react-icons/pi";
@@ -43,23 +42,30 @@ export function Footer() {
       </div>
       <ul className="font-bold flex flex-wrap items-center gap-2 sm:gap-6 order-last">
         <li className={linkStyle}>
-          <Link href="https://github.com/paulo-lemes/projeto-movie-wave-streaming">
+          <a
+            href="https://github.com/paulo-lemes/projeto-movie-wave-streaming"
+            target="blank"
+          >
             Projeto GitHub
-          </Link>
+          </a>
         </li>
         <li className={linkStyle}>
-          <Link href="https://developer.themoviedb.org/docs/getting-started">
+          <a
+            href="https://developer.themoviedb.org/docs/getting-started"
+            target="blank"
+          >
             TMDB API
-          </Link>
+          </a>
         </li>
         <li className={linkStyle}>
-          <Link
+          <a
             href="https://www.themoviedb.org/?language=pt-BR"
+            target="blank"
             className="flex gap-2"
           >
             The Movie Data Base
             <Image src={TMDBLogo} alt="" width={30} height={30} />
-          </Link>
+          </a>
         </li>
       </ul>
     </footer>

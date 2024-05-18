@@ -4,6 +4,7 @@ import React, { UIEvent, useRef, useState } from "react";
 import { dataProps } from "@/types";
 import { Card } from "../Card";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import { motion } from "framer-motion";
 
 export function ContentRow({ results, children }: dataProps) {
   const carousel = useRef<HTMLDivElement | null>(null);
@@ -34,7 +35,18 @@ export function ContentRow({ results, children }: dataProps) {
 
   return (
     <section className="py-4">
-      <h3 className="font-semibold text-2xl ml-6 sm:ml-10 -mb-2">{children}</h3>
+      <motion.h3
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: {
+            duration: 1,
+          },
+        }}
+        className="font-semibold text-xl sm:text-2xl ml-4 sm:ml-10 -mb-2"
+      >
+        {children}
+      </motion.h3>
       <div className="flex items-center">
         <button
           type="button"
