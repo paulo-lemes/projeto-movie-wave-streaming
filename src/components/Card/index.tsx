@@ -2,11 +2,11 @@
 
 import React from "react";
 import Image from "next/image";
-import ImageUnavailable from "../../../public/unavailable-image.png";
 import { content } from "@/types";
 import { Modal } from "../Modal";
 import { useModal } from "@/hooks/useModal";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import { motion } from 'framer-motion'
 
 export function Card({
   title,
@@ -14,32 +14,37 @@ export function Card({
   poster_path,
   backdrop_path,
   overview,
+  index
 }: content) {
   const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
 
-  const cardImage = poster_path
-    ? `https://image.tmdb.org/t/p/original/${poster_path}`
-    : ImageUnavailable;
-
   return (
     <>
-      <div
+      <motion.div
+        whileHover={{ scale: 1.05 }}
         className="flex flex-col gap-3 max-w-64 cursor-pointer hover:ring-2 ring-white"
         onClick={handleModalOpen}
       >
-        <Image
-          src={cardImage}
+        <motion.img
+          src={
+            poster_path
+              ? `https://image.tmdb.org/t/p/original/${poster_path}`
+              : "../../../public/unavailable-image.png"
+          }
           alt={`Capa de ${title || name}`}
           width={430}
           height={646}
-          priority
-          className="object-cover h-[384px] w-[256px] data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-100/10"
-          data-loaded="false"
-          onLoad={(event) => {
-            event.currentTarget.setAttribute("data-loaded", "true");
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 1,
+              delay: index / 5,
+            },
           }}
+          className="object-cover h-[300px] w-[200px]"
         />
-      </div>
+      </motion.div>
       <Modal isOpen={isModalOpen} onClose={handleModalClose}>
         <div className="bg-black rounded sm:max-w-2xl max-h-[90vh] max-w-[95vw]">
           <div
