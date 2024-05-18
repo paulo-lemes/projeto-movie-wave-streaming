@@ -1,18 +1,19 @@
 import React, { Suspense } from "react";
 import { getApiContent } from "@/api";
 import { redirect } from "next/navigation";
-import { MdOutlineManageSearch } from "react-icons/md";
 import { ContentSearch } from "@/components/ContentSearch";
 import { Loading } from "@/components/Loading";
+import { SearchInput } from "@/components/SearchInput";
 
 export default async function Search({
   searchParams,
 }: {
   searchParams: { text: string | undefined };
 }) {
+  const searchText = searchParams.text
   const searchData = await getApiContent(
     `search/multi?query=${
-      searchParams.text || ""
+      searchText || ""
     }&include_adult=false&language=pt-BR&page=1`
   );
 
@@ -21,28 +22,18 @@ export default async function Search({
   async function handleSearch(formData: FormData) {
     "use server";
 
-    const textInput = formData.get("search");
+    const textInput = formData.get("text");
     redirect(`/search?text=${textInput}`);
   }
 
   return (
     <main className="mb-auto pb-20">
-      <form action={handleSearch} className="mt-32">
-        <label className="input input-bordered input-secondary flex w-[80vw] sm:w-[50vw] m-auto">
-          <input
-            name="search"
-            type="text"
-            className="grow"
-            placeholder="Pesquisar"
-          />
-          <button type="submit" className="cursor-pointer">
-            <MdOutlineManageSearch size={30} />
-          </button>
-        </label>
-      </form>
-      {searchParams.text ? (
+      <SearchInput handleSearch={handleSearch} />
+      {searchText ? (
         <Suspense fallback={<Loading />}>
-          <ContentSearch {...searchData} />
+          <ContentSearch {...searchData}>
+            Principais resultados para "{searchText}"
+          </ContentSearch>
         </Suspense>
       ) : (
         <p className="text-center px-10 sm:px-16 py-6 m-auto text-xl">

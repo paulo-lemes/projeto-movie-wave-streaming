@@ -39,8 +39,3 @@ body {
   color: #fff;
   scroll-behavior: smooth;
 }
-
-footer {
-  background: url("../components/Footer/assets/footer.svg") no-repeat;
-  background-size: cover;
-}
