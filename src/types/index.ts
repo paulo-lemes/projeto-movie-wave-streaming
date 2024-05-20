@@ -5,6 +5,9 @@ export type content = {
   media_type?: string;
   backdrop_path: string;
   genre_ids: number[];
+  genres: {id: number, name: string}[];
+  tagline: string;
+  runtime: number;
   id: number;
   origin_country?: string;
   original_language: string;

@@ -1,4 +1,6 @@
 import { getApiContent } from "@/api";
+import { ContentDetails } from "@/components/ContentDetails";
+import { Loading } from "@/components/Loading";
 import React from "react";
 
 export default async function Content({ params }: { params: { type: string; id: string } }) {
@@ -8,5 +10,5 @@ export default async function Content({ params }: { params: { type: string; id: 
 
   console.log(contentDetailsData);
 
-  return <div></div>;
+  return contentDetailsData.id ? <ContentDetails {...contentDetailsData} /> : <Loading />;
 }
