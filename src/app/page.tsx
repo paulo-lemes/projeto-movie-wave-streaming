@@ -1,5 +1,6 @@
 import { getApiContent } from "@/api";
 import { ContentRow } from "@/components/ContentRow";
+import { FadeInContent } from "@/components/FadeInContent";
 import { HighlightHome } from "@/components/HighlightHome";
 import { Loading } from "@/components/Loading";
 import { Suspense } from "react";
@@ -24,13 +25,21 @@ export default async function Home() {
   console.log(featuredMovies.results);
 
   return (
-    <main className="mb-auto pb-20">
+    <div className="mb-auto pb-20">
       <Suspense fallback={<Loading />}>
-        <HighlightHome {...featuredMovies} contentType="movie" />
-        <ContentRow {...trending} contentType="">Em alta</ContentRow>
-        <ContentRow {...topRatedMovies} contentType="movie">Filmes mais bem avaliados</ContentRow>
-        <ContentRow {...featuredMovies} contentType="movie">Filmes em destaque</ContentRow>
+        <FadeInContent duration={1.5}>
+          <HighlightHome {...featuredMovies} contentType="movie" />
+          <ContentRow {...trending} contentType="">
+            Em alta
+          </ContentRow>
+          <ContentRow {...topRatedMovies} contentType="movie">
+            Filmes mais bem avaliados
+          </ContentRow>
+          <ContentRow {...featuredMovies} contentType="movie">
+            Filmes em destaque
+          </ContentRow>
+        </FadeInContent>
       </Suspense>
-    </main>
+    </div>
   );
 }

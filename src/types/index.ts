@@ -46,6 +46,12 @@ export type modalProps = {
   isOpen: boolean;
 };
 
+export interface fadeInContentProps {
+  children: ReactNode;
+  classCSS?: string;
+  duration: number;
+}
+
 type defaultProps = {
   adult: boolean;
   backdrop_path: string;

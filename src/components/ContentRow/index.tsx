@@ -4,7 +4,6 @@ import React, { UIEvent, useRef, useState } from "react";
 import { dataProps } from "@/types";
 import { Card } from "../Card";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import { motion } from "framer-motion";
 
 export function ContentRow({ results, children, contentType }: dataProps) {
   const carousel = useRef<HTMLDivElement | null>(null);
@@ -35,18 +34,9 @@ export function ContentRow({ results, children, contentType }: dataProps) {
 
   return (
     <section className="py-4">
-      <motion.h3
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          transition: {
-            duration: 1,
-          },
-        }}
-        className="font-semibold text-xl sm:text-2xl ml-4 sm:ml-10 -mb-2"
-      >
+      <h3 className="font-semibold text-xl sm:text-2xl ml-4 sm:ml-16 -mb-2">
         {children}
-      </motion.h3>
+      </h3>
       <div className="flex items-center">
         <button
           type="button"
@@ -60,14 +50,19 @@ export function ContentRow({ results, children, contentType }: dataProps) {
           <SlArrowLeft size={30} className="opacity-50 hover:opacity-100" />
         </button>
         <div
-          className="flex flex-col overflow-hidden overflow-x-auto px-4 sm:px-10
+          className="flex flex-col overflow-hidden overflow-x-auto px-4 sm:px-16
            no-scrollbar scroll-smooth"
           onScroll={(e) => handleScroll(e)}
           ref={carousel}
         >
           <div className="w-max flex gap-3 py-3">
             {results?.map((content, i) => (
-              <Card key={content.id} {...content} index={i} contentType={contentType} />
+              <Card
+                key={content.id}
+                {...content}
+                index={i}
+                contentType={contentType}
+              />
             ))}
           </div>
         </div>
