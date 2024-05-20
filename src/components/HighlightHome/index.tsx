@@ -6,8 +6,9 @@ import WallpaperDefault from "../../../public/wallpaper-preview.jpg";
 import { content, dataProps } from "@/types";
 import { motion } from "framer-motion";
 import { Loading } from "../Loading";
+import Link from "next/link";
 
-export function HighlightHome({ results }: dataProps) {
+export function HighlightHome({ results, contentType }: dataProps) {
   const [content, setContent] = useState<content | null>(null);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export function HighlightHome({ results }: dataProps) {
       {content ? (
         <>
           <Image
-            src={`https://image.tmdb.org/t/p/original/${content?.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/original/${content.backdrop_path}`}
             alt=""
             width={1440}
             height={810}
@@ -40,10 +41,12 @@ export function HighlightHome({ results }: dataProps) {
           />
           <div className="flex flex-col gap-2 sm:w-[60vw] lg:w-[40vw] z-10">
             <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-2 py-1.5">
-              {(content?.title || content?.name)?.toUpperCase()}
+              {(content.title || content.name)?.toUpperCase()}
             </h2>
-            <p className="line-clamp-3 mb-2">{content?.overview}</p>
-            <button className="btn btn-secondary w-max">Veja detalhes</button>
+            <p className="line-clamp-3 mb-2">{content.overview}</p>
+            <Link href={`/${contentType}/${content.id}`}>
+              <button className="btn btn-secondary w-max">Veja detalhes</button>
+            </Link>
           </div>
         </>
       ) : (
