@@ -12,7 +12,9 @@ export function GenreButton({
 
   return (
     <button
-      className={`${classCSS} btn btn-xs btn-neutral disabled w-max text-xs`}
+      className={`${
+        classCSS || ""
+      } btn btn-xs btn-neutral disabled w-max h-max`}
     >
       {genre[0].name}
     </button>
