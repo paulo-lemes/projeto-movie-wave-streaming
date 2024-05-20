@@ -1,8 +1,5 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { content } from "@/types";
 import { GenreButton } from "../GenreButton";
 
@@ -19,14 +16,7 @@ export function ContentDetails({
 }: content) {
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          duration: 1.5,
-        }}
-        className="h-[85vh] flex items-end px-4 sm:px-16 mb-6"
-      >
+      <div className="h-[85vh] flex items-end px-4 sm:px-16 mb-6">
         <Image
           src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
           alt=""
@@ -49,29 +39,21 @@ export function ContentDetails({
             ))}
           </div>
         </div>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          duration: 1.5,
-        }}
-      >
-        <div className="px-4 sm:px-16 mb-6">
-          <p className="mb-2">{overview}</p>
+      </div>
+      <div className="px-4 sm:px-16 mb-6">
+        <p className="mb-2">{overview}</p>
+        <p className="font-bold">
+          Data de lançamento:{" "}
+          <span className="font-normal">
+            {(release_date || first_air_date)?.split("-").reverse().join("/")}
+          </span>
+        </p>
+        {runtime && (
           <p className="font-bold">
-            Data de lançamento:{" "}
-            <span className="font-normal">
-              {(release_date || first_air_date)?.split("-").reverse().join("/")}
-            </span>
+            Duração: <span className="font-normal">{runtime} min.</span>
           </p>
-          {runtime && (
-            <p className="font-bold">
-              Duração: <span className="font-normal">{runtime} min.</span>
-            </p>
-          )}
-        </div>
-      </motion.div>
+        )}
+      </div>
     </>
   );
 }
