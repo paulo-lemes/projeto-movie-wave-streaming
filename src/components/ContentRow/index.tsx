@@ -6,7 +6,7 @@ import { Card } from "../Card";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { motion } from "framer-motion";
 
-export function ContentRow({ results, children }: dataProps) {
+export function ContentRow({ results, children, contentType }: dataProps) {
   const carousel = useRef<HTMLDivElement | null>(null);
   const [scrollLeft, setScrollLeft] = useState<number>(0);
 
@@ -67,7 +67,7 @@ export function ContentRow({ results, children }: dataProps) {
         >
           <div className="w-max flex gap-3 py-3">
             {results?.map((content, i) => (
-              <Card key={content.id} {...content} index={i} />
+              <Card key={content.id} {...content} index={i} contentType={contentType} />
             ))}
           </div>
         </div>

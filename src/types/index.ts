@@ -21,11 +21,13 @@ export type content = {
   vote_average: number;
   vote_count: number;
   index: number;
+  contentType?: string;
 };
 
 export type dataProps = {
   results: content[];
   children?: ReactNode;
+  contentType?: string;
 };
 
 export type modalProps = {

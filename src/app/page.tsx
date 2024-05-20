@@ -28,8 +28,8 @@ export default async function Home() {
       <Suspense fallback={<Loading />}>
         <HighlightHome {...featuredMovies} />
         <ContentRow {...trending}>Em alta</ContentRow>
-        <ContentRow {...topRatedMovies}>Filmes mais bem avaliados</ContentRow>
-        <ContentRow {...featuredMovies}>Filmes em destaque</ContentRow>
+        <ContentRow {...topRatedMovies} contentType="movie">Filmes mais bem avaliados</ContentRow>
+        <ContentRow {...featuredMovies} contentType="movie">Filmes em destaque</ContentRow>
       </Suspense>
     </main>
   );
