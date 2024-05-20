@@ -45,9 +45,12 @@ export function Card({
         />
       </motion.div>
       <Modal isOpen={isModalOpen} onClose={handleModalClose}>
-        <div className="bg-black rounded sm:max-w-2xl max-h-[90vh] max-w-[95vw]">
+        <div
+          className="relative flex items-end bg-black h-[70vh] sm:h-[85vh] rounded 
+        sm:max-w-2xl max-h-[90vh] max-w-[95vw]"
+        >
           <div
-            className="relative float-right -mb-14 mt-2 mr-2 z-50 cursor-pointer"
+            className="absolute top-2 right-2 z-20 cursor-pointer"
             onClick={handleModalClose}
           >
             <IoCloseCircleOutline size={30} aria-label="Fechar" />
@@ -66,18 +69,14 @@ export function Card({
                   delay: 1,
                 },
               }}
-              className="mask-bottom max-h-[45vh] w-full"
+              className="absolute inset-0 object-cover mask-bottom max-h-[40vh] sm:max-h-[50vh]"
             />
           )}
-          <div className="flex flex-col p-10 pt-0 max-h-[45vh]">
-            <h4
-              className={`font-bold text-2xl ${
-                backdrop_path ? "-mt-4" : "mt-4"
-              } mb-2`}
-            >
+          <div className="relative flex flex-col p-5 gap-2 sm:p-10 h-[45vh] sm:h-[55vh]">
+            <h4 className="font-bold drop-shadow-2xl text-xl sm:text-2xl">
               {title || name}
             </h4>
-            <p className="overflow-y-auto">{overview}</p>
+            <p className="text-ellipsis">{overview}</p>
           </div>
         </div>
       </Modal>

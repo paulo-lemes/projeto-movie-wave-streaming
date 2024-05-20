@@ -50,7 +50,7 @@ export function ContentRow({ results, children }: dataProps) {
       <div className="flex items-center">
         <button
           type="button"
-          className={`absolute left-0 h-[320px] z-10 
+          className={`absolute left-0 h-[320px] z-10 sm:pl-2
           bg-gradient-to-l from-transparent to-base-100 ${
             !scrollLeft && "opacity-0"
           }`}
@@ -73,7 +73,7 @@ export function ContentRow({ results, children }: dataProps) {
         </div>
         <button
           type="button"
-          className={`absolute right-0 h-[320px] z-10 
+          className={`absolute right-0 h-[320px] z-10 sm:pr-2
           bg-gradient-to-r from-transparent to-base-100 ${
             btnRightScrollDisabled && "opacity-0"
           }`}

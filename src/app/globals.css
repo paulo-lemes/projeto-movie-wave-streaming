@@ -15,8 +15,8 @@
   .mask-bottom {
     mask-image: linear-gradient(
       to bottom,
-      oklch(var(--pc)) 36%,
-      transparent 100%
+      oklch(var(--pc)) 50%,
+      transparent 90%
     );
   }
 
