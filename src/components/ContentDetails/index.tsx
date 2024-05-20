@@ -14,6 +14,7 @@ export function ContentDetails({
   genres,
   overview,
   release_date,
+  first_air_date,
   runtime,
 }: content) {
   return (
@@ -37,10 +38,14 @@ export function ContentDetails({
           <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl">
             {(title || name)?.toUpperCase()}
           </h2>
-          <p className="text-lg font-semibold">{tagline}</p>
-          <div className="flex gap-2">
+          <p className="text-lg sm:text-xl font-semibold">{tagline}</p>
+          <div className="flex flex-wrap gap-2">
             {genres.map(({ id }) => (
-              <GenreButton key={id} genreId={id} classCSS="text-xl" />
+              <GenreButton
+                key={id}
+                genreId={id}
+                classCSS="text-lg sm:text-xl"
+              />
             ))}
           </div>
         </div>
@@ -57,12 +62,14 @@ export function ContentDetails({
           <p className="font-bold">
             Data de lançamento:{" "}
             <span className="font-normal">
-              {release_date?.split("-").reverse().join("/")}
+              {(release_date || first_air_date)?.split("-").reverse().join("/")}
             </span>
           </p>
-          <p className="font-bold">
-            Duração: <span className="font-normal">{runtime} min.</span>
-          </p>
+          {runtime && (
+            <p className="font-bold">
+              Duração: <span className="font-normal">{runtime} min.</span>
+            </p>
+          )}
         </div>
       </motion.div>
     </>

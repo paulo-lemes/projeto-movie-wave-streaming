@@ -27,7 +27,7 @@ export default async function Home() {
     <main className="mb-auto pb-20">
       <Suspense fallback={<Loading />}>
         <HighlightHome {...featuredMovies} contentType="movie" />
-        <ContentRow {...trending}>Em alta</ContentRow>
+        <ContentRow {...trending} contentType="">Em alta</ContentRow>
         <ContentRow {...topRatedMovies} contentType="movie">Filmes mais bem avaliados</ContentRow>
         <ContentRow {...featuredMovies} contentType="movie">Filmes em destaque</ContentRow>
       </Suspense>
