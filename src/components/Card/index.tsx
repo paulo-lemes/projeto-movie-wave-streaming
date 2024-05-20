@@ -6,6 +6,7 @@ import { useModal } from "@/hooks/useModal";
 import { Modal } from "../Modal";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export function Card({
   title,
@@ -13,7 +14,10 @@ export function Card({
   poster_path,
   backdrop_path,
   overview,
+  media_type,
+  id,
   index,
+  contentType
 }: content) {
   const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
 
@@ -76,7 +80,12 @@ export function Card({
             <h4 className="font-bold drop-shadow-2xl text-xl sm:text-2xl">
               {title || name}
             </h4>
-            <p className="text-ellipsis">{overview}</p>
+            <p className="line-clamp-4">{overview}</p>
+            <Link href={`/${media_type || contentType}/${id}`}>
+              <button className="btn btn-outline btn-secondary w-max">
+                Veja mais detalhes
+              </button>
+            </Link>
           </div>
         </div>
       </Modal>
