@@ -48,11 +48,11 @@ export function ContentDetails({
             {(release_date || first_air_date)?.split("-").reverse().join("/")}
           </span>
         </p>
-        {runtime && (
+        {runtime ? (
           <p className="font-bold">
             Duração: <span className="font-normal">{runtime} min.</span>
           </p>
-        )}
+        ) : null}
       </div>
     </>
   );

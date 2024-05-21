@@ -33,7 +33,11 @@ export function HighlightHome({ results, contentType }: dataProps) {
           {(content?.title || content?.name)?.toUpperCase()}
         </h2>
         <p className="line-clamp-3 mb-2">{content?.overview}</p>
-        <Link href={`/${contentType}/${content?.id}`}>
+        <Link
+          href={`/${contentType}/${content?.id}?title=${(
+            content?.title || content?.name
+          )?.toLowerCase()}`}
+        >
           <button className="btn btn-secondary w-max">Veja detalhes</button>
         </Link>
       </div>

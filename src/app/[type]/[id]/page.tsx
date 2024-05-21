@@ -33,7 +33,7 @@ export default async function Content({
 
   console.log(contentDetails);
   console.log(contentVideos);
-  console.log(contentProviders);
+  console.log(contentProviders.results.BR);
   console.log(recommendedContent);
 
   return contentDetails.id ? (

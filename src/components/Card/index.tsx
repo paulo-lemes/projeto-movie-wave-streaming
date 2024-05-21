@@ -17,7 +17,7 @@ export function Card({
   media_type,
   id,
   index,
-  contentType
+  contentType,
 }: content) {
   const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
 
@@ -81,7 +81,11 @@ export function Card({
               {title || name}
             </h4>
             <p className="line-clamp-4">{overview}</p>
-            <Link href={`/${media_type || contentType}/${id}`}>
+            <Link
+              href={`/${media_type || contentType}/${id}?title=${(
+                title || name
+              ).toLowerCase()}`}
+            >
               <button className="btn btn-outline btn-secondary w-max">
                 Veja mais detalhes
               </button>
