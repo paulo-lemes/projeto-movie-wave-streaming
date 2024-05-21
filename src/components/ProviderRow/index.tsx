@@ -13,9 +13,8 @@ export function ProviderRow({ providers, children }: providerRowProps) {
         </h4>
         <div className="flex flex-wrap gap-2 pl-4">
           {providers.map(({ provider_id, provider_name, logo_path }) => (
-            <LinkProvider provider_id={provider_id}>
+            <LinkProvider key={provider_id} provider_id={provider_id}>
               <Image
-                key={provider_id}
                 src={`https://image.tmdb.org/t/p/original/${logo_path}`}
                 alt={`Logo de ${provider_name}`}
                 width={50}
