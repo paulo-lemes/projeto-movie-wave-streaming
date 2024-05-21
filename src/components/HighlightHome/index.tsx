@@ -29,7 +29,7 @@ export function HighlightHome({ results, contentType }: dataProps) {
         className="mask-top-bottom -z-10 h-[85vh] w-full object-cover absolute inset-0"
       />
       <div className="flex flex-col gap-2 sm:w-[60vw] lg:w-[40vw] z-10">
-        <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-2 py-1.5">
+        <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-3 py-1.5">
           {(content?.title || content?.name)?.toUpperCase()}
         </h2>
         <p className="line-clamp-3 mb-2">{content?.overview}</p>
