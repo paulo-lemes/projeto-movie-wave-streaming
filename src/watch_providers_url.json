@@ -17,6 +17,12 @@
     "provider_name": "Netflix"
   },
   {
+    "url": "http://www.netflix.com/Search?v1=",
+    "search": true,
+    "provider_id": 1796,
+    "provider_name": "Netflix basic with Ads"
+  },
+  {
     "url": "https://www.starplus.com/",
     "provider_id": 619,
     "provider_name": "Star Plus"
@@ -36,6 +42,11 @@
     "url": "https://www.paramountplus.com/br/",
     "provider_id": 531,
     "provider_name": "Paramount Plus"
+  },
+  {
+    "url": "https://www.paramountplus.com/br/",
+    "provider_id": 582,
+    "provider_name": "Paramount+ Amazon Channel"
   },
   {
     "url": "https://play.max.com/search/result?q=",
