@@ -20,7 +20,7 @@ export type videoProps = {
   id: string;
 };
 
-export type watchProvidersProps = {
+export type watchProviderProps = {
   link: string;
   rent: provider[];
   buy: provider[];
