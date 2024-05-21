@@ -1,0 +1,94 @@
+[
+  {
+    "url": "https://www.disneyplus.com/",
+    "provider_id": 337,
+    "provider_name": "Disney Plus"
+  },
+  {
+    "url": "https://www.primevideo.com/search/ref=atv_nb_sug?ie=UTF8&phrase=",
+    "search": true,
+    "provider_id": 119,
+    "provider_name": "Amazon Prime Video"
+  },
+  {
+    "url": "http://www.netflix.com/Search?v1=",
+    "search": true,
+    "provider_id": 8,
+    "provider_name": "Netflix"
+  },
+  {
+    "url": "https://www.starplus.com/",
+    "provider_id": 619,
+    "provider_name": "Star Plus"
+  },
+  {
+    "url": "https://www.clarovideo.com/brasil/search?q=",
+    "search": true,
+    "provider_id": 167,
+    "provider_name": "Claro video"
+  },
+  {
+    "url": "https://www.looke.com.br/landingpage",
+    "provider_id": 47,
+    "provider_name": "Looke"
+  },
+  {
+    "url": "https://www.paramountplus.com/br/",
+    "provider_id": 531,
+    "provider_name": "Paramount Plus"
+  },
+  {
+    "url": "https://play.max.com/search/result?q=",
+    "search": true,
+    "provider_id": 1899,
+    "provider_name": "Max"
+  },
+  {
+    "url": "https://play.max.com/search/result?q=",
+    "search": true,
+    "provider_id": 384,
+    "provider_name": "HBO Max"
+  },
+  {
+    "url": "https://tv.apple.com/search?term=",
+    "search": true,
+    "provider_id": 2,
+    "provider_name": "Apple TV"
+  },
+  {
+    "url": "https://tv.apple.com/search?term=",
+    "search": true,
+    "provider_id": 350,
+    "provider_name": "Apple TV Plus"
+  },
+  {
+    "url": "https://globoplay.globo.com/busca/?q=",
+    "search": true,
+    "provider_id": 307,
+    "provider_name": "Globoplay"
+  },
+  {
+    "url": "https://www.primevideo.com/search/ref=atv_nb_sug?ie=UTF8&phrase=",
+    "search": true,
+    "provider_id": 10,
+    "provider_name": "Amazon Video"
+  },
+  {
+    "url": "https://play.google.com/store/search?c=movies&q=",
+    "search": true,
+    "provider_id": 3,
+    "provider_name": "Google Play Movies"
+  },
+  {
+    "url": "https://www.microsoft.com/pt-br/search/shop/movies?q=",
+    "search": true,
+    "provider_id": 68,
+    "provider_name": "Microsoft Store"
+  },
+  {
+    "url": "https://www.clarotvmais.com.br/busca?q=",
+    "search": true,
+    "provider_id": 484,
+    "provider_name": "NOW"
+  }
+]

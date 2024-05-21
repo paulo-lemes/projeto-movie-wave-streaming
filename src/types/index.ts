@@ -22,10 +22,15 @@ export type videoProps = {
 
 export type watchProviderProps = {
   link: string;
-  rent: provider[];
-  buy: provider[];
-  flatrate: provider[];
+  rent?: provider[];
+  buy?: provider[];
+  flatrate?: provider[];
 };
+
+export interface providerRowProps {
+  providers: provider[] | undefined;
+  children: ReactNode;
+}
 
 type provider = {
   logo_path: string;
