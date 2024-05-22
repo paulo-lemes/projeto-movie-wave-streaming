@@ -6,34 +6,62 @@ import { Loading } from "@/components/Loading";
 import { Suspense } from "react";
 
 export default async function Home() {
-  const trendingData = getApiContent("trending/all/day?language=pt-br");
-  const featuredMoviesData = getApiContent("movie/now_playing?language=pt-BR&page=1");
-  const topRatedMoviesData = getApiContent("movie/top_rated?language=pt-BR&page=1");
+  const trendingData = getApiContent(
+    "trending/all/day?language=pt-br"
+  );
+  const featuredMoviesData = getApiContent(
+    "movie/now_playing?language=pt-BR&page=1"
+  );
+  const topRatedMoviesData = getApiContent(
+    "movie/top_rated?language=pt-BR&page=1"
+  );
+  const topRatedSeriesData = getApiContent(
+    "tv/top_rated?language=pt-BR&page=1"
+  );
+  const featuredSeriesData = getApiContent(
+    "tv/airing_today?language=pt-BR&page=1"
+  );
 
-  const [trending, featuredMovies, topRatedMovies] = await Promise.all([
+  const [
+    trending,
+    topRatedMovies,
+    topRatedSeries,
+    featuredMovies,
+    featuredSeries,
+  ] = await Promise.all([
     trendingData,
-    featuredMoviesData,
     topRatedMoviesData,
+    topRatedSeriesData,
+    featuredMoviesData,
+    featuredSeriesData,
   ]);
 
   console.log(trending.results);
   console.log(topRatedMovies.results);
+  console.log(topRatedSeries.results);
   console.log(featuredMovies.results);
+  console.log(featuredSeries.results);
 
   return (
-      <Suspense fallback={<Loading />}>
-        <FadeInContent duration={1.5}>
-          <PageHighlight {...featuredMovies} contentType="movie" />
-          <ContentRow {...trending} contentType="">
-            Em alta
-          </ContentRow>
-          <ContentRow {...topRatedMovies} contentType="movie">
-            Filmes mais bem avaliados
-          </ContentRow>
-          <ContentRow {...featuredMovies} contentType="movie">
-            Filmes em destaque
-          </ContentRow>
-        </FadeInContent>
-      </Suspense>
+    <Suspense fallback={<Loading />}>
+      <FadeInContent duration={1.5}>
+        <PageHighlight {...featuredMovies} contentType="movie" />
+        <ContentRow {...trending} contentType="">
+          Em alta
+        </ContentRow>
+        <ContentRow {...topRatedMovies} contentType="movie">
+          Filmes mais bem avaliados
+        </ContentRow>
+        <ContentRow {...topRatedSeries} contentType="tv">
+          Séries mais bem avaliadas
+        </ContentRow>
+        <ContentRow {...featuredMovies} contentType="movie">
+          Filmes em destaque
+        </ContentRow>
+        <ContentRow {...featuredSeries} contentType="tv">
+          Séries em destaque
+        </ContentRow>
+      </FadeInContent>
+    </Suspense>
   );
 }
