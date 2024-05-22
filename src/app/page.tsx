@@ -21,7 +21,6 @@ export default async function Home() {
   console.log(featuredMovies.results);
 
   return (
-    <div className="mb-auto pb-20">
       <Suspense fallback={<Loading />}>
         <FadeInContent duration={1.5}>
           <PageHighlight {...featuredMovies} contentType="movie" />
@@ -36,6 +35,5 @@ export default async function Home() {
           </ContentRow>
         </FadeInContent>
       </Suspense>
-    </div>
   );
 }
