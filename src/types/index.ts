@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export type contentProps = {
   index: number;
-  contentType: string;
+  contentType?: string;
 };
 
 export type content = defaultProps & movie & tv & contentProps;
@@ -42,7 +42,7 @@ type provider = {
 export type dataProps = {
   results: content[];
   children: ReactNode;
-  contentType: string;
+  contentType?: string;
 };
 
 export type modalProps = {
@@ -55,6 +55,12 @@ export interface fadeInContentProps {
   children: ReactNode;
   classCSS?: string;
   duration: number;
+}
+
+export interface bannerProps {
+  children: ReactNode;
+  backdrop?: string;
+  title?: string;
 }
 
 type defaultProps = {
