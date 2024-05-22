@@ -32,7 +32,7 @@ export function ContentRow({ results, children, contentType }: dataProps) {
     (carousel.current &&
       carousel.current?.scrollWidth - carousel.current?.offsetWidth);
 
-  return (
+  return results.length > 0 ? (
     <section className="py-4">
       <h3 className="font-semibold text-xl sm:text-2xl ml-4 sm:ml-16 -mb-2">
         {children}
@@ -79,5 +79,5 @@ export function ContentRow({ results, children, contentType }: dataProps) {
         </button>
       </div>
     </section>
-  );
+  ) : null;
 }

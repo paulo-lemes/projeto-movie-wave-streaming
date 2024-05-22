@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { content } from "@/types";
 import { motion } from "framer-motion";
 import { GenreButton } from "../GenreButton";
-import Link from "next/link";
 
 export function CardSearchContent({
   backdrop_path,
@@ -16,7 +16,7 @@ export function CardSearchContent({
   index,
 }: content) {
   return (
-    <Link href={`/${media_type}/${id}`}>
+    <Link href={`/${media_type}/${id}?title=${(title || name).toLowerCase()}`}>
       <motion.div
         whileHover={{ scale: 1.05 }}
         initial={{ opacity: 0 }}
@@ -30,7 +30,11 @@ export function CardSearchContent({
         className="w-72 flex flex-col hover:cursor-pointer"
       >
         <motion.img
-          src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
+          src={
+            backdrop_path
+              ? `https://image.tmdb.org/t/p/original/${backdrop_path}`
+              : "../../../public/unavailable-image.png"
+          }
           width={384}
           height={216}
           initial={{ opacity: 0 }}
@@ -47,7 +51,7 @@ export function CardSearchContent({
         <h3 className="font-semibold line-clamp-2">{title || name}</h3>
         <section className="flex flex-wrap gap-1">
           {genre_ids?.map((id) => (
-            <GenreButton key={id} genreId={id} />
+            <GenreButton key={id} genreId={id} classCSS="no-animation" />
           ))}
         </section>
       </motion.div>

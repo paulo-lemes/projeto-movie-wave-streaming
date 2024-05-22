@@ -15,13 +15,9 @@ export default async function Content({
   const { type, id } = params;
 
   const contentDetailsData = getApiContent(`${type}/${id}?language=pt-BR`);
-  const contentVideosData = getApiContent(
-    `${type}/${id}/videos?language=pt-BR`
-  );
+  const contentVideosData = getApiContent(`${type}/${id}/videos?language=pt-BR`);
   const contentProvidersData = getApiContent(`${type}/${id}/watch/providers`);
-  const recommendedContentData = getApiContent(
-    `${type}/${id}/recommendations?language=pt-BR&page=1`
-  );
+  const recommendedContentData = getApiContent(`${type}/${id}/recommendations?language=pt-BR&page=1`);
 
   const [contentDetails, contentVideos, contentProviders, recommendedContent] =
     await Promise.all([
@@ -41,9 +37,7 @@ export default async function Content({
       <ContentDetails {...contentDetails} />
       <WatchProvider {...contentProviders.results.BR} />
       <ContentVideo {...contentVideos} />
-      <ContentRow {...recommendedContent} contentType="">
-        Recomendados
-      </ContentRow>
+      <ContentRow {...recommendedContent}>Recomendados</ContentRow>
     </FadeInContent>
   ) : (
     <Loading />

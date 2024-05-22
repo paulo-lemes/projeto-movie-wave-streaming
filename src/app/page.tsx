@@ -1,18 +1,14 @@
 import { getApiContent } from "@/api";
 import { ContentRow } from "@/components/ContentRow";
 import { FadeInContent } from "@/components/FadeInContent";
-import { HighlightHome } from "@/components/HighlightHome";
+import { PageHighlight } from "@/components/PageHighlight";
 import { Loading } from "@/components/Loading";
 import { Suspense } from "react";
 
 export default async function Home() {
   const trendingData = getApiContent("trending/all/day?language=pt-br");
-  const featuredMoviesData = getApiContent(
-    "movie/now_playing?language=pt-BR&page=1"
-  );
-  const topRatedMoviesData = getApiContent(
-    "movie/top_rated?language=pt-BR&page=1"
-  );
+  const featuredMoviesData = getApiContent("movie/now_playing?language=pt-BR&page=1");
+  const topRatedMoviesData = getApiContent("movie/top_rated?language=pt-BR&page=1");
 
   const [trending, featuredMovies, topRatedMovies] = await Promise.all([
     trendingData,
@@ -28,7 +24,7 @@ export default async function Home() {
     <div className="mb-auto pb-20">
       <Suspense fallback={<Loading />}>
         <FadeInContent duration={1.5}>
-          <HighlightHome {...featuredMovies} contentType="movie" />
+          <PageHighlight {...featuredMovies} contentType="movie" />
           <ContentRow {...trending} contentType="">
             Em alta
           </ContentRow>
