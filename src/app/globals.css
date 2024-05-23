@@ -24,9 +24,9 @@
     mask-image: linear-gradient(
       180deg,
       transparent 0%,
-      oklch(var(--pc)) 40%,
-      oklch(var(--pc)) 50%,
-      transparent 90%
+      oklch(var(--pc)) 30%,
+      oklch(var(--pc)) 30%,
+      transparent 80%
     );
   }
 }
