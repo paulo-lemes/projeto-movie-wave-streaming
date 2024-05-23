@@ -7,7 +7,7 @@ export function ContentVideo({ results }: { results: videoProps[] }) {
   return (
     videos.length > 0 && (
       <section className="flex flex-col gap-4 px-4 sm:px-16 mb-6">
-        <h4 className="text-2xl font-bold">Trailer{videos.length > 1 && "s"}</h4>
+        <h4 className="text-2xl font-bold">Multimídia</h4>
         <div className="flex flex-wrap gap-4">
           {videos.map(({ key }) => (
             <iframe

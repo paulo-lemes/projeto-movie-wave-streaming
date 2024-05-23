@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import tmdbGenres from "../../tmdb_genres.json";
 import { FadeInContent } from "@/components/FadeInContent";
 
@@ -19,15 +20,16 @@ export default function Categories() {
         </p>
         <div className="flex flex-wrap justify-center gap-1 sm:gap-2 lg:gap-3 mt-5">
           {genres.map(({ id, name }, i) => (
-            <button
-              key={id}
-              className={`btn lg:text-2xl btn-outline ${
-                i % 2 === 0 && "btn-secondary"
-              }
-          `}
-            >
-              {name}
-            </button>
+            <Link key={id} href={`/category/${id}`}>
+              <button
+                className={`btn lg:text-2xl btn-outline ${
+                  i % 2 === 0 && "btn-secondary"
+                }
+              `}
+              >
+                {name}
+              </button>
+            </Link>
           ))}
         </div>
       </div>
