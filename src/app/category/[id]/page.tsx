@@ -5,6 +5,7 @@ import { PageHighlight } from "@/components/PageHighlight";
 import { ContentRow } from "@/components/ContentRow";
 import tmdbGenres from "../../../tmdb_genres.json";
 import { ContentSearch } from "@/components/ContentSearch";
+import { CategoryContent } from "@/components/CategoryContent";
 
 export default async function Category({ params }: { params: { id: number } }) {
   const { id } = params;
@@ -36,15 +37,15 @@ export default async function Category({ params }: { params: { id: number } }) {
     searchSeriesCategoryData,
   ]);
 
-  let highlightContent
-  let highlightContentType
+  let highlightContent;
+  let highlightContentType;
 
   if (moviesCategory.total_results) {
-    highlightContent = moviesCategory
-    highlightContentType = "movie"
+    highlightContent = moviesCategory;
+    highlightContentType = "movie";
   } else if (seriesCategory.total_results) {
-    highlightContent = seriesCategory
-    highlightContentType = "tv"
+    highlightContent = seriesCategory;
+    highlightContentType = "tv";
   }
   const searchContent = { ...searchMoviesCategory, ...searchSeriesCategory };
 
@@ -63,6 +64,12 @@ export default async function Category({ params }: { params: { id: number } }) {
       <ContentRow {...moviesCategory} contentType="movie">
         Filmes populares de {categoryName}
       </ContentRow>
+      <h2 className="font-bold text-2xl sm:text-3xl text-center my-8 px-2">
+        Explore a categoria{" "}
+        <span className="text-secondary">{categoryName}</span>
+      </h2>
+      <CategoryContent {...searchSeriesCategory} contentType="tv" />
+      <CategoryContent {...searchMoviesCategory} contentType="movie" />
     </FadeInContent>
   );
 }

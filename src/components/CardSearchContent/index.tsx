@@ -13,10 +13,11 @@ export function CardSearchContent({
   genre_ids,
   id,
   media_type,
+  contentType,
   index,
 }: content) {
   return (
-    <Link href={`/${media_type}/${id}?title=${(title || name).toLowerCase()}`}>
+    <Link href={`/${media_type || contentType}/${id}?title=${(title || name).toLowerCase()}`}>
       <motion.div
         whileHover={{ scale: 1.05 }}
         initial={{ opacity: 0 }}
