@@ -63,6 +63,38 @@ export interface bannerProps {
   title?: string;
 }
 
+export type credits = {
+  cast:
+    {
+      adult: boolean;
+      gender: number;
+      id: number;
+      known_for_department: string;
+      name: string;
+      original_name: string;
+      popularity: number;
+      profile_path: string;
+      character: string;
+      credit_id: string;
+      order: number;
+    }[],
+  crew:
+    {
+      adult: boolean;
+      gender: number;
+      id: number;
+      known_for_department: string;
+      name: string;
+      original_name: string;
+      popularity: number;
+      profile_path: string;
+      credit_id: string;
+      department: string;
+      job: string;
+    }[],
+  id: number;
+};
+
 type defaultProps = {
   adult: boolean;
   backdrop_path: string;
