@@ -15,13 +15,13 @@ export function CreditsContent({ cast, crew }: credits) {
   return (
     <div className="flex flex-col gap-1 px-4 sm:px-16 mb-6">
       <div className="flex flex-wrap gap-1">
-        {actors.map(({ name }) => (
-          <p>{name}</p>
+        {actors.map(({ name, id }) => (
+          <p key={id}>{name}</p>
         ))}
       </div>
       <div className="flex flex-wrap gap-1">
-        {directors.map(({ name }) => (
-          <p>{name}</p>
+        {directors.map(({ name, id }) => (
+          <p key={id}>{name}</p>
         ))}
       </div>
     </div>
