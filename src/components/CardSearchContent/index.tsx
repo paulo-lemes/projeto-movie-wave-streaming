@@ -52,7 +52,7 @@ export function CardSearchContent({
         <h3 className="font-semibold line-clamp-2">{title || name}</h3>
         <section className="flex flex-wrap gap-1">
           {genre_ids?.map((id) => (
-            <GenreButton key={id} genreId={id} classCSS="no-animation" />
+            <GenreButton key={id} genreId={id} />
           ))}
         </section>
       </motion.div>

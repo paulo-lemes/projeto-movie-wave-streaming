@@ -1,15 +1,16 @@
 import React from "react";
+import tmdbGenres from "../../../tmdb_genres.json";
 import { getApiContent } from "@/api";
 import { FadeInContent } from "@/components/FadeInContent";
 import { PageHighlight } from "@/components/PageHighlight";
 import { ContentRow } from "@/components/ContentRow";
-import tmdbGenres from "../../../tmdb_genres.json";
-import { ContentSearch } from "@/components/ContentSearch";
 import { CategoryContent } from "@/components/CategoryContent";
 
-export default async function Category({ params }: { params: { id: number } }) {
+export default async function Category({ params }: { params: { id: string } }) {
   const { id } = params;
-  const category = tmdbGenres.genres.filter((genre) => genre.id == id);
+  const category = tmdbGenres.genres.filter(
+    (genre) => genre.id.toString() === id
+  );
   const categoryName = category[0].name.toLowerCase();
 
   const moviesCategoryData = getApiContent(
@@ -43,17 +44,15 @@ export default async function Category({ params }: { params: { id: number } }) {
   if (moviesCategory.total_results) {
     highlightContent = moviesCategory;
     highlightContentType = "movie";
-  } else if (seriesCategory.total_results) {
+  } else {
     highlightContent = seriesCategory;
     highlightContentType = "tv";
   }
-  const searchContent = { ...searchMoviesCategory, ...searchSeriesCategory };
 
   console.log(moviesCategory);
   console.log(seriesCategory);
   console.log(searchMoviesCategory);
   console.log(searchSeriesCategory);
-  console.log(searchContent);
 
   return (
     <FadeInContent duration={1.5}>
