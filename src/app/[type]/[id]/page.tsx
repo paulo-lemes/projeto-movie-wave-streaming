@@ -14,9 +14,10 @@ export default async function Content({
   params: { type: string; id: string };
 }) {
   const { type, id } = params;
+  const credits = type === "tv" ? "aggregate_credits" : "credits";
 
   const contentDetailsData = getApiContent(`${type}/${id}?language=pt-BR`);
-  const contentCreditsData = getApiContent(`${type}/${id}/credits?language=pt-BR`);
+  const contentCreditsData = getApiContent(`${type}/${id}/${credits}?language=pt-BR`);
   const contentVideosData = getApiContent(`${type}/${id}/videos?language=pt-BR`);
   const contentProvidersData = getApiContent(`${type}/${id}/watch/providers`);
   const recommendedContentData = getApiContent(`${type}/${id}/recommendations?language=pt-BR&page=1`);

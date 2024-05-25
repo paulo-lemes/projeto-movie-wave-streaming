@@ -79,11 +79,25 @@ export type person = {
   popularity: number;
   profile_path: string;
   credit_id: string;
-  character?: string;
-  order?: number;
-  department?: string;
-  job?: string;
+  character: string;
+  roles: roles[];
+  order: number;
+  department: string;
+  job: string;
+  jobs: jobArray[];
   index: number;
+};
+
+type jobArray = {
+  credit_id: string;
+  job: string;
+  episode_count: number;
+};
+
+type roles = {
+  credit_id: string;
+  character: string;
+  episode_count: number;
 };
 
 type defaultProps = {
