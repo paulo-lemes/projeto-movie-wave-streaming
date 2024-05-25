@@ -4,6 +4,7 @@ import React, { UIEvent, useRef, useState } from "react";
 import { dataProps } from "@/types";
 import { Card } from "../Card";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import { CardTopContent } from "../CardTopContent";
 
 export function ContentRow({
   results,
@@ -65,7 +66,14 @@ export function ContentRow({
           >
             <div className="w-max flex gap-3 py-3">
               {top10
-                ? ""
+                ? results?.map((content, i) => (
+                    <CardTopContent
+                      key={content.id}
+                      {...content}
+                      index={i}
+                      contentType={contentType}
+                    />
+                  ))
                 : results?.map((content, i) => (
                     <Card
                       key={content.id}

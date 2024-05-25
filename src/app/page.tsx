@@ -54,17 +54,17 @@ export default async function Home() {
     <Suspense fallback={<Loading />}>
       <FadeInContent duration={1.5}>
         <PageHighlight {...featuredMovies} contentType="movie" />
-        <TopContent {...topMovies} contentType="movie" />
-        <TopContent {...topSeries} contentType="tv" />
         <ContentRow {...trending} contentType="">
           Em alta
         </ContentRow>
+        <TopContent {...topMovies} contentType="movie" />
         <ContentRow {...topRatedMovies} contentType="movie">
           Filmes mais bem avaliados
         </ContentRow>
         <ContentRow {...topRatedSeries} contentType="tv">
           Séries mais bem avaliadas
         </ContentRow>
+        <TopContent {...topSeries} contentType="tv" />
         <ContentRow {...featuredMovies} contentType="movie">
           Filmes em destaque
         </ContentRow>
