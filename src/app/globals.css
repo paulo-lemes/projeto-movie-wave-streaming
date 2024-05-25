@@ -29,6 +29,19 @@
       transparent 80%
     );
   }
+
+  .text-outline {
+    -webkit-text-stroke: 2px;
+    -webkit-text-fill-color: oklch(var(--b1));
+  }
+
+  .letter-shadow-r {
+    mask-image: linear-gradient(
+      to right,
+      oklch(var(--pc)) 36%,
+      transparent 100%
+    );
+  }
 }
 
 body {
