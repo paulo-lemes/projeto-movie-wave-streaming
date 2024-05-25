@@ -4,11 +4,10 @@ import { FadeInContent } from "@/components/FadeInContent";
 import { PageHighlight } from "@/components/PageHighlight";
 import { Loading } from "@/components/Loading";
 import { Suspense } from "react";
+import { TopContent } from "@/components/TopContent";
 
 export default async function Home() {
-  const trendingData = getApiContent(
-    "trending/all/day?language=pt-br"
-  );
+  const trendingData = getApiContent("trending/all/day?language=pt-br");
   const featuredMoviesData = getApiContent(
     "movie/now_playing?language=pt-BR&page=1"
   );
@@ -22,18 +21,25 @@ export default async function Home() {
     "tv/airing_today?language=pt-BR&page=1"
   );
 
+  const topMoviesData = getApiContent(`trending/movie/week?language=pt-BR`);
+  const topSeriesData = getApiContent(`trending/tv/week?language=pt-BR`);
+
   const [
     trending,
     topRatedMovies,
     topRatedSeries,
     featuredMovies,
     featuredSeries,
+    topMovies,
+    topSeries,
   ] = await Promise.all([
     trendingData,
     topRatedMoviesData,
     topRatedSeriesData,
     featuredMoviesData,
     featuredSeriesData,
+    topMoviesData,
+    topSeriesData,
   ]);
 
   console.log(trending.results);
@@ -41,11 +47,15 @@ export default async function Home() {
   console.log(topRatedSeries.results);
   console.log(featuredMovies.results);
   console.log(featuredSeries.results);
+  console.log(topMovies.results);
+  console.log(topSeries.results);
 
   return (
     <Suspense fallback={<Loading />}>
       <FadeInContent duration={1.5}>
         <PageHighlight {...featuredMovies} contentType="movie" />
+        <TopContent {...topMovies} contentType="movie" />
+        <TopContent {...topSeries} contentType="tv" />
         <ContentRow {...trending} contentType="">
           Em alta
         </ContentRow>

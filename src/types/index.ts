@@ -41,8 +41,9 @@ type provider = {
 
 export type dataProps = {
   results: content[];
-  children: ReactNode;
+  children?: ReactNode;
   contentType?: string;
+  top10?: boolean;
 };
 
 export type modalProps = {
