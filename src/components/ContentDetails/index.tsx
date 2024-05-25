@@ -12,6 +12,9 @@ export function ContentDetails({
   overview,
   release_date,
   first_air_date,
+  last_air_date,
+  number_of_episodes,
+  number_of_seasons,
   runtime,
 }: content) {
   return (
@@ -41,11 +44,29 @@ export function ContentDetails({
             {(release_date || first_air_date)?.split("-").reverse().join("/")}
           </span>
         </p>
-        {runtime ? (
+        {runtime && (
           <p className="font-bold">
             Duração: <span className="font-normal">{runtime} min.</span>
           </p>
-        ) : null}
+        )}
+        {number_of_episodes && (
+          <p className="font-bold">
+            Episódios: <span className="font-normal">{number_of_episodes}</span>
+          </p>
+        )}
+        {number_of_seasons && (
+          <p className="font-bold">
+            Temporadas: <span className="font-normal">{number_of_seasons}</span>
+          </p>
+        )}
+        {last_air_date && (
+          <p className="font-bold">
+            Último episódio no ar:{" "}
+            <span className="font-normal">
+              {last_air_date.split("-").reverse().join("/")}
+            </span>
+          </p>
+        )}
       </div>
     </>
   );
