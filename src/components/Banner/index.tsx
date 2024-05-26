@@ -4,9 +4,18 @@ import React from "react";
 import { bannerProps } from "@/types";
 import { motion } from "framer-motion";
 
-export function Banner({ children, backdrop, title }: bannerProps) {
+const divHighlightStyle = "h-[90vh] items-end mb-6";
+const divSpotlightStyle = "h-[90vh] items-center my-10 shadow-top-bottom";
+const imgHighlightStyle = "h-[100vh] w-full mask-top-bottom";
+const imgSpotlightStyle = "h-full w-[90vw] mask-left-right";
+
+export function Banner({ children, backdrop, title, spotlight }: bannerProps) {
   return (
-    <div className="h-[90vh] max-h-[735px] flex items-end px-4 sm:px-16 mb-6">
+    <div
+      className={`relative max-h-[735px] w-full flex px-4 sm:px-16 
+    ${spotlight ? divSpotlightStyle : divHighlightStyle}
+    `}
+    >
       <motion.img
         src={
           backdrop
@@ -24,7 +33,9 @@ export function Banner({ children, backdrop, title }: bannerProps) {
             delay: 0.5,
           },
         }}
-        className="mask-top-bottom -z-10 h-[100vh] max-h-[815px] w-full object-cover absolute inset-0"
+        className={`-z-10 h-[100vh] max-h-[815px] object-cover absolute inset-0 
+        ${spotlight ? imgSpotlightStyle : imgHighlightStyle}
+        `}
       />
       {children}
     </div>

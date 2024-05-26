@@ -5,6 +5,7 @@ import { PageHighlight } from "@/components/PageHighlight";
 import { Loading } from "@/components/Loading";
 import { Suspense } from "react";
 import { TopContent } from "@/components/TopContent";
+import { SpotlightContent } from "@/components/SpotlightContent";
 
 export default async function Home() {
   const featuredMoviesData = getApiContent(
@@ -28,6 +29,9 @@ export default async function Home() {
   const featuredSeriesData = getApiContent(
     "tv/airing_today?language=pt-BR&page=1"
   );
+  const moreTopRatedMoviesData = getApiContent(
+    "movie/top_rated?language=pt-BR&page=2"
+  );
 
   const [
     featuredMovies,
@@ -37,6 +41,7 @@ export default async function Home() {
     topRatedSeries,
     topSeries,
     featuredSeries,
+    moreTopRatedMovies,
   ] = await Promise.all([
     featuredMoviesData,
     trendingData,
@@ -45,6 +50,7 @@ export default async function Home() {
     topRatedSeriesData,
     topSeriesData,
     featuredSeriesData,
+    moreTopRatedMoviesData,
   ]);
 
   console.log(featuredMovies.results);
@@ -73,6 +79,7 @@ export default async function Home() {
         <ContentRow {...featuredMovies} contentType="movie">
           Filmes em destaque
         </ContentRow>
+        <SpotlightContent {...moreTopRatedMovies} contentType="movie" />
         <ContentRow {...featuredSeries} contentType="tv">
           Séries em destaque
         </ContentRow>

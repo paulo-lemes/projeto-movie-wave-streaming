@@ -5,6 +5,7 @@ import { FadeInContent } from "@/components/FadeInContent";
 import { PageHighlight } from "@/components/PageHighlight";
 import { TopContent } from "@/components/TopContent";
 import { ContentRow } from "@/components/ContentRow";
+import { SpotlightContent } from "@/components/SpotlightContent";
 
 export default async function Series() {
   const popularSeriesData = getApiContent(
@@ -19,6 +20,9 @@ export default async function Series() {
   const onTheAirSeriesData = getApiContent(
     "tv/on_the_air?language=pt-BR&page=1"
   );
+  const otherTopRatedSeriesData = getApiContent(
+    "tv/top_rated?language=pt-BR&page=3"
+  );
   const featuredSeriesData = getApiContent(
     "tv/airing_today?language=pt-BR&page=1"
   );
@@ -31,21 +35,24 @@ export default async function Series() {
     topSeries,
     topRatedSeries,
     onTheAirSeries,
+    otherTopRatedSeries,
     featuredSeries,
-    moreTopRatedSeries
+    moreTopRatedSeries,
   ] = await Promise.all([
     popularSeriesData,
     topSeriesData,
     topRatedSeriesData,
     onTheAirSeriesData,
+    otherTopRatedSeriesData,
     featuredSeriesData,
-    moreTopRatedSeriesData
+    moreTopRatedSeriesData,
   ]);
 
   console.log(popularSeries.results);
   console.log(topSeries.results);
   console.log(topRatedSeries.results);
   console.log(onTheAirSeries.results);
+  console.log(otherTopRatedSeries.results);
   console.log(featuredSeries.results);
   console.log(moreTopRatedSeries.results);
 
@@ -60,6 +67,7 @@ export default async function Series() {
         <ContentRow {...onTheAirSeries} contentType="tv">
           Séries no ar
         </ContentRow>
+        <SpotlightContent {...otherTopRatedSeries} contentType="tv" />
         <ContentRow {...featuredSeries} contentType="tv">
           Séries em destaque
         </ContentRow>

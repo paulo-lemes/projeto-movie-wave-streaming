@@ -62,6 +62,7 @@ export interface bannerProps {
   children: ReactNode;
   backdrop?: string;
   title?: string;
+  spotlight?: boolean;
 }
 
 export type credits = {

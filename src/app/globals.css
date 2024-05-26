@@ -30,6 +30,26 @@
     );
   }
 
+  .mask-left-right {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      oklch(var(--pc)) 30%,
+      oklch(var(--pc)) 50%,
+      transparent 100%
+    );
+  }
+
+  .shadow-top-bottom {
+    mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      oklch(var(--pc)) 30%,
+      oklch(var(--pc)) 70%,
+      transparent 100%
+    );
+  }
+
   .text-outline {
     -webkit-text-stroke: 2px;
     -webkit-text-fill-color: oklch(var(--b1));
