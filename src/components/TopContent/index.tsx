@@ -11,8 +11,8 @@ export function TopContent({ results, contentType }: dataProps) {
 
   return (
     <section className="py-2">
-      <div className="flex gap-3 items-center">
-        <h3 className="font-bold text-secondary text-outline text-6xl sm:text-8xl lg:text-9xl ml-4 sm:ml-16 -mb-2">
+      <div className="flex gap-3 items-center ml-4 sm:ml-16">
+        <h3 className="font-bold text-secondary text-outline text-6xl sm:text-8xl lg:text-9xl lg:ml-2.5">
           <span className={`${letterStyle} ml-0`}>T</span>
           <span className={letterStyle}>O</span>
           <span className={letterStyle}>P</span>{" "}

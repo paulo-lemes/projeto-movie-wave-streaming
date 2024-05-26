@@ -13,29 +13,29 @@ export default async function Category({ params }: { params: { id: string } }) {
   );
   const categoryName = category[0].name.toLowerCase();
 
-  const moviesCategoryData = getApiContent(
-    `discover/movie?language=pt-BR&with_genres=${id}`
-  );
   const seriesCategoryData = getApiContent(
     `discover/tv?language=pt-BR&with_genres=${id}`
   );
-  const searchMoviesCategoryData = getApiContent(
-    `discover/movie?language=pt-BR&page=2&with_genres=${id}`
+  const moviesCategoryData = getApiContent(
+    `discover/movie?language=pt-BR&with_genres=${id}`
   );
   const searchSeriesCategoryData = getApiContent(
     `discover/tv?language=pt-BR&page=2&with_genres=${id}`
   );
+  const searchMoviesCategoryData = getApiContent(
+    `discover/movie?language=pt-BR&page=2&with_genres=${id}`
+  );
 
   const [
-    moviesCategory,
     seriesCategory,
-    searchMoviesCategory,
+    moviesCategory,
     searchSeriesCategory,
+    searchMoviesCategory,
   ] = await Promise.all([
-    moviesCategoryData,
     seriesCategoryData,
-    searchMoviesCategoryData,
+    moviesCategoryData,
     searchSeriesCategoryData,
+    searchMoviesCategoryData,
   ]);
 
   let highlightContent;
