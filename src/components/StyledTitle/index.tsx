@@ -11,7 +11,9 @@ export function StyledTitle({ title }: { title: string }) {
       {letterArray.map(
         (letter, i) =>
           i > 0 && (
-            <span className="-ml-2 lg:-ml-3 letter-shadow-r">{letter}</span>
+            <span key={i} className="-ml-2 lg:-ml-3 letter-shadow-r">
+              {letter}
+            </span>
           )
       )}
     </>
