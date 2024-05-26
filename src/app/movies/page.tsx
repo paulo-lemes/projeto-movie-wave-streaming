@@ -5,6 +5,7 @@ import { PageHighlight } from "@/components/PageHighlight";
 import { Loading } from "@/components/Loading";
 import { Suspense } from "react";
 import { TopContent } from "@/components/TopContent";
+import { SpotlightContent } from "@/components/SpotlightContent";
 
 export default async function Movies() {
   const popularMoviesData = getApiContent(
@@ -25,6 +26,9 @@ export default async function Movies() {
   const moreTopRatedMoviesData = getApiContent(
     "movie/top_rated?language=pt-BR&page=2"
   );
+  const otherTopRatedMoviesData = getApiContent(
+    "movie/top_rated?language=pt-BR&page=3"
+  );
 
   const [
     popularMovies,
@@ -32,6 +36,7 @@ export default async function Movies() {
     topRatedMovies,
     upcomingMovies,
     moreTopRatedMovies,
+    otherTopRatedMovies,
     featuredMovies,
   ] = await Promise.all([
     popularMoviesData,
@@ -39,6 +44,7 @@ export default async function Movies() {
     topRatedMoviesData,
     upcomingMoviesData,
     moreTopRatedMoviesData,
+    otherTopRatedMoviesData,
     featuredMoviesData,
   ]);
 
@@ -47,6 +53,7 @@ export default async function Movies() {
   console.log(topRatedMovies.results);
   console.log(upcomingMovies.results);
   console.log(moreTopRatedMovies.results);
+  console.log(otherTopRatedMovies.results);
   console.log(featuredMovies.results);
 
   return (
@@ -66,6 +73,7 @@ export default async function Movies() {
         <ContentRow {...moreTopRatedMovies} contentType="movie">
           Mais filmes aclamados
         </ContentRow>
+        <SpotlightContent {...otherTopRatedMovies} contentType="movie" />
         <ContentRow {...popularMovies} contentType="movie">
           Filmes populares
         </ContentRow>

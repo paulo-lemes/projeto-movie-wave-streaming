@@ -10,7 +10,7 @@ const navItemStyle =
 
 export function Navbar() {
   return (
-    <header className="absolute top-0 left-0 right-0 flex flex-col items-stretch">
+    <header className="absolute top-0 left-0 right-0 flex flex-col items-stretch z-10">
       <div className="flex w-full items-center justify-between p-2 lg:px-8 lg:py-4 gap-2 sm:gap-0">
         <DrawerMenu />
         <Link href="/">
