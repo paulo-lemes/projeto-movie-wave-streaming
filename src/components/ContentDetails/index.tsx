@@ -20,7 +20,7 @@ export function ContentDetails({
   return (
     <>
       <Banner backdrop={backdrop_path} title={title || name}>
-        <div className="flex flex-col gap-2 z-10">
+        <div className="flex flex-col gap-2">
           <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl">
             {(title || name)?.toUpperCase()}
           </h2>
