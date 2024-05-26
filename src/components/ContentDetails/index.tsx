@@ -1,9 +1,10 @@
 import React from "react";
 import { content } from "@/types";
-import { GenreButton } from "../GenreButton";
+import { GenreName } from "../GenreName";
 import { Banner } from "../Banner";
 
 export function ContentDetails({
+  poster_path,
   backdrop_path,
   title,
   name,
@@ -19,7 +20,7 @@ export function ContentDetails({
 }: content) {
   return (
     <>
-      <Banner backdrop={backdrop_path} title={title || name}>
+      <Banner backdrop={backdrop_path || poster_path} title={title || name}>
         <div className="flex flex-col gap-2">
           <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl">
             {(title || name)?.toUpperCase()}
@@ -27,7 +28,7 @@ export function ContentDetails({
           <p className="text-lg sm:text-xl font-semibold">{tagline}</p>
           <div className="flex flex-wrap gap-2">
             {genres.map(({ id }) => (
-              <GenreButton
+              <GenreName
                 key={id}
                 genreId={id}
                 classCSS="text-lg sm:text-xl"

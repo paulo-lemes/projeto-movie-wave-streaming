@@ -2,11 +2,13 @@
 
 import React from "react";
 import Link from "next/link";
+import DefaultBackdrop from "../../../public/default-backdrop.png";
 import { content } from "@/types";
 import { motion } from "framer-motion";
-import { GenreButton } from "../GenreButton";
+import { GenreName } from "../GenreName";
 
 export function CardSearchContent({
+  poster_path,
   backdrop_path,
   title,
   name,
@@ -17,24 +19,30 @@ export function CardSearchContent({
   index,
 }: content) {
   return (
-    <Link href={`/${media_type || contentType}/${id}?title=${(title || name).toLowerCase()}`}>
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          transition: {
-            duration: 1,
-            delay: index / 5,
-          },
-        }}
-        className="w-72 flex flex-col hover:cursor-pointer"
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+        transition: {
+          duration: 1,
+          delay: index / 5,
+        },
+      }}
+      className="w-72 flex flex-col hover:cursor-pointer"
+    >
+      <Link
+        href={`/${media_type || contentType}/${id}?title=${(
+          title || name
+        ).toLowerCase()}`}
       >
         <motion.img
           src={
-            backdrop_path
-              ? `https://image.tmdb.org/t/p/original/${backdrop_path}`
-              : "../../../public/unavailable-image.png"
+            (backdrop_path &&
+              `https://image.tmdb.org/t/p/original/${backdrop_path}`) ||
+            (poster_path &&
+              `https://image.tmdb.org/t/p/original/${poster_path}`) ||
+            DefaultBackdrop.src
           }
           width={384}
           height={216}
@@ -47,15 +55,15 @@ export function CardSearchContent({
             },
           }}
           alt={`Capa de ${title || name}`}
-          className="object-cover"
+          className="object-cover max-w-full max-h-[162px]"
         />
         <h3 className="font-semibold line-clamp-2">{title || name}</h3>
         <section className="flex flex-wrap gap-1">
           {genre_ids?.map((id) => (
-            <GenreButton key={id} genreId={id} />
+            <GenreName key={id} genreId={id} />
           ))}
         </section>
-      </motion.div>
-    </Link>
+      </Link>
+    </motion.div>
   );
 }

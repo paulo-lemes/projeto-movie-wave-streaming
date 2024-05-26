@@ -15,14 +15,14 @@ export function Card({
   contentType,
 }: content) {
   return (
-    <Link
-      href={`/${media_type || contentType}/${id}?title=${(
-        title || name
-      ).toLowerCase()}`}
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="flex flex-col gap-3 max-w-64 cursor-pointer hover:ring-2 ring-white"
     >
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        className="flex flex-col gap-3 max-w-64 cursor-pointer hover:ring-2 ring-white"
+      <Link
+        href={`/${media_type || contentType}/${id}?title=${(
+          title || name
+        ).toLowerCase()}`}
       >
         <motion.img
           src={
@@ -43,7 +43,7 @@ export function Card({
           }}
           className="object-cover h-[300px] w-[200px]"
         />
-      </motion.div>
-    </Link>
+      </Link>
+    </motion.div>
   );
 }

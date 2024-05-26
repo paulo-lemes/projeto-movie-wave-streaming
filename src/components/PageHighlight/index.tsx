@@ -24,7 +24,7 @@ export function PageHighlight({ results, contentType }: dataProps) {
       title={content?.title || content?.name}
     >
       <div className="flex flex-col gap-2 sm:w-[60vw] lg:w-[40vw]">
-        <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-3 py-1.5">
+        <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-3 my-1.5">
           {(content?.title || content?.name)?.toUpperCase()}
         </h2>
         <p className="line-clamp-3 mb-2">{content?.overview}</p>

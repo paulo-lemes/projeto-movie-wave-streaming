@@ -9,12 +9,12 @@ export function SpotlightContent({ results, contentType }: dataProps) {
   const [content, setContent] = useState<content | null>(null);
 
   useEffect(() => {
-    const highlightContent = results.filter(
+    const spotlightContent = results.filter(
       ({ title, name, backdrop_path, overview }) =>
         (title || name) && backdrop_path && overview
     );
     setContent(
-      highlightContent[Math.floor(Math.random() * highlightContent.length)]
+      spotlightContent[Math.floor(Math.random() * spotlightContent.length)]
     );
   }, [results]);
 

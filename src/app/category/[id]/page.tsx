@@ -5,6 +5,8 @@ import { FadeInContent } from "@/components/FadeInContent";
 import { PageHighlight } from "@/components/PageHighlight";
 import { ContentRow } from "@/components/ContentRow";
 import { CategoryContent } from "@/components/CategoryContent";
+import { StyledTitle } from "@/components/StyledTitle";
+import { SpotlightContent } from "@/components/SpotlightContent";
 
 export default async function Category({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -38,8 +40,8 @@ export default async function Category({ params }: { params: { id: string } }) {
     searchMoviesCategoryData,
   ]);
 
-  let highlightContent;
-  let highlightContentType;
+  let highlightContent = [];
+  let highlightContentType = "";
 
   if (moviesCategory.total_results) {
     highlightContent = moviesCategory;
@@ -63,12 +65,17 @@ export default async function Category({ params }: { params: { id: string } }) {
       <ContentRow {...moviesCategory} contentType="movie">
         Filmes populares de {categoryName}
       </ContentRow>
-      <h2 className="font-bold text-2xl sm:text-3xl text-center my-8 px-2">
-        Explore a categoria{" "}
-        <span className="text-secondary">{categoryName}</span>
-      </h2>
+      <div className="my-8 px-2 flex flex-col gap-2">
+        <h3 className="font-bold text-3xl sm:text-4xl text-center">
+          Explore a categoria{" "}
+        </h3>
+        <h2 className="font-bold text-6xl sm:text-8xl text-center text-secondary">
+          <StyledTitle title={categoryName.toUpperCase()} />
+        </h2>
+      </div>
       <CategoryContent {...searchSeriesCategory} contentType="tv" />
       <CategoryContent {...searchMoviesCategory} contentType="movie" />
+      <SpotlightContent {...highlightContent} contentType={highlightContentType}  />
     </FadeInContent>
   );
 }

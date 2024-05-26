@@ -3,6 +3,7 @@
 import React from "react";
 import { bannerProps } from "@/types";
 import { motion } from "framer-motion";
+import DefaultBackdrop from "../../../public/default-backdrop.png";
 
 const divHighlightStyle = "h-[90vh] items-end mb-6";
 const divSpotlightStyle = "h-[90vh] items-center my-10 shadow-top-bottom";
@@ -20,8 +21,8 @@ export function Banner({ children, backdrop, title, spotlight }: bannerProps) {
         src={
           backdrop
             ? `https://image.tmdb.org/t/p/original/${backdrop}`
-            : "../../../public/wallpaper-preview.jpg"
-        }
+            : DefaultBackdrop.src
+        } 
         alt={`Capa de ${title}`}
         width={1440}
         height={810}

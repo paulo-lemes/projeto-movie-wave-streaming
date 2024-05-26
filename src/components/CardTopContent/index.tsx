@@ -34,17 +34,18 @@ export function CardTopContent({
   const [hover, setHover] = useState<boolean>(false);
 
   return (
-    <Link
-      href={`/${media_type || contentType}/${id}?title=${(
-        title || name
-      ).toLowerCase()}`}
+    <motion.div
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      initial={false}
+      animate={hover ? "hover" : "default"}
+      className="max-w-64 mr-2"
     >
-      <motion.div
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-        initial={false}
-        animate={hover ? "hover" : "default"}
-        className="flex items-baseline max-w-64 cursor-pointer mr-2"
+      <Link
+        href={`/${media_type || contentType}/${id}?title=${(
+          title || name
+        ).toLowerCase()}`}
+        className="flex items-baseline"
       >
         <motion.h5
           variants={variants}
@@ -73,7 +74,7 @@ export function CardTopContent({
           height={646}
           className="object-cover h-[225px] w-[150px] hover:ring-2 ring-white"
         />
-      </motion.div>
-    </Link>
+      </Link>
+    </motion.div>
   );
 }

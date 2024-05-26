@@ -1,5 +1,4 @@
-const baseURL = "https://api.themoviedb.org/3/";
-
+const baseURL = process.env.BASE_URL;
 const apiToken = process.env.API_TOKEN;
 
 const headers = {
@@ -8,10 +7,18 @@ const headers = {
 };
 
 export async function getApiContent(path: string) {
-  const response = await fetch(baseURL + path, {
-    method: "GET",
-    headers,
-  })
+  try {
+    const response = await fetch(baseURL + path, {
+      method: "GET",
+      headers,
+    });
 
-  return response.json()
+    if (!response.ok)
+      throw new Error(`Status ${response.status}- ${response.statusText}`);
+
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error("Fetch error:", err);
+  }
 }
