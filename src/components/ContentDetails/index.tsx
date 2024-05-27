@@ -39,23 +39,23 @@ export function ContentDetails({
       </Banner>
       <div className="px-4 sm:px-16 mb-6">
         <p className="mb-2">{overview}</p>
-        <p className="font-bold">
+        {(release_date || first_air_date) && <p className="font-bold">
           Data de lançamento:{" "}
           <span className="font-normal">
-            {(release_date || first_air_date)?.split("-").reverse().join("/")}
+            {(release_date || first_air_date).split("-").reverse().join("/")}
           </span>
-        </p>
-        {runtime && (
+        </p>}
+        {runtime > 0 && (
           <p className="font-bold">
             Duração: <span className="font-normal">{runtime} min.</span>
           </p>
         )}
-        {number_of_episodes && (
+        {number_of_episodes > 0 && (
           <p className="font-bold">
             Episódios: <span className="font-normal">{number_of_episodes}</span>
           </p>
         )}
-        {number_of_seasons && (
+        {number_of_seasons > 0 && (
           <p className="font-bold">
             Temporadas: <span className="font-normal">{number_of_seasons}</span>
           </p>

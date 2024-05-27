@@ -2,10 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import DefaultBackdrop from "../../../public/default-backdrop.png";
 import { content } from "@/types";
 import { motion } from "framer-motion";
 import { GenreName } from "../GenreName";
+import { FadeInImage } from "../FadeInImage";
 
 export function CardSearchContent({
   poster_path,
@@ -29,33 +29,20 @@ export function CardSearchContent({
           delay: index / 5,
         },
       }}
-      className="w-72 flex flex-col hover:cursor-pointer"
+      className="relative w-72 flex flex-col"
     >
       <Link
         href={`/${media_type || contentType}/${id}?title=${(
           title || name
         ).toLowerCase()}`}
       >
-        <motion.img
-          src={
-            (backdrop_path &&
-              `https://image.tmdb.org/t/p/original/${backdrop_path}`) ||
-            (poster_path &&
-              `https://image.tmdb.org/t/p/original/${poster_path}`) ||
-            DefaultBackdrop.src
-          }
-          width={384}
-          height={216}
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: 1,
-            transition: {
-              duration: 1,
-              delay: index / 5,
-            },
-          }}
+        <FadeInImage
+          src={`https://image.tmdb.org/t/p/original/${backdrop_path || poster_path}`}
+          type="poster"
+          width={288}
+          height={162}
           alt={`Capa de ${title || name}`}
-          className="object-cover max-w-full max-h-[162px]"
+          classCSS="max-w-full max-h-[162px]"
         />
         <h3 className="font-semibold line-clamp-2">{title || name}</h3>
         <section className="flex flex-wrap gap-1">

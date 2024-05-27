@@ -1,9 +1,6 @@
-"use client";
-
 import React from "react";
 import { bannerProps } from "@/types";
-import { motion } from "framer-motion";
-import DefaultBackdrop from "../../../public/default-backdrop.png";
+import { FadeInImage } from "../FadeInImage";
 
 const divHighlightStyle = "h-[90vh] items-end mb-6";
 const divSpotlightStyle = "h-[90vh] items-center my-10 shadow-top-bottom";
@@ -17,24 +14,14 @@ export function Banner({ children, backdrop, title, spotlight }: bannerProps) {
     ${spotlight ? divSpotlightStyle : divHighlightStyle}
     `}
     >
-      <motion.img
-        src={
-          backdrop
-            ? `https://image.tmdb.org/t/p/original/${backdrop}`
-            : DefaultBackdrop.src
-        } 
+      <FadeInImage
+        src={`https://image.tmdb.org/t/p/original/${backdrop}`}
+        type="banner"
+        priority
         alt={`Capa de ${title}`}
         width={1440}
         height={810}
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          transition: {
-            duration: 1,
-            delay: 0.5,
-          },
-        }}
-        className={`-z-10 h-[100vh] max-h-[815px] object-cover absolute inset-0 
+        classCSS={`-z-10 h-[100vh] max-h-[815px] absolute inset-0 
         ${spotlight ? imgSpotlightStyle : imgHighlightStyle}
         `}
       />

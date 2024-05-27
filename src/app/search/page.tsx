@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { ContentSearch } from "@/components/ContentSearch";
 import { Loading } from "@/components/Loading";
 import { SearchInput } from "@/components/SearchInput";
+import { FadeInContent } from "@/components/FadeInContent";
 
 export default async function Search({
   searchParams,
@@ -29,7 +30,7 @@ export default async function Search({
   }
 
   return (
-    <main className="mb-auto pb-20">
+    <FadeInContent duration={1.5}>
       <SearchInput handleSearch={handleSearch} />
       {searchText ? (
         <Suspense fallback={<Loading />}>
@@ -42,6 +43,6 @@ export default async function Search({
           catálogo e encontre o que assistir em segundos!
         </p>
       )}
-    </main>
+    </FadeInContent>
   );
 }
