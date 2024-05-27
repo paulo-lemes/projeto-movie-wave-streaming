@@ -6,9 +6,6 @@ export function ContentSearch({ results, children }: dataProps) {
   const searchResult = results?.filter(
     ({ media_type, backdrop_path, overview, poster_path, title, name }) =>
       media_type !== "person" &&
-      backdrop_path &&
-      overview &&
-      poster_path &&
       (title || name)
   );
 

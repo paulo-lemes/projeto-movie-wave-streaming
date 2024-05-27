@@ -58,6 +58,16 @@ export interface fadeInContentProps {
   duration: number;
 }
 
+export interface fadeInImageProps {
+  src: string;
+  type: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+  classCSS?: string;
+  priority?: boolean
+}
+
 export interface bannerProps {
   children: ReactNode;
   backdrop?: string;

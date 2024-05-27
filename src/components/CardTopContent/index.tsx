@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { content } from "@/types";
 import { motion } from "framer-motion";
+import { FadeInImage } from "../FadeInImage";
 
 const variants = {
   default: {
@@ -39,7 +40,7 @@ export function CardTopContent({
       onMouseLeave={() => setHover(false)}
       initial={false}
       animate={hover ? "hover" : "default"}
-      className="max-w-64 mr-2"
+      className="relative max-w-64 mr-2"
     >
       <Link
         href={`/${media_type || contentType}/${id}?title=${(
@@ -63,16 +64,13 @@ export function CardTopContent({
             </>
           )}
         </motion.h5>
-        <img
-          src={
-            poster_path
-              ? `https://image.tmdb.org/t/p/original/${poster_path}`
-              : "../../../public/unavailable-image.png"
-          }
+        <FadeInImage
+          src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+          type="poster"
           alt={`Poster de ${title || name}`}
-          width={430}
-          height={646}
-          className="object-cover h-[225px] w-[150px] hover:ring-2 ring-white"
+          width={150}
+          height={225}
+          classCSS="h-[225px] w-[150px] hover:ring-2 ring-white"
         />
       </Link>
     </motion.div>

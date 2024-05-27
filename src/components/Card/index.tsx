@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { content } from "@/types";
 import { motion } from "framer-motion";
+import { FadeInImage } from "../FadeInImage";
 
 export function Card({
   title,
@@ -17,31 +18,28 @@ export function Card({
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
-      className="flex flex-col gap-3 max-w-64 cursor-pointer hover:ring-2 ring-white"
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+        transition: {
+          duration: 1,
+          delay: index / 5,
+        },
+      }}
+      className="relative flex flex-col gap-3 max-w-[200px] cursor-pointer hover:ring-2 ring-white"
     >
       <Link
         href={`/${media_type || contentType}/${id}?title=${(
           title || name
         ).toLowerCase()}`}
       >
-        <motion.img
-          src={
-            poster_path
-              ? `https://image.tmdb.org/t/p/original/${poster_path}`
-              : "../../../public/unavailable-image.png"
-          }
+        <FadeInImage
+          src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+          type="poster"
           alt={`Poster de ${title || name}`}
-          width={430}
-          height={646}
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: 1,
-            transition: {
-              duration: 1,
-              delay: index / 5,
-            },
-          }}
-          className="object-cover h-[300px] w-[200px]"
+          width={225}
+          height={300}
+          classCSS="h-[300px] w-[200px]"
         />
       </Link>
     </motion.div>
