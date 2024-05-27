@@ -1,12 +1,19 @@
 import React from "react";
+import Link from "next/link";
 import { content } from "@/types";
-import { GenreName } from "../GenreName";
 import { Banner } from "../Banner";
+import { GenreName } from "../GenreName";
+import { FadeInImage } from "../FadeInImage";
+import { CiLink } from "react-icons/ci";
+import { InfoContentDetails } from "../InfoContentDetails";
+import { randomImage } from "@/utils";
 
 export function ContentDetails({
   poster_path,
   backdrop_path,
   title,
+  original_title,
+  original_name,
   name,
   tagline,
   genres,
@@ -17,57 +24,97 @@ export function ContentDetails({
   number_of_episodes,
   number_of_seasons,
   runtime,
+  homepage,
+  images,
+  contentType,
 }: content) {
+  const bannerImg = randomImage(images.backdrops);
+
+  console.log(bannerImg);
+
   return (
     <>
-      <Banner backdrop={backdrop_path || poster_path} title={title || name}>
+      <Banner
+        backdrop={bannerImg.file_path || backdrop_path || poster_path}
+        title={title || name}
+      >
         <div className="flex flex-col gap-2">
           <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl">
             {(title || name)?.toUpperCase()}
           </h2>
           <p className="text-lg sm:text-xl font-semibold">{tagline}</p>
-          <div className="flex flex-wrap gap-2">
+          <ul className="flex flex-wrap gap-2">
             {genres.map(({ id }) => (
-              <GenreName
-                key={id}
-                genreId={id}
-                classCSS="text-lg sm:text-xl"
-              />
+              <li key={id}>
+                <Link href={`/category/${id}`}>
+                  <GenreName genreId={id} classCSS="text-lg sm:text-xl" />
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </Banner>
-      <div className="px-4 sm:px-16 mb-6">
-        <p className="mb-2">{overview}</p>
-        {(release_date || first_air_date) && <p className="font-bold">
-          Data de lançamento:{" "}
-          <span className="font-normal">
-            {(release_date || first_air_date).split("-").reverse().join("/")}
-          </span>
-        </p>}
-        {runtime > 0 && (
-          <p className="font-bold">
-            Duração: <span className="font-normal">{runtime} min.</span>
-          </p>
+      <div className="flex flex-wrap gap-4 px-4 sm:px-16 mb-6">
+        <p className="mb-2 w-full sm:text-lg">{overview}</p>
+        {poster_path && (
+          <div className="relative max-w-[262.5px]">
+            <FadeInImage
+              src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+              type="poster"
+              alt={`Poster de ${title || name}`}
+              width={225}
+              height={300}
+              classCSS="h-[262.5px] w-[175px]"
+            />
+          </div>
         )}
-        {number_of_episodes > 0 && (
-          <p className="font-bold">
-            Episódios: <span className="font-normal">{number_of_episodes}</span>
-          </p>
-        )}
-        {number_of_seasons > 0 && (
-          <p className="font-bold">
-            Temporadas: <span className="font-normal">{number_of_seasons}</span>
-          </p>
-        )}
-        {last_air_date && (
-          <p className="font-bold">
-            Último episódio no ar:{" "}
-            <span className="font-normal">
+        <div>
+          {homepage && (
+            <div
+              className="lg:tooltip lg:tooltip-right"
+              data-tip={`Página oficial de ${original_title || original_name}`}
+            >
+              <Link
+                href={homepage}
+                target="blank"
+                className="flex items-center"
+              >
+                <CiLink size={30} />{" "}
+                <p className="text-xs lg:hidden pl-2">Página oficial</p>
+              </Link>
+            </div>
+          )}
+          {(original_title || original_name) && (
+            <InfoContentDetails title="Título original:">
+              {original_title || original_name}
+            </InfoContentDetails>
+          )}
+          {(release_date || first_air_date) && (
+            <InfoContentDetails title="Data de lançamento:">
+              {(release_date || first_air_date).split("-").reverse().join("/")}
+            </InfoContentDetails>
+          )}
+          {runtime > 0 && (
+            <InfoContentDetails title="Duração:">
+              {runtime} min.
+            </InfoContentDetails>
+          )}
+          {number_of_episodes > 0 && (
+            <InfoContentDetails title="Episódios:">
+              {number_of_episodes}
+            </InfoContentDetails>
+          )}
+          {number_of_seasons > 0 && (
+            <InfoContentDetails title="Temporadas:">
+              {number_of_seasons}
+            </InfoContentDetails>
+          )}
+          {last_air_date && (
+            <InfoContentDetails title="Data de lançamento:">
               {last_air_date.split("-").reverse().join("/")}
-            </span>
-          </p>
-        )}
+            </InfoContentDetails>
+          )}
+        </div>
       </div>
     </>
   );

@@ -65,7 +65,7 @@ export default async function Home() {
     <Suspense fallback={<Loading />}>
       <FadeInContent duration={1.5}>
         <PageHighlight {...featuredMovies} contentType="movie" />
-        <ContentRow {...trending} contentType="">
+        <ContentRow {...trending}>
           Em alta na semana
         </ContentRow>
         <TopContent {...topMovies} contentType="movie" />
