@@ -37,7 +37,9 @@ export function CardSearchContent({
         ).toLowerCase()}`}
       >
         <FadeInImage
-          src={`https://image.tmdb.org/t/p/original/${backdrop_path || poster_path}`}
+          src={`https://image.tmdb.org/t/p/original/${
+            backdrop_path || poster_path
+          }`}
           type="poster"
           width={288}
           height={162}
@@ -47,7 +49,11 @@ export function CardSearchContent({
         <h3 className="font-semibold line-clamp-2">{title || name}</h3>
         <section className="flex flex-wrap gap-1">
           {genre_ids?.map((id) => (
-            <GenreName key={id} genreId={id} />
+            <GenreName
+              key={id}
+              genreId={id}
+              classCSS="no-animation hover:bg-neutral"
+            />
           ))}
         </section>
       </Link>

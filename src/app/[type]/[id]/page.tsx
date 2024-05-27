@@ -17,6 +17,7 @@ export default async function Content({
   const credits = type === "tv" ? "aggregate_credits" : "credits";
 
   const contentDetailsData = getApiContent(`${type}/${id}?language=pt-BR`);
+  const contentImagesData = getApiContent(`${type}/${id}/images?language=null`);
   const contentCreditsData = getApiContent(`${type}/${id}/${credits}?language=pt-BR`);
   const contentVideosData = getApiContent(`${type}/${id}/videos?language=pt-BR`);
   const contentProvidersData = getApiContent(`${type}/${id}/watch/providers`);
@@ -24,12 +25,14 @@ export default async function Content({
 
   const [
     contentDetails,
+    contentImages,
     contentCredits,
     contentVideos,
     contentProviders,
     recommendedContent,
   ] = await Promise.all([
     contentDetailsData,
+    contentImagesData,
     contentCreditsData,
     contentVideosData,
     contentProvidersData,
@@ -37,6 +40,7 @@ export default async function Content({
   ]);
 
   console.log(contentDetails);
+  console.log(contentImages);
   console.log(contentCredits);
   console.log(contentVideos);
   console.log(contentProviders);
@@ -44,7 +48,7 @@ export default async function Content({
 
   return contentDetails.id ? (
     <FadeInContent duration={1.5}>
-      <ContentDetails {...contentDetails} />
+      <ContentDetails {...contentDetails} images={contentImages} contentType={type} />
       <CreditsContent {...contentCredits} />
       <WatchProvider {...contentProviders.results.BR} />
       <ContentVideo {...contentVideos} />

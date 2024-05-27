@@ -26,7 +26,7 @@ export function Card({
           delay: index / 5,
         },
       }}
-      className="relative flex flex-col gap-3 max-w-[200px] cursor-pointer hover:ring-2 ring-white"
+      className="relative max-w-[200px] hover:ring-2 ring-white"
     >
       <Link
         href={`/${media_type || contentType}/${id}?title=${(

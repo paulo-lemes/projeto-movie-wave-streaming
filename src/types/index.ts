@@ -2,10 +2,21 @@ import { ReactNode } from "react";
 
 export type contentProps = {
   index: number;
+  images: {backdrops: imageContent[]};
   contentType?: string;
 };
 
 export type content = defaultProps & movie & tv & contentProps;
+
+export type imageContent = {
+  aspect_ratio: number;
+  height: number;
+  iso_639_1: string | null;
+  file_path: string;
+  vote_average: number;
+  vote_count: number;
+  width: number;
+};
 
 export type videoProps = {
   iso_639_1: string;
@@ -46,11 +57,16 @@ export type dataProps = {
   top10?: boolean;
 };
 
-export type modalProps = {
+export interface modalProps {
   children: ReactNode;
   onClose: () => void;
   isOpen: boolean;
-};
+}
+
+export interface genreNameProps {
+  genreId: number;
+  classCSS?: string;
+}
 
 export interface fadeInContentProps {
   children: ReactNode;
@@ -65,7 +81,7 @@ export interface fadeInImageProps {
   width?: number;
   height?: number;
   classCSS?: string;
-  priority?: boolean
+  priority?: boolean;
 }
 
 export interface bannerProps {
