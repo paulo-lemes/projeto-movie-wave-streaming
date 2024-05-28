@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export type contentProps = {
   index: number;
-  images: {backdrops: imageContent[]};
+  images: { backdrops: imageContent[] };
   contentType?: string;
 };
 
@@ -96,6 +96,26 @@ export type credits = {
   cast: person[];
   crew: person[];
   id: number;
+  contentType: string;
+  created_by: createdBy[];
+};
+
+export type cardPersonProps = {
+  name: string;
+  profile_path: string;
+  character: string;
+  roles: roles[];
+  index: number;
+  type: string;
+};
+
+export type createdBy = {
+  id: number;
+  credit_id: string;
+  name: string;
+  original_name: string;
+  gender: number;
+  profile_path: string;
 };
 
 export type person = {
@@ -115,6 +135,7 @@ export type person = {
   job: string;
   jobs: jobArray[];
   index: number;
+  type: string;
 };
 
 type jobArray = {

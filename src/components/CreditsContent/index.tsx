@@ -1,24 +1,28 @@
 import React from "react";
 import { credits } from "@/types";
 import { CardPerson } from "../CardPerson";
+import { cardPersonComplement } from "@/utils";
 
 const titleStyle = "font-bold text-2xl";
 const divStyle = "flex flex-wrap gap-2 line-clamp-2";
 
-export function CreditsContent({ cast, crew }: credits) {
+export function CreditsContent({
+  cast,
+  crew,
+  created_by,
+  contentType,
+}: credits) {
   const actors = cast.slice(0, 10);
-  const producers = crew
-    .filter(
-      (person) =>
-        person.job ? person.job?.toLowerCase() === "director" :
-        person.jobs[0].job.toLowerCase() === "executive producer"
-    )
+  const directedBy = crew
+    .filter((person) => person.job?.toLowerCase() === "director")
     .filter(
       (obj, index, self) => index === self.findIndex((t) => t.id === obj.id)
-    ).slice(0, 10);
+    )
+    .slice(0, 10);
 
   console.log(actors);
-  console.log(producers);
+  console.log(created_by);
+  console.log(directedBy);
 
   return (
     <section className="flex flex-col gap-4 px-4 sm:px-16 mb-6">
@@ -32,12 +36,28 @@ export function CreditsContent({ cast, crew }: credits) {
           </div>
         </>
       )}
-      {producers.length > 0 && (
+      {contentType === "movie" && directedBy.length > 0 && (
         <>
-          <h3 className={titleStyle}>Produção</h3>
+          <h3 className={titleStyle}>Direção</h3>
           <div className={divStyle}>
-            {producers.map((person, i) => (
+            {directedBy.map((person, i) => (
               <CardPerson key={person.id} {...person} index={i} />
+            ))}
+          </div>
+        </>
+      )}
+      {contentType === "tv" && created_by.length > 0 && (
+        <>
+          <h3 className={titleStyle}>Criado por</h3>
+          <div className={divStyle}>
+            {created_by.map((person, i) => (
+              <CardPerson
+                key={person.id}
+                {...person}
+                {...cardPersonComplement}
+                index={i}
+                type="tv"
+              />
             ))}
           </div>
         </>

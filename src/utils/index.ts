@@ -17,3 +17,14 @@ export function randomImage(arr: imageContent[]): imageContent {
 
   return defaultImageContent
 }
+
+export const cardPersonComplement = {
+  character: "",
+  roles: [
+    {
+      credit_id: "",
+      character: "",
+      episode_count: 0,
+    },
+  ],
+};

@@ -1,21 +1,19 @@
 "use client";
 
 import React from "react";
-import { person } from "@/types";
+import { cardPersonProps } from "@/types";
 import { motion } from "framer-motion";
 import { FadeInImage } from "../FadeInImage";
 
 export function CardPerson({
-  index,
   name,
   character,
   roles,
-  job,
-  jobs,
   profile_path,
-}: person) {
+  index,
+  type,
+}: cardPersonProps) {
   const personRole = roles?.length > 0 ? roles[0].character : character;
-  const personJob = jobs?.length > 0 ? jobs[0].job : job;
 
   return (
     <motion.div
@@ -41,8 +39,8 @@ export function CardPerson({
         <h3 className="font-semibold line-clamp-3 text-xs sm:text-base break-words">
           {name}
         </h3>
-        <p className="text-xs sm:text-base break-words">
-          {personRole || personJob || ""}
+        <p className="text-xs sm:text-base break-words italic">
+          {type === "tv" ? "" : personRole || ""}
         </p>
       </div>
     </motion.div>
