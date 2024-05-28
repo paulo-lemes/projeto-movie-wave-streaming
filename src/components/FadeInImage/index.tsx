@@ -51,6 +51,7 @@ export function FadeInImage({
           alt={alt}
           width={width}
           height={height}
+          unoptimized
           className={`${classCSS} ${
             type === "banner" && "mask-default-img"
           } object-cover transition-opacity ease-in duration-700 ${
