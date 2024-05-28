@@ -37,6 +37,7 @@ export function Card({
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}
           type="poster"
           alt={`Poster de ${title || name}`}
+          title={title || name}
           width={225}
           height={300}
           classCSS="h-[300px] w-[200px]"

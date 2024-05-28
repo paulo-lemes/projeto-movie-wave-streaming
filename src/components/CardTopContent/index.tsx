@@ -68,6 +68,7 @@ export function CardTopContent({
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}
           type="poster"
           alt={`Poster de ${title || name}`}
+          title={title || name}
           width={150}
           height={225}
           unoptimized={false}

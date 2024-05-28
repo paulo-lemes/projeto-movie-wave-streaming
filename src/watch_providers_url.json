@@ -11,13 +11,13 @@
     "provider_name": "Amazon Prime Video"
   },
   {
-    "url": "http://www.netflix.com/Search?v1=",
+    "url": "https://www.netflix.com/Search?q=",
     "search": true,
     "provider_id": 8,
     "provider_name": "Netflix"
   },
   {
-    "url": "http://www.netflix.com/Search?v1=",
+    "url": "https://www.netflix.com/Search?q=",
     "search": true,
     "provider_id": 1796,
     "provider_name": "Netflix basic with Ads"

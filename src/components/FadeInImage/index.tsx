@@ -24,6 +24,7 @@ export function FadeInImage({
   width = 500,
   height = 500,
   classCSS = "",
+  title,
 }: fadeInImageProps) {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -46,18 +47,25 @@ export function FadeInImage({
           }`}
         />
       ) : (
-        <Image
-          src={defaultImg}
-          alt={alt}
-          width={width}
-          height={height}
-          unoptimized
-          className={`${classCSS} ${
-            type === "banner" && "mask-default-img"
-          } object-cover transition-opacity ease-in duration-700 ${
-            !error ? "invisible opacity-0" : "visible opacity-100"
-          }`}
-        />
+        <>
+          <Image
+            src={defaultImg}
+            alt={`Imagem de fundo genérica substituindo - ${alt}`}
+            width={width}
+            height={height}
+            unoptimized
+            className={`${classCSS} ${
+              type === "banner" && "mask-default-img"
+            } object-cover transition-opacity ease-in duration-700 ${
+              !error ? "invisible opacity-0" : "visible opacity-100"
+            }`}
+          />
+          {type === "poster" && (
+            <p className="absolute bottom-0 w-full text-base-100 text-center font-semibold text-lg p-2">
+              {title}
+            </p>
+          )}
+        </>
       )}
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}

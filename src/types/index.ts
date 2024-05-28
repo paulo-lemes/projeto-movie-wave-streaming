@@ -81,6 +81,7 @@ export interface fadeInImageProps {
   width?: number;
   height?: number;
   classCSS?: string;
+  title?: string;
   priority?: boolean;
   unoptimized?: boolean;
 }
