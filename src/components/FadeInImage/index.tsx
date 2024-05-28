@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import DefaultBackdrop from "./assets/default-backdrop.png";
+import DefaultPoster from "./assets/default-poster.png";
 import DefaultProfilePicture from "./assets/default-profile-picture.png";
 import { motion } from "framer-motion";
 import { fadeInImageProps } from "@/types";
@@ -11,8 +12,9 @@ const defaultPaths: {
   [key: string]: StaticImageData;
 } = {
   banner: DefaultBackdrop,
-  poster: DefaultBackdrop,
-  profile: DefaultProfilePicture
+  backdrop: DefaultBackdrop,
+  poster: DefaultPoster,
+  profile: DefaultProfilePicture,
 };
 
 export function FadeInImage({

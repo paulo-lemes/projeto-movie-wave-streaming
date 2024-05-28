@@ -40,7 +40,7 @@ export function CardSearchContent({
           src={`https://image.tmdb.org/t/p/original/${
             backdrop_path || poster_path
           }`}
-          type="poster"
+          type="backdrop"
           width={288}
           height={162}
           alt={`Capa de ${title || name}`}
