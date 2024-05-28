@@ -22,7 +22,8 @@ export function FadeInImage({
   width = 500,
   height = 500,
   classCSS = "",
-  priority = false
+  priority = false,
+  unoptimized = true
 }: fadeInImageProps) {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -38,6 +39,7 @@ export function FadeInImage({
           width={width}
           height={height}
           priority={priority}
+          unoptimized={unoptimized}
           onLoad={() => setLoading(false)}
           onError={() => setError(true)}
           className={`${classCSS} object-cover w-full transition-opacity ease-in duration-700 ${
@@ -48,9 +50,12 @@ export function FadeInImage({
         <Image
           src={defaultImg}
           alt={alt}
+          width={width}
+          height={height}
+          priority
           className={`${classCSS} ${
             type === "banner" && "mask-default-img"
-          } object-cover w-full transition-opacity ease-in duration-700 ${
+          } object-cover transition-opacity ease-in duration-700 ${
             !error ? "invisible opacity-0" : "visible opacity-100"
           }`}
         />

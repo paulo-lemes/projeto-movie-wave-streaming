@@ -70,6 +70,7 @@ export function CardTopContent({
           alt={`Poster de ${title || name}`}
           width={150}
           height={225}
+          unoptimized={false}
           classCSS="h-[225px] w-[150px] hover:ring-2 ring-white"
         />
       </Link>

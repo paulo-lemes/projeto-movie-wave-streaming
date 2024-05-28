@@ -21,6 +21,7 @@ export function Banner({ children, backdrop, title, spotlight }: bannerProps) {
         alt={`Capa de ${title}`}
         width={1440}
         height={810}
+        unoptimized={false}
         classCSS={`-z-10 h-[100vh] max-h-[815px] absolute inset-0 
         ${spotlight ? imgSpotlightStyle : imgHighlightStyle}
         `}

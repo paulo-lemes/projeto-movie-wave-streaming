@@ -82,6 +82,7 @@ export interface fadeInImageProps {
   height?: number;
   classCSS?: string;
   priority?: boolean;
+  unoptimized?: boolean;
 }
 
 export interface bannerProps {
