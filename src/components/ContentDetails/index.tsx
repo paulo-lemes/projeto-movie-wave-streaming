@@ -6,7 +6,8 @@ import { GenreName } from "../GenreName";
 import { FadeInImage } from "../FadeInImage";
 import { CiLink } from "react-icons/ci";
 import { InfoContentDetails } from "../InfoContentDetails";
-import { randomImage } from "@/utils";
+import { randomImage, getClassification } from "@/utils";
+import { ClassificationContent } from "../ClassificationContent";
 
 export function ContentDetails({
   poster_path,
@@ -26,11 +27,14 @@ export function ContentDetails({
   runtime,
   homepage,
   images,
+  classification,
   contentType,
 }: content) {
   const bannerImg = randomImage(images.backdrops);
+  const rating = getClassification(classification);
 
   console.log(bannerImg);
+  console.log(rating);
 
   return (
     <>
@@ -55,7 +59,8 @@ export function ContentDetails({
         </div>
       </Banner>
       <div className="flex flex-wrap gap-4 px-4 sm:px-16 mb-6">
-        <p className="mb-2 w-full sm:text-lg">{overview}</p>
+        {rating && <ClassificationContent {...rating[0]} />}
+        {overview && <p className="mb-2 w-full sm:text-lg">{overview}</p>}
         {poster_path && (
           <div className="relative max-w-[262.5px]">
             <FadeInImage

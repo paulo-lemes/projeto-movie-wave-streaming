@@ -19,6 +19,9 @@ export default async function Content({
   const contentDetailsData = getApiContent(
     `${type}/${id}?language=pt-BR`
   );
+  const contentClassificationData = getApiContent(
+    `${type}/${id}/${type === "movie" ? "release_dates" : "content_ratings"}`
+  );
   const contentImagesData = getApiContent(
     `${type}/${id}/images?language=null`
   );
@@ -37,6 +40,7 @@ export default async function Content({
 
   const [
     contentDetails,
+    contentClassification,
     contentImages,
     contentCredits,
     contentVideos,
@@ -44,6 +48,7 @@ export default async function Content({
     recommendedContent,
   ] = await Promise.all([
     contentDetailsData,
+    contentClassificationData,
     contentImagesData,
     contentCreditsData,
     contentVideosData,
@@ -52,6 +57,7 @@ export default async function Content({
   ]);
 
   console.log(contentDetails);
+  console.log(contentClassification);
   console.log(contentImages);
   console.log(contentCredits);
   console.log(contentVideos);
@@ -62,6 +68,7 @@ export default async function Content({
     <FadeInContent duration={1.5}>
       <ContentDetails
         {...contentDetails}
+        classification={contentClassification}
         images={contentImages}
         contentType={type}
       />
