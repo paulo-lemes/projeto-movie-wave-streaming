@@ -110,7 +110,7 @@ export function ContentDetails({
             </InfoContentDetails>
           )}
           {last_air_date && (
-            <InfoContentDetails title="Data de lançamento:">
+            <InfoContentDetails title="Último episódio no ar:">
               {last_air_date.split("-").reverse().join("/")}
             </InfoContentDetails>
           )}
