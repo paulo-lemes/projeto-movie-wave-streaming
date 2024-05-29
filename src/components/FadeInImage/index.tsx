@@ -42,7 +42,7 @@ export function FadeInImage({
           unoptimized
           onLoad={() => setLoading(false)}
           onError={() => setError(true)}
-          className={`${classCSS} object-cover w-full transition-opacity ease-in duration-700 ${
+          className={`${classCSS} object-cover transition-opacity ease-in duration-700 ${
             loading ? "invisible opacity-0" : "visible opacity-100"
           }`}
         />
