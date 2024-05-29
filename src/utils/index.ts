@@ -1,4 +1,10 @@
-import { imageContent } from "@/types";
+import {
+  certifcation,
+  classificationMovie,
+  classificationTV,
+  imageContent,
+} from "@/types";
+import classifications from "../classifications.json";
 
 const defaultImageContent = {
   aspect_ratio: 0,
@@ -7,15 +13,15 @@ const defaultImageContent = {
   file_path: "",
   vote_average: 0,
   vote_count: 0,
-  width: 0
-}
+  width: 0,
+};
 
 export function randomImage(arr: imageContent[]): imageContent {
   const img = arr[Math.floor(Math.random() * arr.length)];
 
-  if (img && img.file_path) return img
+  if (img && img.file_path) return img;
 
-  return defaultImageContent
+  return defaultImageContent;
 }
 
 export const cardPersonComplement = {
@@ -28,3 +34,34 @@ export const cardPersonComplement = {
     },
   ],
 };
+
+function isClassificationMovie(
+  classification: classificationMovie | classificationTV
+): classification is classificationMovie {
+  return (
+    (classification as classificationMovie)?.results[0]?.release_dates !==
+    undefined
+  );
+}
+
+export function getClassification(
+  data: classificationMovie | classificationTV
+): certifcation[] | undefined {
+  if (isClassificationMovie(data)) {
+    const arr = data.results
+      .filter((obj: any) => obj.iso_3166_1 === "BR")
+      .map((obj: any) =>
+        obj.release_dates.map((obj: any) => obj.certification)
+      );
+
+    return arr[0]
+      ? classifications.filter((obj) => obj.certification === arr[0][0])
+      : undefined;
+  } else {
+    const arr = data.results.filter((obj: any) => obj.iso_3166_1 === "BR");
+
+    return arr[0]
+      ? classifications.filter((obj) => obj.certification === arr[0].rating)
+      : undefined;
+  }
+}

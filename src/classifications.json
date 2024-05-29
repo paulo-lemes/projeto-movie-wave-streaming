@@ -1,0 +1,32 @@
+[
+  {
+    "certification": "L",
+    "meaning": "Livre para todos os públicos.",
+    "order": 1
+  },
+  {
+    "certification": "10",
+    "meaning": "Não recomendado para menores de 10 anos. Pode conter violência ou linguagem inapropriada para crianças, mesmo de menor intensidade.",
+    "order": 2
+  },
+  {
+    "certification": "12",
+    "meaning": "Não recomendado para menores de 12 anos. Pode conter agressão física, uso de drogas lícitas e insinuação sexual.",
+    "order": 3
+  },
+  {
+    "certification": "14",
+    "meaning": "Não recomendado para menores de 14 anos. Pode conter conteúdo mais violento, referências sexuais fortes e/ou nudez.",
+    "order": 4
+  },
+  {
+    "certification": "16",
+    "meaning": "Não recomendado para menores de 16 anos. Pode conter drogas ilegais, sexo realista, violência sexual, aborto, tortura, mutilação, suicídio, banalização da violência e pena de morte.",
+    "order": 5
+  },
+  {
+    "certification": "18",
+    "meaning": "Não recomendado para menores de 18 anos. Pode conter sexo explícito, incesto, pedofilia, apologia de drogas ilegais e violência gráfica.",
+    "order": 6
+  }
+]

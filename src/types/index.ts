@@ -6,7 +6,7 @@ export type contentProps = {
   contentType?: string;
 };
 
-export type content = defaultProps & movie & tv & contentProps;
+export type content = defaultProps & movie & tv & contentProps & classificationContentProps;
 
 export type imageContent = {
   aspect_ratio: number;
@@ -149,6 +149,41 @@ type roles = {
   credit_id: string;
   character: string;
   episode_count: number;
+};
+
+export interface classificationContentProps {
+  classification: classificationMovie | classificationTV;
+}
+
+export type certifcation = {
+  certification: string;
+  meaning: string;
+  order: number;
+};
+
+export type classificationTV = {
+  results: 
+    {
+      descriptors: [];
+      iso_3166_1: string;
+      rating: string;
+    }[];
+  id: number;
+};
+
+export type classificationMovie = {
+  id: number;
+  results: {
+    iso_3166_1: string;
+    release_dates: {
+      certification: string;
+      descriptors: [];
+      iso_639_1: string;
+      note: string;
+      release_date: string;
+      type: number;
+    }[];
+  }[];
 };
 
 type defaultProps = {
