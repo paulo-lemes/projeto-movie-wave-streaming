@@ -10,7 +10,7 @@ const imgSpotlightStyle = "h-full w-[90vw] mask-left-right";
 export function Banner({ children, backdrop, title, spotlight }: bannerProps) {
   return (
     <div
-      className={`relative h-[80vh] sm:h-[90vh] max-h-[735px] w-full flex px-4 sm:px-16 
+      className={`relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full flex px-4 sm:px-16 
     ${spotlight ? divSpotlightStyle : divHighlightStyle}
     `}
     >
