@@ -46,7 +46,7 @@ function isClassificationMovie(
 
 export function getClassification(
   data: classificationMovie | classificationTV
-): certifcation[] | undefined {
+): certifcation[] | [] {
   if (isClassificationMovie(data)) {
     const arr = data.results
       .filter((obj: any) => obj.iso_3166_1 === "BR")
@@ -56,12 +56,12 @@ export function getClassification(
 
     return arr[0]
       ? classifications.filter((obj) => obj.certification === arr[0][0])
-      : undefined;
+      : [];
   } else {
     const arr = data.results.filter((obj: any) => obj.iso_3166_1 === "BR");
 
     return arr[0]
       ? classifications.filter((obj) => obj.certification === arr[0].rating)
-      : undefined;
+      : [];
   }
 }
