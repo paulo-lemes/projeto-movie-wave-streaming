@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { CiCircleInfo } from "react-icons/ci";
 
 export function ClassificationContent({
   certification,
@@ -18,14 +19,17 @@ export function ClassificationContent({
   });
 
   return (
-    <div
-      className={`flex items-center lg:tooltip lg:tooltip-right`}
-      data-tip={meaning}
-    >
+    <div className={`flex items-center gap-2`}>
       <div className={`${bgColorStyle} px-2.5 py-1 rounded-lg w-max h-max`}>
         <p className={`font-bold text-xl text-white`}>{certification}</p>
       </div>
-      <p className="text-xs lg:hidden pl-2">{meaning}</p>
+      <div
+        className={`hidden lg:block tooltip tooltip-right`}
+        data-tip={meaning}
+      >
+        <CiCircleInfo size={30} />
+      </div>
+      <p className="text-xs lg:hidden">{meaning}</p>
     </div>
   );
 }
