@@ -21,7 +21,7 @@ export default async function Home() {
     "movie/top_rated?language=pt-BR&page=1"
   );
   const dramaMoviesData = getApiContent(
-    "discover/movie?language=pt-BR&with_genres=18"
+    "discover/movie?language=pt-BR&sort_by=vote_count.desc&with_genres=18"
   );
   const topRatedSeriesData = getApiContent(
     "tv/top_rated?language=pt-BR&page=1"
