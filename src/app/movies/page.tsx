@@ -20,6 +20,9 @@ export default async function Movies() {
   const upcomingMoviesData = getApiContent(
     "movie/upcoming?language=pt-BR&page=1"
   );
+  const documentaryMoviesData = getApiContent(
+    "discover/movie?language=pt-BR&page=1&sort_by=vote_count.desc&with_genres=99"
+  );
   const featuredMoviesData = getApiContent(
     "movie/now_playing?language=pt-BR&page=1"
   );
@@ -35,6 +38,7 @@ export default async function Movies() {
     topMovies,
     topRatedMovies,
     upcomingMovies,
+    documentaryMovies,
     moreTopRatedMovies,
     otherTopRatedMovies,
     featuredMovies,
@@ -43,6 +47,7 @@ export default async function Movies() {
     topMoviesData,
     topRatedMoviesData,
     upcomingMoviesData,
+    documentaryMoviesData,
     moreTopRatedMoviesData,
     otherTopRatedMoviesData,
     featuredMoviesData,
@@ -66,6 +71,9 @@ export default async function Movies() {
         </ContentRow>
         <ContentRow {...upcomingMovies} contentType="movie">
           Em breve
+        </ContentRow>
+        <ContentRow {...documentaryMovies} contentType="movie" bigCard>
+          Documentários populares
         </ContentRow>
         <ContentRow {...featuredMovies} contentType="movie">
           Filmes em destaque

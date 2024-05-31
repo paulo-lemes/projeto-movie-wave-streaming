@@ -29,6 +29,9 @@ export default async function Series() {
   const moreTopRatedSeriesData = getApiContent(
     "tv/top_rated?language=pt-BR&page=2"
   );
+  const fantasySeriesData = getApiContent(
+    "discover/tv?language=pt-BR&page=1&sort_by=vote_count.desc&with_genres=10765"
+  );
 
   const [
     popularSeries,
@@ -38,6 +41,7 @@ export default async function Series() {
     otherTopRatedSeries,
     featuredSeries,
     moreTopRatedSeries,
+    fantasySeries,
   ] = await Promise.all([
     popularSeriesData,
     topSeriesData,
@@ -46,6 +50,7 @@ export default async function Series() {
     otherTopRatedSeriesData,
     featuredSeriesData,
     moreTopRatedSeriesData,
+    fantasySeriesData,
   ]);
 
   console.log(popularSeries.results);
@@ -55,6 +60,7 @@ export default async function Series() {
   console.log(otherTopRatedSeries.results);
   console.log(featuredSeries.results);
   console.log(moreTopRatedSeries.results);
+  console.log(fantasySeries.results);
 
   return (
     <Suspense fallback={<Loading />}>
@@ -73,6 +79,9 @@ export default async function Series() {
         </ContentRow>
         <ContentRow {...moreTopRatedSeries} contentType="tv">
           Mais séries aclamadas
+        </ContentRow>
+        <ContentRow {...fantasySeries} contentType="tv" bigCard>
+          Sci-Fi & Fantasy
         </ContentRow>
         <ContentRow {...popularSeries} contentType="tv">
           Séries populares
