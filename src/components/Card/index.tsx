@@ -14,6 +14,7 @@ export function Card({
   id,
   index,
   contentType,
+  bigCard
 }: content) {
   return (
     <motion.div
@@ -26,7 +27,9 @@ export function Card({
           delay: index / 5,
         },
       }}
-      className="relative max-w-[200px] hover:ring-2 ring-white"
+      className={`relative ${
+        bigCard ? "max-w-[275px]" : "max-w-[200px]"
+      } hover:ring-2 ring-white`}
     >
       <Link
         href={`/${media_type || contentType}/${id}?title=${(
@@ -38,9 +41,11 @@ export function Card({
           type="poster"
           alt={`Poster de ${title || name}`}
           title={title || name}
-          width={225}
-          height={300}
-          classCSS="h-[300px] w-[200px]"
+          width={275}
+          height={412.5}
+          classCSS={`${
+            bigCard ? "h-[412.5px] w-[275px]" : "h-[300px] w-[200px]"
+          }`}
         />
       </Link>
     </motion.div>

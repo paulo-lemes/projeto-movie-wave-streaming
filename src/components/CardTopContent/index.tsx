@@ -54,13 +54,11 @@ export function CardTopContent({
           ${!hover && "text-outline"}`}
         >
           {index < 9 ? (
-            <span className={`${!hover && "letter-shadow-r"}`}>
-              {index + 1}
-            </span>
+            <span className={`letter-shadow-r`}>{index + 1}</span>
           ) : (
             <>
               <span className="letter-shadow-r">{(index + 1) / 10}</span>
-              <span className={`${!hover && "letter-shadow-r"} -ml-5`}>0</span>
+              <span className={`letter-shadow-r -ml-5`}>0</span>
             </>
           )}
         </motion.h5>

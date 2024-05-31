@@ -11,6 +11,7 @@ export function ContentRow({
   children,
   contentType,
   top10,
+  bigCard,
 }: dataProps) {
   const carousel = useRef<HTMLDivElement | null>(null);
   const [scrollLeft, setScrollLeft] = useState<number>(0);
@@ -49,7 +50,10 @@ export function ContentRow({
         <div className="flex items-center">
           <button
             type="button"
-            className={`absolute left-0 h-[320px] z-10 sm:pl-2
+            title="scroll to left"
+            className={`absolute left-0 ${
+              bigCard ? "h-[420px]" : "h-[320px]"
+            } z-10 sm:pl-2
           bg-gradient-to-l from-transparent to-base-100 ${
             !scrollLeft && "opacity-0"
           }`}
@@ -78,6 +82,7 @@ export function ContentRow({
                     <Card
                       key={content.id}
                       {...content}
+                      bigCard={bigCard}
                       index={i}
                       contentType={contentType}
                     />
@@ -86,7 +91,10 @@ export function ContentRow({
           </div>
           <button
             type="button"
-            className={`absolute right-0 h-[320px] z-10 sm:pr-2
+            title="scroll to right"
+            className={`absolute right-0 ${
+              bigCard ? "h-[420px]" : "h-[320px]"
+            } z-10 sm:pr-2
           bg-gradient-to-r from-transparent to-base-100 ${
             btnRightScrollDisabled && "opacity-0"
           }`}

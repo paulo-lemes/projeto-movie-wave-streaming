@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export type contentProps = {
   index: number;
   images: { backdrops: imageContent[] };
+  bigCard: boolean;
   contentType?: string;
 };
 
@@ -55,6 +56,7 @@ export type dataProps = {
   children?: ReactNode;
   contentType?: string;
   top10?: boolean;
+  bigCard: boolean;
 };
 
 export interface modalProps {

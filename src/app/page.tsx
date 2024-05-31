@@ -20,6 +20,9 @@ export default async function Home() {
   const topRatedMoviesData = getApiContent(
     "movie/top_rated?language=pt-BR&page=1"
   );
+  const dramaMoviesData = getApiContent(
+    "discover/movie?language=pt-BR&with_genres=18"
+  );
   const topRatedSeriesData = getApiContent(
     "tv/top_rated?language=pt-BR&page=1"
   );
@@ -38,6 +41,7 @@ export default async function Home() {
     trending,
     topMovies,
     topRatedMovies,
+    dramaMovies,
     topRatedSeries,
     topSeries,
     featuredSeries,
@@ -47,6 +51,7 @@ export default async function Home() {
     trendingData,
     topMoviesData,
     topRatedMoviesData,
+    dramaMoviesData,
     topRatedSeriesData,
     topSeriesData,
     featuredSeriesData,
@@ -57,6 +62,7 @@ export default async function Home() {
   console.log(trending.results);
   console.log(topMovies.results);
   console.log(topRatedMovies.results);
+  console.log(dramaMovies.results);
   console.log(topRatedSeries.results);
   console.log(topSeries.results);
   console.log(featuredSeries.results);
@@ -65,12 +71,13 @@ export default async function Home() {
     <Suspense fallback={<Loading />}>
       <FadeInContent duration={1.5}>
         <PageHighlight {...featuredMovies} contentType="movie" />
-        <ContentRow {...trending}>
-          Em alta na semana
-        </ContentRow>
+        <ContentRow {...trending}>Em alta na semana</ContentRow>
         <TopContent {...topMovies} contentType="movie" />
         <ContentRow {...topRatedMovies} contentType="movie">
           Filmes mais bem avaliados
+        </ContentRow>
+        <ContentRow {...dramaMovies} contentType="movie" bigCard>
+          Filmes de drama
         </ContentRow>
         <ContentRow {...topRatedSeries} contentType="tv">
           Séries mais bem avaliadas
