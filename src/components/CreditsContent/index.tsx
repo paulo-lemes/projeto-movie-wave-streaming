@@ -12,7 +12,7 @@ export function CreditsContent({
   created_by,
   contentType,
 }: credits) {
-  const actors = cast.slice(0, 10);
+  const actors = cast.slice(0, 15);
   const directedBy = crew
     .filter((person) => person.job?.toLowerCase() === "director")
     .filter(
