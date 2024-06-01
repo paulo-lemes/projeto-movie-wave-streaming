@@ -4,7 +4,7 @@ import { content } from "@/types";
 import { Banner } from "../Banner";
 import { GenreName } from "../GenreName";
 import { FadeInImage } from "../FadeInImage";
-import { CiLink } from "react-icons/ci";
+import { CiLink, CiStar } from "react-icons/ci";
 import { InfoContentDetails } from "../InfoContentDetails";
 import { randomImage, getClassification } from "@/utils";
 import { ClassificationContent } from "../ClassificationContent";
@@ -19,6 +19,7 @@ export function ContentDetails({
   tagline,
   genres,
   overview,
+  vote_average,
   release_date,
   first_air_date,
   last_air_date,
@@ -87,6 +88,16 @@ export function ContentDetails({
                 <CiLink size={30} />{" "}
                 <p className="text-xs lg:hidden pl-2">Página oficial</p>
               </Link>
+            </div>
+          )}
+          {vote_average > 0 && (
+            <div
+              className={`flex items-center gap-1 mb-1 ${
+                homepage ? "-mt-2" : ""
+              }`}
+            >
+              <CiStar fill="yellow" size={30} />
+              <p className="font-bold text-lg">{vote_average.toFixed(1)}</p>
             </div>
           )}
           {(original_title || original_name) && (
