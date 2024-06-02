@@ -294,3 +294,14 @@ type tv = {
   vote_average: number;
   vote_count: number;
 };
+
+export interface PostContentObj {
+  [key: string]: string | undefined | number | boolean;
+}
+
+export interface ToggleContentAccountProps {
+  toggle: string;
+  id: number;
+  contentType: string | undefined;
+  accountId: string;
+}
