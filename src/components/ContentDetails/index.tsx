@@ -8,6 +8,7 @@ import { CiLink, CiStar } from "react-icons/ci";
 import { InfoContentDetails } from "../InfoContentDetails";
 import { randomImage, getClassification } from "@/utils";
 import { ClassificationContent } from "../ClassificationContent";
+import { ToggleFavorite } from "../ToggleFavorite";
 
 export function ContentDetails({
   poster_path,
@@ -29,6 +30,7 @@ export function ContentDetails({
   homepage,
   images,
   classification,
+  id,
   contentType,
 }: content) {
   const bannerImg = randomImage(images.backdrops);
@@ -130,6 +132,9 @@ export function ContentDetails({
               {last_air_date.split("-").reverse().join("/")}
             </InfoContentDetails>
           )}
+          <div className="flex flex-wrap items-center gap-2 mt-2">
+            <ToggleFavorite id={id} type={contentType} accountId="" />
+          </div>
         </div>
       </div>
     </>
