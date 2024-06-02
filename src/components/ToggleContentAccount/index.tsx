@@ -33,7 +33,7 @@ export function ToggleContentAccount({
     if (res && res.success) {
       setIsInAccount((prev) => !prev);
     } else {
-      window.alert("Não foi possível favoritar o conteúdo. Tente novamente.");
+      window.alert("Não foi possível favoritar ou adicionar o conteúdo à lista de interesses.");
     }
   };
 
