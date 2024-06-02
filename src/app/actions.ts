@@ -1,6 +1,6 @@
 "use server";
 
-import { content } from "@/types";
+import { content, PostContentObj } from "@/types";
 
 const headers = {
   accept: "application/json",
@@ -8,14 +8,15 @@ const headers = {
   Authorization: `Bearer ${process.env.API_TOKEN}`,
 };
 
-export async function getFavoritesAccount(
+export async function getContentAccount(
+  toggle: string,
   accountId: string,
   contentType: string | undefined
 ): Promise<content[] | [] | undefined> {
   try {
     const response = await fetch(
       process.env.BASE_URL +
-        `account/${accountId}/favorite/${contentType}?language=pt-BR&page=1`,
+        `account/${accountId}/${toggle}/${contentType}?language=pt-BR&page=1`,
       {
         method: "GET",
         headers,
@@ -34,17 +35,14 @@ export async function getFavoritesAccount(
   }
 }
 
-export async function postFavorite(
+export async function postContentList(
+  toggle: string,
   accountId: string,
-  bodyParam: {
-    media_type: string | undefined;
-    media_id: number;
-    favorite: boolean;
-  }
+  bodyParam: PostContentObj
 ) {
   try {
     const response = await fetch(
-      process.env.BASE_URL + `account/${accountId}/favorite`,
+      process.env.BASE_URL + `account/${accountId}/${toggle}`,
       {
         method: "POST",
         headers: {
