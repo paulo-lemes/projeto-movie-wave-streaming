@@ -20,7 +20,11 @@ export function Navbar() {
 
       scrolled &&
       scrolled >=
-        (pathname === "/categories" || pathname === "/search" ? 5 : 200)
+        (pathname === "/categories" ||
+        pathname === "/search" ||
+        pathname === "/login"
+          ? 5
+          : 200)
         ? setIsTop(false)
         : setIsTop(true);
     });

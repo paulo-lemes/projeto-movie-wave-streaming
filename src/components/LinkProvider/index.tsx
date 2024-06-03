@@ -22,7 +22,7 @@ export function LinkProvider({
   console.log(path[0]);
 
   return path[0] ? (
-    <motion.a whileHover={{ scale: 1.15 }} href={path[0]} target="blank">
+    <motion.a whileHover={{ scale: 1.15 }} href={path[0]} target="_blank">
       {children}
     </motion.a>
   ) : (

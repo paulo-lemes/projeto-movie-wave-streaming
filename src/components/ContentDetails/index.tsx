@@ -84,7 +84,7 @@ export function ContentDetails({
             >
               <Link
                 href={homepage}
-                target="blank"
+                target="_blank"
                 className="flex items-center"
               >
                 <CiLink size={30} />{" "}

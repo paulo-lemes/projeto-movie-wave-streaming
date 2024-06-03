@@ -20,21 +20,21 @@ export function Footer() {
       <div className="flex gap-4 items-center order-first sm:order-2">
         <a
           href="https://github.com/paulo-lemes"
-          target="blank"
+          target="_blank"
           className={iconStyle}
         >
           <SlSocialGithub size={20} />
         </a>
         <a
           href="https://www.linkedin.com/in/-paulolemes/"
-          target="blank"
+          target="_blank"
           className={iconStyle}
         >
           <CiLinkedin size={25} />
         </a>
         <a
           href="https://api.whatsapp.com/send/?phone=5511993385824&text&type=phone_number&app_absent=0"
-          target="blank"
+          target="_blank"
           className={iconStyle}
         >
           <PiWhatsappLogoLight size={23} />
@@ -44,7 +44,7 @@ export function Footer() {
         <li className={linkStyle}>
           <a
             href="https://github.com/paulo-lemes/projeto-movie-wave-streaming"
-            target="blank"
+            target="_blank"
           >
             Projeto GitHub
           </a>
@@ -52,7 +52,7 @@ export function Footer() {
         <li className={linkStyle}>
           <a
             href="https://developer.themoviedb.org/docs/getting-started"
-            target="blank"
+            target="_blank"
           >
             TMDB API
           </a>
@@ -60,11 +60,11 @@ export function Footer() {
         <li className={linkStyle}>
           <a
             href="https://www.themoviedb.org/?language=pt-BR"
-            target="blank"
+            target="_blank"
             className="flex gap-2"
           >
             The Movie Data Base
-            <Image src={TMDBLogo} alt="" width={30} height={30} />
+            <Image src={TMDBLogo} alt="TMDB (The Movie Data Base) logo" width={30} height={30} />
           </a>
         </li>
       </ul>
