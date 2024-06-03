@@ -7,7 +7,11 @@ export type contentProps = {
   contentType?: string;
 };
 
-export type content = defaultProps & movie & tv & contentProps & classificationContentProps;
+export type content = defaultProps &
+  movie &
+  tv &
+  contentProps &
+  classificationContentProps;
 
 export type imageContent = {
   aspect_ratio: number;
@@ -164,12 +168,11 @@ export type certifcation = {
 };
 
 export type classificationTV = {
-  results: 
-    {
-      descriptors: [];
-      iso_3166_1: string;
-      rating: string;
-    }[];
+  results: {
+    descriptors: [];
+    iso_3166_1: string;
+    rating: string;
+  }[];
   id: number;
 };
 
@@ -304,4 +307,21 @@ export interface ToggleContentAccountProps {
   id: number;
   contentType: string | undefined;
   accountId: string;
+}
+
+export interface RequestTokenResponse {
+  success: boolean;
+  expires_at: string;
+  request_token: string;
+}
+
+export type LoginData = {
+  username: FormDataEntryValue | null;
+  password: FormDataEntryValue | null;
+  request_token: string | undefined;
+};
+
+export interface RequestSessionResponse {
+  success: boolean;
+  session_id: string;
 }

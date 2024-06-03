@@ -51,7 +51,7 @@ export function ToggleContentAccount({
   if (toggle === "favorite")
     return (
       <button
-        className="cursor-pointer tooltip tooltip-bottom"
+        className="cursor-pointer tooltip tooltip-right lg:tooltip-bottom"
         title={`${isInAccount ? "Remover dos" : "Adicionar aos"} favoritos`}
         data-tip={`${isInAccount ? "Remover dos" : "Adicionar aos"} favoritos`}
         onClick={handleClick}
@@ -67,7 +67,7 @@ export function ToggleContentAccount({
   if (toggle === "watchlist")
     return (
       <button
-        className="cursor-pointer tooltip tooltip-bottom"
+        className="cursor-pointer tooltip tooltip-right lg:tooltip-bottom"
         title={`${
           isInAccount ? "Remover da" : "Adicionar na"
         } lista de interesses`}
