@@ -6,19 +6,20 @@ export async function POST(request: Request) {
 
   if (sessionId) {
     const response = NextResponse.json(
-      { message: "Login successfull" },
-      { status: 200 }
+      { message: "Login successfull" }
     );
 
     response.headers.set(
       "Set-Cookie",
       serialize("auth", sessionId, {
         httpOnly: true,
+        secure: process.env.NODE_ENV !== "development",
         maxAge: 60 * 60 * 24 * 7,
         sameSite: "strict",
         path: "/",
       })
     );
+    
     return response;
   } else {
     return NextResponse.json(

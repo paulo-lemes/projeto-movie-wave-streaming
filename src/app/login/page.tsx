@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import TMDBLogo from "./assets/themoviedatabase-logo.svg";
@@ -5,14 +7,14 @@ import { FadeInContent } from "@/components/FadeInContent";
 import { StyledTitle } from "@/components/StyledTitle";
 import { FaUser } from "react-icons/fa";
 import { MdOutlineKey } from "react-icons/md";
-import { getRequestToken, getSessionId, postLogin } from "../actions";
+import { getRequestToken, postLogin, getSessionId } from "../actions";
 import { redirect } from "next/navigation";
-import { headers } from "next/headers";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Login() {
-  const handleLogin = async (formData: FormData) => {
-    "use server";
+  const { login } = useAuth();
 
+  const handleLogin = async (formData: FormData) => {
     const requestToken = await getRequestToken();
 
     const loginData = {
@@ -21,23 +23,23 @@ export default function Login() {
       request_token: requestToken?.request_token,
     };
 
-    const login = await postLogin(loginData);
+    const validateLogin = await postLogin(loginData);
+    if (!validateLogin?.success) {
+      alert("Usuário e/ou senha inválidos.");
+      return;
+    }
+
     const session = await getSessionId(requestToken?.request_token);
+    if (!session?.success) {
+      alert("Não foi possível criar a sessão.");
+      return;
+    }
 
-    const host = headers().get("host");
-    const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
-    const auth = await fetch(`${protocal}://${host}/api/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ sessionId: session?.session_id }),
-    });
-
-    if (auth.ok) {
-      console.log("Login realizado com sucesso!");
+    const auth = await login(session?.session_id);
+    if (auth) {
+      alert("Login realizado com sucesso!");
       redirect("/");
-    } else console.log("Login não realizado. Tente novamente.");
+    } else alert("Login não realizado. Tente novamente.");
   };
 
   return (
@@ -76,7 +78,7 @@ export default function Login() {
                 id="username"
                 className="grow rounded-lg pl-1"
               />
-              <FaUser size={17} />
+              <FaUser size={16} className="mx-[2px]" />
             </label>
             <label htmlFor="password" className="font-semibold sm:text-xl">
               Senha

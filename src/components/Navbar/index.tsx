@@ -7,15 +7,18 @@ import Link from "next/link";
 import { CiBookmarkPlus, CiSearch, CiUser } from "react-icons/ci";
 import { DrawerMenu } from "../DrawerMenu";
 import { usePathname } from "next/navigation";
+import LogoutButton from "../LogoutButton";
+import { useAuth } from "@/app/contexts/AuthContext";
 
 const navItemStyle = "text-lg lg:text-2xl font-semibold hover:opacity-100";
 
 export function Navbar() {
   const pathname = usePathname();
   const [isTop, setIsTop] = useState<boolean>(true);
+  const { user } = useAuth();
 
   useEffect(() => {
-    document.addEventListener("scroll", (e) => {
+    document.addEventListener("scroll", () => {
       let scrolled = document?.scrollingElement?.scrollTop;
 
       scrolled &&
@@ -96,9 +99,33 @@ export function Navbar() {
           <Link href="/watchlist">
             <CiBookmarkPlus size={40} className="w-8" />
           </Link>
-          <Link href="profile">
-            <CiUser size={40} className="w-8" />
-          </Link>
+          <div className="dropdown lg:dropdown-hover dropdown-end">
+            <div tabIndex={0} role="button" className="">
+              <CiUser size={40} className="w-8" />
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-300 rounded-box w-52"
+            >
+              {user ? (
+                <>
+                  <li>
+                    <Link href="/profile">Perfil</Link>
+                  </li>
+                  <li>
+                    <Link href="/favorite">Favoritos</Link>
+                  </li>
+                  <li>
+                    <LogoutButton />
+                  </li>
+                </>
+              ) : (
+                <li>
+                  <Link href="/login">Login</Link>
+                </li>
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     </header>

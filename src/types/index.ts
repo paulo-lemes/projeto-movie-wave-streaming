@@ -306,7 +306,6 @@ export interface ToggleContentAccountProps {
   toggle: string;
   id: number;
   contentType: string | undefined;
-  accountId: string;
 }
 
 export interface RequestTokenResponse {
@@ -325,3 +324,26 @@ export interface RequestSessionResponse {
   success: boolean;
   session_id: string;
 }
+
+export interface AuthContextType {
+  user: UserInfo | null,
+  login: (session_id: string | undefined) => Promise<boolean> | undefined,
+  logout: () => void,
+}
+
+export type UserInfo = {
+  avatar: {
+    gravatar: {
+      hash: string | null;
+    };
+    tmdb: {
+      avatar_path: string | null;
+    };
+  };
+  id: number;
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  include_adult: boolean;
+  username: string;
+};
