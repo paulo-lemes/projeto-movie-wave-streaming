@@ -110,10 +110,10 @@ export function Navbar() {
               {user ? (
                 <>
                   <li>
-                    <Link href="profile">Perfil</Link>
+                    <Link href="/profile">Perfil</Link>
                   </li>
                   <li>
-                    <Link href="favorite">Favoritos</Link>
+                    <Link href="/favorite">Favoritos</Link>
                   </li>
                   <li>
                     <LogoutButton />
@@ -121,7 +121,7 @@ export function Navbar() {
                 </>
               ) : (
                 <li>
-                  <Link href="login">Login</Link>
+                  <Link href="/login">Login</Link>
                 </li>
               )}
             </ul>
