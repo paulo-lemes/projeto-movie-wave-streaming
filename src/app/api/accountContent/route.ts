@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { serialize } from "cookie";
 
 const headers = {
   accept: "application/json",
@@ -46,7 +45,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(data.results);
   } catch (err) {
-    NextResponse.json(
+    return NextResponse.json(
       { message: "An error occurred", error: err },
       { status: 500 }
     );
@@ -54,5 +53,41 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: Request) {
-  
+  const { accountId, toggle, bodyParam } = await request.json();
+
+  const cookie = request.headers.get("cookie");
+  const authCookie = cookie
+    ?.split(";")
+    .find((c) => c.trim().startsWith("auth="));
+
+  if (!authCookie) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
+
+  const sessionId = authCookie.split("=")[1];
+
+  try {
+    const response = await fetch(
+      process.env.BASE_URL +
+        `account/${accountId}/${toggle}?session_id=${sessionId}&language=pt-BR&page=1`,
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify(bodyParam),
+      }
+    );
+
+    if (!response.ok)
+      throw new Error(`Status ${response.status}- ${response.statusText}`);
+
+    const data = await response.json();
+    console.log(data);
+
+    return NextResponse.json(data);
+  } catch (err) {
+    return NextResponse.json(
+      { message: "An error occurred", error: err },
+      { status: 500 }
+    );
+  }
 }

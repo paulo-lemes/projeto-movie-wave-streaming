@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { ToggleContentAccountProps, content } from "@/types";
-import { postContentList } from "@/app/actions";
 import {
   PiBookmarkSimpleFill,
   PiBookmarkSimpleLight,
@@ -22,16 +21,31 @@ export function ToggleContentAccount({
   const { user } = useAuth();
 
   const handleClick = async () => {
+    if (!user) {
+      alert(
+        "Faça login para conseguir favoritar e adicionar conteúdos à sua lista."
+      );
+      return;
+    }
+
     const body = {
       media_type: contentType,
       media_id: id,
       [toggle]: !isInAccount,
     };
 
-    const res = await postContentList(toggle, user?.id, body);
-    console.log(res);
+    const postContent = await fetch("/api/accountContent", {
+      method: "POST",
+      body: JSON.stringify({
+        accountId: user.id,
+        toggle: toggle,
+        bodyParam: body,
+      }),
+    });
 
-    if (res && res.success) {
+    const response = await postContent.json();
+    console.log(response);
+    if (response && response.success) {
       setIsInAccount((prev) => !prev);
     } else {
       alert(

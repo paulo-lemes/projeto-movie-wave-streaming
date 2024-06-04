@@ -2,29 +2,28 @@
 
 import {
   LoginData,
-  PostContentObj,
   RequestSessionResponse,
   RequestTokenResponse,
   UserInfo,
 } from "@/types";
 
+const baseURL = process.env.BASE_URL;
+const apiToken = process.env.API_TOKEN;
+
 const headers = {
   accept: "application/json",
   "content-type": "application/json",
-  Authorization: `Bearer ${process.env.API_TOKEN}`,
+  Authorization: `Bearer ${apiToken}`,
 };
 
 export async function getRequestToken(): Promise<
   RequestTokenResponse | undefined
 > {
   try {
-    const response = await fetch(
-      process.env.BASE_URL + `authentication/token/new`,
-      {
-        method: "GET",
-        headers,
-      }
-    );
+    const response = await fetch(baseURL + `authentication/token/new`, {
+      method: "GET",
+      headers,
+    });
 
     if (!response.ok)
       throw new Error(`Status ${response.status}- ${response.statusText}`);
@@ -43,7 +42,7 @@ export async function postLogin(
 ): Promise<RequestTokenResponse | undefined> {
   try {
     const response = await fetch(
-      process.env.BASE_URL + `authentication/token/validate_with_login`,
+      baseURL + `authentication/token/validate_with_login`,
       {
         method: "POST",
         headers,
@@ -67,14 +66,11 @@ export async function getSessionId(
   requestToken: string | undefined
 ): Promise<RequestSessionResponse | undefined> {
   try {
-    const response = await fetch(
-      process.env.BASE_URL + `authentication/session/new`,
-      {
-        method: "POST",
-        headers,
-        body: JSON.stringify({ request_token: requestToken }),
-      }
-    );
+    const response = await fetch(baseURL + `authentication/session/new`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ request_token: requestToken }),
+    });
 
     if (!response.ok)
       throw new Error(`Status ${response.status}- ${response.statusText}`);
@@ -92,44 +88,10 @@ export async function getUserInfo(
   sessionId: string | undefined
 ): Promise<UserInfo | undefined> {
   try {
-    const response = await fetch(
-      process.env.BASE_URL + `account?session_id=${sessionId}`,
-      {
-        method: "GET",
-        headers,
-      }
-    );
-
-    if (!response.ok)
-      throw new Error(`Status ${response.status}- ${response.statusText}`);
-
-    const data = await response.json();
-    console.log(data);
-
-    return data;
-  } catch (err) {
-    console.error("Fetch error:", err);
-  }
-}
-
-export async function postContentList(
-  toggle: string,
-  accountId: number | undefined,
-  bodyParam: PostContentObj
-) {
-  try {
-    const response = await fetch(
-      process.env.BASE_URL + `account/${accountId}/${toggle}`,
-      {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          "content-type": "application/json",
-          Authorization: `Bearer ${process.env.API_TOKEN}`,
-        },
-        body: JSON.stringify(bodyParam),
-      }
-    );
+    const response = await fetch(baseURL + `account?session_id=${sessionId}`, {
+      method: "GET",
+      headers,
+    });
 
     if (!response.ok)
       throw new Error(`Status ${response.status}- ${response.statusText}`);
