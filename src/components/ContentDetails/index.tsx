@@ -137,13 +137,11 @@ export function ContentDetails({
               toggle="favorite"
               id={id}
               contentType={contentType}
-              accountId=""
             />
             <ToggleContentAccount
               toggle="watchlist"
               id={id}
               contentType={contentType}
-              accountId=""
             />
           </div>
         </div>

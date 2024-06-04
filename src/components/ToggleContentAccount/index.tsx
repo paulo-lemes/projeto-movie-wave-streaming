@@ -1,24 +1,25 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { ToggleContentAccountProps } from "@/types";
-import { getContentAccount, postContentList } from "@/app/actions";
+import { ToggleContentAccountProps, content } from "@/types";
+import { postContentList } from "@/app/actions";
 import {
   PiBookmarkSimpleFill,
   PiBookmarkSimpleLight,
   PiHeartStraightFill,
   PiHeartStraightLight,
 } from "react-icons/pi";
+import { useAuth } from "@/app/contexts/AuthContext";
 
 export function ToggleContentAccount({
   toggle,
   id,
   contentType,
-  accountId,
 }: ToggleContentAccountProps) {
   const [isInAccount, setIsInAccount] = useState<boolean | undefined | null>(
     null
   );
+  const { user } = useAuth();
 
   const handleClick = async () => {
     const body = {
@@ -27,26 +28,37 @@ export function ToggleContentAccount({
       [toggle]: !isInAccount,
     };
 
-    const res = await postContentList(toggle, accountId, body);
+    const res = await postContentList(toggle, user?.id, body);
     console.log(res);
 
     if (res && res.success) {
       setIsInAccount((prev) => !prev);
     } else {
-      window.alert("Não foi possível favoritar ou adicionar o conteúdo à lista de interesses.");
+      alert(
+        "Não foi possível favoritar ou adicionar o conteúdo à lista de interesses."
+      );
     }
   };
 
   const updatedAccountContent = async () => {
-    const results = await getContentAccount(toggle, accountId, contentType);
-    const favoriteIsTrue =
-      results && results?.filter((content) => content.id == id).length > 0;
-    setIsInAccount(favoriteIsTrue);
+    const content = contentType === "movie" ? "movies" : contentType;
+    const data = await fetch(
+      `/api/accountContent?accountId=${user?.id}&toggle=${toggle}&contentType=${content}`
+    );
+
+    if (data.ok) {
+      const results = await data.json();
+      const favoriteIsTrue =
+        results &&
+        results?.filter((content: content) => content.id == id).length > 0;
+
+      setIsInAccount(favoriteIsTrue);
+    }
   };
 
   useEffect(() => {
-    updatedAccountContent();
-  }, [accountId, id, isInAccount]);
+    if (user) updatedAccountContent();
+  }, [user, id, isInAccount]);
 
   if (toggle === "favorite")
     return (

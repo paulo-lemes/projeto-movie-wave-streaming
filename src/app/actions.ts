@@ -1,11 +1,11 @@
 "use server";
 
 import {
-  content,
   LoginData,
   PostContentObj,
   RequestSessionResponse,
   RequestTokenResponse,
+  UserInfo,
 } from "@/types";
 
 const headers = {
@@ -88,15 +88,12 @@ export async function getSessionId(
   }
 }
 
-export async function getContentAccount(
-  toggle: string,
-  accountId: string,
-  contentType: string | undefined
-): Promise<content[] | [] | undefined> {
+export async function getUserInfo(
+  sessionId: string | undefined
+): Promise<UserInfo | undefined> {
   try {
     const response = await fetch(
-      process.env.BASE_URL +
-        `account/${accountId}/${toggle}/${contentType}?language=pt-BR&page=1`,
+      process.env.BASE_URL + `account?session_id=${sessionId}`,
       {
         method: "GET",
         headers,
@@ -109,7 +106,7 @@ export async function getContentAccount(
     const data = await response.json();
     console.log(data);
 
-    return data.results;
+    return data;
   } catch (err) {
     console.error("Fetch error:", err);
   }
@@ -117,7 +114,7 @@ export async function getContentAccount(
 
 export async function postContentList(
   toggle: string,
-  accountId: string,
+  accountId: number | undefined,
   bodyParam: PostContentObj
 ) {
   try {
