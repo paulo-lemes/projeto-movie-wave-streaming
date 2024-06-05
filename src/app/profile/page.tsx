@@ -45,9 +45,7 @@ export default function Profile() {
                 height={80}
               />
             </a>
-            <div className="btn btn-neutral btn-wide">
-              <LogoutButton />
-            </div>
+            <LogoutButton classCSS="btn btn-neutral btn-wide" />
           </div>
         </div>
       )}
