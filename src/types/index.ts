@@ -308,6 +308,12 @@ export interface ToggleContentAccountProps {
   contentType: string | undefined;
 }
 
+export interface ContentAccountProps {
+  toggle: string;
+  contentType: string | undefined;
+  children: ReactNode;
+}
+
 export interface RequestTokenResponse {
   success: boolean;
   expires_at: string;
