@@ -11,8 +11,9 @@ export function ContentAccount({
 }: ContentAccountProps) {
   const [content, setContent] = useState<content[] | []>([]);
   const getContent = async () => {
+    const content = contentType === "movie" ? "movies" : contentType
     const data = await fetch(
-      `/api/accountContent?toggle=${toggle}&contentType=${contentType}`
+      `/api/accountContent?toggle=${toggle}&contentType=${content}`
     );
 
     const results = await data.json();

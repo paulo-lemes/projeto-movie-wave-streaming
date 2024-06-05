@@ -35,9 +35,10 @@ export function ContentRow({
   };
 
   const btnRightScrollDisabled =
-    scrollLeft ===
     (carousel.current &&
-      carousel.current?.scrollWidth - carousel.current?.offsetWidth);
+      scrollLeft ===
+        carousel.current?.scrollWidth - carousel.current?.offsetWidth) ||
+    undefined;
 
   return (
     results.length > 0 && (
@@ -55,7 +56,7 @@ export function ContentRow({
               bigCard ? "h-[420px]" : "h-[320px]"
             } z-10 sm:pl-2
           bg-gradient-to-l from-transparent to-base-100 ${
-            !scrollLeft && "opacity-0"
+            !scrollLeft && "hidden"
           }`}
             disabled={!scrollLeft}
             onClick={handleScrollLeft}
@@ -96,7 +97,7 @@ export function ContentRow({
               bigCard ? "h-[420px]" : "h-[320px]"
             } z-10 sm:pr-2
           bg-gradient-to-r from-transparent to-base-100 ${
-            btnRightScrollDisabled && "opacity-0"
+            btnRightScrollDisabled && "hidden"
           }`}
             disabled={btnRightScrollDisabled}
             onClick={handleScrollRight}
