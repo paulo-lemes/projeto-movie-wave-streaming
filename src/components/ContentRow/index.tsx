@@ -36,28 +36,12 @@ export function ContentRow({
   };
 
   useEffect(() => {
-    if (carousel.current){
+    if (carousel.current) {
       const isScrollDisabled =
         scrollLeft ===
         carousel.current.scrollWidth - carousel.current.offsetWidth;
       setBtnRightScrollDisabled(isScrollDisabled);
     }
-
-    console.log(`btnRightScrollDisabled: ${btnRightScrollDisabled}`);
-    console.log(`scrollLeft: ${scrollLeft}`);
-    console.log(
-      `carousel.current.scrollWidth: ${carousel.current?.scrollWidth}`
-    );
-    console.log(
-      `carousel.current.offsetWidth: ${carousel.current?.offsetWidth}`
-    );
-    if (carousel.current)
-      console.log(
-        `scrollWidth - offsetWidth: ${
-          scrollLeft ===
-          carousel.current?.scrollWidth - carousel.current?.offsetWidth
-        }`
-      );
   }, [scrollLeft, carousel.current]);
 
   return (
