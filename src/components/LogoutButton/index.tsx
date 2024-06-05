@@ -4,7 +4,7 @@ import { useAuth } from "@/app/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { CiLogout } from "react-icons/ci";
 
-export default function LogoutButton() {
+export default function LogoutButton({ classCSS }: { classCSS?: string }) {
   const router = useRouter();
   const { logout } = useAuth();
 
@@ -15,7 +15,10 @@ export default function LogoutButton() {
   };
 
   return (
-    <button onClick={handleLogout} className="flex items-center gap-2">
+    <button
+      onClick={handleLogout}
+      className={`${classCSS || ""} flex items-center gap-2`}
+    >
       <p>Logout</p>
       <CiLogout />
     </button>
