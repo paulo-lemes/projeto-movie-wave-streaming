@@ -1,6 +1,6 @@
 "use client";
 
-import React, { UIEvent, useRef, useState } from "react";
+import React, { UIEvent, useEffect, useRef, useState } from "react";
 import { dataProps } from "@/types";
 import { Card } from "../Card";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
@@ -39,6 +39,24 @@ export function ContentRow({
       scrollLeft ===
         carousel.current?.scrollWidth - carousel.current?.offsetWidth) ||
     undefined;
+
+  useEffect(() => {
+    console.log(`btnRightScrollDisabled: ${btnRightScrollDisabled}`);
+    console.log(`scrollLeft: ${scrollLeft}`);
+    console.log(
+      `carousel.current.scrollWidth: ${carousel.current?.scrollWidth}`
+    );
+    console.log(
+      `carousel.current.offsetWidth: ${carousel.current?.offsetWidth}`
+    );
+    if (carousel.current)
+      console.log(
+        `scrollWidth - offsetWidth: ${
+          scrollLeft ===
+          carousel.current?.scrollWidth - carousel.current?.offsetWidth
+        }`
+      );
+  }, [scrollLeft]);
 
   return (
     results.length > 0 && (
