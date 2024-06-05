@@ -15,6 +15,7 @@ export function ContentRow({
 }: dataProps) {
   const carousel = useRef<HTMLDivElement | null>(null);
   const [scrollLeft, setScrollLeft] = useState<number>(0);
+  const [btnRightScrollDisabled, setBtnRightScrollDisabled] = useState(true);
 
   const handleScrollLeft = () => {
     if (carousel.current) {
@@ -34,13 +35,14 @@ export function ContentRow({
     setScrollLeft(currentScrollLeft);
   };
 
-  const btnRightScrollDisabled =
-    (carousel.current &&
-      scrollLeft ===
-        carousel.current?.scrollWidth - carousel.current?.offsetWidth) ||
-    undefined;
-
   useEffect(() => {
+    if (carousel.current){
+      const isScrollDisabled =
+        scrollLeft ===
+        carousel.current.scrollWidth - carousel.current.offsetWidth;
+      setBtnRightScrollDisabled(isScrollDisabled);
+    }
+
     console.log(`btnRightScrollDisabled: ${btnRightScrollDisabled}`);
     console.log(`scrollLeft: ${scrollLeft}`);
     console.log(
@@ -56,7 +58,7 @@ export function ContentRow({
           carousel.current?.scrollWidth - carousel.current?.offsetWidth
         }`
       );
-  }, [scrollLeft]);
+  }, [scrollLeft, carousel.current]);
 
   return (
     results.length > 0 && (
@@ -74,7 +76,7 @@ export function ContentRow({
               bigCard ? "h-[420px]" : "h-[320px]"
             } z-10 sm:pl-2
           bg-gradient-to-l from-transparent to-base-100 ${
-            !scrollLeft && "hidden"
+            !scrollLeft ? "hidden" : ""
           }`}
             disabled={!scrollLeft}
             onClick={handleScrollLeft}
@@ -115,7 +117,7 @@ export function ContentRow({
               bigCard ? "h-[420px]" : "h-[320px]"
             } z-10 sm:pr-2
           bg-gradient-to-r from-transparent to-base-100 ${
-            btnRightScrollDisabled && "hidden"
+            btnRightScrollDisabled ? "hidden" : ""
           }`}
             disabled={btnRightScrollDisabled}
             onClick={handleScrollRight}
