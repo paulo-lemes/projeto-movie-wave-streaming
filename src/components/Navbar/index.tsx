@@ -20,16 +20,15 @@ export function Navbar() {
   useEffect(() => {
     document.addEventListener("scroll", () => {
       let scrolled = document?.scrollingElement?.scrollTop;
-
-      scrolled &&
-      scrolled >=
-        (pathname === "/categories" ||
+      const scrollParam =
+        pathname === "/categories" ||
         pathname === "/search" ||
-        pathname === "/login"
+        pathname === "/login" ||
+        pathname === "/profile"
           ? 5
-          : 200)
-        ? setIsTop(false)
-        : setIsTop(true);
+          : 200;
+
+      scrolled && scrolled >= scrollParam ? setIsTop(false) : setIsTop(true);
     });
   }, [pathname]);
 
@@ -93,24 +92,29 @@ export function Navbar() {
           </ul>
         </nav>
         <div className="flex gap-2">
-          <Link href="/search">
+          <Link href="/search" title="Pesquisa">
             <CiSearch size={40} className="w-8" />
           </Link>
-          <Link href="/watchlist">
+          <Link href="/watchlist" title="Lista de interesses">
             <CiBookmarkPlus size={40} className="w-8" />
           </Link>
           <div className="dropdown lg:dropdown-hover dropdown-end">
-            <div tabIndex={0} role="button" className="">
+            <div tabIndex={0} role="button">
               <CiUser size={40} className="w-8" />
             </div>
             <ul
               tabIndex={0}
-              className="dropdown-content z-[1] menu p-2 shadow bg-base-300 rounded-box w-52"
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-300 rounded-box w-72 max-w-max"
             >
               {user ? (
                 <>
                   <li>
-                    <Link href="/profile">Perfil</Link>
+                    <Link href="/profile">
+                      <h4 className="text-lg font-bold">
+                        {user.name || user.username}
+                      </h4>
+                      <p className="text-xs font-light">Ver perfil</p>
+                    </Link>
                   </li>
                   <li>
                     <Link href="/favorite">Favoritos</Link>
