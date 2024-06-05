@@ -8,25 +8,32 @@ const headers = {
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const accountId = searchParams.get("accountId");
   const toggle = searchParams.get("toggle");
   const contentType = searchParams.get("contentType");
 
-  const cookie = request.headers.get("cookie");
-  const authCookie = cookie
-    ?.split(";")
-    .find((c) => c.trim().startsWith("auth="));
-
-  if (!authCookie) {
+  const authCookie = request.cookies.get("auth");
+  const userInfoCookie = request.cookies.get("userInfo");
+  
+  if (!authCookie || !userInfoCookie) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
-  const sessionId = authCookie.split("=")[1];
+  const sessionId = authCookie.value;
+
+  let userInfo;
+  try {
+    userInfo = JSON.parse(userInfoCookie.value);
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Invalid cookie format" },
+      { status: 400 }
+    );
+  }
 
   try {
     const externalRes = await fetch(
       process.env.BASE_URL +
-        `account/${accountId}/${toggle}/${contentType}?session_id=${sessionId}&language=pt-BR&page=1`,
+        `account/${userInfo.id}/${toggle}/${contentType}?session_id=${sessionId}&language=pt-BR&page=1`,
       {
         method: "GET",
         headers,
@@ -52,24 +59,32 @@ export async function GET(request: NextRequest) {
   }
 }
 
-export async function POST(request: Request) {
-  const { accountId, toggle, bodyParam } = await request.json();
+export async function POST(request: NextRequest) {
+  const { toggle, bodyParam } = await request.json();
 
-  const cookie = request.headers.get("cookie");
-  const authCookie = cookie
-    ?.split(";")
-    .find((c) => c.trim().startsWith("auth="));
+  const authCookie = request.cookies.get("auth");
+  const userInfoCookie = request.cookies.get("userInfo");
 
-  if (!authCookie) {
+  if (!authCookie || !userInfoCookie) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
-  const sessionId = authCookie.split("=")[1];
+  const sessionId = authCookie.value;
+
+  let userInfo;
+  try {
+    userInfo = JSON.parse(userInfoCookie.value);
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Invalid cookie format" },
+      { status: 400 }
+    );
+  }
 
   try {
     const response = await fetch(
       process.env.BASE_URL +
-        `account/${accountId}/${toggle}?session_id=${sessionId}&language=pt-BR&page=1`,
+        `account/${userInfo.id}/${toggle}?session_id=${sessionId}&language=pt-BR&page=1`,
       {
         method: "POST",
         headers,

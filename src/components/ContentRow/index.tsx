@@ -50,7 +50,7 @@ export function ContentRow({
         <div className="flex items-center">
           <button
             type="button"
-            title="scroll to left"
+            title="Rolar para a esquerda"
             className={`absolute left-0 ${
               bigCard ? "h-[420px]" : "h-[320px]"
             } z-10 sm:pl-2
@@ -91,7 +91,7 @@ export function ContentRow({
           </div>
           <button
             type="button"
-            title="scroll to right"
+            title="Rolar para a direita"
             className={`absolute right-0 ${
               bigCard ? "h-[420px]" : "h-[320px]"
             } z-10 sm:pr-2

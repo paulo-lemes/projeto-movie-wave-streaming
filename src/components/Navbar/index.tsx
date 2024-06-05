@@ -7,7 +7,7 @@ import Link from "next/link";
 import { CiBookmarkPlus, CiSearch, CiUser } from "react-icons/ci";
 import { DrawerMenu } from "../DrawerMenu";
 import { usePathname } from "next/navigation";
-import LogoutButton from "../LogoutButton";
+import { LogoutButton } from "../LogoutButton";
 import { useAuth } from "@/app/contexts/AuthContext";
 
 const navItemStyle = "text-lg lg:text-2xl font-semibold hover:opacity-100";

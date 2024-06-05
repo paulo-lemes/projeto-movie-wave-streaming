@@ -57,7 +57,7 @@ export function ToggleContentAccount({
   const updatedAccountContent = async () => {
     const content = contentType === "movie" ? "movies" : contentType;
     const data = await fetch(
-      `/api/accountContent?accountId=${user?.id}&toggle=${toggle}&contentType=${content}`
+      `/api/accountContent?toggle=${toggle}&contentType=${content}`
     );
 
     if (data.ok) {
@@ -71,7 +71,7 @@ export function ToggleContentAccount({
   };
 
   useEffect(() => {
-    if (user) updatedAccountContent();
+    updatedAccountContent();
   }, [user, id, isInAccount]);
 
   if (toggle === "favorite")

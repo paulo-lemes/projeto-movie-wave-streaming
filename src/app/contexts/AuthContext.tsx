@@ -22,16 +22,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<UserInfo | null>(null);
 
   const login = async (session_id: string | undefined) => {
-    await fetch(`/api/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ sessionId: session_id }),
-    });
-
     const userInfo = await getUserInfo(session_id);
     if (userInfo) {
+      await fetch(`/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ sessionId: session_id, userInfo: userInfo }),
+      });
+
       localStorage.setItem("user", JSON.stringify(userInfo));
       setUser(userInfo);
 
