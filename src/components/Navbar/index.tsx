@@ -104,7 +104,7 @@ export function Navbar() {
             </div>
             <ul
               tabIndex={0}
-              className="dropdown-content z-[1] menu p-2 shadow bg-base-300 rounded-box w-72 max-w-max"
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-300 rounded-box w-36 sm:w-52 min-w-max"
             >
               {user ? (
                 <>

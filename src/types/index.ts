@@ -332,9 +332,18 @@ export interface RequestSessionResponse {
 }
 
 export interface AuthContextType {
-  user: UserInfo | null,
-  login: (session_id: string | undefined) => Promise<boolean> | undefined,
-  logout: () => void,
+  user: UserInfo | null;
+  login: (session_id: string | undefined) => Promise<boolean> | undefined;
+  logout: () => Promise<boolean> | undefined;
+}
+
+export interface ModalContextType {
+  isModalOpen: boolean;
+  openModal: (value: string) => void;
+  setIsModalOpen: (value: boolean) => void;
+  modalText: string;
+  redirectAfterClose: string | null;
+  setRedirectAfterClose: (value: string) => void;
 }
 
 export type UserInfo = {
