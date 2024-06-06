@@ -13,7 +13,7 @@ import {
 const AuthContext = createContext<AuthContextType>({
   user: null,
   login: () => undefined,
-  logout: () => {},
+  logout: () => undefined,
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -49,9 +49,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (res.ok) {
       localStorage.removeItem("user");
       setUser(null);
+      return true;
     } else {
       const { message } = await res.json();
-      alert(`Logout failed: ${message}`);
+      console.log(`Logout failed: ${message}`);
+      return false;
     }
   };
 

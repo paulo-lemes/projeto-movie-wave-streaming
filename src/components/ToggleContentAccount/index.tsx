@@ -9,6 +9,7 @@ import {
   PiHeartStraightLight,
 } from "react-icons/pi";
 import { useAuth } from "@/app/contexts/AuthContext";
+import { useModal } from "@/app/contexts/ModalContext";
 
 export function ToggleContentAccount({
   toggle,
@@ -19,10 +20,11 @@ export function ToggleContentAccount({
     null
   );
   const { user } = useAuth();
+  const { openModal } = useModal();
 
   const handleClick = async () => {
     if (!user) {
-      alert(
+      openModal(
         "Faça login para conseguir favoritar e adicionar conteúdos à sua lista."
       );
       return;
@@ -46,9 +48,12 @@ export function ToggleContentAccount({
     const response = await postContent.json();
     console.log(response);
     if (response && response.success) {
-      setIsInAccount((prev) => !prev);
+      let message;
+      setIsInAccount((prev) => {
+        return !prev;
+      });
     } else {
-      alert(
+      openModal(
         "Não foi possível favoritar ou adicionar o conteúdo à lista de interesses."
       );
     }
@@ -62,11 +67,11 @@ export function ToggleContentAccount({
 
     if (data.ok) {
       const results = await data.json();
-      const favoriteIsTrue =
+      const contentIsTrue =
         results &&
         results?.filter((content: content) => content.id == id).length > 0;
 
-      setIsInAccount(favoriteIsTrue);
+      setIsInAccount(contentIsTrue);
     }
   };
 
@@ -77,7 +82,11 @@ export function ToggleContentAccount({
   if (toggle === "favorite")
     return (
       <button
-        className="cursor-pointer tooltip tooltip-right lg:tooltip-bottom"
+        className={`cursor-pointer tooltip tooltip-right lg:tooltip-bottom 
+          transition-opacity ease-in duration-700
+          ${
+            isInAccount === null ? "invisible opacity-0" : "visible opacity-100"
+          }`}
         title={`${isInAccount ? "Remover dos" : "Adicionar aos"} favoritos`}
         data-tip={`${isInAccount ? "Remover dos" : "Adicionar aos"} favoritos`}
         onClick={handleClick}
@@ -93,7 +102,11 @@ export function ToggleContentAccount({
   if (toggle === "watchlist")
     return (
       <button
-        className="cursor-pointer tooltip tooltip-right lg:tooltip-bottom"
+        className={`cursor-pointer tooltip tooltip-right lg:tooltip-bottom 
+          transition-opacity ease-in duration-700
+          ${
+            isInAccount === null ? "invisible opacity-0" : "visible opacity-100"
+          }`}
         title={`${
           isInAccount ? "Remover da" : "Adicionar na"
         } lista de interesses`}

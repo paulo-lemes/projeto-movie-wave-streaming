@@ -1,17 +1,20 @@
 "use client";
 
 import { useAuth } from "@/app/contexts/AuthContext";
-import { useRouter } from "next/navigation";
+import { useModal } from "@/app/contexts/ModalContext";
 import { CiLogout } from "react-icons/ci";
 
 export function LogoutButton({ classCSS }: { classCSS?: string }) {
-  const router = useRouter();
   const { logout } = useAuth();
+  const { openModal, setRedirectAfterClose } = useModal();
 
   const handleLogout = async () => {
-    logout();
-    alert("Logout realizado com sucesso.");
-    router.push("/login");
+    const res = await logout();
+
+    if (res) {
+      setRedirectAfterClose("/login");
+      openModal("Logout realizado com sucesso.");
+    } else openModal("Não foi possível realizar o logout. Tente novamente.");
   };
 
   return (

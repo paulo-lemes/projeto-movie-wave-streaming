@@ -1,9 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
 import { AuthProvider } from "./contexts/AuthContext";
+import { DefaultLayout } from "./defaultLayout";
+import { ModalProvider } from "./contexts/ModalContext";
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -32,9 +32,9 @@ export default function RootLayout({
       </head>
       <body className={poppins.className}>
         <AuthProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <ModalProvider>
+            <DefaultLayout>{children}</DefaultLayout>
+          </ModalProvider>
         </AuthProvider>
       </body>
     </html>

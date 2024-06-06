@@ -8,11 +8,12 @@ import { StyledTitle } from "@/components/StyledTitle";
 import { FaUser } from "react-icons/fa";
 import { MdOutlineKey } from "react-icons/md";
 import { getRequestToken, postLogin, getSessionId } from "../actions";
-import { redirect } from "next/navigation";
 import { useAuth } from "../contexts/AuthContext";
+import { useModal } from "../contexts/ModalContext";
 
 export default function Login() {
   const { login } = useAuth();
+  const { openModal, setRedirectAfterClose } = useModal();
 
   const handleLogin = async (formData: FormData) => {
     const requestToken = await getRequestToken();
@@ -25,21 +26,21 @@ export default function Login() {
 
     const validateLogin = await postLogin(loginData);
     if (!validateLogin?.success) {
-      alert("Usuário e/ou senha inválidos.");
+      openModal("Usuário e/ou senha inválidos.");
       return;
     }
 
     const session = await getSessionId(requestToken?.request_token);
     if (!session?.success) {
-      alert("Não foi possível criar a sessão.");
+      openModal("Não foi possível criar a sessão.");
       return;
     }
 
     const auth = await login(session?.session_id);
     if (auth) {
-      alert("Login realizado com sucesso!");
-      redirect("/");
-    } else alert("Login não realizado. Tente novamente.");
+      setRedirectAfterClose("/")
+      openModal("Login realizado com sucesso!");
+    } else openModal("Login não realizado. Tente novamente.");
   };
 
   return (
@@ -96,8 +97,8 @@ export default function Login() {
           <button type="submit" className="btn btn-wide btn-secondary">
             Entrar
           </button>
-          <p className="text-center">
-            Não possui uma conta na TMDB?{" "}
+          <p className="text-center flex flex-wrap justify-center gap-1">
+            Não possui uma conta na TMDB?
             <a
               href="https://www.themoviedb.org/signup?language=pt-BR"
               target="_blank"
