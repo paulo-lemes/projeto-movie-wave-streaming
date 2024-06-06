@@ -41,8 +41,8 @@ export function Modal() {
           className="modal-overlay fixed inset-0 z-40 bg-black opacity-50"
           onClick={closeModal}
         ></div>
-        <div className="modal-container rounded-lg z-50">
-          <div className="modal-box w-max">
+        <div className="modal-container flex justify-center rounded-lg z-50">
+          <div className="modal-box max-w-[100vw]">
             <div className="flex flex-col justify-center items-center gap-3">
               <h3 className="text-center font-semibold text-lg sm:text-2xl">{modalText}</h3>
               <button

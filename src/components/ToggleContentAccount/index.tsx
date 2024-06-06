@@ -72,7 +72,7 @@ export function ToggleContentAccount({
         results?.filter((content: content) => content.id == id).length > 0;
 
       setIsInAccount(contentIsTrue);
-    }
+    } else setIsInAccount(false)
   };
 
   useEffect(() => {
