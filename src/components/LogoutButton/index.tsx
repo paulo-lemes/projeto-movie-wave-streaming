@@ -13,7 +13,7 @@ export function LogoutButton({ classCSS }: { classCSS?: string }) {
 
     if (res) {
       setRedirectAfterClose("/login");
-      openModal("Logout realizado com sucesso.");
+      openModal("Logout realizado com sucesso");
     } else openModal("Não foi possível realizar o logout. Tente novamente.");
   };
 

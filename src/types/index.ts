@@ -1,5 +1,9 @@
 import { ReactNode } from "react";
 
+export interface ChildrenProps {
+  children: ReactNode
+}
+
 export type contentProps = {
   index: number;
   images: { backdrops: imageContent[] };
@@ -343,7 +347,7 @@ export interface ModalContextType {
   setIsModalOpen: (value: boolean) => void;
   modalText: string;
   redirectAfterClose: string | null;
-  setRedirectAfterClose: (value: string) => void;
+  setRedirectAfterClose: (value: string | null) => void;
 }
 
 export type UserInfo = {
