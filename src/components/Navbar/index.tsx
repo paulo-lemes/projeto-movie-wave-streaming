@@ -95,7 +95,7 @@ export function Navbar() {
           <Link href="/search" title="Pesquisa">
             <CiSearch size={40} className="w-8" />
           </Link>
-          <Link href="/watchlist" title="Lista de interesses">
+          <Link href="/profile#watchlist" title="Lista de interesses">
             <CiBookmarkPlus size={40} className="w-8" />
           </Link>
           <div className="dropdown lg:dropdown-hover dropdown-end">
@@ -117,7 +117,7 @@ export function Navbar() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/favorite">Favoritos</Link>
+                    <Link href="/profile#favorite">Favoritos</Link>
                   </li>
                   <li>
                     <LogoutButton />

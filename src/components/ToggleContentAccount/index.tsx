@@ -20,12 +20,13 @@ export function ToggleContentAccount({
     null
   );
   const { user } = useAuth();
-  const { openModal } = useModal();
+  const { openModal, setRedirectAfterClose } = useModal();
 
   const handleClick = async () => {
     if (!user) {
+      setRedirectAfterClose(null);
       openModal(
-        "Faça login para conseguir favoritar e adicionar conteúdos à sua lista."
+        "Faça login para conseguir favoritar e adicionar conteúdos à sua lista"
       );
       return;
     }
@@ -54,7 +55,7 @@ export function ToggleContentAccount({
       });
     } else {
       openModal(
-        "Não foi possível favoritar ou adicionar o conteúdo à lista de interesses."
+        "Não foi possível favoritar ou adicionar o conteúdo à lista de interesses"
       );
     }
   };
@@ -72,7 +73,7 @@ export function ToggleContentAccount({
         results?.filter((content: content) => content.id == id).length > 0;
 
       setIsInAccount(contentIsTrue);
-    } else setIsInAccount(false)
+    } else setIsInAccount(false);
   };
 
   useEffect(() => {

@@ -26,13 +26,13 @@ export default function Login() {
 
     const validateLogin = await postLogin(loginData);
     if (!validateLogin?.success) {
-      openModal("Usuário e/ou senha inválidos.");
+      openModal("Usuário e/ou senha inválidos");
       return;
     }
 
     const session = await getSessionId(requestToken?.request_token);
     if (!session?.success) {
-      openModal("Não foi possível criar a sessão.");
+      openModal("Não foi possível criar a sessão");
       return;
     }
 
