@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface ChildrenProps {
-  children: ReactNode
+  children?: ReactNode
 }
 
 export type contentProps = {
