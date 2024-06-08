@@ -377,3 +377,8 @@ export interface RatingStarsProps {
   rating: number | string;
   handleStarSelection: (value: number) => void;
 }
+
+export interface RatingContentProps {
+  id: number;
+  contentType: string | undefined;
+}

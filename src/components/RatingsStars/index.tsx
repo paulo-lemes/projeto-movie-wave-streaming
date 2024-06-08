@@ -59,7 +59,10 @@ export function RatingStars({
               const currentRating = index;
 
               return (
-                <label key={index} className="flex flex-col items-center">
+                <label
+                  key={index}
+                  className="flex flex-col items-center cursor-pointer"
+                >
                   <input
                     key={star}
                     type="radio"

@@ -1,19 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { content } from "@/types";
+import { RatingContentProps, content } from "@/types";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useModal } from "@/app/contexts/ModalContext";
 import { MdStarOutline, MdStarRate } from "react-icons/md";
 import { RatingStars } from "../RatingsStars";
 
-export function RatingContent({
-  id,
-  contentType,
-}: {
-  id: number;
-  contentType: string | undefined;
-}) {
+export function RatingContent({ id, contentType }: RatingContentProps) {
   const [isRated, setIsRated] = useState<boolean | null>(null);
   const [rating, setRating] = useState<number | string>(0);
   const [showRatingStars, setShowRatingStars] = useState<boolean>(false);
@@ -58,19 +52,15 @@ export function RatingContent({
       switch (response.status_code) {
         case 1:
           openModal("Avaliação feita!");
-          setTimeout(() => {
-            setIsRated((prev) => !prev);
-          }, 1000);
+          setIsRated((prev) => !prev);
           break;
         case 12:
           openModal("Avaliação atualizada!");
           break;
         case 13:
           openModal("Avaliação excluída");
-          setTimeout(() => {
-            setIsRated((prev) => !prev);
-            setRating(0);
-          }, 1000);
+          setIsRated((prev) => !prev);
+          setRating(0);
           break;
         default:
           break;
@@ -100,7 +90,7 @@ export function RatingContent({
 
   useEffect(() => {
     updatedAccountRating();
-  }, [user, id, isRated]);
+  }, [user, id]);
 
   return (
     <div
