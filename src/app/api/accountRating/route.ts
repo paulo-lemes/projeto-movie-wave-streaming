@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
 
   const authCookie = request.cookies.get("auth");
   const userInfoCookie = request.cookies.get("userInfo");
-  
+
   if (!authCookie || !userInfoCookie) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
@@ -70,16 +70,6 @@ export async function POST(request: NextRequest) {
 
   const sessionId = authCookie.value;
 
-  let userInfo;
-  try {
-    userInfo = JSON.parse(userInfoCookie.value);
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Invalid cookie format" },
-      { status: 400 }
-    );
-  }
-
   try {
     const response = await fetch(
       process.env.BASE_URL +
@@ -87,7 +77,45 @@ export async function POST(request: NextRequest) {
       {
         method: "POST",
         headers,
-        body: JSON.stringify({value: rating}),
+        body: JSON.stringify({ value: rating }),
+      }
+    );
+
+    if (!response.ok)
+      throw new Error(`Status ${response.status}- ${response.statusText}`);
+
+    const data = await response.json();
+    console.log(data);
+
+    return NextResponse.json(data);
+  } catch (err) {
+    return NextResponse.json(
+      { message: "An error occurred", error: err },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  const { id, contentType, rating } = await request.json();
+
+  const authCookie = request.cookies.get("auth");
+  const userInfoCookie = request.cookies.get("userInfo");
+
+  if (!authCookie || !userInfoCookie) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
+
+  const sessionId = authCookie.value;
+
+  try {
+    const response = await fetch(
+      process.env.BASE_URL +
+        `${contentType}/${id}/rating?session_id=${sessionId}&language=pt-BR&page=1`,
+      {
+        method: "DELETE",
+        headers,
+        body: JSON.stringify({ value: rating }),
       }
     );
 
