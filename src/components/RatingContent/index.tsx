@@ -25,6 +25,10 @@ export function RatingContent({
     setRating(value);
   };
 
+  const handleCloseModal = () => {
+    setShowRatingStars(false);
+  };
+
   const handleClick = async () => {
     if (!user) {
       setRedirectAfterClose(null);
@@ -34,9 +38,9 @@ export function RatingContent({
     setShowRatingStars(true);
   };
 
-  const postRating = async () => {
+  const handleRatingAction = async (method: string) => {
     const postContent = await fetch("/api/accountRating", {
-      method: "POST",
+      method: method,
       body: JSON.stringify({
         id: id,
         contentType: contentType,
@@ -46,12 +50,32 @@ export function RatingContent({
 
     const response = await postContent.json();
     console.log(response);
+
+    setRedirectAfterClose(null);
+    setShowRatingStars((prev) => !prev);
+
     if (response && response.success) {
-      setIsRated((prev) => !prev);
-      setShowRatingStars((prev) => !prev);
-    } else {
-      openModal("Não foi possível avaliar o conteúdo");
-    }
+      switch (response.status_code) {
+        case 1:
+          openModal("Avaliação feita!");
+          setTimeout(() => {
+            setIsRated((prev) => !prev);
+          }, 1000);
+          break;
+        case 12:
+          openModal("Avaliação atualizada!");
+          break;
+        case 13:
+          openModal("Avaliação excluída");
+          setTimeout(() => {
+            setIsRated((prev) => !prev);
+            setRating(0);
+          }, 1000);
+          break;
+        default:
+          break;
+      }
+    } else openModal("Não foi possível avaliar o conteúdo");
   };
 
   const updatedAccountRating = async () => {
@@ -63,6 +87,8 @@ export function RatingContent({
       const ratingIsTrue = results?.filter(
         (content: content) => content.id == id
       );
+
+      console.log(ratingIsTrue);
 
       if (ratingIsTrue.length > 0) {
         setIsRated(true);
@@ -76,11 +102,6 @@ export function RatingContent({
     updatedAccountRating();
   }, [user, id, isRated]);
 
-  useEffect(() => {
-    console.log(rating);
-    console.log(isRated);
-  }, [rating, isRated]);
-
   return (
     <div
       className={`flex gap-2 items-center transition-opacity ease-in duration-300 ${
@@ -88,12 +109,21 @@ export function RatingContent({
       }`}
     >
       {!isRated ? (
-        <button className={`flex gap-1 mb-1`} onClick={handleClick}>
+        <button
+          className={`flex gap-1 mb-1 transition-opacity ease-in duration-300 ${
+            isRated ? "invisible opacity-0" : "visible opacity-100"
+          }`}
+          onClick={handleClick}
+        >
           <MdStarOutline className="fill-secondary" size={25} />
           <p className="text-sm text-secondary mt-1">Avaliar</p>
         </button>
       ) : (
-        <div className="flex gap-1 items-center">
+        <div
+          className={`flex gap-1 items-center transition-opacity ease-in duration-300 ${
+            !isRated ? "invisible opacity-0" : "visible opacity-100"
+          }`}
+        >
           <p className="font-bold sm:text-lg mt-1">Sua avaliação:</p>
           <MdStarRate className="fill-secondary" size={25} />
           <p className="font-bold text-secondary sm:text-lg mt-1">
@@ -110,9 +140,14 @@ export function RatingContent({
         </div>
       )}
       {showRatingStars && (
-        <div className="">
-          <RatingStars rating={rating} handleStarSelection={handleStarSelection} />
-        </div>
+        <RatingStars
+          isOpen={showRatingStars}
+          onClose={handleCloseModal}
+          isRated={isRated}
+          handleAction={handleRatingAction}
+          rating={rating}
+          handleStarSelection={handleStarSelection}
+        />
       )}
     </div>
   );

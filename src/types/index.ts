@@ -368,3 +368,12 @@ export type UserInfo = {
   include_adult: boolean;
   username: string;
 };
+
+export interface RatingStarsProps {
+  isOpen: boolean;
+  onClose: () => void;
+  isRated: boolean | null;
+  handleAction: (value: string) => void;
+  rating: number | string;
+  handleStarSelection: (value: number) => void;
+}
