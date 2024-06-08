@@ -120,6 +120,9 @@ export function Navbar() {
                     <Link href="/profile#favorite">Favoritos</Link>
                   </li>
                   <li>
+                    <Link href="/profile#rated">Avaliações</Link>
+                  </li>
+                  <li>
                     <LogoutButton />
                   </li>
                 </>

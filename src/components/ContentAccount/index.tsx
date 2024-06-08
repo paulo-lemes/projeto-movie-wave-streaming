@@ -4,6 +4,7 @@ import { ContentAccountProps, content } from "@/types";
 import { useEffect, useState } from "react";
 import { ContentRow } from "../ContentRow";
 import Link from "next/link";
+import { Loading } from "../Loading";
 
 export function ContentAccount({
   toggle,
@@ -14,9 +15,11 @@ export function ContentAccount({
 
   const getContent = async () => {
     const content = contentType === "movie" ? "movies" : contentType;
-    const data = await fetch(
-      `/api/accountContent?toggle=${toggle}&contentType=${content}`
-    );
+    const urlContent =
+      toggle === "rated"
+        ? `/api/accountRating?contentType=${content}`
+        : `/api/accountContent?toggle=${toggle}&contentType=${content}`;
+    const data = await fetch(urlContent);
 
     if (data.ok) {
       const results = await data.json();
@@ -49,6 +52,8 @@ export function ContentAccount({
       )}
     </div>
   ) : (
-    <div className="h-[380px]"></div>
+    <div className="h-[380px]">
+      <Loading />
+    </div>
   );
 }

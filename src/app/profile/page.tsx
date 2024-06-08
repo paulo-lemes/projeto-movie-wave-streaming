@@ -11,6 +11,7 @@ export default function Profile() {
         Lista de interesses
       </ProfileContentSection>
       <ProfileContentSection toggle="favorite">Favoritos</ProfileContentSection>
+      <ProfileContentSection toggle="rated">Avaliações</ProfileContentSection>
     </FadeInContent>
   );
 }
