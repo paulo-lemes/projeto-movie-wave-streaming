@@ -5,6 +5,7 @@ import { content } from "@/types";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useModal } from "@/app/contexts/ModalContext";
 import { MdStarOutline, MdStarRate } from "react-icons/md";
+import { RatingStars } from "../RatingsStars";
 
 export function RatingContent({
   id,
@@ -20,8 +21,7 @@ export function RatingContent({
   const { user } = useAuth();
   const { openModal, setRedirectAfterClose } = useModal();
 
-  const handleStarSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+  const handleStarSelection = (value: number) => {
     setRating(value);
   };
 
@@ -111,7 +111,7 @@ export function RatingContent({
       )}
       {showRatingStars && (
         <div className="">
-          <p className="">&#9733;</p>
+          <RatingStars rating={rating} handleStarSelection={handleStarSelection} />
         </div>
       )}
     </div>
