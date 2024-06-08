@@ -102,7 +102,7 @@ export function ContentDetails({
               <p className="font-light text-sm mt-1">({vote_count})</p>
             </div>
           )}
-          <RatingContent />
+          <RatingContent contentType={contentType} id={id} />
           {(original_title || original_name) && (
             <InfoContentDetails title="Título original:">
               {original_title || original_name}

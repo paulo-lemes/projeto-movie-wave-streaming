@@ -228,6 +228,8 @@ type defaultProps = {
 
   genre_ids: number[];
   media_type: string;
+
+  rating: number
 };
 
 type movie = {

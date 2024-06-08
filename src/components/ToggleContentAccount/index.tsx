@@ -49,10 +49,7 @@ export function ToggleContentAccount({
     const response = await postContent.json();
     console.log(response);
     if (response && response.success) {
-      let message;
-      setIsInAccount((prev) => {
-        return !prev;
-      });
+      setIsInAccount((prev) => !prev);
     } else {
       openModal(
         "Não foi possível favoritar ou adicionar o conteúdo à lista de interesses"
@@ -84,7 +81,7 @@ export function ToggleContentAccount({
     return (
       <button
         className={`cursor-pointer tooltip tooltip-right lg:tooltip-bottom 
-          transition-opacity ease-in duration-700
+          transition-opacity ease-in duration-300
           ${
             isInAccount === null ? "invisible opacity-0" : "visible opacity-100"
           }`}

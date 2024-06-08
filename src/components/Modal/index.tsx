@@ -4,9 +4,8 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useModal } from "@/app/contexts/ModalContext";
 import { useRouter } from "next/navigation";
-import { ChildrenProps } from "@/types";
 
-export function Modal({ children }: ChildrenProps) {
+export function Modal() {
   const router = useRouter();
   const { isModalOpen, setIsModalOpen, modalText, redirectAfterClose } =
     useModal();
@@ -44,9 +43,6 @@ export function Modal({ children }: ChildrenProps) {
         ></div>
         <div className="modal-container flex justify-center rounded-lg z-50">
           <div className="modal-box max-w-[100vw]">
-            {children ? (
-              children
-            ) : (
               <div className="flex flex-col justify-center items-center gap-3">
                 <h3 className="text-center font-semibold text-lg sm:text-2xl">
                   {modalText}
@@ -58,7 +54,6 @@ export function Modal({ children }: ChildrenProps) {
                   Fechar
                 </button>
               </div>
-            )}
           </div>
         </div>
       </motion.div>
