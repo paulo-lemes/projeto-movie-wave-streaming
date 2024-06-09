@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { ContentRow } from "../ContentRow";
 import Link from "next/link";
 import { Loading } from "../Loading";
+import { fetchAllData } from "@/app/fetchData";
 
 export function ContentAccount({
   toggle,
@@ -12,6 +13,7 @@ export function ContentAccount({
   children,
 }: ContentAccountProps) {
   const [content, setContent] = useState<content[] | [] | null>(null);
+  const [error, setError] = useState<boolean>(false);
 
   const getContent = async () => {
     const content = contentType === "movie" ? "movies" : contentType;
@@ -19,18 +21,29 @@ export function ContentAccount({
       toggle === "rated"
         ? `/api/accountRating?contentType=${content}`
         : `/api/accountContent?toggle=${toggle}&contentType=${content}`;
-    const data = await fetch(urlContent);
 
-    if (data.ok) {
-      const results = await data.json();
-      console.log(results);
-      setContent(results);
+    try {
+      const data = await fetchAllData(urlContent);
+
+      console.log(data);
+      setContent(data);
+    } catch (error) {
+      console.log(error);
+      setError(true);
     }
   };
 
   useEffect(() => {
     getContent();
   }, []);
+
+  if (error) {
+    return (
+      <div className="mx-4 sm:mx-16 pt-12 pb-16 flex flex-col gap-2">
+        <p className="text-lg sm:text-xl">Erro ao carregar o conteúdo</p>
+      </div>
+    );
+  }
 
   return content ? (
     <div>

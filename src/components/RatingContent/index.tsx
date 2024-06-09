@@ -6,6 +6,7 @@ import { useAuth } from "@/app/contexts/AuthContext";
 import { useModal } from "@/app/contexts/ModalContext";
 import { MdStarOutline, MdStarRate } from "react-icons/md";
 import { RatingStars } from "../RatingsStars";
+import { fetchAllData } from "@/app/fetchData";
 
 export function RatingContent({ id, contentType }: RatingContentProps) {
   const [isRated, setIsRated] = useState<boolean | null>(null);
@@ -70,22 +71,26 @@ export function RatingContent({ id, contentType }: RatingContentProps) {
 
   const updatedAccountRating = async () => {
     const content = contentType === "movie" ? "movies" : contentType;
-    const data = await fetch(`/api/accountRating?contentType=${content}`);
 
-    if (data.ok) {
-      const results = await data.json();
-      const ratingIsTrue = results?.filter(
-        (content: content) => content.id == id
+    try {
+      const data = await fetchAllData(
+        `/api/accountRating?contentType=${content}`
       );
 
-      console.log(ratingIsTrue);
+      const ratingContent = data?.filter(
+        (content: content) => content.id == id
+      );
+      console.log(ratingContent);
 
-      if (ratingIsTrue.length > 0) {
+      if (ratingContent.length > 0) {
         setIsRated(true);
-        setRating(ratingIsTrue[0].rating);
+        setRating(ratingContent[0].rating);
         return;
       } else setIsRated(false);
-    } else setIsRated(false);
+    } catch (error) {
+      console.log(error);
+      setIsRated(false);
+    }
   };
 
   useEffect(() => {

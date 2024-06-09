@@ -10,6 +10,7 @@ import {
 } from "react-icons/pi";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useModal } from "@/app/contexts/ModalContext";
+import { fetchAllData } from "@/app/fetchData";
 
 export function ToggleContentAccount({
   toggle,
@@ -59,18 +60,20 @@ export function ToggleContentAccount({
 
   const updatedAccountContent = async () => {
     const content = contentType === "movie" ? "movies" : contentType;
-    const data = await fetch(
-      `/api/accountContent?toggle=${toggle}&contentType=${content}`
-    );
 
-    if (data.ok) {
-      const results = await data.json();
+    try {
+      const data = await fetchAllData(
+        `/api/accountContent?toggle=${toggle}&contentType=${content}`
+      );
+
       const contentIsTrue =
-        results &&
-        results?.filter((content: content) => content.id == id).length > 0;
+        data.filter((content: content) => content.id == id).length > 0;
 
       setIsInAccount(contentIsTrue);
-    } else setIsInAccount(false);
+    } catch (error) {
+      console.log(error);
+      setIsInAccount(false);
+    }
   };
 
   useEffect(() => {

@@ -9,6 +9,7 @@ const headers = {
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const contentType = searchParams.get("contentType");
+  const page = searchParams.get("page");
 
   const authCookie = request.cookies.get("auth");
   const userInfoCookie = request.cookies.get("userInfo");
@@ -32,7 +33,7 @@ export async function GET(request: NextRequest) {
   try {
     const externalRes = await fetch(
       process.env.BASE_URL +
-        `account/${userInfo.id}/rated/${contentType}?session_id=${sessionId}&language=pt-BR&page=1`,
+        `account/${userInfo.id}/rated/${contentType}?session_id=${sessionId}&language=pt-BR&page=${page}`,
       {
         method: "GET",
         headers,
@@ -49,7 +50,7 @@ export async function GET(request: NextRequest) {
     const data = await externalRes.json();
     console.log(data);
 
-    return NextResponse.json(data.results);
+    return NextResponse.json(data);
   } catch (err) {
     return NextResponse.json(
       { message: "An error occurred", error: err },
