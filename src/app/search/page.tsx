@@ -5,22 +5,23 @@ import { ContentSearch } from "@/components/ContentSearch";
 import { Loading } from "@/components/Loading";
 import { SearchInput } from "@/components/SearchInput";
 import { FadeInContent } from "@/components/FadeInContent";
+import { PageButton } from "@/components/PageButton";
 
 export default async function Search({
   searchParams,
 }: {
-  searchParams: { text: string | undefined };
+  searchParams: { page: string | undefined; text: string | undefined };
 }) {
   const searchText = searchParams.text;
+  const page = searchParams.page;
   const resultText = `Principais resultados para "${searchText}"`;
-  
+
   const searchData = await getApiContent(
-    `search/multi?query=${
-      searchText || ""
-    }&include_adult=false&language=pt-BR&page=1`
+    `search/multi?query=${searchText || ""}&language=pt-BR&page=${page || 1}`
   );
 
   console.log(searchData);
+  console.log(searchData.total_pages);
 
   async function handleSearch(formData: FormData) {
     "use server";
@@ -35,6 +36,7 @@ export default async function Search({
       {searchText ? (
         <Suspense fallback={<Loading />}>
           <ContentSearch {...searchData}>{resultText}</ContentSearch>
+          <PageButton {...searchData} otherParam={`text=${searchText}&`} />
         </Suspense>
       ) : (
         <p className="text-center px-10 sm:px-16 py-6 m-auto text-xl">
