@@ -21,7 +21,7 @@ export function PageButton({
     <div className="join flex items-center justify-center">
       {previousPageActive && (
         <Link
-          href={`${pathname}?${otherParam}page=${page - 1}`}
+          href={`${pathname}?${otherParam ? otherParam : ""}page=${page - 1}`}
           className={`${
             nextPageActive ? "join-item" : ""
           } btn btn-secondary btn-outline btn-md`}
@@ -31,7 +31,7 @@ export function PageButton({
       )}
       {nextPageActive && (
         <Link
-          href={`${pathname}?${otherParam}page=${page + 1}`}
+          href={`${pathname}?${otherParam ? otherParam : ""}page=${page + 1}`}
           className={`${
             previousPageActive ? "join-item" : ""
           } btn btn-secondary btn-outline btn-md`}

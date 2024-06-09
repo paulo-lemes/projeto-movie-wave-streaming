@@ -10,12 +10,14 @@ export function PageHighlight({ results, contentType }: dataProps) {
 
   useEffect(() => {
     const highlightContent = results.filter(
-      ({ title, name, backdrop_path, overview }) =>
-        (title || name) && backdrop_path && overview
+      ({ title, name, backdrop_path }) => (title || name) && backdrop_path
     );
-    setContent(
-      highlightContent[Math.floor(Math.random() * highlightContent.length)]
-    );
+    if (highlightContent.length) {
+      setContent(
+        highlightContent[Math.floor(Math.random() * highlightContent.length)]
+      );
+    } else
+      setContent(results[Math.floor(Math.random() * highlightContent.length)]);
   }, [results]);
 
   return (

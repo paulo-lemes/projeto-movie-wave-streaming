@@ -7,25 +7,35 @@ import { ContentRow } from "@/components/ContentRow";
 import { CategoryContent } from "@/components/CategoryContent";
 import { StyledTitle } from "@/components/StyledTitle";
 import { SpotlightContent } from "@/components/SpotlightContent";
+import { PageButton } from "@/components/PageButton";
 
-export default async function Category({ params }: { params: { id: string } }) {
+export default async function Category({
+  params,
+  searchParams,
+}: {
+  params: { id: string };
+  searchParams: { page: string | undefined };
+}) {
   const { id } = params;
+  const page = Number(searchParams.page);
   const category = tmdbGenres.genres.filter(
     (genre) => genre.id.toString() === id
   );
   const categoryName = category[0].name.toLowerCase();
 
   const seriesCategoryData = getApiContent(
-    `discover/tv?language=pt-BR&with_genres=${id}`
+    `discover/tv?language=pt-BR&page=${page ? page : 1}&with_genres=${id}`
   );
   const moviesCategoryData = getApiContent(
-    `discover/movie?language=pt-BR&with_genres=${id}`
+    `discover/movie?language=pt-BR&page=${page ? page : 1}&with_genres=${id}`
   );
   const searchSeriesCategoryData = getApiContent(
-    `discover/tv?language=pt-BR&page=2&with_genres=${id}`
+    `discover/tv?language=pt-BR&page=${page ? page + 1 : 2}&with_genres=${id}`
   );
   const searchMoviesCategoryData = getApiContent(
-    `discover/movie?language=pt-BR&page=2&with_genres=${id}`
+    `discover/movie?language=pt-BR&page=${
+      page ? page + 1 : 2
+    }&with_genres=${id}`
   );
 
   const [
@@ -42,19 +52,28 @@ export default async function Category({ params }: { params: { id: string } }) {
 
   let highlightContent = [];
   let highlightContentType = "";
+  let maxTotalPages = 1;
 
   if (moviesCategory.total_results) {
     highlightContent = moviesCategory;
     highlightContentType = "movie";
+    if (seriesCategory.total_results) {
+      maxTotalPages =
+        moviesCategory.total_results > seriesCategory.total_results
+          ? seriesCategory.total_pages - 1
+          : moviesCategory.total_pages - 1;
+    } else maxTotalPages = moviesCategory.total_pages - 1;
   } else {
     highlightContent = seriesCategory;
     highlightContentType = "tv";
+    maxTotalPages = seriesCategory.total_pages - 1;
   }
 
   console.log(moviesCategory);
   console.log(seriesCategory);
   console.log(searchMoviesCategory);
   console.log(searchSeriesCategory);
+  console.log(maxTotalPages);
 
   return (
     <FadeInContent duration={1.5}>
@@ -75,7 +94,14 @@ export default async function Category({ params }: { params: { id: string } }) {
       </div>
       <CategoryContent {...searchSeriesCategory} contentType="tv" />
       <CategoryContent {...searchMoviesCategory} contentType="movie" />
-      <SpotlightContent {...highlightContent} contentType={highlightContentType}  />
+      <PageButton
+        page={highlightContent.page}
+        total_pages={maxTotalPages > 500 ? 500 : maxTotalPages}
+      />
+      <SpotlightContent
+        {...highlightContent}
+        contentType={highlightContentType}
+      />
     </FadeInContent>
   );
 }

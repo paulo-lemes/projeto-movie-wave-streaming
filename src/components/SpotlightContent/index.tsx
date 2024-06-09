@@ -10,8 +10,7 @@ export function SpotlightContent({ results, contentType }: dataProps) {
 
   useEffect(() => {
     const spotlightContent = results.filter(
-      ({ title, name, backdrop_path, overview }) =>
-        (title || name) && backdrop_path && overview
+      ({ title, name, backdrop_path }) => (title || name) && backdrop_path
     );
     setContent(
       spotlightContent[Math.floor(Math.random() * spotlightContent.length)]
