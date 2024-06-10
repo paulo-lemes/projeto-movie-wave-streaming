@@ -31,8 +31,6 @@ export async function getRequestToken(): Promise<
       throw new Error(`Status ${response.status}- ${response.statusText}`);
 
     const data = await response.json();
-    console.log(data);
-
     return data;
   } catch (err) {
     console.error("Fetch error:", err);
@@ -56,8 +54,6 @@ export async function postLogin(
       throw new Error(`Status ${response.status}- ${response.statusText}`);
 
     const data = await response.json();
-    console.log(data);
-
     return data;
   } catch (err) {
     console.error("Fetch error:", err);
@@ -78,8 +74,6 @@ export async function getSessionId(
       throw new Error(`Status ${response.status}- ${response.statusText}`);
 
     const data = await response.json();
-    console.log(data);
-
     return data;
   } catch (err) {
     console.error("Fetch error:", err);
@@ -99,8 +93,6 @@ export async function getUserInfo(
       throw new Error(`Status ${response.status}- ${response.statusText}`);
 
     const data = await response.json();
-    console.log(data);
-
     return data;
   } catch (err) {
     console.error("Fetch error:", err);
@@ -121,8 +113,6 @@ export async function deleteSession(
       throw new Error(`Status ${response.status}- ${response.statusText}`);
 
     const data = await response.json();
-    console.log(data);
-
     return data;
   } catch (err) {
     console.error("Fetch error:", err);
@@ -148,7 +138,7 @@ export async function getV4Login(): Promise<
       method: "POST",
       headers,
       body: JSON.stringify({
-        redirect_to: redirectUrl + "login",
+        redirect_to: redirectUrl + "login?v4=true",
       }),
     });
 
@@ -156,8 +146,6 @@ export async function getV4Login(): Promise<
       throw new Error(`Status ${response.status}- ${response.statusText}`);
 
     const data = await response.json();
-    console.log(data);
-
     return data;
   } catch (err) {
     console.error("Fetch error:", err);
@@ -178,8 +166,6 @@ export async function getV4AccessToken(
       throw new Error(`Status ${response.status}- ${response.statusText}`);
 
     const data = await response.json();
-    console.log(data);
-
     return data;
   } catch (err) {
     console.error("Fetch error:", err);
@@ -200,8 +186,6 @@ export async function getSessionV4(
       throw new Error(`Status ${response.status}- ${response.statusText}`);
 
     const data = await response.json();
-    console.log(data);
-
     return data;
   } catch (err) {
     console.error("Fetch error:", err);
@@ -222,8 +206,6 @@ export async function deleteV4Session(
       throw new Error(`Status ${response.status}- ${response.statusText}`);
 
     const data = await response.json();
-    console.log(data);
-
     return data;
   } catch (err) {
     console.error("Fetch error:", err);
