@@ -1,19 +1,16 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { getSessionV4, getV4AccessToken, getV4Login } from "@/app/actions";
 import { useModal } from "@/app/contexts/ModalContext";
 import { useAuth } from "@/app/contexts/AuthContext";
 
-export function LoginButtonV4() {
+export function LoginButtonV4({ v4 }: { v4: boolean | undefined }) {
   const { login } = useAuth();
   const { openModal, setRedirectAfterClose, setIsModalOpen } = useModal();
 
   const navigate = useRouter();
-  
-  const params = useSearchParams();
-  const v4Redirected = params.get("v4");
 
   const requestV4Login = async () => {
     const data = await getV4Login();
@@ -58,8 +55,8 @@ export function LoginButtonV4() {
 
   useEffect(() => {
     const approvedToken = localStorage.getItem("v4");
-    if (approvedToken && v4Redirected) validateV4Login(approvedToken);
-  }, [v4Redirected]);
+    if (approvedToken && v4) validateV4Login(approvedToken);
+  }, [v4]);
 
   return (
     <div className="flex flex-col justify-center items-center pt-6">

@@ -12,7 +12,7 @@ import { useModal } from "@/app/contexts/ModalContext";
 import { getRequestToken, getSessionId, postLogin } from "@/app/actions";
 import { LoginButtonV4 } from "@/components/LoginButtonV4";
 
-export function Login() {
+export function Login({ v4 }: { v4: boolean | undefined }) {
   const { login } = useAuth();
   const { openModal, setRedirectAfterClose } = useModal();
 
@@ -109,7 +109,7 @@ export function Login() {
             </a>
           </p>
         </form>
-        <LoginButtonV4 />
+        <LoginButtonV4 v4={v4} />
       </div>
     </FadeInContent>
   );
