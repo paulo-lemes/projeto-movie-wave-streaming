@@ -1,27 +1,20 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import TMDBLogo from "./assets/themoviedatabase-logo.svg";
 import { FadeInContent } from "@/components/FadeInContent";
 import { StyledTitle } from "@/components/StyledTitle";
 import { FaUser } from "react-icons/fa";
 import { MdOutlineKey } from "react-icons/md";
-import {
-  getRequestToken,
-  postLogin,
-  getSessionId,
-  getV4Login,
-  getV4AccessToken,
-  getSessionV4,
-} from "../actions";
+import { getRequestToken, postLogin, getSessionId } from "../actions";
 import { useAuth } from "../contexts/AuthContext";
 import { useModal } from "../contexts/ModalContext";
-import { useRouter } from "next/navigation";
+import { LoginButtonV4 } from "@/components/LoginButtonV4";
 
 export default function Login() {
   const { login } = useAuth();
-  const { openModal, setRedirectAfterClose, setIsModalOpen } = useModal();
+  const { openModal, setRedirectAfterClose } = useModal();
 
   const handleLogin = async (formData: FormData) => {
     const requestToken = await getRequestToken();
@@ -50,42 +43,6 @@ export default function Login() {
       openModal("Login realizado com sucesso!");
     } else openModal("Login não realizado. Tente novamente.");
   };
-
-  const navigate = useRouter();
-
-  const requestV4Login = async () => {
-    const data = await getV4Login();
-    console.log(data);
-
-    const requestToken = data?.request_token;
-    localStorage.setItem("v4", requestToken || "");
-
-    navigate.push(
-      `https://www.themoviedb.org/auth/access?request_token=${requestToken}`
-    );
-  };
-
-  const validateV4Login = async (token: string) => {
-    setRedirectAfterClose(null);
-    openModal("Aguarde enquanto o login é realizado");
-
-    const access = await getV4AccessToken(token);
-    console.log(access);
-
-    const sessionV4 = await getSessionV4(access?.access_token);
-
-    const auth = await login(sessionV4?.session_id, access);
-    if (auth) {
-      setIsModalOpen(false);
-      setRedirectAfterClose("/");
-      openModal("Login realizado com sucesso!");
-    } else openModal("Login não realizado. Tente novamente.");
-  };
-
-  useEffect(() => {
-    const approvedToken = localStorage.getItem("v4");
-    if (approvedToken) validateV4Login(approvedToken);
-  }, []);
 
   return (
     <FadeInContent duration={1.5}>
@@ -152,11 +109,7 @@ export default function Login() {
             </a>
           </p>
         </form>
-        <div className="flex flex-col justify-center items-center pt-6">
-          <button className="btn btn-outline" onClick={requestV4Login}>
-            v4 Login
-          </button>
-        </div>
+        <LoginButtonV4 />
       </div>
     </FadeInContent>
   );
