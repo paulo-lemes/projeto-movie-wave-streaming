@@ -148,7 +148,7 @@ export async function getV4Login(): Promise<
       method: "POST",
       headers,
       body: JSON.stringify({
-        redirect_to: redirectUrl + "login?v4Access=true",
+        redirect_to: redirectUrl + "login",
       }),
     });
 

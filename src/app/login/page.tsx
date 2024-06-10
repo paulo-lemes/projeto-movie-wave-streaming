@@ -17,7 +17,7 @@ import {
 } from "../actions";
 import { useAuth } from "../contexts/AuthContext";
 import { useModal } from "../contexts/ModalContext";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const { login } = useAuth();
@@ -52,8 +52,6 @@ export default function Login() {
   };
 
   const navigate = useRouter();
-  const searchParams = useSearchParams();
-  const v4Access = searchParams.get("v4Access");
 
   const requestV4Login = async () => {
     const data = await getV4Login();
@@ -86,8 +84,8 @@ export default function Login() {
 
   useEffect(() => {
     const approvedToken = localStorage.getItem("v4");
-    if (v4Access && approvedToken) validateV4Login(approvedToken);
-  }, [v4Access]);
+    if (approvedToken) validateV4Login(approvedToken);
+  }, []);
 
   return (
     <FadeInContent duration={1.5}>

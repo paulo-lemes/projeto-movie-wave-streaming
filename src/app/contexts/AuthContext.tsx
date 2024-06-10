@@ -59,6 +59,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     if (res.ok) {
       localStorage.removeItem("user");
+      localStorage.removeItem("v4");
       setUser(null);
       return true;
     } else {
