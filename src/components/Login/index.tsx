@@ -11,8 +11,9 @@ import { useAuth } from "@/app/contexts/AuthContext";
 import { useModal } from "@/app/contexts/ModalContext";
 import { getRequestToken, getSessionId, postLogin } from "@/app/actions";
 import { LoginButtonV4 } from "@/components/LoginButtonV4";
+import { ChildrenProps } from "@/types";
 
-export function Login({ v4 }: { v4: boolean | undefined }) {
+export function Login({ children }: ChildrenProps) {
   const { login } = useAuth();
   const { openModal, setRedirectAfterClose } = useModal();
 
@@ -109,7 +110,7 @@ export function Login({ v4 }: { v4: boolean | undefined }) {
             </a>
           </p>
         </form>
-        <LoginButtonV4 v4={v4} />
+        {children}
       </div>
     </FadeInContent>
   );
