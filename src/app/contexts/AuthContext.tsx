@@ -1,6 +1,10 @@
 "use client";
 
-import { AuthContextType, UserInfo } from "@/types";
+import {
+  AuthContextType,
+  RequestAccessTokenV4Response,
+  UserInfo,
+} from "@/types";
 import { getUserInfo } from "../actions";
 import {
   ReactNode,
@@ -21,7 +25,10 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<UserInfo | null>(null);
 
-  const login = async (session_id: string | undefined) => {
+  const login = async (
+    session_id: string | undefined,
+    v4Info?: RequestAccessTokenV4Response
+  ) => {
     const userInfo = await getUserInfo(session_id);
     if (userInfo) {
       await fetch(`/api/login`, {
@@ -29,7 +36,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ sessionId: session_id, userInfo: userInfo }),
+        body: JSON.stringify({
+          sessionId: session_id,
+          userInfo: userInfo,
+          v4Info: v4Info,
+        }),
       });
 
       localStorage.setItem("user", JSON.stringify(userInfo));

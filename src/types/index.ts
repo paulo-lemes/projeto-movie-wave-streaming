@@ -337,9 +337,20 @@ export interface RequestSessionResponse {
   session_id: string;
 }
 
+export interface RequestAccessTokenV4Response {
+  account_id: string;
+  access_token: string;
+  success: boolean;
+  status_message: string;
+  status_code: number;
+}
+
 export interface AuthContextType {
   user: UserInfo | null;
-  login: (session_id: string | undefined) => Promise<boolean> | undefined;
+  login: (
+    session_id: string | undefined,
+    v4Info?: RequestAccessTokenV4Response
+  ) => Promise<boolean> | undefined;
   logout: () => Promise<boolean> | undefined;
 }
 
