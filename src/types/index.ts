@@ -113,6 +113,7 @@ export type credits = {
 };
 
 export type cardPersonProps = {
+  id: number;
   name: string;
   profile_path: string;
   character: string;

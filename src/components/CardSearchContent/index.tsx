@@ -39,12 +39,11 @@ export function CardSearchContent({
       className="relative w-72 flex flex-col"
     >
       <Link
-        href={`/${media_type || contentType}/${id}?title=${(
-          title || name
-        ).toLowerCase()}`}
-        className={media_type === "person" ? "pointer-events-none" : ""}
-        aria-disabled={media_type === "person"}
-        tabIndex={media_type === "person" ? -1 : undefined}
+        href={`/${media_type || contentType}/${id}${
+          media_type !== "person"
+            ? `?title=` + (title || name).toLowerCase()
+            : ""
+        }`}
       >
         <FadeInImage
           src={`https://image.tmdb.org/t/p/original/${
