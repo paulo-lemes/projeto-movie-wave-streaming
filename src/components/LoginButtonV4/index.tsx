@@ -22,7 +22,9 @@ export function LoginButtonV4({ v4 }: { v4: boolean | undefined }) {
     }
 
     const requestToken = data?.request_token;
-    localStorage.setItem("v4", requestToken || "");
+    document.cookie = `v4=${encodeURIComponent(
+      JSON.stringify(requestToken)
+    )}; path=/; secure; samesite=strict`;
 
     navigate.push(
       `https://www.themoviedb.org/auth/access?request_token=${requestToken}`
@@ -54,7 +56,13 @@ export function LoginButtonV4({ v4 }: { v4: boolean | undefined }) {
   };
 
   useEffect(() => {
-    const approvedToken = localStorage.getItem("v4");
+    const v4Cookie = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("v4="));
+    const approvedToken = v4Cookie
+      ? JSON.parse(decodeURIComponent(v4Cookie.split("=")[1]))
+      : null;
+    
     if (approvedToken && v4) validateV4Login(approvedToken);
   }, [v4]);
 

@@ -25,6 +25,20 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<UserInfo | null>(null);
 
+  const checkUserLogin = async () => {
+    const res = await fetch("/api/login");
+    if (res.ok) {
+      const data = await res.json();
+      setUser(data.user);
+    } else {
+      setUser(null);
+    }
+  };
+
+  useEffect(() => {
+    checkUserLogin();
+  }, []);
+
   const login = async (
     session_id: string | undefined,
     v4Info?: RequestAccessTokenV4Response
@@ -43,9 +57,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }),
       });
 
-      localStorage.setItem("user", JSON.stringify(userInfo));
       setUser(userInfo);
-
       return true;
     }
 
@@ -58,8 +70,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
 
     if (res.ok) {
-      localStorage.removeItem("user");
-      localStorage.removeItem("v4");
       setUser(null);
       return true;
     } else {
@@ -67,14 +77,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return false;
     }
   };
-
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-
-    if (user) {
-      setUser(JSON.parse(user));
-    }
-  }, []);
 
   return (
     <AuthContext.Provider

@@ -1,4 +1,19 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function GET(request: NextRequest) {
+  const authCookie = request.cookies.get("auth");
+  const userCookie = request.cookies.get("userInfo");
+
+  if (!authCookie || !userCookie) {
+    return NextResponse.json({ authenticated: false }, { status: 401 });
+  }
+
+  return NextResponse.json({
+    authenticated: true,
+    auth: JSON.parse(authCookie.value),
+    user: JSON.parse(userCookie.value),
+  });
+}
 
 export async function POST(request: Request) {
   const { sessionId, userInfo, v4Info } = await request.json();
