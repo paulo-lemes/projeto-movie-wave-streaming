@@ -63,8 +63,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(null);
       return true;
     } else {
-      const { message } = await res.json();
-      console.log(`Logout failed: ${message}`);
+      console.log(`Logout failed`);
       return false;
     }
   };

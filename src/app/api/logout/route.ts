@@ -14,11 +14,10 @@ export async function POST(request: NextRequest) {
   const logout = await deleteSession(sessionId);
   console.log(logout);
   
-  const v4Info = JSON.parse(v4Cookie?.value || "");
-
   const response = NextResponse.json({ message: "Logout successfull" });
-
-  if (v4Info.access_token) {
+  
+  if (v4Cookie) {
+    const v4Info = JSON.parse(v4Cookie?.value || "");
     const logoutV4 = await deleteV4Session(v4Info.access_token);
     console.log(logoutV4);
 

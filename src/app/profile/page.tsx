@@ -7,6 +7,9 @@ export default function Profile() {
   return (
     <FadeInContent duration={1.5}>
       <AccountInfo />
+      <ProfileContentSection toggle="recommended">
+        Recomendações
+      </ProfileContentSection>
       <ProfileContentSection toggle="watchlist">
         Lista de interesses
       </ProfileContentSection>
