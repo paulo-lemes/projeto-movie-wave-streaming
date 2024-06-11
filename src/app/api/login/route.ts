@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({
     authenticated: true,
-    auth: JSON.parse(authCookie.value),
+    auth: authCookie.value,
     user: JSON.parse(userCookie.value),
   });
 }
