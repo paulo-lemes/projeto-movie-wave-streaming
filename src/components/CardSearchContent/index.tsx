@@ -7,9 +7,16 @@ import { motion } from "framer-motion";
 import { GenreName } from "../GenreName";
 import { FadeInImage } from "../FadeInImage";
 
+const mediaType: { [key: string]: string } = {
+  person: "Pessoa",
+  movie: "Filme",
+  tv: "Série",
+};
+
 export function CardSearchContent({
   poster_path,
   backdrop_path,
+  profile_path,
   title,
   name,
   genre_ids,
@@ -35,26 +42,37 @@ export function CardSearchContent({
         href={`/${media_type || contentType}/${id}?title=${(
           title || name
         ).toLowerCase()}`}
+        className={media_type === "person" ? "pointer-events-none" : ""}
+        aria-disabled={media_type === "person"}
+        tabIndex={media_type === "person" ? -1 : undefined}
       >
         <FadeInImage
           src={`https://image.tmdb.org/t/p/original/${
-            backdrop_path || poster_path
+            backdrop_path || poster_path || profile_path
           }`}
           type="backdrop"
           width={288}
           height={162}
           alt={`Capa de ${title || name}`}
-          classCSS="max-w-full max-h-[162px]"
+          classCSS={"max-w-full max-h-[162px]"}
         />
         <h3 className="font-semibold line-clamp-2">{title || name}</h3>
         <section className="flex flex-wrap gap-1">
-          {genre_ids?.map((id) => (
-            <GenreName
-              key={id}
-              genreId={id}
-              classCSS="no-animation hover:bg-neutral"
-            />
-          ))}
+          {!contentType && (
+            <p
+              className={`no-animation hover:bg-secondary btn btn-xs btn-secondary w-max h-max`}
+            >
+              {mediaType[media_type]}
+            </p>
+          )}
+          {contentType &&
+            genre_ids?.map((id) => (
+              <GenreName
+                key={id}
+                genreId={id}
+                classCSS="no-animation hover:bg-neutral"
+              />
+            ))}
         </section>
       </Link>
     </motion.div>

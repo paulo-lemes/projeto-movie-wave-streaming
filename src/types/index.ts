@@ -14,6 +14,7 @@ export type contentProps = {
 export type content = defaultProps &
   movie &
   tv &
+  person &
   contentProps &
   classificationContentProps;
 
