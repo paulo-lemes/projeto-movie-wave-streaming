@@ -117,6 +117,9 @@ export function Navbar() {
                     </Link>
                   </li>
                   <li>
+                    <Link href="/profile#recommended">Recomendações</Link>
+                  </li>
+                  <li>
                     <Link href="/profile#favorite">Favoritos</Link>
                   </li>
                   <li>
