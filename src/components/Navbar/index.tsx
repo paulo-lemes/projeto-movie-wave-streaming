@@ -17,14 +17,13 @@ export function Navbar() {
   const [isTop, setIsTop] = useState<boolean>(true);
   const { user } = useAuth();
 
+  const pathnamesScroll = ["/categories", "/search", "/login", "/profile"];
+
   useEffect(() => {
     document.addEventListener("scroll", () => {
       let scrolled = document?.scrollingElement?.scrollTop;
       const scrollParam =
-        pathname === "/categories" ||
-        pathname === "/search" ||
-        pathname === "/login" ||
-        pathname === "/profile"
+        pathnamesScroll.includes(pathname) || pathname.includes("/person")
           ? 5
           : 200;
 

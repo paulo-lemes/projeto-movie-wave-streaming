@@ -10,9 +10,9 @@ export function SearchInput({
   handleSearch: (formData: FormData) => void;
 }) {
   return (
-    <form action={handleSearch} className="mt-32">
+    <form action={handleSearch} className="mt-32 flex justify-center">
       <motion.label
-        className="input input-bordered input-secondary flex w-[80vw] sm:w-[50vw] m-auto"
+        className="input input-bordered input-secondary flex justify-between w-[80vw] sm:w-[50vw]"
         initial={{ x: -100, opacity: 0 }}
         animate={{
           x: 0,
@@ -26,7 +26,7 @@ export function SearchInput({
         <input
           name="text"
           type="text"
-          className="grow"
+          className="w-[calc(100%-30px)]"
           placeholder="Pesquisar"
         />
         <button type="submit" className="cursor-pointer">

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import TMDBLogo from "./assets/themoviedatabase-logo.svg";
 import { FadeInContent } from "@/components/FadeInContent";
@@ -12,10 +12,12 @@ import { useModal } from "@/app/contexts/ModalContext";
 import { getRequestToken, getSessionId, postLogin } from "@/app/actions";
 import { LoginButtonV4 } from "@/components/LoginButtonV4";
 import { ChildrenProps } from "@/types";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 export function Login({ children }: ChildrenProps) {
   const { login } = useAuth();
   const { openModal, setRedirectAfterClose } = useModal();
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleLogin = async (formData: FormData) => {
     const requestToken = await getRequestToken();
@@ -79,7 +81,7 @@ export function Login({ children }: ChildrenProps) {
                 type="text"
                 name="username"
                 id="username"
-                className="grow rounded-lg pl-1"
+                className="w-[calc(100%-16px)] rounded-lg pl-1"
               />
               <FaUser size={16} className="mx-[2px]" />
             </label>
@@ -88,11 +90,21 @@ export function Login({ children }: ChildrenProps) {
             </label>
             <label className="input input-bordered input-secondary flex items-center gap-2">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 id="password"
-                className="grow rounded-lg pl-1"
+                className="w-[calc(100%-38px)] rounded-lg pl-1"
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? (
+                  <IoMdEye size={18} />
+                ) : (
+                  <IoMdEyeOff size={18} />
+                )}
+              </button>
               <MdOutlineKey size={20} />
             </label>
           </div>

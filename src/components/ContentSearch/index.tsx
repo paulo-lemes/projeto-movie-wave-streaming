@@ -4,7 +4,7 @@ import { CardSearchContent } from "../CardSearchContent";
 
 export function ContentSearch({ results, children }: dataProps) {
   return (
-    <section className="p-10 px-2">
+    <section className="p-10 px-4 sm:px-16">
       {results.length ? (
         <>
           <h2 className="font-bold text-3xl text-center mb-8">{children}</h2>
