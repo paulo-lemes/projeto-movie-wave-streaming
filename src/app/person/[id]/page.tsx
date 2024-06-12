@@ -5,21 +5,25 @@ import { FadeInContent } from "@/components/FadeInContent";
 import { Loading } from "@/components/Loading";
 import { ContentRow } from "@/components/ContentRow";
 import { PersonDetails } from "@/components/PersonDetails";
+import { PersonImages } from "@/components/PersonImages";
 
 export default async function Content({ params }: { params: { id: string } }) {
   const { id } = params;
 
   const personDetailsData = getApiContent(`person/${id}?language=pt-BR`);
+  const personImagesData = getApiContent(`person/${id}/images?language=pt-BR`);
   const personCreditsData = getApiContent(
     `person/${id}/combined_credits?language=pt-BR`
   );
 
-  const [personDetails, personCredits] = await Promise.all([
+  const [personDetails, personImages, personCredits] = await Promise.all([
     personDetailsData,
+    personImagesData,
     personCreditsData,
   ]);
 
   console.log(personDetails);
+  console.log(personImages);
   console.log(personCredits);
 
   const sortedCastContent = personCredits.cast
@@ -43,6 +47,7 @@ export default async function Content({ params }: { params: { id: string } }) {
   return personDetails.id ? (
     <FadeInContent duration={1.5}>
       <PersonDetails {...personDetails} />
+      <PersonImages {...personImages} name={personDetails.name} />
       <ContentRow bigCard results={sortedCastContent}>
         Atuações
       </ContentRow>
