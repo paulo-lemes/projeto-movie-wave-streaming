@@ -4,13 +4,12 @@ import { getApiContent } from "@/api";
 import { FadeInContent } from "@/components/FadeInContent";
 import { Loading } from "@/components/Loading";
 import { ContentRow } from "@/components/ContentRow";
+import { PersonDetails } from "@/components/PersonDetails";
 
 export default async function Content({ params }: { params: { id: string } }) {
   const { id } = params;
 
-  const personDetailsData = getApiContent(
-    `person/${id}?language=pt-BR`
-  );
+  const personDetailsData = getApiContent(`person/${id}?language=pt-BR`);
   const personCreditsData = getApiContent(
     `person/${id}/combined_credits?language=pt-BR`
   );
@@ -43,14 +42,12 @@ export default async function Content({ params }: { params: { id: string } }) {
 
   return personDetails.id ? (
     <FadeInContent duration={1.5}>
-      <section className="mt-32 px-4 sm:px-16">
-        <h2>{personDetails.name}</h2>
-      </section>
+      <PersonDetails {...personDetails} />
       <ContentRow bigCard results={sortedCastContent}>
-        Principais atuações
+        Atuações
       </ContentRow>
       <ContentRow bigCard results={filteredCrewContent}>
-        Principais produções
+        Produções
       </ContentRow>
     </FadeInContent>
   ) : (

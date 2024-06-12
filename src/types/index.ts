@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface ChildrenProps {
-  children?: ReactNode
+  children?: ReactNode;
 }
 
 export type contentProps = {
@@ -151,6 +151,23 @@ export type person = {
   type: string;
 };
 
+export interface PersonDetailsProps {
+  adult: boolean;
+  also_known_as: string[];
+  biography: string;
+  birthday: string;
+  deathday: string | null;
+  gender: number;
+  homepage: string | null;
+  id: number;
+  imdb_id: string;
+  known_for_department: string;
+  name: string;
+  place_of_birth: string;
+  popularity: number;
+  profile_path: string;
+}
+
 type jobArray = {
   credit_id: string;
   job: string;
@@ -231,7 +248,7 @@ type defaultProps = {
   genre_ids: number[];
   media_type: string;
 
-  rating: number
+  rating: number;
 };
 
 type movie = {
