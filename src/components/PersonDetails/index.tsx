@@ -12,8 +12,8 @@ const genderList: { [key: number]: string } = {
 };
 
 const rolesList: { [key: string]: string } = {
-  "Acting": "Atuação",
-  "Directing": "Direção",
+  Acting: "Atuação",
+  Directing: "Direção",
 };
 
 export function PersonDetails({
@@ -29,16 +29,18 @@ export function PersonDetails({
 }: PersonDetailsProps) {
   return (
     <section className="mt-20 lg:mt-28 mb-10 px-4 sm:px-16 flex flex-wrap lg:flex-nowrap gap-8 items-center">
-      <div className="relative shadow-2xl shadow-neutral">
-        <FadeInImage
-          src={`https://image.tmdb.org/t/p/original/${profile_path}`}
-          type="profile"
-          alt={`Foto de ${name}`}
-          classCSS="max-w-[250px] lg:max-w-[300px] lg:min-w-[300px]"
-          width={300}
-          height={450}
-        />
-      </div>
+      {profile_path && (
+        <div className="relative shadow-2xl shadow-neutral">
+          <FadeInImage
+            src={`https://image.tmdb.org/t/p/original/${profile_path}`}
+            type="profile"
+            alt={`Foto de ${name}`}
+            classCSS="max-w-[250px] lg:max-w-[300px] lg:min-w-[300px]"
+            width={300}
+            height={450}
+          />
+        </div>
+      )}
       <div className="flex flex-col gap-4">
         <h2 className="font-bold text-4xl sm:text-5xl">{name}</h2>
         {biography && (
@@ -73,7 +75,7 @@ export function PersonDetails({
               {rolesList[known_for_department] || known_for_department}
             </InfoContentDetails>
           )}
-          {gender && (
+          {gender > 0 && (
             <InfoContentDetails title="Gênero:">
               {genderList[gender]}
             </InfoContentDetails>
