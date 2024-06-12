@@ -3,8 +3,8 @@ import { credits } from "@/types";
 import { CardPerson } from "../CardPerson";
 import { cardPersonComplement } from "@/utils";
 
-const titleStyle = "font-bold text-2xl";
-const divStyle = "flex flex-wrap gap-2 line-clamp-2";
+const titleStyle = "px-4 sm:px-16 font-bold text-2xl";
+const divStyle = "px-4 sm:px-16 py-1 flex flex-wrap gap-2 line-clamp-2";
 
 export function CreditsContent({
   cast,
@@ -25,7 +25,7 @@ export function CreditsContent({
   console.log(directedBy);
 
   return (
-    <section className="flex flex-col gap-4 px-4 sm:px-16 mb-6">
+    <section className="flex flex-col gap-3 mb-6">
       {actors.length > 0 && (
         <>
           <h3 className={titleStyle}>Elenco principal</h3>

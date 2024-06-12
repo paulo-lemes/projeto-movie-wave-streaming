@@ -11,6 +11,11 @@ const genderList: { [key: number]: string } = {
   3: "Não binário",
 };
 
+const rolesList: { [key: string]: string } = {
+  "Acting": "Atuação",
+  "Directing": "Direção",
+};
+
 export function PersonDetails({
   name,
   profile_path,
@@ -29,7 +34,7 @@ export function PersonDetails({
           src={`https://image.tmdb.org/t/p/original/${profile_path}`}
           type="profile"
           alt={`Foto de ${name}`}
-          classCSS="max-w-[250px] lg:max-w-[300px] lg:min-w-[300px] rounded"
+          classCSS="max-w-[250px] lg:max-w-[300px] lg:min-w-[300px]"
           width={300}
           height={450}
         />
@@ -65,7 +70,7 @@ export function PersonDetails({
           )}
           {known_for_department && (
             <InfoContentDetails title="Conhecido(a) por:">
-              {known_for_department}
+              {rolesList[known_for_department] || known_for_department}
             </InfoContentDetails>
           )}
           {gender && (

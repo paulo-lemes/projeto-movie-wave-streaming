@@ -27,7 +27,8 @@ export function CardPerson({
           delay: index / 5,
         },
       }}
-      className="relative w-24 sm:w-32 flex flex-col bg-primary-content rounded-lg"
+      className="relative w-24 sm:w-32 flex flex-col bg-base-300 
+      hover:ring-1 hover:ring-white"
     >
       <Link href={`/person/${id}`}>
         <div className="relative">
@@ -37,7 +38,7 @@ export function CardPerson({
             width={430}
             height={646}
             alt={`Foto de ${name}`}
-            classCSS="rounded-t-lg"
+            classCSS=""
           />
         </div>
         <div className="p-2">
