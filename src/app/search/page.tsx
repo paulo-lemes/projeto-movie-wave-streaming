@@ -14,7 +14,7 @@ export default async function Search({
 }) {
   const searchText = searchParams.text;
   const page = searchParams.page;
-  const resultText = `Principais resultados para "${searchText}"`;
+  const resultText = `Resultados para "${searchText}"`;
 
   const searchData = await getApiContent(
     `search/multi?query=${searchText || ""}&language=pt-BR&page=${page || 1}`
@@ -26,8 +26,9 @@ export default async function Search({
   async function handleSearch(formData: FormData) {
     "use server";
 
-    const textInput = formData.get("text");
-    redirect(`/search?text=${textInput}`);
+    const textInput = formData.get("text") as string;
+    const encodedText = encodeURIComponent(textInput)
+    redirect(`/search?text=${encodedText}`);
   }
 
   return (
