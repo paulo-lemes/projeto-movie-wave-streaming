@@ -34,8 +34,9 @@ export function PageHighlight({ results, contentType }: dataProps) {
           href={`/${contentType}/${content?.id}?title=${(
             content?.title || content?.name
           )?.toLowerCase()}`}
+          className="btn btn-secondary w-max"
         >
-          <button className="btn btn-secondary w-max">Veja detalhes</button>
+          Veja detalhes
         </Link>
       </div>
     </Banner>
