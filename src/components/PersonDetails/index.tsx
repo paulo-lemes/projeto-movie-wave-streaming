@@ -4,6 +4,7 @@ import { PersonDetailsProps } from "@/types";
 import { FadeInImage } from "../FadeInImage";
 import { InfoContentDetails } from "../InfoContentDetails";
 import { CiLink } from "react-icons/ci";
+import { ShowMoreText } from "../ShowMoreText";
 
 const genderList: { [key: number]: string } = {
   1: "Feminino",
@@ -48,7 +49,9 @@ export function PersonDetails({
             <h4 className="font-bold text-xl sm:text-2xl text-secondary">
               Biografia
             </h4>
-            <p className="">{biography}</p>
+            <ShowMoreText>
+              {biography}
+            </ShowMoreText>
           </div>
         )}
         <div>
