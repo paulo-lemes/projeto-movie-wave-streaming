@@ -1,6 +1,6 @@
 "use client";
 
-import { ContentAccountProps, content } from "@/types";
+import { ContentAccountProps, Content } from "@/types";
 import { useEffect, useState } from "react";
 import { ContentRow } from "../ContentRow";
 import Link from "next/link";
@@ -12,7 +12,7 @@ export function ContentAccount({
   contentType,
   children,
 }: ContentAccountProps) {
-  const [content, setContent] = useState<content[] | [] | null>(null);
+  const [content, setContent] = useState<Content[] | [] | null>(null);
   const [error, setError] = useState<boolean>(false);
 
   const getContent = async () => {

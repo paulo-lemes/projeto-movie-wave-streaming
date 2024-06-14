@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { ToggleContentAccountProps, content } from "@/types";
+import { ToggleContentAccountProps, Content } from "@/types";
 import {
   PiBookmarkSimpleFill,
   PiBookmarkSimpleLight,
@@ -67,7 +67,7 @@ export function ToggleContentAccount({
       );
 
       const contentIsTrue =
-        data.filter((content: content) => content.id == id).length > 0;
+        data.filter((content: Content) => content.id == id).length > 0;
 
       setIsInAccount(contentIsTrue);
     } catch (error) {

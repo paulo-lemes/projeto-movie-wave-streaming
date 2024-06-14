@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { content } from "@/types";
+import { Content } from "@/types";
 import { motion } from "framer-motion";
 import { FadeInImage } from "../FadeInImage";
 
@@ -31,7 +31,7 @@ export function CardTopContent({
   id,
   index,
   contentType,
-}: content) {
+}: Content) {
   const [hover, setHover] = useState<boolean>(false);
 
   return (

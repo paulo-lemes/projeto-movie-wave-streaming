@@ -2,13 +2,13 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { fadeInContentProps } from "@/types";
+import { FadeInContentProps } from "@/types";
 
 export function FadeInContent({
   children,
   classCSS,
   duration,
-}: fadeInContentProps) {
+}: FadeInContentProps) {
   return (
     <motion.main
       initial={{ opacity: 0 }}

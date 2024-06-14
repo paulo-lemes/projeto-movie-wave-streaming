@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { cardPersonProps } from "@/types";
+import { CardPersonProps } from "@/types";
 import { motion } from "framer-motion";
 import { FadeInImage } from "../FadeInImage";
 import Link from "next/link";
@@ -14,7 +14,7 @@ export function CardPerson({
   profile_path,
   index,
   type,
-}: cardPersonProps) {
+}: CardPersonProps) {
   const personRole = roles?.length > 0 ? roles[0].character : character;
 
   return (

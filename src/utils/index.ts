@@ -1,8 +1,8 @@
 import {
-  certifcation,
-  classificationMovie,
-  classificationTV,
-  imageContent,
+  Certifcation,
+  ClassificationMovie,
+  ClassificationTV,
+  ImageContent,
 } from "@/types";
 import classifications from "../classifications.json";
 
@@ -16,7 +16,7 @@ const defaultImageContent = {
   width: 0,
 };
 
-export function randomImage(arr: imageContent[]): imageContent {
+export function randomImage(arr: ImageContent[]): ImageContent {
   const img = arr[Math.floor(Math.random() * arr.length)];
 
   if (img && img.file_path) return img;
@@ -36,17 +36,17 @@ export const cardPersonComplement = {
 };
 
 function isClassificationMovie(
-  classification: classificationMovie | classificationTV
-): classification is classificationMovie {
+  classification: ClassificationMovie | ClassificationTV
+): classification is ClassificationMovie {
   return (
-    (classification as classificationMovie)?.results[0]?.release_dates !==
+    (classification as ClassificationMovie)?.results[0]?.release_dates !==
     undefined
   );
 }
 
 export function getClassification(
-  data: classificationMovie | classificationTV
-): certifcation[] | [] {
+  data: ClassificationMovie | ClassificationTV
+): Certifcation[] | [] {
   if (isClassificationMovie(data)) {
     const arr = data.results
       .filter((obj: any) => obj.iso_3166_1 === "BR")

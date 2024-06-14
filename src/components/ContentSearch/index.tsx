@@ -1,8 +1,8 @@
 import React from "react";
-import { dataProps } from "@/types";
+import { DataProps } from "@/types";
 import { CardSearchContent } from "../CardSearchContent";
 
-export function ContentSearch({ results, children }: dataProps) {
+export function ContentSearch({ results, children }: DataProps) {
   return (
     <section className="p-10 px-4 sm:px-16">
       {results.length ? (
