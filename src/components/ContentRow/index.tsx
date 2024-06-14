@@ -1,7 +1,7 @@
 "use client";
 
 import React, { UIEvent, useEffect, useRef, useState } from "react";
-import { dataProps } from "@/types";
+import { DataProps } from "@/types";
 import { Card } from "../Card";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { CardTopContent } from "../CardTopContent";
@@ -12,7 +12,7 @@ export function ContentRow({
   contentType,
   top10,
   bigCard,
-}: dataProps) {
+}: DataProps) {
   const carousel = useRef<HTMLDivElement | null>(null);
   const [scrollLeft, setScrollLeft] = useState<number>(0);
   const [btnRightScrollDisabled, setBtnRightScrollDisabled] = useState(true);

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { content } from "@/types";
+import { Content } from "@/types";
 import { Banner } from "../Banner";
 import { GenreName } from "../GenreName";
 import { FadeInImage } from "../FadeInImage";
@@ -35,7 +35,7 @@ export function ContentDetails({
   classification,
   id,
   contentType,
-}: content) {
+}: Content) {
   const bannerImg = randomImage(images.backdrops);
   const rating = getClassification(classification);
 

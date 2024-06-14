@@ -2,11 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { content, dataProps } from "@/types";
+import { Content, DataProps } from "@/types";
 import { Banner } from "../Banner";
 
-export function PageHighlight({ results, contentType }: dataProps) {
-  const [content, setContent] = useState<content | null>(null);
+export function PageHighlight({ results, contentType }: DataProps) {
+  const [content, setContent] = useState<Content | null>(null);
 
   useEffect(() => {
     const highlightContent = results.filter(

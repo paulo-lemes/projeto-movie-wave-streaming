@@ -1,10 +1,10 @@
 import React from "react";
-import { dataProps } from "@/types";
+import { DataProps } from "@/types";
 import { ContentRow } from "../ContentRow";
 
 const letterStyle = "letter-shadow-r -ml-2 lg:-ml-3";
 
-export function TopContent({ results, contentType }: dataProps) {
+export function TopContent({ results, contentType }: DataProps) {
   const topContent = results.slice(0, 10);
 
   console.log(topContent);

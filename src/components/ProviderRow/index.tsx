@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { providerRowProps } from "@/types";
+import { ProviderRowProps } from "@/types";
 import { LinkProvider } from "../LinkProvider";
 
-export function ProviderRow({ providers, children }: providerRowProps) {
+export function ProviderRow({ providers, children }: ProviderRowProps) {
   return (
     providers &&
     providers.length > 0 && (

@@ -1,8 +1,8 @@
 import React from "react";
 import tmdbGenres from "../../tmdb_genres.json";
-import { genreNameProps } from "@/types";
+import { GenreNameProps } from "@/types";
 
-export function GenreName({ genreId, classCSS }: genreNameProps) {
+export function GenreName({ genreId, classCSS }: GenreNameProps) {
   const genre = tmdbGenres.genres.filter((genre) => genre.id === genreId);
 
   return (

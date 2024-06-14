@@ -1,11 +1,4 @@
-import { content } from "@/types";
-
-export interface ApiResponse {
-  page: number;
-  results: content[];
-  total_pages: number;
-  total_results: number;
-}
+import { ApiResponse, Content } from "@/types";
 
 async function fetchPage(page: number, url: string): Promise<ApiResponse> {
   const response = await fetch(url + `&page=${page}`);
@@ -17,8 +10,8 @@ async function fetchPage(page: number, url: string): Promise<ApiResponse> {
   return data;
 }
 
-export async function fetchAllData(url: string): Promise<content[] | []> {
-  let allData: content[] = [];
+export async function fetchAllData(url: string): Promise<Content[] | []> {
+  let allData: Content[] = [];
   let currentPage = 1;
   let totalPages = 1;
 

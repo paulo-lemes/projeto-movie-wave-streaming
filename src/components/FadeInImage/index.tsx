@@ -6,7 +6,7 @@ import DefaultBackdrop from "./assets/default-backdrop.png";
 import DefaultPoster from "./assets/default-poster.png";
 import DefaultProfilePicture from "./assets/default-profile-picture.png";
 import { motion } from "framer-motion";
-import { fadeInImageProps } from "@/types";
+import { FadeInImageProps } from "@/types";
 
 const defaultPaths: {
   [key: string]: StaticImageData;
@@ -25,7 +25,7 @@ export function FadeInImage({
   height = 500,
   classCSS = "",
   title,
-}: fadeInImageProps) {
+}: FadeInImageProps) {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 

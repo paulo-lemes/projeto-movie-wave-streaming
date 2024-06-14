@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { RatingContentProps, content } from "@/types";
+import { RatingContentProps, Content } from "@/types";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useModal } from "@/app/contexts/ModalContext";
 import { MdStarOutline, MdStarRate } from "react-icons/md";
@@ -78,7 +78,7 @@ export function RatingContent({ id, contentType }: RatingContentProps) {
       );
 
       const ratingContent = data?.filter(
-        (content: content) => content.id == id
+        (content: Content) => content.id == id
       );
       console.log(ratingContent);
 

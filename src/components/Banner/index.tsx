@@ -1,5 +1,5 @@
 import React from "react";
-import { bannerProps } from "@/types";
+import { BannerProps } from "@/types";
 import { FadeInImage } from "../FadeInImage";
 
 const divHighlightStyle = "items-end mb-6";
@@ -7,7 +7,7 @@ const divSpotlightStyle = "items-center my-10 shadow-top-bottom";
 const imgHighlightStyle = "h-[100vh] w-full mask-top-bottom";
 const imgSpotlightStyle = "h-full w-[90vw] mask-left-right";
 
-export function Banner({ children, backdrop, title, spotlight }: bannerProps) {
+export function Banner({ children, backdrop, title, spotlight }: BannerProps) {
   return (
     <div
       className={`relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full flex px-4 sm:px-16 

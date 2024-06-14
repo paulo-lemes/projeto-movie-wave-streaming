@@ -1,8 +1,8 @@
 import React from "react";
-import { watchProviderProps } from "@/types";
+import { WatchProviderProps } from "@/types";
 import { ProviderRow } from "../ProviderRow";
 
-export function WatchProvider({ flatrate, rent, buy }: watchProviderProps) {
+export function WatchProvider({ flatrate, rent, buy }: WatchProviderProps) {
   const existProvider = flatrate || rent || buy;
 
   return (

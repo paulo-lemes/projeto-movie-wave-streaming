@@ -1,5 +1,5 @@
 import React from "react";
-import { credits } from "@/types";
+import { Credits } from "@/types";
 import { CardPerson } from "../CardPerson";
 import { cardPersonComplement } from "@/utils";
 
@@ -11,7 +11,7 @@ export function CreditsContent({
   crew,
   created_by,
   contentType,
-}: credits) {
+}: Credits) {
   const actors = cast.slice(0, 15);
   const directedBy = crew
     .filter((person) => person.job?.toLowerCase() === "director")

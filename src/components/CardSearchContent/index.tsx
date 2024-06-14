@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { content } from "@/types";
+import { Content } from "@/types";
 import { motion } from "framer-motion";
 import { GenreName } from "../GenreName";
 import { FadeInImage } from "../FadeInImage";
@@ -24,7 +24,7 @@ export function CardSearchContent({
   media_type,
   contentType,
   index,
-}: content) {
+}: Content) {
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
