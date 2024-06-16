@@ -9,15 +9,19 @@ export function PageHighlight({ results, contentType }: DataProps) {
   const [content, setContent] = useState<Content | null>(null);
 
   useEffect(() => {
-    const highlightContent = results.filter(
-      ({ title, name, backdrop_path }) => (title || name) && backdrop_path
+    const filterWithBackdropAndOverview = results.filter(
+      ({ backdrop_path, overview }) => backdrop_path && overview
     );
+
+    const highlightContent = filterWithBackdropAndOverview.length
+      ? filterWithBackdropAndOverview
+      : results.filter(({ backdrop_path }) => backdrop_path);
+
     if (highlightContent.length) {
       setContent(
         highlightContent[Math.floor(Math.random() * highlightContent.length)]
       );
-    } else
-      setContent(results[Math.floor(Math.random() * highlightContent.length)]);
+    } else setContent(results[Math.floor(Math.random() * results.length)]);
   }, [results]);
 
   return (
@@ -29,7 +33,9 @@ export function PageHighlight({ results, contentType }: DataProps) {
         <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-4 py-1.5">
           {(content?.title || content?.name)?.toUpperCase()}
         </h2>
-        <p className="line-clamp-3 mb-2">{content?.overview}</p>
+        {content?.overview && (
+          <p className="line-clamp-3 mb-2">{content?.overview}</p>
+        )}
         <Link
           href={`/${contentType}/${content?.id}?title=${(
             content?.title || content?.name
