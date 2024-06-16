@@ -33,7 +33,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 flex flex-col items-stretch z-20 
+      className={`max-w-[100vw] fixed top-0 left-0 right-0 flex flex-col items-stretch z-20 
         bg-base-100 transition ease-in duration-300
     ${!isTop ? "bg-opacity-90" : "bg-opacity-0"}`}
     >

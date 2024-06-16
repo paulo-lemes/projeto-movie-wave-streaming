@@ -250,3 +250,10 @@ export interface ContentAccountProps {
   contentType: string | undefined;
   children: ReactNode;
 }
+
+export interface SortContentAccountProps {
+  toggle: string;
+  sortFunction: (option: string) => void;
+  orderAsc: boolean;
+  changeOrder: () => void;
+}
