@@ -24,7 +24,7 @@ export function Navbar() {
       let scrolled = document?.scrollingElement?.scrollTop;
       const scrollParam =
         pathnamesScroll.includes(pathname) || pathname.includes("/person")
-          ? 5
+          ? 1
           : 200;
 
       scrolled && scrolled >= scrollParam ? setIsTop(false) : setIsTop(true);
@@ -34,7 +34,8 @@ export function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 flex flex-col items-stretch z-20 
-    ${!isTop && "bg-base-100/90"}`}
+        bg-base-100 transition ease-in duration-300
+    ${!isTop ? "bg-opacity-90" : "bg-opacity-0"}`}
     >
       <div className="flex w-full items-center justify-between p-2 lg:px-8 lg:py-4 gap-2 sm:gap-0">
         <DrawerMenu />
