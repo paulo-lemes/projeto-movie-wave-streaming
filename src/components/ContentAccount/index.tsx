@@ -1,11 +1,12 @@
 "use client";
 
-import { ContentAccountProps, Content } from "@/types";
 import { useEffect, useState } from "react";
-import { ContentRow } from "../ContentRow";
 import Link from "next/link";
-import { Loading } from "../Loading";
+import { ContentAccountProps, Content } from "@/types";
 import { fetchAllData } from "@/app/fetchData";
+import { Loading } from "../Loading";
+import { ContentRow } from "../ContentRow";
+import { SortContentAccount } from "../SortContentAccount";
 
 export function ContentAccount({
   toggle,
@@ -14,6 +15,45 @@ export function ContentAccount({
 }: ContentAccountProps) {
   const [content, setContent] = useState<Content[] | [] | null>(null);
   const [error, setError] = useState<boolean>(false);
+  const [orderAsc, setOrderAsc] = useState<boolean>(true);
+
+  const sortContent = async (option: string) => {
+    if (!content) return;
+    let sortedArray = [...content];
+
+    const compare = (a: number, b: number) => {
+      return orderAsc ? b - a : a - b;
+    };
+
+    switch (option) {
+      case "adition":
+        getContent();
+        return;
+      case "popularity":
+        sortedArray.sort((a: Content, b: Content) =>
+          compare(a.popularity, b.popularity)
+        );
+        break;
+      case "voting":
+        sortedArray.sort((a: Content, b: Content) =>
+          compare(a.vote_average, b.vote_average)
+        );
+        break;
+      case "rating":
+        sortedArray.sort((a: Content, b: Content) =>
+          compare(a.rating, b.rating)
+        );
+        break;
+      default:
+        getContent();
+        return;
+    }
+    setContent(sortedArray);
+  };
+
+  const changeOrderContent = () => {
+    setOrderAsc((prev) => !prev);
+  };
 
   const getContent = async () => {
     const content = contentType === "movie" ? "movies" : contentType;
@@ -26,7 +66,7 @@ export function ContentAccount({
       const data = await fetchAllData(urlContent);
 
       console.log(data);
-      setContent(data);
+      orderAsc ? setContent(data) : setContent(data.reverse());
     } catch (error) {
       console.log(error);
       setError(true);
@@ -36,6 +76,12 @@ export function ContentAccount({
   useEffect(() => {
     getContent();
   }, []);
+
+  useEffect(() => {
+    if (!content) return;
+    const reversedArray = [...content].reverse();
+    setContent(reversedArray);
+  }, [orderAsc]);
 
   if (error) {
     return (
@@ -47,9 +93,19 @@ export function ContentAccount({
 
   return content ? (
     <div>
-      <h3 className="font-semibold text-xl sm:text-2xl ml-4 sm:ml-16 -mb-6 mt-2">
-        {children}
-      </h3>
+      <div className="mt-2 px-4 sm:px-16 -mb-5 sm:-mb-6 flex flex-wrap gap-1 sm:gap-4 items-center">
+        <h3 className="mr-2 sm:mr-0 font-semibold text-xl sm:text-2xl">
+          {children}
+        </h3>
+        {content.length > 1 && (
+          <SortContentAccount
+            toggle={toggle}
+            sortFunction={sortContent}
+            orderAsc={orderAsc}
+            changeOrder={changeOrderContent}
+          />
+        )}
+      </div>
       {content.length > 0 ? (
         <ContentRow results={content} contentType={contentType} />
       ) : (
