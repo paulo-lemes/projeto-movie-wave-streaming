@@ -1,11 +1,9 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import { Content } from "@/types";
-import { motion } from "framer-motion";
 import { GenreName } from "../GenreName";
 import { FadeInImage } from "../FadeInImage";
+import { FadeInContent } from "../FadeInContent";
 
 const mediaType: { [key: string]: string } = {
   person: "Pessoa",
@@ -26,17 +24,12 @@ export function CardSearchContent({
   index,
 }: Content) {
   return (
-    <motion.div
-      whileHover={{ scale: 1.05 }}
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        transition: {
-          duration: 1,
-          delay: index / 5,
-        },
-      }}
-      className="relative w-72 flex flex-col"
+    <FadeInContent
+      duration={1}
+      scale={1.05}
+      delay
+      index={index}
+      classCSS="relative w-72 flex flex-col"
     >
       <Link
         href={`/${media_type || contentType}/${id}${
@@ -74,6 +67,6 @@ export function CardSearchContent({
             ))}
         </section>
       </Link>
-    </motion.div>
+    </FadeInContent>
   );
 }

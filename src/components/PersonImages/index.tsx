@@ -1,9 +1,7 @@
-"use client";
-
 import React from "react";
 import { PersonImagesProps } from "@/types";
+import { FadeInContent } from "../FadeInContent";
 import { FadeInImage } from "../FadeInImage";
-import { motion } from "framer-motion";
 
 export function PersonImages({ name, profiles }: PersonImagesProps) {
   const photos = profiles.slice(1);
@@ -14,17 +12,12 @@ export function PersonImages({ name, profiles }: PersonImagesProps) {
         <h3 className="font-bold text-xl sm:text-2xl text-secondary">Fotos</h3>
         <div className="flex flex-wrap gap-2">
           {photos.map(({ file_path, width, height }, index) => (
-            <motion.div
+            <FadeInContent
               key={file_path}
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: 1,
-                transition: {
-                  duration: 1,
-                  delay: index / 5,
-                },
-              }}
-              className="relative"
+              duration={1}
+              delay
+              index={index}
+              classCSS="relative"
             >
               <FadeInImage
                 src={`https://image.tmdb.org/t/p/original/${file_path}`}
@@ -34,7 +27,7 @@ export function PersonImages({ name, profiles }: PersonImagesProps) {
                 type="profile"
                 classCSS="w-[132px] h-[220px]"
               />
-            </motion.div>
+            </FadeInContent>
           ))}
         </div>
       </section>

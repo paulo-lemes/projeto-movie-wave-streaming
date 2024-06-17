@@ -16,6 +16,9 @@ export interface FadeInContentProps {
   children: ReactNode;
   classCSS?: string;
   duration: number;
+  delay?: boolean;
+  index?: number;
+  scale?: number;
 }
 
 export interface FadeInImageProps {
