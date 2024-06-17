@@ -31,7 +31,7 @@ export function SortContentAccount({
         {toggle === "rated" && <option value="rating">Sua avaliação</option>}
       </select>
       <div
-        className="tooltip tooltip-right tooltip-neutral cursor-pointer"
+        className="lg:tooltip lg:tooltip-right lg:tooltip-neutral cursor-pointer"
         data-tip={`Mudar para ${
           orderAsc ? "ordem decrescente" : "ordem crescente"
         }`}
