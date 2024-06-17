@@ -64,7 +64,6 @@ export function ContentAccount({
 
     try {
       const data = await fetchAllData(urlContent);
-
       console.log(data);
       orderAsc ? setContent(data) : setContent(data.reverse());
     } catch (error) {
@@ -121,7 +120,7 @@ export function ContentAccount({
       )}
     </div>
   ) : (
-    <div className="h-[380px]">
+    <div className="h-[295px] sm:h-[300px]">
       <Loading />
     </div>
   );
