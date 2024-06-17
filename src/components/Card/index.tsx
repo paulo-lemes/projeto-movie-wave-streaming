@@ -1,10 +1,8 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import { Content } from "@/types";
-import { motion } from "framer-motion";
 import { FadeInImage } from "../FadeInImage";
+import { FadeInContent } from "../FadeInContent";
 
 export function Card({
   title,
@@ -14,20 +12,15 @@ export function Card({
   id,
   index,
   contentType,
-  bigCard
+  bigCard,
 }: Content) {
   return (
-    <motion.div
-      whileHover={{ scale: 1.05 }}
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        transition: {
-          duration: 1,
-          delay: index / 5,
-        },
-      }}
-      className={`relative ${
+    <FadeInContent
+      duration={1}
+      delay
+      index={index}
+      scale={1.05}
+      classCSS={`relative ${
         bigCard ? "max-w-[275px]" : "max-w-[200px]"
       } hover:ring-2 ring-white`}
     >
@@ -48,6 +41,6 @@ export function Card({
           }`}
         />
       </Link>
-    </motion.div>
+    </FadeInContent>
   );
 }

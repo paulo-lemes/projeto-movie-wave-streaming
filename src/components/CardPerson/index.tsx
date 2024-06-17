@@ -1,10 +1,8 @@
-"use client";
-
 import React from "react";
-import { CardPersonProps } from "@/types";
-import { motion } from "framer-motion";
-import { FadeInImage } from "../FadeInImage";
 import Link from "next/link";
+import { CardPersonProps } from "@/types";
+import { FadeInContent } from "../FadeInContent";
+import { FadeInImage } from "../FadeInImage";
 
 export function CardPerson({
   id,
@@ -18,16 +16,11 @@ export function CardPerson({
   const personRole = roles?.length > 0 ? roles[0].character : character;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        transition: {
-          duration: 1,
-          delay: index / 5,
-        },
-      }}
-      className="relative w-24 sm:w-32 flex flex-col bg-base-300 
+    <FadeInContent
+      duration={1}
+      index={index}
+      delay
+      classCSS="relative w-24 sm:w-32 flex flex-col bg-base-300 
       hover:ring-1 hover:ring-white"
     >
       <Link href={`/person/${id}`}>
@@ -50,6 +43,6 @@ export function CardPerson({
           </p>
         </div>
       </Link>
-    </motion.div>
+    </FadeInContent>
   );
 }
