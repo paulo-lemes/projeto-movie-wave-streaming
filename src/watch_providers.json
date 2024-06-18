@@ -2,105 +2,128 @@
   {
     "url": "https://www.disneyplus.com/",
     "provider_id": 337,
-    "provider_name": "Disney Plus"
+    "provider_name": "Disney Plus",
+    "logo": "/original/1edZOYAfoyZyZ3rklNSiUpXX30Q.png",
+    "order": 4
   },
   {
     "url": "https://www.primevideo.com/search/ref=atv_nb_sug?ie=UTF8&phrase=",
     "search": true,
     "provider_id": 119,
-    "provider_name": "Amazon Prime Video"
+    "provider_name": "Amazon Prime Video",
+    "logo": "/original/ifhbNuuVnlwYy5oXA5VIb2YR8AZ.png",
+    "order": 1
   },
   {
     "url": "https://www.netflix.com/Search?q=",
     "search": true,
     "provider_id": 8,
     "provider_name": "Netflix",
-    "logo":"/tyHnxjQJLH6h4iDQKhN5iqebWmX.png"
+    "logo": "/original/tyHnxjQJLH6h4iDQKhN5iqebWmX.png",
+    "order": 0
   },
   {
     "url": "https://www.netflix.com/Search?q=",
     "search": true,
     "provider_id": 1796,
-    "provider_name": "Netflix basic with Ads"
+    "provider_name": "Netflix basic with Ads",
+    "order": 10
   },
   {
     "url": "https://www.starplus.com/",
     "provider_id": 619,
-    "provider_name": "Star Plus"
+    "provider_name": "Star Plus",
+    "logo": "/h50_filter(negate,000,666)/s8kZw4nGzlGPiL8qghKWQhGIjq4.png",
+    "order": 3
   },
   {
     "url": "https://www.clarovideo.com/brasil/search?q=",
     "search": true,
     "provider_id": 167,
-    "provider_name": "Claro video"
+    "provider_name": "Claro video",
+    "order": 10
   },
   {
     "url": "https://www.looke.com.br/landingpage",
     "provider_id": 47,
-    "provider_name": "Looke"
+    "provider_name": "Looke",
+    "order": 10
   },
   {
     "url": "https://www.paramountplus.com/br/",
     "provider_id": 531,
-    "provider_name": "Paramount Plus"
+    "provider_name": "Paramount Plus",
+    "order": 10
   },
   {
     "url": "https://www.paramountplus.com/br/",
     "provider_id": 582,
-    "provider_name": "Paramount+ Amazon Channel"
+    "provider_name": "Paramount+ Amazon Channel",
+    "order": 10
   },
   {
     "url": "https://play.max.com/search/result?q=",
     "search": true,
     "provider_id": 1899,
-    "provider_name": "Max"
+    "provider_name": "Max",
+    "logo": "/original/rAb4M1LjGpWASxpk6Va791A7Nkw.png",
+    "order": 2
   },
   {
     "url": "https://play.max.com/search/result?q=",
     "search": true,
     "provider_id": 384,
-    "provider_name": "HBO Max"
+    "provider_name": "HBO Max",
+    "order": 6
   },
   {
     "url": "https://tv.apple.com/search?term=",
     "search": true,
     "provider_id": 2,
-    "provider_name": "Apple TV"
+    "provider_name": "Apple TV",
+    "order": 10
   },
   {
     "url": "https://tv.apple.com/search?term=",
     "search": true,
     "provider_id": 350,
-    "provider_name": "Apple TV Plus"
+    "provider_name": "Apple TV Plus",
+    "logo": "/h50_filter(negate,000,666)/4KAy34EHvRM25Ih8wb82AuGU7zJ.png",
+    "order": 5
   },
   {
     "url": "https://globoplay.globo.com/busca/?q=",
     "search": true,
     "provider_id": 307,
-    "provider_name": "Globoplay"
+    "provider_name": "Globoplay",
+    "order": 10
   },
   {
     "url": "https://www.primevideo.com/search/ref=atv_nb_sug?ie=UTF8&phrase=",
     "search": true,
     "provider_id": 10,
-    "provider_name": "Amazon Video"
+    "provider_name": "Amazon Video",
+    "order": 10
   },
   {
     "url": "https://play.google.com/store/search?c=movies&q=",
     "search": true,
     "provider_id": 3,
-    "provider_name": "Google Play Movies"
+    "provider_name": "Google Play Movies",
+    "order": 10
   },
   {
     "url": "https://www.microsoft.com/pt-br/search/shop/movies?q=",
     "search": true,
     "provider_id": 68,
-    "provider_name": "Microsoft Store"
+    "provider_name": "Microsoft Store",
+    "order": 10
   },
   {
     "url": "https://www.clarotvmais.com.br/busca?q=",
     "search": true,
     "provider_id": 484,
-    "provider_name": "NOW"
+    "provider_name": "NOW",
+    "order": 10
   }
 ]
