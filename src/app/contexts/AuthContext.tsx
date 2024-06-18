@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(null);
       return true;
     } else {
-      console.log(`Logout failed`);
+      if (process.env.NODE_ENV === "development") console.log(`Logout failed`);
       return false;
     }
   };

@@ -14,7 +14,7 @@ export function LoginButtonV4({ v4 }: { v4: boolean | undefined }) {
 
   const requestV4Login = async () => {
     const data = await getV4Login();
-    console.log(data);
+    if (process.env.NODE_ENV === "development") console.log(data);
 
     if (!data?.success) {
       openModal("Não foi possível criar a sessão");

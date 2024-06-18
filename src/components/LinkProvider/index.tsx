@@ -19,8 +19,6 @@ export function LinkProvider({
     .filter((provider) => provider.provider_id === provider_id)
     .map(({ search, url }) => (search ? url + title : url));
 
-  console.log(path[0]);
-
   return path[0] ? (
     <motion.a whileHover={{ scale: 1.15 }} href={path[0]} target="_blank">
       {children}

@@ -7,11 +7,19 @@ import { ContentRow } from "@/components/ContentRow";
 import { PersonDetails } from "@/components/PersonDetails";
 import { PersonImages } from "@/components/PersonImages";
 
-export default async function ContentPage({ params }: { params: { id: string } }) {
+export default async function ContentPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const { id } = params;
 
-  const personDetailsData = getApiContent(`person/${id}?language=pt-BR`);
-  const personImagesData = getApiContent(`person/${id}/images?language=pt-BR`);
+  const personDetailsData = getApiContent(
+    `person/${id}?language=pt-BR`
+  );
+  const personImagesData = getApiContent(
+    `person/${id}/images?language=pt-BR`
+  );
   const personCreditsData = getApiContent(
     `person/${id}/combined_credits?language=pt-BR`
   );
@@ -22,9 +30,11 @@ export default async function ContentPage({ params }: { params: { id: string } }
     personCreditsData,
   ]);
 
-  console.log(personDetails);
-  console.log(personImages);
-  console.log(personCredits);
+  if (process.env.NODE_ENV === "development") {
+    console.log(personDetails);
+    console.log(personImages);
+    console.log(personCredits);
+  }
 
   const sortedCastContent = personCredits.cast
     .sort(
@@ -34,7 +44,7 @@ export default async function ContentPage({ params }: { params: { id: string } }
         b.vote_count - a.vote_count
     )
     .slice(0, 30);
-  console.log(sortedCastContent);
+  if (process.env.NODE_ENV === "development") console.log(sortedCastContent);
 
   const filteredCrewContent = personCredits.crew
     .filter(
@@ -42,7 +52,7 @@ export default async function ContentPage({ params }: { params: { id: string } }
         index === self.findIndex((t) => t.id === value.id)
     )
     .slice(0, 30);
-  console.log(filteredCrewContent);
+  if (process.env.NODE_ENV === "development") console.log(filteredCrewContent);
 
   return personDetails.id ? (
     <FadeInContent duration={1.5}>

@@ -39,8 +39,10 @@ export function ContentDetails({
   const bannerImg = randomImage(images.backdrops);
   const rating = getClassification(classification);
 
-  console.log(bannerImg);
-  console.log(rating);
+  if (process.env.NODE_ENV === "development") {
+    console.log(bannerImg);
+    console.log(rating);
+  }
 
   return (
     <>

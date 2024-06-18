@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
     }
 
     const data = await externalRes.json();
-    console.log(data);
+    if (process.env.NODE_ENV === "development") console.log(data);
 
     return NextResponse.json(data);
   } catch (err) {
@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
       throw new Error(`Status ${response.status}- ${response.statusText}`);
 
     const data = await response.json();
-    console.log(data);
+    if (process.env.NODE_ENV === "development") console.log(data);
 
     return NextResponse.json(data);
   } catch (err) {
@@ -124,7 +124,7 @@ export async function DELETE(request: NextRequest) {
       throw new Error(`Status ${response.status}- ${response.statusText}`);
 
     const data = await response.json();
-    console.log(data);
+    if (process.env.NODE_ENV === "development") console.log(data);
 
     return NextResponse.json(data);
   } catch (err) {

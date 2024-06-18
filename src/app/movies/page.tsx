@@ -53,13 +53,15 @@ export default async function Movies() {
     featuredMoviesData,
   ]);
 
-  console.log(popularMovies.results);
-  console.log(topMovies.results);
-  console.log(topRatedMovies.results);
-  console.log(upcomingMovies.results);
-  console.log(moreTopRatedMovies.results);
-  console.log(otherTopRatedMovies.results);
-  console.log(featuredMovies.results);
+  if (process.env.NODE_ENV === "development") {
+    console.log(popularMovies.results);
+    console.log(topMovies.results);
+    console.log(topRatedMovies.results);
+    console.log(upcomingMovies.results);
+    console.log(moreTopRatedMovies.results);
+    console.log(otherTopRatedMovies.results);
+    console.log(featuredMovies.results);
+  }
 
   return (
     <Suspense fallback={<Loading />}>

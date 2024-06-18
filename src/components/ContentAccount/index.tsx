@@ -64,10 +64,10 @@ export function ContentAccount({
 
     try {
       const data = await fetchAllData(urlContent);
-      console.log(data);
+      if (process.env.NODE_ENV === "development") console.log(data);
       orderAsc ? setContent(data) : setContent(data.reverse());
     } catch (error) {
-      console.log(error);
+      if (process.env.NODE_ENV === "development") console.log(error);
       setError(true);
     }
   };

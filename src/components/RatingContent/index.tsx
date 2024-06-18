@@ -44,7 +44,7 @@ export function RatingContent({ id, contentType }: RatingContentProps) {
     });
 
     const response = await postContent.json();
-    console.log(response);
+    if (process.env.NODE_ENV === "development") console.log(response);
 
     setRedirectAfterClose(null);
     setShowRatingStars((prev) => !prev);
@@ -80,7 +80,7 @@ export function RatingContent({ id, contentType }: RatingContentProps) {
       const ratingContent = data?.filter(
         (content: Content) => content.id == id
       );
-      console.log(ratingContent);
+      if (process.env.NODE_ENV === "development") console.log(ratingContent);
 
       if (ratingContent.length > 0) {
         setIsRated(true);
@@ -88,7 +88,7 @@ export function RatingContent({ id, contentType }: RatingContentProps) {
         return;
       } else setIsRated(false);
     } catch (error) {
-      console.log(error);
+      if (process.env.NODE_ENV === "development") console.log(error);
       setIsRated(false);
     }
   };

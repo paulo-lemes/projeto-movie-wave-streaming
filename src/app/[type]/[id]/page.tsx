@@ -56,13 +56,15 @@ export default async function Content({
     recommendedContentData,
   ]);
 
-  console.log(contentDetails);
-  console.log(contentClassification);
-  console.log(contentImages);
-  console.log(contentCredits);
-  console.log(contentVideos);
-  console.log(contentProviders);
-  console.log(recommendedContent);
+  if (process.env.NODE_ENV === "development") {
+    console.log(contentDetails);
+    console.log(contentClassification);
+    console.log(contentImages);
+    console.log(contentCredits);
+    console.log(contentVideos);
+    console.log(contentProviders);
+    console.log(recommendedContent);
+  }
 
   return contentDetails.id ? (
     <FadeInContent duration={1.5}>

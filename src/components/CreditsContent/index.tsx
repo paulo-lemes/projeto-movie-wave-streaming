@@ -20,9 +20,11 @@ export function CreditsContent({
     )
     .slice(0, 10);
 
-  console.log(actors);
-  console.log(created_by);
-  console.log(directedBy);
+  if (process.env.NODE_ENV === "development") {
+    console.log(actors);
+    console.log(created_by);
+    console.log(directedBy);
+  }
 
   return (
     <section className="flex flex-col gap-3 mb-6">

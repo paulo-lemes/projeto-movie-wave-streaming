@@ -48,7 +48,7 @@ export function ToggleContentAccount({
     });
 
     const response = await postContent.json();
-    console.log(response);
+    if (process.env.NODE_ENV === "development") console.log(response);
     if (response && response.success) {
       setIsInAccount((prev) => !prev);
     } else {
@@ -71,7 +71,7 @@ export function ToggleContentAccount({
 
       setIsInAccount(contentIsTrue);
     } catch (error) {
-      console.log(error);
+      if (process.env.NODE_ENV === "development") console.log(error);
       setIsInAccount(false);
     }
   };
