@@ -14,7 +14,8 @@
     "url": "https://www.netflix.com/Search?q=",
     "search": true,
     "provider_id": 8,
-    "provider_name": "Netflix"
+    "provider_name": "Netflix",
+    "logo":"/tyHnxjQJLH6h4iDQKhN5iqebWmX.png"
   },
   {
     "url": "https://www.netflix.com/Search?q=",

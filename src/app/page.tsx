@@ -6,6 +6,8 @@ import { Loading } from "@/components/Loading";
 import { Suspense } from "react";
 import { TopContent } from "@/components/TopContent";
 import { SpotlightContent } from "@/components/SpotlightContent";
+import watchProviders from "../watch_providers.json";
+import { StreamingRowTitle } from "@/components/StreamingRowTitle";
 
 export default async function Home() {
   const featuredMoviesData = getApiContent(
@@ -29,6 +31,13 @@ export default async function Home() {
   const moreTopRatedMoviesData = getApiContent(
     "movie/top_rated?language=pt-BR&page=2"
   );
+  const netflixMoviesData = getApiContent(
+    "discover/movie?language=pt-BR&sort_by=popularity.desc&watch_region=BR&with_watch_providers=8"
+  );
+
+  const netflixInfos = watchProviders.filter(
+    ({ provider_id }) => provider_id === 8
+  )[0];
 
   const [
     featuredMovies,
@@ -40,6 +49,7 @@ export default async function Home() {
     topSeries,
     featuredSeries,
     moreTopRatedMovies,
+    netflixMovies,
   ] = await Promise.all([
     featuredMoviesData,
     trendingData,
@@ -50,6 +60,7 @@ export default async function Home() {
     topSeriesData,
     featuredSeriesData,
     moreTopRatedMoviesData,
+    netflixMoviesData,
   ]);
 
   if (process.env.NODE_ENV === "development") {
@@ -61,6 +72,7 @@ export default async function Home() {
     console.log(topRatedSeries.results);
     console.log(topSeries.results);
     console.log(featuredSeries.results);
+    console.log(netflixMovies.results);
   }
 
   return (
@@ -85,6 +97,14 @@ export default async function Home() {
         <SpotlightContent {...moreTopRatedMovies} contentType="movie" />
         <ContentRow {...featuredSeries} contentType="tv">
           Séries em destaque
+        </ContentRow>
+        <ContentRow {...netflixMovies} contentType="movie">
+          <StreamingRowTitle
+            name={netflixInfos.provider_name}
+            logo={netflixInfos.logo}
+          >
+            Filmes populares
+          </StreamingRowTitle>
         </ContentRow>
       </FadeInContent>
     </Suspense>
