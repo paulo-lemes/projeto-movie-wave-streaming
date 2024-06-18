@@ -1,25 +1,18 @@
-import React, { ReactNode } from "react";
-import Image from "next/image";
+import React from "react";
+import { StreamingRowTitleProps } from "@/types";
 
 export function StreamingRowTitle({
   children,
   logo,
   name,
-}: {
-  children: ReactNode;
-  logo: string | undefined;
-  name: string;
-}) {
+}: StreamingRowTitleProps) {
   return (
     <div className="flex gap-2 items-center">
       <span>{children}</span>
-      <Image
-        src={`https://image.tmdb.org/t/p/original/${logo}`}
+      <img
+        src={`https://image.tmdb.org/t/p/${logo}`}
         alt={`Logotipo de ${name}`}
-        unoptimized
-        height={28}
-        width={105}
-        className="h-6 w-[90px] sm:h-7"
+        className="h-5 sm:h-6"
       />
     </div>
   );

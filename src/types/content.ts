@@ -257,3 +257,17 @@ export interface SortContentAccountProps {
   orderAsc: boolean;
   changeOrder: () => void;
 }
+
+export interface StreamingRowTitleProps {
+  children: ReactNode;
+  logo: string | undefined;
+  name: string;
+}
+
+export interface StreamingContentRowProps {
+  provider_name: string;
+  provider_id: number;
+  logo: string | undefined;
+  type?: string;
+  category?: string;
+}
