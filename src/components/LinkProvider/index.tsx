@@ -1,7 +1,7 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import watchProvidersUrl from "../../watch_providers_url.json";
+import watchProvidersUrl from "../../watch_providers.json";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 
