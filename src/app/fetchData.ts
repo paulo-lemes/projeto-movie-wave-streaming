@@ -6,7 +6,7 @@ async function fetchPage(page: number, url: string): Promise<ApiResponse> {
     throw new Error("Network response was not ok");
   }
   const data = await response.json();
-  console.log(data);
+  if (process.env.NODE_ENV === "development") console.log(data);
   return data;
 }
 
@@ -16,7 +16,8 @@ export async function fetchAllData(url: string): Promise<Content[] | []> {
   let totalPages = 1;
 
   do {
-    console.log(`Página: ${currentPage}`);
+    if (process.env.NODE_ENV === "development")
+      console.log(`Página: ${currentPage}`);
     const {
       results,
       page: current,
@@ -27,7 +28,7 @@ export async function fetchAllData(url: string): Promise<Content[] | []> {
     totalPages = total;
   } while (currentPage <= totalPages);
 
-  console.log(allData);
+  if (process.env.NODE_ENV === "development") console.log(allData);
 
   return allData;
 }

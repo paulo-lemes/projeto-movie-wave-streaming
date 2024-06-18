@@ -69,11 +69,13 @@ export default async function Category({
     maxTotalPages = seriesCategory.total_pages - 1;
   }
 
-  console.log(moviesCategory);
-  console.log(seriesCategory);
-  console.log(searchMoviesCategory);
-  console.log(searchSeriesCategory);
-  console.log(maxTotalPages);
+  if (process.env.NODE_ENV === "development") {
+    console.log(moviesCategory);
+    console.log(seriesCategory);
+    console.log(searchMoviesCategory);
+    console.log(searchSeriesCategory);
+    console.log(maxTotalPages);
+  }
 
   return (
     <FadeInContent duration={1.5}>

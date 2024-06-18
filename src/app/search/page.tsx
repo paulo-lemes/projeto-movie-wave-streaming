@@ -20,14 +20,16 @@ export default async function Search({
     `search/multi?query=${searchText || ""}&language=pt-BR&page=${page || 1}`
   );
 
-  console.log(searchData);
-  console.log(searchData.total_pages);
-
+  if (process.env.NODE_ENV === "development") {
+    console.log(searchData);
+    console.log(searchData.total_pages);
+  }
+  
   async function handleSearch(formData: FormData) {
     "use server";
 
     const textInput = formData.get("text") as string;
-    const encodedText = encodeURIComponent(textInput)
+    const encodedText = encodeURIComponent(textInput);
     redirect(`/search?text=${encodedText}`);
   }
 

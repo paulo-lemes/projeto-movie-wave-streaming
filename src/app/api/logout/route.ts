@@ -12,14 +12,14 @@ export async function POST(request: NextRequest) {
 
   const sessionId = authCookie.value;
   const logout = await deleteSession(sessionId);
-  console.log(logout);
+  if (process.env.NODE_ENV === "development") console.log(logout);
   
   const response = NextResponse.json({ message: "Logout successfull" });
   
   if (v4Cookie) {
     const v4Info = JSON.parse(v4Cookie?.value || "");
     const logoutV4 = await deleteV4Session(v4Info.access_token);
-    console.log(logoutV4);
+    if (process.env.NODE_ENV === "development") console.log(logoutV4);
 
     response.cookies.set("v4Info", "", {
       httpOnly: true,

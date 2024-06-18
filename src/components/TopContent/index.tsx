@@ -7,7 +7,7 @@ const letterStyle = "letter-shadow-r -ml-2 lg:-ml-3";
 export function TopContent({ results, contentType }: DataProps) {
   const topContent = results.slice(0, 10);
 
-  console.log(topContent);
+  if (process.env.NODE_ENV === "development") console.log(topContent);
 
   return (
     <section className="py-2">

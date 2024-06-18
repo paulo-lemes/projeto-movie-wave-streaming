@@ -53,14 +53,16 @@ export default async function Series() {
     fantasySeriesData,
   ]);
 
-  console.log(popularSeries.results);
-  console.log(topSeries.results);
-  console.log(topRatedSeries.results);
-  console.log(onTheAirSeries.results);
-  console.log(otherTopRatedSeries.results);
-  console.log(featuredSeries.results);
-  console.log(moreTopRatedSeries.results);
-  console.log(fantasySeries.results);
+  if (process.env.NODE_ENV === "development") {
+    console.log(popularSeries.results);
+    console.log(topSeries.results);
+    console.log(topRatedSeries.results);
+    console.log(onTheAirSeries.results);
+    console.log(otherTopRatedSeries.results);
+    console.log(featuredSeries.results);
+    console.log(moreTopRatedSeries.results);
+    console.log(fantasySeries.results);
+  }
 
   return (
     <Suspense fallback={<Loading />}>
