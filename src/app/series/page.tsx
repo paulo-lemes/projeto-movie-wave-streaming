@@ -6,6 +6,7 @@ import { PageHighlight } from "@/components/PageHighlight";
 import { TopContent } from "@/components/TopContent";
 import { ContentRow } from "@/components/ContentRow";
 import { SpotlightContent } from "@/components/SpotlightContent";
+import { StreamingContent } from "@/components/StreamingContent";
 
 export default async function Series() {
   const popularSeriesData = getApiContent(
@@ -88,6 +89,8 @@ export default async function Series() {
         <ContentRow {...popularSeries} contentType="tv">
           Séries populares
         </ContentRow>
+        <SpotlightContent {...topRatedSeries} contentType="tv" />
+        <StreamingContent type="tv" />
       </FadeInContent>
     </Suspense>
   );
