@@ -11,15 +11,18 @@ const popularStreamings = watchProviders
   .sort((a, b) => a.order - b.order);
 
 export function StreamingContent({ type }: { type?: string }) {
-  return popularStreamings.map(({ provider_name, provider_id, logo }) => (
-    <StreamingContentRow
-      key={provider_id}
-      provider_name={provider_name}
-      provider_id={provider_id}
-      logo={logo}
-      type={type}
-    />
-  ));
+  return popularStreamings.map(
+    ({ provider_name, provider_id, logo }, index) => (
+      <StreamingContentRow
+        key={provider_id}
+        provider_name={provider_name}
+        provider_id={provider_id}
+        logo={logo}
+        type={type}
+        index={index}
+      />
+    )
+  );
 }
 
 async function StreamingContentRow({
@@ -28,6 +31,7 @@ async function StreamingContentRow({
   logo,
   type,
   category,
+  index,
 }: StreamingContentRowProps) {
   const moviesData = await getApiContent(
     `discover/movie?language=pt-BR&sort_by=popularity.desc
@@ -58,11 +62,15 @@ async function StreamingContentRow({
           </StreamingRowTitle>
         </ContentRow>
       )}
-      {!type || type === "movie" ? (
+      {!type ? (
         <SpotlightContent {...moviesData} contentType="movie" />
-      ) : (
+      ) : type === "movie" ? (
+        index % 2 !== 0 ? (
+          <SpotlightContent {...moviesData} contentType="movie" />
+        ) : null
+      ) : index % 2 !== 0 ? (
         <SpotlightContent {...seriesData} contentType="tv" />
-      )}
+      ) : null}
     </>
   );
 }

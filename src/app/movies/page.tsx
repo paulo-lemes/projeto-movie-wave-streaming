@@ -6,6 +6,7 @@ import { Loading } from "@/components/Loading";
 import { Suspense } from "react";
 import { TopContent } from "@/components/TopContent";
 import { SpotlightContent } from "@/components/SpotlightContent";
+import { StreamingContent } from "@/components/StreamingContent";
 
 export default async function Movies() {
   const popularMoviesData = getApiContent(
@@ -83,10 +84,11 @@ export default async function Movies() {
         <ContentRow {...moreTopRatedMovies} contentType="movie">
           Mais filmes aclamados
         </ContentRow>
-        <SpotlightContent {...otherTopRatedMovies} contentType="movie" />
         <ContentRow {...popularMovies} contentType="movie">
           Filmes populares
         </ContentRow>
+        <SpotlightContent {...otherTopRatedMovies} contentType="movie" />
+        <StreamingContent type="movie" />
       </FadeInContent>
     </Suspense>
   );

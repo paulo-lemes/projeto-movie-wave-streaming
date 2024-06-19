@@ -270,4 +270,5 @@ export interface StreamingContentRowProps {
   logo: string | undefined;
   type?: string;
   category?: string;
+  index: number
 }
