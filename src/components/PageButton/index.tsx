@@ -18,7 +18,7 @@ export function PageButton({
   const nextPageActive = total_pages > page;
 
   return (
-    <div className="join flex items-center justify-center">
+    <div className="join flex items-center justify-center pb-6">
       {previousPageActive && (
         <Link
           href={`${pathname}?${otherParam ? otherParam : ""}page=${page - 1}`}
