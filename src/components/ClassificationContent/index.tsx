@@ -12,7 +12,7 @@ export function ClassificationContent({
   const certificationDivStyle = classNames(
     "px-2.5 py-1 rounded-lg w-max h-max",
     {
-      "bg-green-500": certification === "L",
+      "bg-green-500 px-3": certification === "L",
       "bg-blue-500": certification === "10",
       "bg-yellow-500": certification === "12",
       "bg-orange-500": certification === "14",
