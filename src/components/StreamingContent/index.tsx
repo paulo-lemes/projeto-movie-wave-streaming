@@ -4,13 +4,13 @@ import { getApiContent } from "@/api";
 import { ContentRow } from "../ContentRow";
 import { StreamingRowTitle } from "../StreamingRowTitle";
 import { SpotlightContent } from "../SpotlightContent";
-import { StreamingContentRowProps } from "@/types";
+import { StreamingContentProps, StreamingContentRowProps } from "@/types";
 
 const popularStreamings = watchProviders
   .filter(({ logo }) => logo)
   .sort((a, b) => a.order - b.order);
 
-export function StreamingContent({ type }: { type?: string }) {
+export function StreamingContent({ type, category }: StreamingContentProps) {
   return popularStreamings.map(
     ({ provider_name, provider_id, logo }, index) => (
       <StreamingContentRow
@@ -19,6 +19,7 @@ export function StreamingContent({ type }: { type?: string }) {
         provider_id={provider_id}
         logo={logo}
         type={type}
+        category={category}
         index={index}
       />
     )
@@ -36,13 +37,13 @@ async function StreamingContentRow({
   const moviesData = await getApiContent(
     `discover/movie?language=pt-BR&sort_by=popularity.desc
 &watch_region=BR&with_watch_providers=${provider_id}${
-      category ? `&with_genres=${category}` : ""
+      category ? `&with_genres=${category.id}&page=${category.page || 1}` : ""
     }`
   );
   const seriesData = await getApiContent(
     `discover/tv?language=pt-BR&sort_by=popularity.desc
 &watch_region=BR&with_watch_providers=${provider_id}${
-      category ? `&with_genres=${category}` : ""
+      category ? `&with_genres=${category.id}&page=${category.page || 1}` : ""
     }`
   );
 
@@ -51,26 +52,30 @@ async function StreamingContentRow({
       {(!type || type === "movie") && (
         <ContentRow {...moviesData} contentType="movie">
           <StreamingRowTitle name={provider_name} logo={logo}>
-            Filmes populares
+            Filmes {category ? `de ${category.categoryName}` : "populares"}
           </StreamingRowTitle>
         </ContentRow>
       )}
       {(!type || type === "tv") && (
         <ContentRow {...seriesData} contentType="tv">
           <StreamingRowTitle name={provider_name} logo={logo}>
-            Séries populares
+            Séries {category ? `de ${category.categoryName}` : "populares"}
           </StreamingRowTitle>
         </ContentRow>
       )}
       {!type ? (
-        <SpotlightContent {...moviesData} contentType="movie" />
-      ) : type === "movie" ? (
-        index % 2 !== 0 ? (
+        moviesData.results.length ? (
           <SpotlightContent {...moviesData} contentType="movie" />
-        ) : null
-      ) : index % 2 !== 0 ? (
-        <SpotlightContent {...seriesData} contentType="tv" />
-      ) : null}
+        ) : (
+          <SpotlightContent {...seriesData} contentType="tv" />
+        )
+      ) : type === "movie" ? (
+        index % 2 !== 0 && (
+          <SpotlightContent {...moviesData} contentType="movie" />
+        )
+      ) : (
+        index % 2 !== 0 && <SpotlightContent {...seriesData} contentType="tv" />
+      )}
     </>
   );
 }

@@ -6,8 +6,8 @@ import { PageHighlight } from "@/components/PageHighlight";
 import { ContentRow } from "@/components/ContentRow";
 import { CategoryContent } from "@/components/CategoryContent";
 import { StyledTitle } from "@/components/StyledTitle";
-import { SpotlightContent } from "@/components/SpotlightContent";
 import { PageButton } from "@/components/PageButton";
+import { StreamingContent } from "@/components/StreamingContent";
 
 export default async function Category({
   params,
@@ -24,18 +24,16 @@ export default async function Category({
   const categoryName = category[0].name.toLowerCase();
 
   const seriesCategoryData = getApiContent(
-    `discover/tv?language=pt-BR&page=${page ? page : 1}&with_genres=${id}`
+    `discover/tv?language=pt-BR&page=${page ? page + 2 : 1}&with_genres=${id}`
   );
   const moviesCategoryData = getApiContent(
-    `discover/movie?language=pt-BR&page=${page ? page : 1}&with_genres=${id}`
+    `discover/movie?language=pt-BR&page=${page ? page + 2 : 1}&with_genres=${id}`
   );
   const searchSeriesCategoryData = getApiContent(
-    `discover/tv?language=pt-BR&page=${page ? page + 1 : 2}&with_genres=${id}`
+    `discover/tv?language=pt-BR&page=${page ? page + 2 : 2}&with_genres=${id}`
   );
   const searchMoviesCategoryData = getApiContent(
-    `discover/movie?language=pt-BR&page=${
-      page ? page + 1 : 2
-    }&with_genres=${id}`
+    `discover/movie?language=pt-BR&page=${page ? page + 2 : 2}&with_genres=${id}`
   );
 
   const [
@@ -50,7 +48,7 @@ export default async function Category({
     searchMoviesCategoryData,
   ]);
 
-  let highlightContent = [];
+  let highlightContent;
   let highlightContentType = "";
   let maxTotalPages = 1;
 
@@ -60,13 +58,13 @@ export default async function Category({
     if (seriesCategory.total_results) {
       maxTotalPages =
         moviesCategory.total_results > seriesCategory.total_results
-          ? seriesCategory.total_pages - 1
-          : moviesCategory.total_pages - 1;
-    } else maxTotalPages = moviesCategory.total_pages - 1;
+          ? seriesCategory.total_pages - 2
+          : moviesCategory.total_pages - 2;
+    } else maxTotalPages = moviesCategory.total_pages - 2;
   } else {
     highlightContent = seriesCategory;
     highlightContentType = "tv";
-    maxTotalPages = seriesCategory.total_pages - 1;
+    maxTotalPages = seriesCategory.total_pages - 2;
   }
 
   if (process.env.NODE_ENV === "development") {
@@ -97,13 +95,10 @@ export default async function Category({
       <CategoryContent {...searchSeriesCategory} contentType="tv" />
       <CategoryContent {...searchMoviesCategory} contentType="movie" />
       <PageButton
-        page={highlightContent.page}
-        total_pages={maxTotalPages > 500 ? 500 : maxTotalPages}
+        page={page || 1}
+        total_pages={maxTotalPages > 498 ? 498 : maxTotalPages}
       />
-      <SpotlightContent
-        {...highlightContent}
-        contentType={highlightContentType}
-      />
+      <StreamingContent category={{id, categoryName, page}} />
     </FadeInContent>
   );
 }

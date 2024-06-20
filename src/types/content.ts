@@ -264,11 +264,16 @@ export interface StreamingRowTitleProps {
   name: string;
 }
 
+export interface StreamingContentProps {
+  type?: string;
+  category?: { id: string; categoryName: string; page: number };
+}
+
 export interface StreamingContentRowProps {
   provider_name: string;
   provider_id: number;
   logo: string | undefined;
   type?: string;
-  category?: string;
-  index: number
+  category?: { id: string; categoryName: string; page: number };
+  index: number;
 }
