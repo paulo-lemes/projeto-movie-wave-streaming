@@ -24,16 +24,16 @@ export default async function Category({
   const categoryName = category[0].name.toLowerCase();
 
   const seriesCategoryData = getApiContent(
-    `discover/tv?language=pt-BR&page=${page ? page + 2 : 1}&with_genres=${id}`
+    `discover/tv?language=pt-BR&page=${page ? page * 2 - 1 : 1}&with_genres=${id}`
   );
   const moviesCategoryData = getApiContent(
-    `discover/movie?language=pt-BR&page=${page ? page + 2 : 1}&with_genres=${id}`
+    `discover/movie?language=pt-BR&page=${page ? page * 2 - 1 : 1}&with_genres=${id}`
   );
   const searchSeriesCategoryData = getApiContent(
-    `discover/tv?language=pt-BR&page=${page ? page + 2 : 2}&with_genres=${id}`
+    `discover/tv?language=pt-BR&page=${page ? page * 2 : 2}&with_genres=${id}`
   );
   const searchMoviesCategoryData = getApiContent(
-    `discover/movie?language=pt-BR&page=${page ? page + 2 : 2}&with_genres=${id}`
+    `discover/movie?language=pt-BR&page=${page ? page * 2 : 2}&with_genres=${id}`
   );
 
   const [
@@ -96,7 +96,7 @@ export default async function Category({
       <CategoryContent {...searchMoviesCategory} contentType="movie" />
       <PageButton
         page={page || 1}
-        total_pages={maxTotalPages > 498 ? 498 : maxTotalPages}
+        total_pages={maxTotalPages > 250 ? 250 : maxTotalPages}
       />
       <StreamingContent category={{id, categoryName, page}} />
     </FadeInContent>
