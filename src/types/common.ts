@@ -48,3 +48,8 @@ export interface ModalContextType {
   redirectAfterClose: string | null;
   setRedirectAfterClose: (value: string | null) => void;
 }
+
+export interface ErrorPageProps {
+  error: Error & { digest?: string };
+  reset: () => void;
+}
