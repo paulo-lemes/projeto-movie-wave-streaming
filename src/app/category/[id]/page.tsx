@@ -20,8 +20,8 @@ export default async function Category({
   const page = Number(searchParams.page);
   const category = tmdbGenres.genres.filter(
     (genre) => genre.id.toString() === id
-  );
-  const categoryName = category[0].name.toLowerCase();
+  )[0];
+  const categoryName = category.name.toLowerCase();
 
   const seriesCategoryData = getApiContent(
     `discover/tv?language=pt-BR&page=${page ? page * 2 - 1 : 1}&with_genres=${id}`
