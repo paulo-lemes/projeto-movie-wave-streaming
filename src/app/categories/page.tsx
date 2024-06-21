@@ -18,20 +18,21 @@ export default function Categories() {
           terrores, documentários e mais. Navegue pelas nossas categorias e
           encontre a próxima grande história que vai capturar sua imaginação.
         </p>
-        <div className="flex flex-wrap justify-center gap-1 sm:gap-2 lg:gap-3 mt-5">
+        <ul className="flex flex-wrap justify-center gap-1 sm:gap-2 lg:gap-3 mt-5">
           {genres.map(({ id, name }, i) => (
-            <Link key={id} href={`/category/${id}`}>
-              <button
+            <li key={id}>
+              <Link
+                href={`/category/${id}`}
                 className={`btn lg:text-2xl btn-outline ${
                   i % 2 === 0 && "btn-secondary"
                 }
               `}
               >
                 {name}
-              </button>
-            </Link>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </FadeInContent>
   );
