@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Content } from "@/types";
 import { getApiContent } from "@/api";
 import { FadeInContent } from "@/components/FadeInContent";
@@ -54,18 +54,18 @@ export default async function ContentPage({
     .slice(0, 30);
   if (process.env.NODE_ENV === "development") console.log(filteredCrewContent);
 
-  return personDetails.id ? (
-    <FadeInContent duration={1.5}>
-      <PersonDetails {...personDetails} />
-      <PersonImages {...personImages} name={personDetails.name} />
-      <ContentRow bigCard results={sortedCastContent}>
-        Atuações
-      </ContentRow>
-      <ContentRow bigCard results={filteredCrewContent}>
-        Produções
-      </ContentRow>
-    </FadeInContent>
-  ) : (
-    <Loading />
+  return (
+    <Suspense fallback={<Loading />}>
+      <FadeInContent duration={1.5}>
+        <PersonDetails {...personDetails} />
+        <PersonImages {...personImages} name={personDetails.name} />
+        <ContentRow bigCard results={sortedCastContent}>
+          Atuações
+        </ContentRow>
+        <ContentRow bigCard results={filteredCrewContent}>
+          Produções
+        </ContentRow>
+      </FadeInContent>
+    </Suspense>
   );
 }
