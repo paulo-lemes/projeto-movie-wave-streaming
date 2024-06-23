@@ -174,6 +174,11 @@ export type DataProps = {
   bigCard?: boolean;
 };
 
+export interface InfoContentDetailsProps {
+  title: string;
+  children: ReactNode;
+}
+
 export interface GenreNameProps {
   genreId: number;
   classCSS?: string;
