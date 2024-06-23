@@ -5,6 +5,7 @@ import Image, { StaticImageData } from "next/image";
 import DefaultBackdrop from "./assets/default-backdrop.png";
 import DefaultPoster from "./assets/default-poster.png";
 import DefaultProfilePicture from "./assets/default-profile-picture.png";
+import DefaultProfileBackdrop from "./assets/default-profile-backdrop.png";
 import { motion } from "framer-motion";
 import { FadeInImageProps } from "@/types";
 
@@ -15,6 +16,7 @@ const defaultPaths: {
   backdrop: DefaultBackdrop,
   poster: DefaultPoster,
   profile: DefaultProfilePicture,
+  profileBackdrop: DefaultProfileBackdrop,
 };
 
 export function FadeInImage({

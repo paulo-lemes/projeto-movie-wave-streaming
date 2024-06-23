@@ -38,16 +38,18 @@ export function CardSearchContent({
             : ""
         }`}
       >
-        <FadeInImage
-          src={`https://image.tmdb.org/t/p/original/${
-            backdrop_path || poster_path || profile_path
-          }`}
-          type="backdrop"
-          width={288}
-          height={162}
-          alt={`Capa de ${title || name}`}
-          classCSS={"max-w-full max-h-[162px]"}
-        />
+        <div className="relative">
+          <FadeInImage
+            src={`https://image.tmdb.org/t/p/original/${
+              backdrop_path || poster_path || profile_path
+            }`}
+            type={media_type === "person" ? "profileBackdrop" : "backdrop"}
+            width={288}
+            height={162}
+            alt={`Capa de ${title || name}`}
+            classCSS={"max-w-full max-h-[162px]"}
+          />
+        </div>
         <h3 className="font-semibold line-clamp-2">{title || name}</h3>
         <section className="flex flex-wrap gap-1">
           {!contentType && (
