@@ -17,29 +17,26 @@ export function Footer() {
       <p className="text-gray-300 w-full text-xs lg:text-base sm:text-end sm:mb-2">
         © 2024 Projeto realizado por Paulo Lemes. Todos os direitos reservados.
       </p>
-      <div className="flex gap-4 items-center order-first sm:order-2">
-        <a
-          href="https://github.com/paulo-lemes"
-          target="_blank"
-          className={iconStyle}
-        >
-          <SlSocialGithub size={20} />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/-paulolemes/"
-          target="_blank"
-          className={iconStyle}
-        >
-          <CiLinkedin size={25} />
-        </a>
-        <a
-          href="https://api.whatsapp.com/send/?phone=5511993385824&text&type=phone_number&app_absent=0"
-          target="_blank"
-          className={iconStyle}
-        >
-          <PiWhatsappLogoLight size={23} />
-        </a>
-      </div>
+      <ul className="flex gap-4 items-center order-first sm:order-2">
+        <li className={iconStyle}>
+          <a href="https://github.com/paulo-lemes" target="_blank">
+            <SlSocialGithub size={20} />
+          </a>
+        </li>
+        <li className={iconStyle}>
+          <a href="https://www.linkedin.com/in/-paulolemes/" target="_blank">
+            <CiLinkedin size={25} />
+          </a>
+        </li>
+        <li className={iconStyle}>
+          <a
+            href="https://api.whatsapp.com/send/?phone=5511993385824&text&type=phone_number&app_absent=0"
+            target="_blank"
+          >
+            <PiWhatsappLogoLight size={23} />
+          </a>
+        </li>
+      </ul>
       <ul className="font-bold flex flex-wrap items-center gap-2 sm:gap-6 order-last">
         <li className={linkStyle}>
           <a
@@ -64,7 +61,12 @@ export function Footer() {
             className="flex gap-2"
           >
             The Movie Data Base
-            <Image src={TMDBLogo} alt="TMDB (The Movie Data Base) logo" width={30} height={30} />
+            <Image
+              src={TMDBLogo}
+              alt="TMDB (The Movie Data Base) logo"
+              width={30}
+              height={30}
+            />
           </a>
         </li>
       </ul>
