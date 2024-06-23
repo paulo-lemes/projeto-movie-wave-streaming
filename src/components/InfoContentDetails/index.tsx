@@ -1,12 +1,10 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import { InfoContentDetailsProps } from "@/types";
 
 export function InfoContentDetails({
   title,
   children,
-}: {
-  title: string;
-  children: ReactNode;
-}) {
+}: InfoContentDetailsProps) {
   return (
     <p className="font-bold sm:text-lg">
       {title} <span className="font-normal">{children}</span>
