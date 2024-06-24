@@ -8,14 +8,12 @@ import { CategoryContent } from "@/components/CategoryContent";
 import { StyledTitle } from "@/components/StyledTitle";
 import { PageButton } from "@/components/PageButton";
 import { StreamingContent } from "@/components/StreamingContent";
+import { CategoryPageProps } from "@/types";
 
 export default async function Category({
   params,
   searchParams,
-}: {
-  params: { id: string };
-  searchParams: { page: string | undefined };
-}) {
+}: CategoryPageProps) {
   const { id } = params;
   const page = Number(searchParams.page);
   const category = tmdbGenres.genres.filter(

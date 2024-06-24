@@ -53,3 +53,8 @@ export interface ErrorPageProps {
   error: Error & { digest?: string };
   reset: () => void;
 }
+
+export interface CategoryPageProps {
+  params: { id: string };
+  searchParams: { page: string | undefined };
+}
