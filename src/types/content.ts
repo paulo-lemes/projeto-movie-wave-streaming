@@ -147,6 +147,11 @@ export type VideoProps = {
   id: string;
 };
 
+export interface LinkProviderProps {
+  children: ReactNode;
+  provider_id: number;
+}
+
 export type WatchProviderProps = {
   link: string;
   rent?: Provider[];

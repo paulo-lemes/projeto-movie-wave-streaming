@@ -1,29 +1,24 @@
 "use client";
 
-import React, { ReactNode } from "react";
-import watchProvidersUrl from "../../watch_providers.json";
+import React from "react";
+import { LinkProviderProps } from "@/types";
 import { useSearchParams } from "next/navigation";
+import watchProviders from "../../watch_providers.json";
 import { motion } from "framer-motion";
 
-export function LinkProvider({
-  children,
-  provider_id,
-}: {
-  children: ReactNode;
-  provider_id: number;
-}) {
+export function LinkProvider({ children, provider_id }: LinkProviderProps) {
   const searchTitle = useSearchParams();
   const title = searchTitle.get("title");
 
-  const path = watchProvidersUrl
+  const path = watchProviders
     .filter((provider) => provider.provider_id === provider_id)
-    .map(({ search, url }) => (search ? url + title : url));
+    .map(({ search, url }) => (search ? url + title : url))[0];
 
-  return path[0] ? (
-    <motion.a whileHover={{ scale: 1.15 }} href={path[0]} target="_blank">
+  if (!path) return children;
+
+  return (
+    <motion.a whileHover={{ scale: 1.15 }} href={path} target="_blank">
       {children}
     </motion.a>
-  ) : (
-    <>{children}</>
   );
 }
