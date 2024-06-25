@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Content, DataProps } from "@/types";
+import { randomContent } from "@/utils";
 import { Banner } from "../Banner";
 
 export function PageHighlight({ results, contentType }: DataProps) {
@@ -18,10 +19,8 @@ export function PageHighlight({ results, contentType }: DataProps) {
       : results.filter(({ backdrop_path }) => backdrop_path);
 
     if (highlightContent.length) {
-      setContent(
-        highlightContent[Math.floor(Math.random() * highlightContent.length)]
-      );
-    } else setContent(results[Math.floor(Math.random() * results.length)]);
+      setContent(randomContent(highlightContent));
+    } else setContent(randomContent(results));
   }, [results]);
 
   return (

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Content, DataProps } from "@/types";
+import { randomContent } from "@/utils";
 import { Banner } from "../Banner";
 
 export function SpotlightContent({ results, contentType }: DataProps) {
@@ -16,9 +17,7 @@ export function SpotlightContent({ results, contentType }: DataProps) {
     const spotlightContent = filterWithBackdropAndOverview.length
       ? filterWithBackdropAndOverview
       : results.filter(({ backdrop_path }) => backdrop_path);
-    setContent(
-      spotlightContent[Math.floor(Math.random() * spotlightContent.length)]
-    );
+    setContent(randomContent(spotlightContent));
   }, [results]);
 
   return (
