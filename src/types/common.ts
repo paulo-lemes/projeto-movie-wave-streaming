@@ -58,3 +58,9 @@ export interface CategoryPageProps {
   params: { id: string };
   searchParams: { page: string | undefined };
 }
+
+export interface PageButtonProps {
+  page: number;
+  total_pages: number;
+  otherParam?: string;
+}

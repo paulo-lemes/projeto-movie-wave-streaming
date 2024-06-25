@@ -1,18 +1,11 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import { PageButtonProps } from "@/types";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
-export function PageButton({
-  page,
-  total_pages,
-  otherParam,
-}: {
-  page: number;
-  total_pages: number;
-  otherParam?: string;
-}) {
+export function PageButton({ page, total_pages, otherParam }: PageButtonProps) {
   const pathname = usePathname();
   const previousPageActive = page > 1;
   const nextPageActive = total_pages > page;
