@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { getApiContent } from "@/api";
 import { FadeInContent } from "@/components/FadeInContent";
 import { ContentDetails } from "@/components/ContentDetails";
@@ -66,24 +66,24 @@ export default async function Content({
     console.log(recommendedContent);
   }
 
-  return contentDetails.id ? (
-    <FadeInContent duration={1.5}>
-      <ContentDetails
-        {...contentDetails}
-        classification={contentClassification}
-        images={contentImages}
-        contentType={type}
-      />
-      <CreditsContent
-        {...contentCredits}
-        created_by={contentDetails.created_by}
-        contentType={type}
-      />
-      <WatchProvider {...contentProviders.results.BR} />
-      <ContentVideo {...contentVideos} />
-      <ContentRow {...recommendedContent}>Recomendados</ContentRow>
-    </FadeInContent>
-  ) : (
-    <Loading />
+  return (
+    <Suspense fallback={<Loading />}>
+      <FadeInContent duration={1.5}>
+        <ContentDetails
+          {...contentDetails}
+          classification={contentClassification}
+          images={contentImages}
+          contentType={type}
+        />
+        <CreditsContent
+          {...contentCredits}
+          created_by={contentDetails.created_by}
+          contentType={type}
+        />
+        <WatchProvider {...contentProviders.results.BR} />
+        <ContentVideo {...contentVideos} />
+        <ContentRow {...recommendedContent}>Recomendados</ContentRow>
+      </FadeInContent>
+    </Suspense>
   );
 }
