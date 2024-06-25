@@ -2,6 +2,7 @@ import {
   Certifcation,
   ClassificationMovie,
   ClassificationTV,
+  Content,
   ImageContent,
 } from "@/types";
 import classifications from "../classifications.json";
@@ -22,6 +23,10 @@ export function randomImage(arr: ImageContent[]): ImageContent {
   if (img && img.file_path) return img;
 
   return defaultImageContent;
+}
+
+export function randomContent(arr: Content[]): Content {
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
 export const cardPersonComplement = {
