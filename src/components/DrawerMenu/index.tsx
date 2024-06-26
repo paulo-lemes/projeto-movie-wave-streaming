@@ -1,10 +1,13 @@
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
 import { CiHome, CiMenuBurger } from "react-icons/ci";
+import { TfiClose } from "react-icons/tfi";
 import { MdOutlineLocalMovies } from "react-icons/md";
 import { PiTelevisionSimpleThin } from "react-icons/pi";
 import { TbCategory } from "react-icons/tb";
-import { TfiClose } from "react-icons/tfi";
+
+const iconSize = 20;
+const textStyle = "text-lg";
 
 export function DrawerMenu() {
   return (
@@ -14,7 +17,7 @@ export function DrawerMenu() {
         <div className="flex-none">
           <label
             htmlFor="drawer"
-            aria-label="open sidebar"
+            aria-label="abrir barra lateral"
             className="btn btn-square btn-ghost"
           >
             <CiMenuBurger size={32} />
@@ -24,38 +27,38 @@ export function DrawerMenu() {
       <div className="drawer-side z-20">
         <label
           htmlFor="drawer"
-          aria-label="close sidebar"
+          aria-label="fechar barra lateral"
           className="drawer-overlay"
         ></label>
         <ul className="menu p-4 w-80 min-h-full bg-base-200">
           <label
             htmlFor="drawer"
-            aria-label="close sidebar"
-            className="btn btn-square btn-ghost"
+            aria-label="fechar barra lateral"
+            className="btn btn-square btn-ghost mb-2"
           >
-            <TfiClose />
+            <TfiClose size={16} />
           </label>
           <li>
-            <Link href="/" className="">
-              <CiHome />
+            <Link href="/" className={textStyle}>
+              <CiHome size={iconSize} />
               Home
             </Link>
           </li>
           <li>
-            <Link href="/movies" className="">
-              <MdOutlineLocalMovies />
+            <Link href="/movies" className={textStyle}>
+              <MdOutlineLocalMovies size={iconSize} />
               Filmes
             </Link>
           </li>
           <li>
-            <Link href="/series" className="">
-              <PiTelevisionSimpleThin />
+            <Link href="/series" className={textStyle}>
+              <PiTelevisionSimpleThin size={iconSize} />
               Séries
             </Link>
           </li>
           <li>
-            <Link href="/categories" className="">
-              <TbCategory />
+            <Link href="/categories" className={textStyle}>
+              <TbCategory size={iconSize} />
               Categorias
             </Link>
           </li>
