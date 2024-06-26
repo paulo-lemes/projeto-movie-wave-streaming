@@ -5,7 +5,11 @@
 ![GitHub forks](https://img.shields.io/github/forks/paulo-lemes/projeto-movie-wave-streaming?style=for-the-badge)
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/paulo-lemes/projeto-movie-wave-streaming?style=for-the-badge)
 
-<img src="/movie-wave-demo.gif" alt="Movie Wave website view" border="0" />
+Movie Wave é um projeto baseado em sites de avaliação de filmes, séries e conteúdos relacionados, como IMDb e Letterboxd. Com inspiração no design de Max e outros streamings, o projeto tem como base a TMDB (The Movie Data Base) API e aplica funcionalidades de login/logout, avaliação, exibição de recomendações e possibilita adicionar conteúdos em lista de interesses ou favoritos.
+
+<a href="https://movie-wave-streaming.vercel.app/" target="_blank"><img src="/movie-wave-demo.gif" alt="Movie Wave website view" border="0" /></a>
+
+[Documentação TMDB API](https://developer.themoviedb.org/docs/getting-started)
 
 ## 💻 Tecnologias Utilizadas
 
@@ -14,7 +18,7 @@
 - TailwindCSS
 - DaisyUI
 - Framer-motion
-- Jest & testing library
+- Cypress
 - Outros: classnames, cookie.
 
 ## Como Rodar o Projeto
