@@ -64,3 +64,8 @@ export interface PageButtonProps {
   total_pages: number;
   otherParam?: string;
 }
+
+export interface LogoutButtonProps {
+  classCSS?: string;
+  dataTest?: string;
+}

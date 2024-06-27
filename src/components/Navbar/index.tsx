@@ -108,7 +108,7 @@ export function Navbar() {
             >
               {user ? (
                 <>
-                  <li>
+                  <li data-test="navbar-profile-anchor">
                     <Link href="/profile">
                       <h4 className="text-lg font-bold">
                         {user.name || user.username}
@@ -126,12 +126,14 @@ export function Navbar() {
                     <Link href="/profile#rated">Avaliações</Link>
                   </li>
                   <li>
-                    <LogoutButton />
+                    <LogoutButton dataTest="navbar-logout-button" />
                   </li>
                 </>
               ) : (
-                <li>
-                  <Link href="/login" data-test="login-anchor">Login</Link>
+                <li data-test="login-anchor">
+                  <Link href="/login">
+                    Login
+                  </Link>
                 </li>
               )}
             </ul>

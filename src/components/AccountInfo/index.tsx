@@ -38,7 +38,10 @@ export function AccountInfo({ user }: { user: UserInfo }) {
             height={80}
           />
         </a>
-        <LogoutButton classCSS="btn btn-neutral btn-wide" />
+        <LogoutButton
+          classCSS="btn btn-neutral btn-wide"
+          dataTest="profile-logout-button"
+        />
       </div>
     </div>
   );
