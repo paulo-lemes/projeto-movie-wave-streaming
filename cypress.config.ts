@@ -5,6 +5,7 @@ import * as path from "path";
 dotenv.config({ path: path.resolve(__dirname, ".env.local") });
 
 export default defineConfig({
+  video: true,
   e2e: {
     baseUrl: process.env.CYPRESS_BASE_URL || "http://localhost:3000",
     env: {
