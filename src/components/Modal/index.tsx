@@ -44,7 +44,7 @@ export function Modal() {
         <div className="modal-container max-w-full flex justify-center rounded-lg z-50">
           <div className="modal-box w-full p-8 sm:p-10 max-w-full">
             <div className="flex flex-col justify-center items-center gap-4">
-              <h3 className="text-center font-semibold text-lg sm:text-2xl">
+              <h3 className="text-center font-semibold text-lg sm:text-2xl" data-test="modal-text">
                 {modalText}
               </h3>
               <button

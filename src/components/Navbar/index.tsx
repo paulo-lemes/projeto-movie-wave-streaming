@@ -99,7 +99,7 @@ export function Navbar() {
             <CiBookmarkPlus size={40} className="w-8" />
           </Link>
           <div className="dropdown lg:dropdown-hover dropdown-end">
-            <div tabIndex={0} role="button">
+            <div tabIndex={0} role="button" data-test="user-options-button">
               <CiUser size={40} className="w-8" />
             </div>
             <ul
@@ -131,7 +131,7 @@ export function Navbar() {
                 </>
               ) : (
                 <li>
-                  <Link href="/login">Login</Link>
+                  <Link href="/login" data-test="login-anchor">Login</Link>
                 </li>
               )}
             </ul>
