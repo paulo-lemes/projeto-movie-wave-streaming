@@ -81,6 +81,7 @@ export function Login({ children }: ChildrenProps) {
                 name="username"
                 id="username"
                 className="w-[calc(100%-16px)] rounded-lg pl-1"
+                data-test="username-input"
               />
               <FaUser size={16} className="mx-[2px]" />
             </label>
@@ -93,6 +94,7 @@ export function Login({ children }: ChildrenProps) {
                 name="password"
                 id="password"
                 className="w-[calc(100%-38px)] rounded-lg pl-1"
+                data-test="password-input"
               />
               <button
                 type="button"
@@ -107,7 +109,11 @@ export function Login({ children }: ChildrenProps) {
               <MdOutlineKey size={20} />
             </label>
           </div>
-          <button type="submit" className="btn btn-wide btn-secondary">
+          <button
+            type="submit"
+            className="btn btn-wide btn-secondary"
+            data-test="enter-button"
+          >
             Entrar
           </button>
           <p className="text-center flex flex-wrap justify-center gap-1">
