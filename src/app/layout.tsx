@@ -25,13 +25,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" data-theme="forest">
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `history.scrollRestoration = "manual"`,
-          }}
-        />
-      </head>
       <body className={poppins.className}>
         <AuthProvider>
           <ModalProvider>
@@ -41,6 +34,11 @@ export default function RootLayout({
             <Footer />
           </ModalProvider>
         </AuthProvider>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `history.scrollRestoration = "manual"`,
+          }}
+        />
       </body>
     </html>
   );
