@@ -1,5 +1,8 @@
 describe("Login spec", () => {
-  beforeEach(() => cy.visit("/"));
+  beforeEach(() => {
+    cy.visit("/");
+    cy.getCookie("auth").should("not.exist");
+  });
 
   it("should not log in with empty credentials", () => {
     cy.getByData("user-options-button").click();
@@ -11,6 +14,7 @@ describe("Login spec", () => {
     cy.getByData("modal-text")
       .should("exist")
       .and("have.text", "Usuário e/ou senha inválidos");
+    cy.getCookie("auth").should("not.exist");
   });
 
   it("should not log in with invalid credentials", () => {
@@ -25,6 +29,7 @@ describe("Login spec", () => {
     cy.getByData("modal-text")
       .should("exist")
       .and("have.text", "Usuário e/ou senha inválidos");
+    cy.getCookie("auth").should("not.exist");
   });
 
   it("should log in with valid credentials", () => {
@@ -42,5 +47,7 @@ describe("Login spec", () => {
     cy.getByData("close-modal").click();
 
     cy.location("pathname").should("eq", "/");
+
+    cy.getCookie("auth").should("exist");
   });
 });

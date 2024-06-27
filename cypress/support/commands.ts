@@ -16,15 +16,19 @@ Cypress.Commands.add("login", () => {
   const username = Cypress.env("username");
   const password = Cypress.env("password");
 
+  cy.getCookie("auth").should("not.exist");
   cy.getByData("user-options-button").click();
   cy.getByData("login-anchor").click();
+  cy.url().should("include", "/login");
   cy.getByData("username-input").type(username);
   cy.getByData("password-input").type(password);
   cy.getByData("enter-button").click();
   cy.getByData("close-modal").click();
-})
+  cy.url().should("include", "/");
+  cy.getCookie("auth").should("exist");
+});
 
 Cypress.Commands.add("verifyPage", (selector, path) => {
   cy.getByData(selector).click();
-  cy.url().should("include", "/" + path)
-})
+  cy.url().should("include", "/" + path);
+});
