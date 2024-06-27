@@ -2,9 +2,10 @@
 
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useModal } from "@/app/contexts/ModalContext";
+import { LogoutButtonProps } from "@/types";
 import { CiLogout } from "react-icons/ci";
 
-export function LogoutButton({ classCSS }: { classCSS?: string }) {
+export function LogoutButton({ classCSS, dataTest }: LogoutButtonProps) {
   const { logout } = useAuth();
   const { openModal, setRedirectAfterClose } = useModal();
 
@@ -21,6 +22,7 @@ export function LogoutButton({ classCSS }: { classCSS?: string }) {
     <button
       onClick={handleLogout}
       className={`${classCSS || ""} flex items-center gap-2`}
+      data-test={dataTest}
     >
       <p>Logout</p>
       <CiLogout />
