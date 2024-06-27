@@ -19,6 +19,7 @@ export function DrawerMenu() {
             htmlFor="drawer"
             aria-label="abrir barra lateral"
             className="btn btn-square btn-ghost"
+            data-test="menu-burger-button"
           >
             <CiMenuBurger size={32} />
           </label>
@@ -35,28 +36,29 @@ export function DrawerMenu() {
             htmlFor="drawer"
             aria-label="fechar barra lateral"
             className="btn btn-square btn-ghost mb-2"
+            data-test="close-menu-burger"
           >
             <TfiClose size={16} />
           </label>
-          <li>
+          <li data-test="home-anchor-menu">
             <Link href="/" className={textStyle}>
               <CiHome size={iconSize} />
               Home
             </Link>
           </li>
-          <li>
+          <li data-test="movies-anchor-menu">
             <Link href="/movies" className={textStyle}>
               <MdOutlineLocalMovies size={iconSize} />
               Filmes
             </Link>
           </li>
-          <li>
+          <li data-test="series-anchor-menu">
             <Link href="/series" className={textStyle}>
               <PiTelevisionSimpleThin size={iconSize} />
               Séries
             </Link>
           </li>
-          <li>
+          <li data-test="categories-anchor-menu">
             <Link href="/categories" className={textStyle}>
               <TbCategory size={iconSize} />
               Categorias

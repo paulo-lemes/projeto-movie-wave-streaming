@@ -39,7 +39,7 @@ export function Navbar() {
     >
       <div className="flex w-full items-center justify-between p-2 lg:px-8 lg:py-4 gap-2 sm:gap-0">
         <DrawerMenu />
-        <Link href="/">
+        <Link href="/" data-test="logo-home-anchor">
           <Image
             src={LogoWhite}
             alt="Logotipo da Movie Wave"
@@ -49,7 +49,7 @@ export function Navbar() {
         </Link>
         <nav>
           <ul className="hidden sm:flex justify-center w-max gap-4">
-            <li>
+            <li data-test="home-anchor">
               <Link
                 href="/"
                 className={`${navItemStyle} ${
@@ -59,7 +59,7 @@ export function Navbar() {
                 Home
               </Link>
             </li>
-            <li>
+            <li data-test="movies-anchor">
               <Link
                 href="/movies"
                 className={`${navItemStyle} ${
@@ -69,7 +69,7 @@ export function Navbar() {
                 Filmes
               </Link>
             </li>
-            <li>
+            <li data-test="series-anchor">
               <Link
                 href="/series"
                 className={`${navItemStyle} ${
@@ -79,7 +79,7 @@ export function Navbar() {
                 Séries
               </Link>
             </li>
-            <li>
+            <li data-test="categories-anchor">
               <Link
                 href="/categories"
                 className={`${navItemStyle} ${
@@ -92,10 +92,14 @@ export function Navbar() {
           </ul>
         </nav>
         <div className="flex gap-2">
-          <Link href="/search" title="Pesquisa">
+          <Link href="/search" title="Pesquisa" data-test="search-anchor">
             <CiSearch size={40} className="w-8" />
           </Link>
-          <Link href="/profile#watchlist" title="Lista de interesses">
+          <Link
+            href="/profile#watchlist"
+            title="Lista de interesses"
+            data-test="watchlist-anchor"
+          >
             <CiBookmarkPlus size={40} className="w-8" />
           </Link>
           <div className="dropdown lg:dropdown-hover dropdown-end">
@@ -116,13 +120,13 @@ export function Navbar() {
                       <p className="text-xs font-light">Ver perfil</p>
                     </Link>
                   </li>
-                  <li>
+                  <li data-test="navbar-recommended-anchor">
                     <Link href="/profile#recommended">Recomendações</Link>
                   </li>
-                  <li>
+                  <li data-test="navbar-favorite-anchor">
                     <Link href="/profile#favorite">Favoritos</Link>
                   </li>
-                  <li>
+                  <li data-test="navbar-rated-anchor">
                     <Link href="/profile#rated">Avaliações</Link>
                   </li>
                   <li>
@@ -131,9 +135,7 @@ export function Navbar() {
                 </>
               ) : (
                 <li data-test="login-anchor">
-                  <Link href="/login">
-                    Login
-                  </Link>
+                  <Link href="/login">Login</Link>
                 </li>
               )}
             </ul>

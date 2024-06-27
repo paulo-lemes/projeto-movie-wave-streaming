@@ -4,6 +4,7 @@ declare namespace Cypress {
   interface Chainable<Subject = any> {
     getByData(selector: string): Chainable<any>;
     login(): Chainable<any>;
+    verifyPage(selector: string, path: string): Chainable<any>;
   }
 }
 
@@ -21,4 +22,9 @@ Cypress.Commands.add("login", () => {
   cy.getByData("password-input").type(password);
   cy.getByData("enter-button").click();
   cy.getByData("close-modal").click();
+})
+
+Cypress.Commands.add("verifyPage", (selector, path) => {
+  cy.getByData(selector).click();
+  cy.url().should("include", "/" + path)
 })
