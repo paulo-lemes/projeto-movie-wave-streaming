@@ -50,6 +50,7 @@ export function Modal() {
               <button
                 className="btn btn-sm sm:btn-md btn-secondary btn-outline"
                 onClick={closeModal}
+                data-test="close-modal"
               >
                 Fechar
               </button>

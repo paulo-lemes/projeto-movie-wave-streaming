@@ -1,17 +1,19 @@
 describe("Login spec", () => {
-  beforeEach(() => cy.visit("http://localhost:3000"));
+  beforeEach(() => cy.visit("/"));
 
-  it("should not pass with empty credentials", () => {
+  it("should not log in with empty credentials", () => {
     cy.getByData("user-options-button").click();
     cy.getByData("login-anchor").click();
 
     cy.location("pathname").should("eq", "/login");
 
     cy.getByData("enter-button").click();
-    cy.getByData("modal-text").contains("Usuário e/ou senha inválidos");
+    cy.getByData("modal-text")
+      .should("exist")
+      .and("have.text", "Usuário e/ou senha inválidos");
   });
 
-  it("should not pass with invalid credentials", () => {
+  it("should not log in with invalid credentials", () => {
     cy.getByData("user-options-button").click();
     cy.getByData("login-anchor").click();
 
@@ -20,6 +22,25 @@ describe("Login spec", () => {
     cy.getByData("username-input").type("abc");
     cy.getByData("password-input").type("123");
     cy.getByData("enter-button").click();
-    cy.getByData("modal-text").contains("Usuário e/ou senha inválidos");
+    cy.getByData("modal-text")
+      .should("exist")
+      .and("have.text", "Usuário e/ou senha inválidos");
+  });
+
+  it.only("should log in with valid credentials", () => {
+    cy.getByData("user-options-button").click();
+    cy.getByData("login-anchor").click();
+
+    cy.location("pathname").should("eq", "/login");
+
+    cy.getByData("username-input").type(Cypress.env("username"));
+    cy.getByData("password-input").type(Cypress.env("password"));
+    cy.getByData("enter-button").click();
+    cy.getByData("modal-text")
+    .should("exist")
+    .and("have.text", "Login realizado com sucesso!");
+    cy.getByData("close-modal").click();
+
+    cy.location("pathname").should("eq", "/");
   });
 });
