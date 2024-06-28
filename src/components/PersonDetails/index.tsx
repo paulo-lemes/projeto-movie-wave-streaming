@@ -33,7 +33,7 @@ export function PersonDetails({
       {profile_path && (
         <div className="relative shadow-2xl shadow-neutral">
           <FadeInImage
-            src={`https://image.tmdb.org/t/p/original/${profile_path}`}
+            src={profile_path}
             type="profile"
             alt={`Foto de ${name}`}
             classCSS="max-w-[250px] lg:max-w-[300px] lg:min-w-[300px]"

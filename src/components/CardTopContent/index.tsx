@@ -63,7 +63,7 @@ export function CardTopContent({
           )}
         </motion.h5>
         <FadeInImage
-          src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+          src={poster_path}
           type="poster"
           alt={`Poster de ${title || name}`}
           title={title || name}

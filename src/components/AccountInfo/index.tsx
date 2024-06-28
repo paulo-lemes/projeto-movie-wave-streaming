@@ -10,7 +10,7 @@ export function AccountInfo({ user }: { user: UserInfo }) {
     <div className="mt-28 flex flex-wrap items-center px-6 sm:px-10 gap-6">
       <div className="relative">
         <FadeInImage
-          src={`https://image.tmdb.org/t/p/original/${user.avatar.tmdb.avatar_path}`}
+          src={user.avatar.tmdb.avatar_path || ""}
           alt="Foto do perfil"
           width={150}
           height={150}

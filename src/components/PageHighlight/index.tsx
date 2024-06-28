@@ -23,21 +23,21 @@ export function PageHighlight({ results, contentType }: DataProps) {
     } else setContent(randomContent(results));
   }, [results]);
 
-  return (
+  return content ? (
     <Banner
-      backdrop={content?.backdrop_path}
-      title={content?.title || content?.name}
+      backdrop={content.backdrop_path}
+      title={content.title || content.name}
     >
       <div className="flex flex-col gap-2 sm:w-[60vw] lg:w-[40vw]">
         <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-4 py-1.5">
-          {(content?.title || content?.name)?.toUpperCase()}
+          {(content.title || content.name)?.toUpperCase()}
         </h2>
-        {content?.overview && (
-          <p className="line-clamp-3 mb-2">{content?.overview}</p>
+        {content.overview && (
+          <p className="line-clamp-3 mb-2">{content.overview}</p>
         )}
         <Link
-          href={`/${contentType}/${content?.id}?title=${(
-            content?.title || content?.name
+          href={`/${contentType}/${content.id}?title=${(
+            content.title || content.name
           )?.toLowerCase()}`}
           className="btn btn-secondary w-max"
         >
@@ -45,5 +45,9 @@ export function PageHighlight({ results, contentType }: DataProps) {
         </Link>
       </div>
     </Banner>
+  ) : (
+    <div
+      className={`relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full flex px-4 sm:px-16 mb-6`}
+    ></div>
   );
 }

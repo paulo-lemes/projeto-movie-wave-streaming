@@ -35,7 +35,7 @@ export interface FadeInImageProps {
 
 export interface BannerProps {
   children: ReactNode;
-  backdrop?: string;
+  backdrop: string;
   title?: string;
   spotlight?: boolean;
 }
