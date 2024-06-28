@@ -1,7 +1,7 @@
 describe("Logout spec", () => {
   beforeEach(() => {
-    cy.visit("/");
     cy.login();
+    cy.visit("/");
   });
 
   it("should log out using navbar-logout-button", () => {
@@ -18,9 +18,9 @@ describe("Logout spec", () => {
   it("should log out using profile logout-button", () => {
     cy.getByData("user-options-button").click();
     cy.getByData("navbar-profile-anchor").click();
-    
+
     cy.location("pathname").should("eq", "/profile");
-    
+
     cy.getByData("profile-logout-button").click();
     cy.getByData("modal-text")
       .should("exist")
