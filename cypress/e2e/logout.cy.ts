@@ -15,9 +15,9 @@ describe("Logout spec", () => {
     cy.location("pathname").should("eq", "/login");
   });
 
-  it("should log out using profile logout-button", () => {
+  it("should log out using profile-logout-button", () => {
     cy.getByData("user-options-button").click();
-    cy.getByData("navbar-profile-anchor").click();
+    cy.getByData("profile-anchor").click();
 
     cy.location("pathname").should("eq", "/profile");
 

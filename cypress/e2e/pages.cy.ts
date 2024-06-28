@@ -36,3 +36,51 @@ describe("Public pages spec", () => {
     });
   });
 });
+
+describe("Private profile page spec", () => {
+  it("should render pages properly", () => {
+    cy.login();
+    cy.visit("/");
+
+    cy.verifyPage("watchlist-anchor", "profile#watchlist");
+    cy.getByData("profile-section-title").should(
+      "contain.text",
+      "Lista de interesses"
+    );
+
+    cy.getByData("user-options-button").click();
+    cy.verifyPage("recommended-anchor", "profile#recommended");
+    cy.getByData("profile-section-title").should(
+      "contain.text",
+      "Recomendações"
+    );
+
+    cy.verifyPage("favorite-anchor", "profile#favorite");
+    cy.getByData("profile-section-title").should("contain.text", "Favoritos");
+
+    cy.verifyPage("rated-anchor", "profile#rated");
+    cy.getByData("profile-section-title").should("contain.text", "Avaliações");
+  });
+
+  it("should redirect without login", () => {
+    cy.visit("/");
+    cy.visit("/profile");
+    cy.url().should("include", "/login");
+    
+    cy.visit("/");
+    cy.visit("/profile#recommended");
+    cy.url().should("include", "/login");
+    
+    cy.visit("/");
+    cy.visit("/profile#watchlist");
+    cy.url().should("include", "/login");
+    
+    cy.visit("/");
+    cy.visit("/profile#favorite");
+    cy.url().should("include", "/login");
+    
+    cy.visit("/");
+    cy.visit("/profile#rated");
+    cy.url().should("include", "/login");
+  });
+});

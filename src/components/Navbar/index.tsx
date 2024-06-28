@@ -112,7 +112,7 @@ export function Navbar() {
             >
               {user ? (
                 <>
-                  <li data-test="navbar-profile-anchor">
+                  <li data-test="profile-anchor">
                     <Link href="/profile">
                       <h4 className="text-lg font-bold">
                         {user.name || user.username}
@@ -120,13 +120,13 @@ export function Navbar() {
                       <p className="text-xs font-light">Ver perfil</p>
                     </Link>
                   </li>
-                  <li data-test="navbar-recommended-anchor">
+                  <li data-test="recommended-anchor">
                     <Link href="/profile#recommended">Recomendações</Link>
                   </li>
-                  <li data-test="navbar-favorite-anchor">
+                  <li data-test="favorite-anchor">
                     <Link href="/profile#favorite">Favoritos</Link>
                   </li>
-                  <li data-test="navbar-rated-anchor">
+                  <li data-test="rated-anchor">
                     <Link href="/profile#rated">Avaliações</Link>
                   </li>
                   <li>

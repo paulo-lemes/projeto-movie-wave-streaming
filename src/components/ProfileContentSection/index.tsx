@@ -17,7 +17,7 @@ export function ProfileContentSection({
   return (
     <section className="-mt-4 pt-16 sm:pt-20" id={toggle}>
       <div className="px-3 sm:px-10 flex items-center gap-1">
-        <h3 className="font-bold text-2xl sm:text-3xl">{children}</h3>
+        <h3 className="font-bold text-2xl sm:text-3xl" data-test="profile-section-title">{children}</h3>
         {toggle === "recommended" && <BsTvFill size={23} />}
         {toggle === "watchlist" && <BsBookmarkCheckFill size={23} />}
         {toggle === "favorite" && <BsBookmarkHeartFill size={23} />}
