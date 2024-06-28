@@ -26,7 +26,7 @@ export function CardPerson({
       <Link href={`/person/${id}`}>
         <div className="relative">
           <FadeInImage
-            src={`https://image.tmdb.org/t/p/original/${profile_path}`}
+            src={profile_path}
             type="profile"
             width={430}
             height={646}

@@ -20,7 +20,7 @@ export function PersonImages({ name, profiles }: PersonImagesProps) {
               classCSS="relative"
             >
               <FadeInImage
-                src={`https://image.tmdb.org/t/p/original/${file_path}`}
+                src={file_path}
                 alt={`Foto de ${name}`}
                 width={width}
                 height={height}

@@ -37,13 +37,13 @@ export function FadeInImage({
     <>
       {!error ? (
         <Image
-          src={src}
+          src={`https://image.tmdb.org/t/p/original/${src}`}
           alt={alt}
           width={width}
           height={height}
           unoptimized
           onLoad={() => setLoading(false)}
-          onError={() => setError(true)}
+          onError={() => (src ? null : setError(true))}
           className={`${classCSS} object-cover transition-opacity ease-in duration-700 ${
             loading ? "invisible opacity-0" : "visible opacity-100"
           }`}

@@ -72,7 +72,7 @@ export function ContentDetails({
         {poster_path && (
           <div className="relative max-w-[262.5px]">
             <FadeInImage
-              src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+              src={poster_path}
               type="poster"
               alt={`Poster de ${title || name}`}
               width={225}

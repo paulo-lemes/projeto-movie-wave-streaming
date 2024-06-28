@@ -40,9 +40,7 @@ export function CardSearchContent({
       >
         <div className="relative">
           <FadeInImage
-            src={`https://image.tmdb.org/t/p/original/${
-              backdrop_path || poster_path || profile_path
-            }`}
+            src={backdrop_path || poster_path || profile_path}
             type={media_type === "person" ? "profileBackdrop" : "backdrop"}
             width={288}
             height={162}

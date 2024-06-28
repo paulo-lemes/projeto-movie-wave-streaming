@@ -2,7 +2,7 @@ import React from "react";
 import { BannerProps } from "@/types";
 import { FadeInImage } from "../FadeInImage";
 
-const divHighlightStyle = "items-end mb-6";
+const divHighlightStyle = "items-end ";
 const divSpotlightStyle = "items-center my-10 shadow-top-bottom";
 const imgHighlightStyle = "h-[100vh] w-full mask-top-bottom";
 const imgSpotlightStyle = "h-full w-[90vw] mask-left-right";
@@ -15,7 +15,7 @@ export function Banner({ children, backdrop, title, spotlight }: BannerProps) {
     `}
     >
       <FadeInImage
-        src={`https://image.tmdb.org/t/p/original/${backdrop}`}
+        src={backdrop}
         type="banner"
         alt={`Capa de ${title}`}
         width={1440}
