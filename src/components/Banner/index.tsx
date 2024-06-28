@@ -2,7 +2,7 @@ import React from "react";
 import { BannerProps } from "@/types";
 import { FadeInImage } from "../FadeInImage";
 
-const divHighlightStyle = "items-end ";
+const divHighlightStyle = "items-end mb-6";
 const divSpotlightStyle = "items-center my-10 shadow-top-bottom";
 const imgHighlightStyle = "h-[100vh] w-full mask-top-bottom";
 const imgSpotlightStyle = "h-full w-[90vw] mask-left-right";
