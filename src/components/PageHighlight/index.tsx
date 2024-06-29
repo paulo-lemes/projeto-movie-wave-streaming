@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Content, DataProps } from "@/types";
 import { randomContent } from "@/utils";
 import { Banner } from "../Banner";
+import { Loading } from "../Loading";
 
 export function PageHighlight({ results, contentType }: DataProps) {
   const [content, setContent] = useState<Content | null>(null);
@@ -46,8 +47,8 @@ export function PageHighlight({ results, contentType }: DataProps) {
       </div>
     </Banner>
   ) : (
-    <div
-      className={`relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full flex px-4 sm:px-16 mb-6`}
-    ></div>
+    <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full flex justify-center px-4 sm:px-16 mb-6">
+      <Loading />
+    </div>
   );
 }
