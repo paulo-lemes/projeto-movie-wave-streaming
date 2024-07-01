@@ -93,9 +93,17 @@ export function ToggleContentAccount({
         onClick={handleClick}
       >
         {isInAccount ? (
-          <PiHeartStraightFill size={30} className="fill-secondary" />
+          <PiHeartStraightFill
+            size={30}
+            className="fill-secondary"
+            data-test="favorite-filled-icon"
+          />
         ) : (
-          <PiHeartStraightLight size={30} className="fill-secondary" />
+          <PiHeartStraightLight
+            size={30}
+            className="fill-secondary"
+            data-test="favorite-unfilled-icon"
+          />
         )}
       </button>
     );
@@ -117,9 +125,17 @@ export function ToggleContentAccount({
         onClick={handleClick}
       >
         {isInAccount ? (
-          <PiBookmarkSimpleFill size={30} className="fill-secondary" />
+          <PiBookmarkSimpleFill
+            size={30}
+            className="fill-secondary"
+            data-test="watchlist-filled-icon"
+          />
         ) : (
-          <PiBookmarkSimpleLight size={30} className="fill-secondary" />
+          <PiBookmarkSimpleLight
+            size={30}
+            className="fill-secondary"
+            data-test="watchlist-unfilled-icon"
+          />
         )}
       </button>
     );
