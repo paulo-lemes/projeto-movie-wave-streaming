@@ -85,7 +85,7 @@ export function ContentRow({
             onScroll={(e) => handleScroll(e)}
             ref={carousel}
           >
-            <div className="w-max flex gap-3 py-3">
+            <div className="w-max flex gap-3 py-3" data-test="content-row">
               {top10
                 ? results?.map((content, i) => (
                     <CardTopContent
