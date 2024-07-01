@@ -19,4 +19,16 @@ describe("Watchlist content spec", () => {
       cy.getByData("watchlist-unfilled-icon").should("exist");
     });
   });
+
+  context("Without login", () => {
+    it("shouldn't allow toggle watchlist action", () => {
+      cy.visit("/");
+      cy.getByData("content-row").eq(1).find("a").eq(0).click();
+      cy.url().should("include", "/movie");
+      cy.getByData("watchlist-unfilled-icon").should("exist").click();
+      cy.verifyAndCloseModal(
+        "Faça login para conseguir favoritar e adicionar conteúdos à sua lista"
+      );
+    });
+  });
 });
