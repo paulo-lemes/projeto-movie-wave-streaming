@@ -2,7 +2,7 @@ describe("Rating content spec", () => {
   beforeEach(() => {
     cy.login();
     cy.visit("/");
-    cy.getByData("content-row").eq(0).find("a").eq(0).click();
+    cy.getByData("content-row").eq(1).find("a").eq(0).click();
     cy.url().should("include", "/movie");
   });
 
@@ -15,6 +15,18 @@ describe("Rating content spec", () => {
     cy.getByData("send-rating-button").click();
     cy.verifyAndCloseModal("Avaliação feita!");
     cy.getByData("user-rating").should("contain.text", "10/10");
+  });
+
+  it("should change a rating properly", () => {
+    cy.getByData("change-rating-button")
+      .should("exist")
+      .and("contain.text", "Alterar")
+      .click();
+    cy.wait(100);
+    cy.getByData("rating-star").eq(0).click();
+    cy.getByData("send-rating-button").click();
+    cy.verifyAndCloseModal("Avaliação atualizada!");
+    cy.getByData("user-rating").should("contain.text", "1/10");
   });
 
   it("should delete a rating properly", () => {
