@@ -34,6 +34,14 @@ export function RatingContent({ id, contentType }: RatingContentProps) {
   };
 
   const handleRatingAction = async (method: string) => {
+    setRedirectAfterClose(null);
+    if (rating == 0) {
+      openModal(
+        "Selecione a estrela de acordo com a nota para conseguir avaliar o conteúdo"
+      );
+      return;
+    }
+
     const postContent = await fetch("/api/accountRating", {
       method: method,
       body: JSON.stringify({
@@ -46,7 +54,6 @@ export function RatingContent({ id, contentType }: RatingContentProps) {
     const response = await postContent.json();
     if (process.env.NODE_ENV === "development") console.log(response);
 
-    setRedirectAfterClose(null);
     setShowRatingStars((prev) => !prev);
 
     if (response && response.success) {
@@ -109,6 +116,7 @@ export function RatingContent({ id, contentType }: RatingContentProps) {
             isRated ? "invisible opacity-0" : "visible opacity-100"
           }`}
           onClick={handleClick}
+          data-test="rate-button"
         >
           <MdStarOutline className="fill-secondary" size={25} />
           <p className="text-sm text-secondary mt-1">Avaliar</p>
@@ -121,7 +129,10 @@ export function RatingContent({ id, contentType }: RatingContentProps) {
         >
           <p className="font-bold sm:text-lg mt-1">Sua avaliação:</p>
           <MdStarRate className="fill-secondary" size={25} />
-          <p className="font-bold text-secondary sm:text-lg mt-1">
+          <p
+            className="font-bold text-secondary sm:text-lg mt-1"
+            data-test="user-rating"
+          >
             {rating}/10
           </p>
           <button
@@ -129,6 +140,7 @@ export function RatingContent({ id, contentType }: RatingContentProps) {
               isRated === null ? "invisible opacity-0" : "visible opacity-100"
             }`}
             onClick={handleClick}
+            data-test="change-rating-button"
           >
             <p className="text-sm text-secondary mt-1">- Alterar</p>
           </button>

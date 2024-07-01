@@ -15,7 +15,7 @@ export function RatingStars({
   handleStarSelection,
 }: RatingStarsProps) {
   const [hover, setHover] = useState<number | null>(null);
-  const totalStars = 11;
+  const totalStars = 10;
 
   useEffect(() => {
     isOpen
@@ -56,7 +56,7 @@ export function RatingStars({
           </h3>
           <div className="flex">
             {[...Array(totalStars)].map((star, index) => {
-              const currentRating = index;
+              const currentRating = index + 1;
 
               return (
                 <label
@@ -82,6 +82,7 @@ export function RatingStars({
                     }`}
                     onMouseEnter={() => setHover(currentRating)}
                     onMouseLeave={() => setHover(null)}
+                    data-test="rating-star"
                   >
                     &#9733;
                   </span>
@@ -95,6 +96,7 @@ export function RatingStars({
                 isRated ? "sm:w-44" : "sm:btn-wide"
               }`}
               onClick={() => handleAction("POST")}
+              data-test="send-rating-button"
             >
               Enviar
             </button>
@@ -104,6 +106,7 @@ export function RatingStars({
                   isRated ? "sm:w-44" : "sm:btn-wide"
                 }`}
                 onClick={() => handleAction("DELETE")}
+                data-test="delete-rating-button"
               >
                 Excluir
               </button>

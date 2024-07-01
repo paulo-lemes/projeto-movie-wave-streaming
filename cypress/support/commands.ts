@@ -4,7 +4,9 @@ declare namespace Cypress {
   interface Chainable<Subject = any> {
     getByData(selector: string): Chainable<any>;
     login(): Chainable<any>;
+    logout(): Chainable<any>;
     verifyPage(selector: string, path: string): Chainable<any>;
+    verifyAndCloseModal(text: string): Chainable<any>;
   }
 }
 
@@ -38,7 +40,23 @@ Cypress.Commands.add("login", () => {
   );
 });
 
+Cypress.Commands.add("logout", () => {
+  cy.getByData("user-options-button").click();
+  cy.getByData("navbar-logout-button").click();
+  cy.getByData("modal-text")
+    .should("exist")
+    .and("have.text", "Logout realizado com sucesso");
+  cy.getByData("close-modal").click();
+
+  cy.location("pathname").should("eq", "/login");
+});
+
 Cypress.Commands.add("verifyPage", (selector, path) => {
   cy.getByData(selector).click();
   cy.url().should("include", "/" + path);
+});
+
+Cypress.Commands.add("verifyAndCloseModal", (text) => {
+  cy.getByData("modal-text").should("exist").and("have.text", text);
+  cy.getByData("close-modal").click();
 });
