@@ -7,6 +7,11 @@ import { randomContent } from "@/utils";
 import { Banner } from "../Banner";
 import { Loading } from "../Loading";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import { GoDot, GoDotFill } from "react-icons/go";
+
+const changeContentBtnStyle =
+  "absolute h-full opacity-15 hover:opacity-100 z-10";
+const dotIconStyle = "fill-secondary opacity-40 hover:opacity-100";
 
 export function PageHighlight({ results, contentType }: DataProps) {
   const [content, setContent] = useState<Content | null>(null);
@@ -35,6 +40,11 @@ export function PageHighlight({ results, contentType }: DataProps) {
     }
   };
 
+  const selectContent = (id: number) => {
+    const content = carousel?.find((content) => content.id === id);
+    content ? setContent(content) : null;
+  };
+
   useEffect(() => {
     const filterWithBackdropAndOverview = results.filter(
       ({ backdrop_path, overview }) => backdrop_path && overview
@@ -53,44 +63,66 @@ export function PageHighlight({ results, contentType }: DataProps) {
     }
   }, [results]);
 
-  return content ? (
-    <Banner
-      backdrop={content.backdrop_path}
-      title={content.title || content.name}
-    >
+  return content && carousel ? (
+    <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full mb-6">
       <button
         type="button"
         title="Trocar conteúdo"
-        className="absolute left-1 h-full opacity-30 hover:opacity-100"
+        className={`${changeContentBtnStyle} left-0 sm:left-1`}
         onClick={() => handleContentChange("prev")}
       >
         <SlArrowLeft size={17} />
       </button>
-      <div className="flex flex-col gap-2 sm:w-[60vw] lg:w-[40vw]">
-        <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-4 py-1.5">
-          {(content.title || content.name)?.toUpperCase()}
-        </h2>
-        {content.overview && (
-          <p className="line-clamp-3 mb-2">{content.overview}</p>
-        )}
-        <Link
-          href={`/${contentType}/${content.id}?title=${(
-            content.title || content.name
-          )?.toLowerCase()}`}
-          className="btn btn-secondary w-max"
-        >
-          Veja detalhes
-        </Link>
-      </div>
       <button
         type="button"
         title="Trocar conteúdo"
-        className="absolute right-1 h-full opacity-30 hover:opacity-100"
+        className={`${changeContentBtnStyle} right-0 sm:right-1`}
         onClick={() => handleContentChange("next")}
       >
         <SlArrowRight size={17} />
       </button>
-    </Banner>
+      {carousel.length > 1 && (
+        <div className="absolute -bottom-6 right-0 left-0 hidden sm:flex sm:justify-center">
+          <div className="flex justify-center w-max">
+            {carousel.map(({ id }) => (
+              <button
+                key={id}
+                type="button"
+                title="Selecionar conteúdo"
+                onClick={() => selectContent(id)}
+              >
+                {id === content.id ? (
+                  <GoDotFill className={dotIconStyle} />
+                ) : (
+                  <GoDot className={dotIconStyle} />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+      <Banner
+        backdrop={content.backdrop_path}
+        title={content.title || content.name}
+      >
+        <div className="flex flex-col gap-2 sm:w-[60vw] lg:w-[40vw]">
+          <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-4 py-1.5">
+            {(content.title || content.name)?.toUpperCase()}
+          </h2>
+          {content.overview && (
+            <p className="line-clamp-3 mb-2">{content.overview}</p>
+          )}
+          <Link
+            href={`/${contentType}/${content.id}?title=${(
+              content.title || content.name
+            )?.toLowerCase()}`}
+            className="btn btn-secondary w-max"
+          >
+            Veja detalhes
+          </Link>
+        </div>
+      </Banner>
+    </div>
   ) : (
     <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full flex justify-center px-4 sm:px-16 mb-6">
       <Loading />
