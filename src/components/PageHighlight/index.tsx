@@ -9,13 +9,13 @@ import { Loading } from "../Loading";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { GoDot, GoDotFill } from "react-icons/go";
 
-const changeContentBtnStyle =
-  "absolute h-full opacity-15 hover:opacity-100 z-10";
+const changeContentBtnStyle = "absolute h-full opacity-15 hover:opacity-100 z-10";
 const dotIconStyle = "fill-secondary opacity-40 hover:opacity-100";
 
 export function PageHighlight({ results, contentType }: DataProps) {
   const [content, setContent] = useState<Content | null>(null);
   const [carousel, setCarousel] = useState<Content[] | null>(null);
+  const [autoChange, setAutoChange] = useState<boolean>(true);
 
   const handleContentChange = (order: string) => {
     if (carousel && content) {
@@ -64,26 +64,33 @@ export function PageHighlight({ results, contentType }: DataProps) {
   }, [results]);
 
   useEffect(() => {
-    setTimeout(() => {
-      handleContentChange("next")
-    }, 10000)
-  }, [content, carousel])
+    if (autoChange)
+      setTimeout(() => {
+        handleContentChange("next");
+      }, 13000);
+  }, [content, carousel]);
 
   return content && carousel ? (
     <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full mb-6">
       <button
         type="button"
-        title="Trocar conteúdo"
+        title="Conteúdo anterior"
         className={`${changeContentBtnStyle} left-0 sm:left-1`}
-        onClick={() => handleContentChange("prev")}
+        onClick={() => {
+          setAutoChange(false);
+          handleContentChange("prev");
+        }}
       >
         <SlArrowLeft size={17} />
       </button>
       <button
         type="button"
-        title="Trocar conteúdo"
+        title="Próximo conteúdo"
         className={`${changeContentBtnStyle} right-0 sm:right-1`}
-        onClick={() => handleContentChange("next")}
+        onClick={() => {
+          setAutoChange(false);
+          handleContentChange("next");
+        }}
       >
         <SlArrowRight size={17} />
       </button>
@@ -95,7 +102,10 @@ export function PageHighlight({ results, contentType }: DataProps) {
                 key={id}
                 type="button"
                 title={title}
-                onClick={() => selectContent(id)}
+                onClick={() => {
+                  setAutoChange(false);
+                  selectContent(id);
+                }}
               >
                 {id === content.id ? (
                   <GoDotFill className={dotIconStyle} />

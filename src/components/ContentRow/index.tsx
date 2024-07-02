@@ -58,27 +58,29 @@ export function ContentRow({
 
   return (
     results.length > 0 && (
-      <section className="py-4">
+      <section className="relative py-4">
         {children && (
           <h3 className="font-semibold text-xl sm:text-2xl ml-4 sm:ml-16 -mb-2">
             {children}
           </h3>
         )}
         <div className="flex items-center">
-          <button
-            type="button"
-            title="Rolar para a esquerda"
-            className={`absolute left-0 ${
-              bigCard ? "h-[420px]" : "h-[320px]"
-            } z-10 sm:pl-2
-          bg-gradient-to-l from-transparent to-base-100 ${
-            !scrollLeft ? "hidden" : ""
-          }`}
-            disabled={!scrollLeft}
-            onClick={handleScrollLeft}
+          <div
+            className={`${
+              !scrollLeft ? "hidden" : ""
+            } absolute flex items-center left-0 h-full z-10 sm:pl-2
+          bg-gradient-to-l from-transparent to-base-100`}
           >
-            <SlArrowLeft size={30} className="opacity-50 hover:opacity-100" />
-          </button>
+            <button
+              type="button"
+              title="Rolar para a esquerda"
+              className="h-full opacity-50 hover:opacity-100"
+              disabled={!scrollLeft}
+              onClick={handleScrollLeft}
+            >
+              <SlArrowLeft size={25} />
+            </button>
+          </div>
           <div
             className="flex flex-col overflow-hidden overflow-x-auto px-4 sm:px-16
            no-scrollbar scroll-smooth"
@@ -106,20 +108,22 @@ export function ContentRow({
                   ))}
             </div>
           </div>
-          <button
-            type="button"
-            title="Rolar para a direita"
-            className={`absolute right-0 ${
-              bigCard ? "h-[420px]" : "h-[320px]"
-            } z-10 sm:pr-2
-          bg-gradient-to-r from-transparent to-base-100 ${
-            btnRightScrollDisabled ? "hidden" : ""
-          }`}
-            disabled={btnRightScrollDisabled}
-            onClick={handleScrollRight}
+          <div
+            className={`${
+              btnRightScrollDisabled ? "hidden" : ""
+            } absolute flex items-center right-0 h-full z-10 sm:pr-2
+          bg-gradient-to-r from-transparent to-base-100`}
           >
-            <SlArrowRight size={30} className="opacity-50 hover:opacity-100" />
-          </button>
+            <button
+              type="button"
+              title="Rolar para a direita"
+              className="h-full opacity-50 hover:opacity-100"
+              disabled={btnRightScrollDisabled}
+              onClick={handleScrollRight}
+            >
+              <SlArrowRight size={25} />
+            </button>
+          </div>
         </div>
       </section>
     )
