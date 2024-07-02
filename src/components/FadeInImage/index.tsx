@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import DefaultBackdrop from "./assets/default-backdrop.png";
 import DefaultPoster from "./assets/default-poster.png";
@@ -32,6 +32,10 @@ export function FadeInImage({
   const [error, setError] = useState<boolean>(false);
 
   const defaultImg = defaultPaths[type];
+
+  useEffect(() => {
+    setLoading(true);
+  }, [src]);
 
   return (
     <>
