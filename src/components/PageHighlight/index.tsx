@@ -9,7 +9,8 @@ import { Loading } from "../Loading";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { GoDot, GoDotFill } from "react-icons/go";
 
-const changeContentBtnStyle = "absolute h-full opacity-15 hover:opacity-100 z-10";
+const changeContentBtnStyle =
+  "absolute h-full opacity-15 hover:opacity-100 z-10";
 const dotIconStyle = "fill-secondary opacity-40 hover:opacity-100";
 
 export function PageHighlight({ results, contentType }: DataProps) {
@@ -85,6 +86,7 @@ export function PageHighlight({ results, contentType }: DataProps) {
           <div className="flex justify-center w-max">
             {carousel.map(({ id }) => (
               <button
+                key={id}
                 type="button"
                 title="Selecionar conteúdo"
                 onClick={() => selectContent(id)}
