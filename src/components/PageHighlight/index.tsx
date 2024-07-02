@@ -63,6 +63,12 @@ export function PageHighlight({ results, contentType }: DataProps) {
     }
   }, [results]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      handleContentChange("next")
+    }, 10000)
+  }, [content, carousel])
+
   return content && carousel ? (
     <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full mb-6">
       <button
@@ -84,11 +90,11 @@ export function PageHighlight({ results, contentType }: DataProps) {
       {carousel.length > 1 && (
         <div className="absolute -bottom-6 right-0 left-0 hidden sm:flex sm:justify-center">
           <div className="flex justify-center w-max">
-            {carousel.map(({ id }) => (
+            {carousel.map(({ id, title }) => (
               <button
                 key={id}
                 type="button"
-                title="Selecionar conteúdo"
+                title={title}
                 onClick={() => selectContent(id)}
               >
                 {id === content.id ? (
