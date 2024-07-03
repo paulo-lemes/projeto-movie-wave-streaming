@@ -134,6 +134,13 @@ export type ImageContent = {
   width: number;
 };
 
+export interface ContentImagesProps {
+  children: ReactNode;
+  title: string;
+  images: ImageContent[];
+  randomImg: ImageContent;
+}
+
 export type VideoProps = {
   iso_639_1: string;
   iso_3166_1: string;

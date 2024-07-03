@@ -11,6 +11,7 @@ import { randomImage, getClassification } from "@/utils";
 import { ClassificationContent } from "../ClassificationContent";
 import { ToggleContentAccount } from "../ToggleContentAccount";
 import { RatingContent } from "../RatingContent";
+import { ContentImages } from "../ContentImages";
 
 export function ContentDetails({
   poster_path,
@@ -46,8 +47,9 @@ export function ContentDetails({
 
   return (
     <>
-      <Banner
-        backdrop={bannerImg.file_path || backdrop_path || poster_path}
+      <ContentImages
+        images={images.backdrops}
+        randomImg={bannerImg || backdrop_path || poster_path}
         title={title || name}
       >
         <div className="flex flex-col gap-2">
@@ -65,7 +67,7 @@ export function ContentDetails({
             ))}
           </ul>
         </div>
-      </Banner>
+      </ContentImages>
       <div className="flex flex-wrap gap-4 px-4 sm:px-16 mb-6">
         {rating.length > 0 && <ClassificationContent {...rating[0]} />}
         {overview && <p className="mb-2 w-full sm:text-lg">{overview}</p>}
