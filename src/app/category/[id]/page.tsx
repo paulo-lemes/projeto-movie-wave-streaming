@@ -56,13 +56,13 @@ export default async function Category({
     if (seriesCategory.total_results) {
       maxTotalPages =
         moviesCategory.total_results > seriesCategory.total_results
-          ? seriesCategory.total_pages - 2
-          : moviesCategory.total_pages - 2;
-    } else maxTotalPages = moviesCategory.total_pages - 2;
+          ? seriesCategory.total_pages / 2
+          : moviesCategory.total_pages / 2;
+    } else maxTotalPages = moviesCategory.total_pages / 2;
   } else {
     highlightContent = seriesCategory;
     highlightContentType = "tv";
-    maxTotalPages = seriesCategory.total_pages - 2;
+    maxTotalPages = seriesCategory.total_pages / 2;
   }
 
   if (process.env.NODE_ENV === "development") {
@@ -72,6 +72,8 @@ export default async function Category({
     console.log(searchSeriesCategory);
     console.log(maxTotalPages);
   }
+
+  if (page > maxTotalPages) throw new Error("Page not found")
 
   return (
     <FadeInContent duration={1.5}>
