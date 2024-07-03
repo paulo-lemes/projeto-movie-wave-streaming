@@ -16,6 +16,8 @@ const dotIconStyle = "fill-secondary opacity-40 hover:opacity-100";
 export function PageHighlight({ results, contentType }: DataProps) {
   const [content, setContent] = useState<Content | null>(null);
   const [carousel, setCarousel] = useState<Content[] | null>(null);
+  const [autoChange, setAutoChange] = useState<boolean>(true);
+  const [slideRight, setSlideRight] = useState<boolean>(false);
 
   const handleContentChange = (order: string) => {
     if (carousel && content) {
@@ -26,11 +28,13 @@ export function PageHighlight({ results, contentType }: DataProps) {
           currentIndex === carousel.length - 1
             ? (nextContent = carousel[0])
             : (nextContent = carousel[currentIndex + 1]);
+          setSlideRight((prev) => (prev ? !prev : prev));
           break;
         case "prev":
           currentIndex === 0
             ? (nextContent = carousel[carousel.length - 1])
             : (nextContent = carousel[currentIndex - 1]);
+          setSlideRight((prev) => (prev ? prev : !prev));
           break;
         default:
           nextContent = content;
@@ -64,26 +68,35 @@ export function PageHighlight({ results, contentType }: DataProps) {
   }, [results]);
 
   useEffect(() => {
-    setTimeout(() => {
-      handleContentChange("next")
-    }, 10000)
-  }, [content, carousel])
+    let timeout: NodeJS.Timeout;
+    if (autoChange)
+      timeout = setTimeout(() => {
+        handleContentChange("next");
+      }, 13000);
+    return () => clearTimeout(timeout);
+  }, [autoChange, content, carousel]);
 
   return content && carousel ? (
     <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full mb-6">
       <button
         type="button"
-        title="Trocar conteúdo"
+        title="Conteúdo anterior"
         className={`${changeContentBtnStyle} left-0 sm:left-1`}
-        onClick={() => handleContentChange("prev")}
+        onClick={() => {
+          setAutoChange(false);
+          handleContentChange("prev");
+        }}
       >
         <SlArrowLeft size={17} />
       </button>
       <button
         type="button"
-        title="Trocar conteúdo"
+        title="Próximo conteúdo"
         className={`${changeContentBtnStyle} right-0 sm:right-1`}
-        onClick={() => handleContentChange("next")}
+        onClick={() => {
+          setAutoChange(false);
+          handleContentChange("next");
+        }}
       >
         <SlArrowRight size={17} />
       </button>
@@ -95,7 +108,10 @@ export function PageHighlight({ results, contentType }: DataProps) {
                 key={id}
                 type="button"
                 title={title}
-                onClick={() => selectContent(id)}
+                onClick={() => {
+                  setAutoChange(false);
+                  selectContent(id);
+                }}
               >
                 {id === content.id ? (
                   <GoDotFill className={dotIconStyle} />
@@ -112,17 +128,23 @@ export function PageHighlight({ results, contentType }: DataProps) {
         title={content.title || content.name}
       >
         <div className="flex flex-col gap-2 sm:w-[60vw] lg:w-[40vw]">
-          <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-4 py-1.5">
+          <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-4 py-1.5 animate-fadeSlideDown">
             {(content.title || content.name)?.toUpperCase()}
           </h2>
           {content.overview && (
-            <p className="line-clamp-3 mb-2">{content.overview}</p>
+            <p
+              className={`line-clamp-3 mb-2 ${
+                slideRight ? "animate-fadeSlideRight" : "animate-fadeSlideLeft"
+              }`}
+            >
+              {content.overview}
+            </p>
           )}
           <Link
             href={`/${contentType}/${content.id}?title=${(
               content.title || content.name
             )?.toLowerCase()}`}
-            className="btn btn-secondary w-max"
+            className="btn btn-secondary w-max animate-fadeSlideUp"
           >
             Veja detalhes
           </Link>
