@@ -58,7 +58,7 @@ export function ContentRow({
 
   return (
     results.length > 0 && (
-      <section className="relative py-4">
+      <section className="py-4">
         {children && (
           <h3 className="font-semibold text-xl sm:text-2xl ml-4 sm:ml-16 -mb-2">
             {children}
@@ -66,9 +66,9 @@ export function ContentRow({
         )}
         <div className="flex items-center">
           <div
-            className={`${
-              !scrollLeft ? "hidden" : ""
-            } absolute flex items-center left-0 h-full z-10 sm:pl-2
+            className={`${!scrollLeft ? "hidden" : ""} ${
+              bigCard ? "h-[440px]" : "h-[320px]"
+            } absolute flex items-center left-0 z-10 sm:pl-2
           bg-gradient-to-l from-transparent to-base-100`}
           >
             <button
@@ -109,9 +109,9 @@ export function ContentRow({
             </div>
           </div>
           <div
-            className={`${
-              btnRightScrollDisabled ? "hidden" : ""
-            } absolute flex items-center right-0 h-full z-10 sm:pr-2
+            className={`${btnRightScrollDisabled ? "hidden" : ""} ${
+              bigCard ? "h-[440px]" : "h-[320px]"
+            } absolute flex items-center right-0 z-10 sm:pr-2
           bg-gradient-to-r from-transparent to-base-100`}
           >
             <button

@@ -12,7 +12,7 @@ export function FadeInContent({
   index,
   scale,
 }: FadeInContentProps) {
-  return delay && index ? (
+  return delay && index !== undefined ? (
     <motion.div
       whileHover={{ scale: scale }}
       initial={{ opacity: 0 }}
