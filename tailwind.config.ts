@@ -15,31 +15,19 @@ const config: Config = {
       },
     },
     animation: {
-      fadeSlideUp: "fadeSlideUp 0.4s ease-out",
-      fadeSlideDown: "fadeSlideDown 0.4s ease-out",
-      fadeSlideLeft: "fadeSlideLeft 0.4s ease-out",
-      fadeSlideRight: "fadeSlideRight 0.4s ease-out",
+      fadeSlideUp: "fadeSlideUp 0.8s ease-out",
+      fadeSlideUpShorter: "fadeSlideUpShorter 0.7s ease-out",
     },
     keyframes: {
       fadeSlideUp: {
-        "0%": { transform: "translateY(50%)", opacity: "0" },
-        "70%": { opacity: "50%" },
+        "0%": { transform: "translateY(15%)", opacity: "0" },
+        "50%": { transform: "translateY(15%)", opacity: "0" },
         "100%": { transform: "translateY(0))", opacity: "100%" },
       },
-      fadeSlideDown: {
-        "0%": { transform: "translateY(-50%)", opacity: "0" },
-        "70%": { opacity: "50%" },
+      fadeSlideUpShorter: {
+        "0%": { transform: "translateY(5%)", opacity: "0" },
+        "50%": { transform: "translateY(5%)", opacity: "0" },
         "100%": { transform: "translateY(0))", opacity: "100%" },
-      },
-      fadeSlideRight: {
-        "0%": { transform: "translateX(-10%)", opacity: "0" },
-        "50%": { opacity: "50%" },
-        "100%": { transform: "translateX(0))", opacity: "100%" },
-      },
-      fadeSlideLeft: {
-        "0%": { transform: "translateX(10%)", opacity: "0" },
-        "50%": { opacity: "50%" },
-        "100%": { transform: "translateX(0))", opacity: "100%" },
       },
     },
   },

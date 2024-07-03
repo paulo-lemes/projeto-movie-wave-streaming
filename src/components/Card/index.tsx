@@ -18,7 +18,7 @@ export function Card({
     <FadeInContent
       duration={1}
       delay
-      index={index}
+      index={index > 20 ? index - (index - 20) * 2 : index}
       scale={1.05}
       classCSS={`relative ${
         bigCard ? "max-w-[275px]" : "max-w-[200px]"

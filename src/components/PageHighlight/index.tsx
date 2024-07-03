@@ -17,7 +17,6 @@ export function PageHighlight({ results, contentType }: DataProps) {
   const [content, setContent] = useState<Content | null>(null);
   const [carousel, setCarousel] = useState<Content[] | null>(null);
   const [autoChange, setAutoChange] = useState<boolean>(true);
-  const [slideRight, setSlideRight] = useState<boolean>(false);
 
   const handleContentChange = (order: string) => {
     if (carousel && content) {
@@ -28,13 +27,11 @@ export function PageHighlight({ results, contentType }: DataProps) {
           currentIndex === carousel.length - 1
             ? (nextContent = carousel[0])
             : (nextContent = carousel[currentIndex + 1]);
-          setSlideRight((prev) => (prev ? !prev : prev));
           break;
         case "prev":
           currentIndex === 0
             ? (nextContent = carousel[carousel.length - 1])
             : (nextContent = carousel[currentIndex - 1]);
-          setSlideRight((prev) => (prev ? prev : !prev));
           break;
         default:
           nextContent = content;
@@ -45,8 +42,10 @@ export function PageHighlight({ results, contentType }: DataProps) {
   };
 
   const selectContent = (id: number) => {
-    const content = carousel?.find((content) => content.id === id);
-    content ? setContent(content) : null;
+    const newContent = carousel?.find((content) => content.id === id);
+    if (newContent) {
+      setContent(newContent);
+    }
   };
 
   useEffect(() => {
@@ -78,65 +77,63 @@ export function PageHighlight({ results, contentType }: DataProps) {
 
   return content && carousel ? (
     <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full mb-6">
-      <button
-        type="button"
-        title="Conteúdo anterior"
-        className={`${changeContentBtnStyle} left-0 sm:left-1`}
-        onClick={() => {
-          setAutoChange(false);
-          handleContentChange("prev");
-        }}
-      >
-        <SlArrowLeft size={17} />
-      </button>
-      <button
-        type="button"
-        title="Próximo conteúdo"
-        className={`${changeContentBtnStyle} right-0 sm:right-1`}
-        onClick={() => {
-          setAutoChange(false);
-          handleContentChange("next");
-        }}
-      >
-        <SlArrowRight size={17} />
-      </button>
       {carousel.length > 1 && (
-        <div className="absolute -bottom-6 right-0 left-0 hidden sm:flex sm:justify-center">
-          <div className="flex justify-center w-max">
-            {carousel.map(({ id, title }) => (
-              <button
-                key={id}
-                type="button"
-                title={title}
-                onClick={() => {
-                  setAutoChange(false);
-                  selectContent(id);
-                }}
-              >
-                {id === content.id ? (
-                  <GoDotFill className={dotIconStyle} />
-                ) : (
-                  <GoDot className={dotIconStyle} />
-                )}
-              </button>
-            ))}
+        <>
+          <button
+            type="button"
+            title="Conteúdo anterior"
+            className={`${changeContentBtnStyle} left-0 sm:left-3`}
+            onClick={() => {
+              setAutoChange(false);
+              handleContentChange("prev");
+            }}
+          >
+            <SlArrowLeft size={17} />
+          </button>
+          <button
+            type="button"
+            title="Próximo conteúdo"
+            className={`${changeContentBtnStyle} right-0 sm:right-3`}
+            onClick={() => {
+              setAutoChange(false);
+              handleContentChange("next");
+            }}
+          >
+            <SlArrowRight size={17} />
+          </button>
+          <div className="absolute -bottom-6 right-0 left-0 hidden sm:flex sm:justify-center">
+            <div className="flex justify-center w-max">
+              {carousel.map(({ id, title }) => (
+                <button
+                  key={id}
+                  type="button"
+                  title={title}
+                  onClick={() => {
+                    setAutoChange(false);
+                    selectContent(id);
+                  }}
+                >
+                  {id === content.id ? (
+                    <GoDotFill className={dotIconStyle} />
+                  ) : (
+                    <GoDot className={dotIconStyle} />
+                  )}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        </>
       )}
       <Banner
         backdrop={content.backdrop_path}
         title={content.title || content.name}
       >
         <div className="flex flex-col gap-2 sm:w-[60vw] lg:w-[40vw]">
-          <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-4 py-1.5 animate-fadeSlideDown">
+          <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-4 py-1.5 animate-fadeSlideUp">
             {(content.title || content.name)?.toUpperCase()}
           </h2>
           {content.overview && (
-            <p
-              className={`line-clamp-3 mb-2 ${
-                slideRight ? "animate-fadeSlideRight" : "animate-fadeSlideLeft"
-              }`}
-            >
+            <p className="line-clamp-3 mb-2 animate-fadeSlideUpShorter">
               {content.overview}
             </p>
           )}
