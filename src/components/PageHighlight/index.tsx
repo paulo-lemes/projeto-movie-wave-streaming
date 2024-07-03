@@ -9,13 +9,15 @@ import { Loading } from "../Loading";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { GoDot, GoDotFill } from "react-icons/go";
 
-const changeContentBtnStyle = "absolute h-full opacity-15 hover:opacity-100 z-10";
+const changeContentBtnStyle =
+  "absolute h-full opacity-15 hover:opacity-100 z-10";
 const dotIconStyle = "fill-secondary opacity-40 hover:opacity-100";
 
 export function PageHighlight({ results, contentType }: DataProps) {
   const [content, setContent] = useState<Content | null>(null);
   const [carousel, setCarousel] = useState<Content[] | null>(null);
   const [autoChange, setAutoChange] = useState<boolean>(true);
+  const [slideRight, setSlideRight] = useState<boolean>(false);
 
   const handleContentChange = (order: string) => {
     if (carousel && content) {
@@ -26,11 +28,13 @@ export function PageHighlight({ results, contentType }: DataProps) {
           currentIndex === carousel.length - 1
             ? (nextContent = carousel[0])
             : (nextContent = carousel[currentIndex + 1]);
+          setSlideRight((prev) => (prev ? !prev : prev));
           break;
         case "prev":
           currentIndex === 0
             ? (nextContent = carousel[carousel.length - 1])
             : (nextContent = carousel[currentIndex - 1]);
+          setSlideRight((prev) => (prev ? prev : !prev));
           break;
         default:
           nextContent = content;
@@ -64,11 +68,13 @@ export function PageHighlight({ results, contentType }: DataProps) {
   }, [results]);
 
   useEffect(() => {
+    let timeout: NodeJS.Timeout;
     if (autoChange)
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         handleContentChange("next");
       }, 13000);
-  }, [content, carousel]);
+    return () => clearTimeout(timeout);
+  }, [autoChange, content, carousel]);
 
   return content && carousel ? (
     <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full mb-6">
@@ -122,17 +128,23 @@ export function PageHighlight({ results, contentType }: DataProps) {
         title={content.title || content.name}
       >
         <div className="flex flex-col gap-2 sm:w-[60vw] lg:w-[40vw]">
-          <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-4 py-1.5">
+          <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-4 py-1.5 animate-fadeSlideDown">
             {(content.title || content.name)?.toUpperCase()}
           </h2>
           {content.overview && (
-            <p className="line-clamp-3 mb-2">{content.overview}</p>
+            <p
+              className={`line-clamp-3 mb-2 ${
+                slideRight ? "animate-fadeSlideRight" : "animate-fadeSlideLeft"
+              }`}
+            >
+              {content.overview}
+            </p>
           )}
           <Link
             href={`/${contentType}/${content.id}?title=${(
               content.title || content.name
             )?.toLowerCase()}`}
-            className="btn btn-secondary w-max"
+            className="btn btn-secondary w-max animate-fadeSlideUp"
           >
             Veja detalhes
           </Link>
