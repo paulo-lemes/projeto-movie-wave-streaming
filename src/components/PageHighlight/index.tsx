@@ -8,10 +8,26 @@ import { Banner } from "../Banner";
 import { Loading } from "../Loading";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { GoDot, GoDotFill } from "react-icons/go";
+import { motion } from "framer-motion";
 
 const changeContentBtnStyle =
   "absolute h-full opacity-15 hover:opacity-100 z-10";
 const dotIconStyle = "fill-secondary opacity-40 hover:opacity-100";
+
+const fadeSlideUp = (yStart: number, duration?: number) => {
+  return {
+    hidden: { opacity: 0, y: `${yStart}%` },
+    visible: {
+      opacity: 1,
+      y: "0%",
+      transition: {
+        duration: duration || 0.4,
+        delay: 0.4,
+        ease: "easeOut",
+      },
+    },
+  };
+};
 
 export function PageHighlight({ results, contentType }: DataProps) {
   const [content, setContent] = useState<Content | null>(null);
@@ -129,22 +145,38 @@ export function PageHighlight({ results, contentType }: DataProps) {
         title={content.title || content.name}
       >
         <div className="flex flex-col gap-2 sm:w-[60vw] lg:w-[40vw]">
-          <h2 className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-4 py-1.5 animate-fadeSlideUp">
-            {(content.title || content.name)?.toUpperCase()}
-          </h2>
-          {content.overview && (
-            <p className="line-clamp-3 mb-2 animate-fadeSlideUpShorter">
-              {content.overview}
-            </p>
-          )}
-          <Link
-            href={`/${contentType}/${content.id}?title=${(
-              content.title || content.name
-            )?.toLowerCase()}`}
-            className="btn btn-secondary w-max animate-fadeSlideUp"
+          <motion.h2
+            className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-4 py-1.5"
+            initial="hidden"
+            animate="visible"
+            variants={fadeSlideUp(15)}
           >
-            Veja detalhes
-          </Link>
+            {(content.title || content.name)?.toUpperCase()}
+          </motion.h2>
+          {content.overview && (
+            <motion.p
+              className="line-clamp-3 mb-2"
+              initial="hidden"
+              animate="visible"
+              variants={fadeSlideUp(5, 0.3)}
+            >
+              {content.overview}
+            </motion.p>
+          )}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeSlideUp(15)}
+          >
+            <Link
+              href={`/${contentType}/${content.id}?title=${(
+                content.title || content.name
+              )?.toLowerCase()}`}
+              className="btn btn-secondary w-max"
+            >
+              Veja detalhes
+            </Link>
+          </motion.div>
         </div>
       </Banner>
     </div>

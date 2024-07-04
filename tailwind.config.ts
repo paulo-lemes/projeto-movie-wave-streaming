@@ -14,22 +14,6 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
-    animation: {
-      fadeSlideUp: "fadeSlideUp 0.8s ease-out",
-      fadeSlideUpShorter: "fadeSlideUpShorter 0.7s ease-out",
-    },
-    keyframes: {
-      fadeSlideUp: {
-        "0%": { transform: "translateY(15%)", opacity: "0" },
-        "50%": { transform: "translateY(15%)", opacity: "0" },
-        "100%": { transform: "translateY(0))", opacity: "100%" },
-      },
-      fadeSlideUpShorter: {
-        "0%": { transform: "translateY(5%)", opacity: "0" },
-        "50%": { transform: "translateY(5%)", opacity: "0" },
-        "100%": { transform: "translateY(0))", opacity: "100%" },
-      },
-    },
   },
   plugins: [require("daisyui")],
   daisyui: {
