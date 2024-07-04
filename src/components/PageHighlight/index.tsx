@@ -9,7 +9,7 @@ import { SlideshowWrapper } from "../SlideshowWrapper";
 import { Banner } from "../Banner";
 import { GoDot, GoDotFill } from "react-icons/go";
 import Link from "next/link";
-import useSlideshow from "@/hooks/slideshow";
+import { useSlideshow } from "@/hooks/slideshow";
 
 const dotIconStyle = "fill-secondary opacity-40 hover:opacity-100";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Content, ImageContent, SlideshowList } from "@/types";
 
-export default function useSlideshow() {
+export function useSlideshow() {
   const [content, setContent] = useState<Content | null>(null);
   const [image, setImage] = useState<ImageContent | null>(null);
   const [slideshowList, setSlideshowList] = useState<SlideshowList>(null);

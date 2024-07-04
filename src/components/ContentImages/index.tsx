@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { ContentImagesProps } from "@/types";
-import useSlideshow from "@/hooks/slideshow";
+import { useSlideshow } from "@/hooks/slideshow";
 import { SlideshowWrapper } from "../SlideshowWrapper";
 import { Banner } from "../Banner";
 
