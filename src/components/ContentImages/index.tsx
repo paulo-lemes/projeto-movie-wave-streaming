@@ -2,11 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { ContentImagesProps, ImageContent } from "@/types";
-import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import { SlideshowWrapper } from "../SlideshowWrapper";
 import { Banner } from "../Banner";
-
-const changeContentBtnStyle =
-  "absolute h-full opacity-15 hover:opacity-100 z-10";
 
 export function ContentImages({
   children,
@@ -42,6 +39,11 @@ export function ContentImages({
     }
   };
 
+  const manualImageChange = (order: string) => {
+    setAutoChange(false);
+    handleImageChange(order);
+  };
+
   useEffect(() => {
     setImage(randomImg);
   }, [randomImg, images]);
@@ -56,33 +58,7 @@ export function ContentImages({
   }, [autoChange, image, images]);
 
   return (
-    <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full mb-6">
-      {images.length > 1 && (
-        <>
-          <button
-            type="button"
-            title="Conteúdo anterior"
-            className={`${changeContentBtnStyle} left-0 sm:left-3`}
-            onClick={() => {
-              setAutoChange(false);
-              handleImageChange("prev");
-            }}
-          >
-            <SlArrowLeft size={17} />
-          </button>
-          <button
-            type="button"
-            title="Próximo conteúdo"
-            className={`${changeContentBtnStyle} right-0 sm:right-3`}
-            onClick={() => {
-              setAutoChange(false);
-              handleImageChange("next");
-            }}
-          >
-            <SlArrowRight size={17} />
-          </button>
-        </>
-      )}
+    <SlideshowWrapper carousel={images} changeContent={manualImageChange}>
       {image ? (
         <Banner backdrop={image.file_path} title={title}>
           {children}
@@ -92,6 +68,6 @@ export function ContentImages({
           {children}
         </div>
       )}
-    </div>
+    </SlideshowWrapper>
   );
 }

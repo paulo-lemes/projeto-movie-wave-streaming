@@ -1,17 +1,15 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { Content, DataProps } from "@/types";
 import { randomContent } from "@/utils";
-import { Banner } from "../Banner";
 import { Loading } from "../Loading";
-import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import { GoDot, GoDotFill } from "react-icons/go";
 import { motion } from "framer-motion";
+import { SlideshowWrapper } from "../SlideshowWrapper";
+import { Banner } from "../Banner";
+import { GoDot, GoDotFill } from "react-icons/go";
+import Link from "next/link";
 
-const changeContentBtnStyle =
-  "absolute h-full opacity-15 hover:opacity-100 z-10";
 const dotIconStyle = "fill-secondary opacity-40 hover:opacity-100";
 
 const fadeSlideUp = (yStart: number, duration?: number) => {
@@ -64,6 +62,13 @@ export function PageHighlight({ results, contentType }: DataProps) {
     }
   };
 
+  const manualContentChange = (param: string | number) => {
+    setAutoChange(false);
+    typeof param === "string"
+      ? handleContentChange(param)
+      : selectContent(param);
+  };
+
   useEffect(() => {
     const filterWithBackdropAndOverview = results.filter(
       ({ backdrop_path, overview }) => backdrop_path && overview
@@ -92,53 +97,26 @@ export function PageHighlight({ results, contentType }: DataProps) {
   }, [autoChange, content, carousel]);
 
   return content && carousel ? (
-    <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full mb-6">
+    <SlideshowWrapper carousel={carousel} changeContent={manualContentChange}>
       {carousel.length > 1 && (
-        <>
-          <button
-            type="button"
-            title="Conteúdo anterior"
-            className={`${changeContentBtnStyle} left-0 sm:left-3`}
-            onClick={() => {
-              setAutoChange(false);
-              handleContentChange("prev");
-            }}
-          >
-            <SlArrowLeft size={17} />
-          </button>
-          <button
-            type="button"
-            title="Próximo conteúdo"
-            className={`${changeContentBtnStyle} right-0 sm:right-3`}
-            onClick={() => {
-              setAutoChange(false);
-              handleContentChange("next");
-            }}
-          >
-            <SlArrowRight size={17} />
-          </button>
-          <div className="absolute -bottom-6 right-0 left-0 hidden sm:flex sm:justify-center">
-            <div className="flex justify-center w-max">
-              {carousel.map(({ id, title }) => (
-                <button
-                  key={id}
-                  type="button"
-                  title={title}
-                  onClick={() => {
-                    setAutoChange(false);
-                    selectContent(id);
-                  }}
-                >
-                  {id === content.id ? (
-                    <GoDotFill className={dotIconStyle} />
-                  ) : (
-                    <GoDot className={dotIconStyle} />
-                  )}
-                </button>
-              ))}
-            </div>
+        <div className="absolute -bottom-6 right-0 left-0 hidden sm:flex sm:justify-center">
+          <div className="flex justify-center w-max">
+            {carousel.map(({ id, title }) => (
+              <button
+                key={id}
+                type="button"
+                title={title}
+                onClick={() => manualContentChange(id)}
+              >
+                {id === content.id ? (
+                  <GoDotFill className={dotIconStyle} />
+                ) : (
+                  <GoDot className={dotIconStyle} />
+                )}
+              </button>
+            ))}
           </div>
-        </>
+        </div>
       )}
       <Banner
         backdrop={content.backdrop_path}
@@ -179,7 +157,7 @@ export function PageHighlight({ results, contentType }: DataProps) {
           </motion.div>
         </div>
       </Banner>
-    </div>
+    </SlideshowWrapper>
   ) : (
     <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full flex justify-center px-4 sm:px-16 mb-6">
       <Loading />
