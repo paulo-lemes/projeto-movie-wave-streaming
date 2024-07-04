@@ -46,6 +46,8 @@ export interface SlideshowWrapperProps {
   changeContent: (value: string) => void;
 }
 
+export type SlideshowList = Content[] | ImageContent[] | null
+
 export interface ModalContextType {
   isModalOpen: boolean;
   openModal: (value: string) => void;

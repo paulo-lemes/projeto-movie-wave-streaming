@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Content, DataProps } from "@/types";
+import React, { useEffect } from "react";
+import { DataProps } from "@/types";
 import { randomContent } from "@/utils";
 import { Loading } from "../Loading";
 import { motion } from "framer-motion";
@@ -9,6 +9,7 @@ import { SlideshowWrapper } from "../SlideshowWrapper";
 import { Banner } from "../Banner";
 import { GoDot, GoDotFill } from "react-icons/go";
 import Link from "next/link";
+import { useSlideshow } from "@/hooks/slideshow";
 
 const dotIconStyle = "fill-secondary opacity-40 hover:opacity-100";
 
@@ -28,46 +29,16 @@ const fadeSlideUp = (yStart: number, duration?: number) => {
 };
 
 export function PageHighlight({ results, contentType }: DataProps) {
-  const [content, setContent] = useState<Content | null>(null);
-  const [carousel, setCarousel] = useState<Content[] | null>(null);
-  const [autoChange, setAutoChange] = useState<boolean>(true);
-
-  const handleContentChange = (order: string) => {
-    if (carousel && content) {
-      const currentIndex = carousel.findIndex(({ id }) => id === content.id);
-      let nextContent;
-      switch (order) {
-        case "next":
-          currentIndex === carousel.length - 1
-            ? (nextContent = carousel[0])
-            : (nextContent = carousel[currentIndex + 1]);
-          break;
-        case "prev":
-          currentIndex === 0
-            ? (nextContent = carousel[carousel.length - 1])
-            : (nextContent = carousel[currentIndex - 1]);
-          break;
-        default:
-          nextContent = content;
-          break;
-      }
-      setContent(nextContent);
-    }
-  };
-
-  const selectContent = (id: number) => {
-    const newContent = carousel?.find((content) => content.id === id);
-    if (newContent) {
-      setContent(newContent);
-    }
-  };
-
-  const manualContentChange = (param: string | number) => {
-    setAutoChange(false);
-    typeof param === "string"
-      ? handleContentChange(param)
-      : selectContent(param);
-  };
+  const {
+    content,
+    setContent,
+    slideshowList,
+    setSlideshowList,
+    autoChange,
+    handleSlideChange,
+    manualSlideChange,
+    isContentList,
+  } = useSlideshow();
 
   useEffect(() => {
     const filterWithBackdropAndOverview = results.filter(
@@ -79,10 +50,10 @@ export function PageHighlight({ results, contentType }: DataProps) {
       : results.filter(({ backdrop_path }) => backdrop_path);
 
     if (highlightContent.length) {
-      setCarousel(highlightContent);
+      setSlideshowList(highlightContent);
       setContent(randomContent(highlightContent));
     } else {
-      setCarousel(results);
+      setSlideshowList(results);
       setContent(randomContent(results));
     }
   }, [results]);
@@ -91,22 +62,25 @@ export function PageHighlight({ results, contentType }: DataProps) {
     let timeout: NodeJS.Timeout;
     if (autoChange)
       timeout = setTimeout(() => {
-        handleContentChange("next");
+        handleSlideChange("next");
       }, 13000);
     return () => clearTimeout(timeout);
-  }, [autoChange, content, carousel]);
+  }, [autoChange, content, slideshowList]);
 
-  return content && carousel ? (
-    <SlideshowWrapper carousel={carousel} changeContent={manualContentChange}>
-      {carousel.length > 1 && (
+  return content && isContentList(slideshowList) ? (
+    <SlideshowWrapper
+      carousel={slideshowList}
+      changeContent={manualSlideChange}
+    >
+      {slideshowList.length > 1 && (
         <div className="absolute -bottom-6 right-0 left-0 hidden sm:flex sm:justify-center">
           <div className="flex justify-center w-max">
-            {carousel.map(({ id, title }) => (
+            {slideshowList.map(({ id, title }) => (
               <button
                 key={id}
                 type="button"
                 title={title}
-                onClick={() => manualContentChange(id)}
+                onClick={() => manualSlideChange(id)}
               >
                 {id === content.id ? (
                   <GoDotFill className={dotIconStyle} />

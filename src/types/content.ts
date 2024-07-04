@@ -137,7 +137,7 @@ export type ImageContent = {
 export interface ContentImagesProps {
   children: ReactNode;
   title: string;
-  images: ImageContent[];
+  imageList: ImageContent[];
   randomImg: ImageContent;
 }
 

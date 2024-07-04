@@ -48,7 +48,7 @@ export function ContentDetails({
   return (
     <>
       <ContentImages
-        images={images.backdrops}
+        imageList={images.backdrops}
         randomImg={bannerImg || backdrop_path || poster_path}
         title={title || name}
       >

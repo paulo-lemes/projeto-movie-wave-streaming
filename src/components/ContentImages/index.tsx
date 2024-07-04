@@ -1,73 +1,54 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { ContentImagesProps, ImageContent } from "@/types";
+import React, { useEffect } from "react";
+import { ContentImagesProps } from "@/types";
+import { useSlideshow } from "@/hooks/slideshow";
 import { SlideshowWrapper } from "../SlideshowWrapper";
 import { Banner } from "../Banner";
 
 export function ContentImages({
   children,
   title,
-  images,
+  imageList,
   randomImg,
 }: ContentImagesProps) {
-  const [image, setImage] = useState<ImageContent | null>(null);
-  const [autoChange, setAutoChange] = useState<boolean>(true);
-
-  const handleImageChange = (order: string) => {
-    if (images && image) {
-      const currentIndex = images.findIndex(
-        ({ file_path }) => file_path === image.file_path
-      );
-      let nextImage;
-      switch (order) {
-        case "next":
-          currentIndex === images.length - 1
-            ? (nextImage = images[0])
-            : (nextImage = images[currentIndex + 1]);
-          break;
-        case "prev":
-          currentIndex === 0
-            ? (nextImage = images[images.length - 1])
-            : (nextImage = images[currentIndex - 1]);
-          break;
-        default:
-          nextImage = image;
-          break;
-      }
-      setImage(nextImage);
-    }
-  };
-
-  const manualImageChange = (order: string) => {
-    setAutoChange(false);
-    handleImageChange(order);
-  };
+  const {
+    image,
+    setImage,
+    slideshowList,
+    setSlideshowList,
+    autoChange,
+    handleSlideChange,
+    manualSlideChange,
+    isImageContentList,
+  } = useSlideshow();
 
   useEffect(() => {
     setImage(randomImg);
-  }, [randomImg, images]);
+    setSlideshowList(imageList);
+  }, [randomImg, imageList]);
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
     if (autoChange)
       timeout = setTimeout(() => {
-        handleImageChange("next");
+        handleSlideChange("next");
       }, 13000);
     return () => clearTimeout(timeout);
-  }, [autoChange, image, images]);
+  }, [autoChange, image, slideshowList]);
 
-  return (
-    <SlideshowWrapper carousel={images} changeContent={manualImageChange}>
-      {image ? (
-        <Banner backdrop={image.file_path} title={title}>
-          {children}
-        </Banner>
-      ) : (
-        <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full flex px-4 sm:px-16 items-end mb-6">
-          {children}
-        </div>
-      )}
+  return image && isImageContentList(slideshowList) ? (
+    <SlideshowWrapper
+      carousel={slideshowList}
+      changeContent={manualSlideChange}
+    >
+      <Banner backdrop={image.file_path} title={title}>
+        {children}
+      </Banner>
     </SlideshowWrapper>
+  ) : (
+    <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full flex px-4 sm:px-16 items-end mb-6">
+      {children}
+    </div>
   );
 }
