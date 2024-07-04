@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Content } from "./content";
+import { Content, ImageContent } from "./content";
 
 export interface ApiResponse {
   page: number;
@@ -38,6 +38,12 @@ export interface BannerProps {
   backdrop: string;
   title?: string;
   spotlight?: boolean;
+}
+
+export interface SlideshowWrapperProps {
+  children: ReactNode;
+  carousel: Content[] | ImageContent[];
+  changeContent: (value: string) => void;
 }
 
 export interface ModalContextType {

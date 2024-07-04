@@ -15,6 +15,7 @@ export function FadeInContent({
   return delay && index !== undefined ? (
     <motion.div
       whileHover={{ scale: scale }}
+      whileTap={{ scale: scale ? scale - 0.03 : 0.95 }}
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
