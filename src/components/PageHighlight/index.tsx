@@ -75,11 +75,11 @@ export function PageHighlight({ results, contentType }: DataProps) {
       {slideshowList.length > 1 && (
         <div className="absolute -bottom-6 right-0 left-0 hidden sm:flex sm:justify-center">
           <div className="flex justify-center w-max">
-            {slideshowList.map(({ id, title }) => (
+            {slideshowList.map(({ id, title, name }) => (
               <button
                 key={id}
                 type="button"
-                title={title}
+                title={title || name}
                 onClick={() => manualSlideChange(id)}
               >
                 {id === content.id ? (
