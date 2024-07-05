@@ -47,8 +47,9 @@ export function CardTopContent({
           title || name
         ).toLowerCase()}`}
         className="flex items-baseline"
+        aria-label={`Link para detalhes de ${title || name}`}
       >
-        <motion.h5
+        <motion.p
           variants={variants}
           className={`font-bold text-secondary text-8xl sm:text-9xl -z-10 -mr-3 
           ${!hover && "text-outline"}`}
@@ -61,7 +62,7 @@ export function CardTopContent({
               <span className={`letter-shadow-r -ml-5`}>0</span>
             </>
           )}
-        </motion.h5>
+        </motion.p>
         <FadeInImage
           src={poster_path}
           type="poster"

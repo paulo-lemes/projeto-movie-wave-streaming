@@ -37,6 +37,7 @@ export function CardSearchContent({
             ? `?title=` + (title || name).toLowerCase()
             : ""
         }`}
+        aria-label={`Link para detalhes de ${title || name}`}
       >
         <div className="relative">
           <FadeInImage

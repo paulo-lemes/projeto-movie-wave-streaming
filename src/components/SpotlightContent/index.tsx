@@ -39,10 +39,9 @@ export function SpotlightContent({ results, contentType }: DataProps) {
               href={`/${contentType}/${content.id}?title=${(
                 content.title || content.name
               )?.toLowerCase()}`}
+              className="btn btn-secondary btn-outline w-max"
             >
-              <button className="btn btn-secondary btn-outline w-max">
-                Veja detalhes
-              </button>
+              Veja detalhes
             </Link>
           </div>
         </section>

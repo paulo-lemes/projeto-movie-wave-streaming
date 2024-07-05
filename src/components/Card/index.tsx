@@ -28,6 +28,7 @@ export function Card({
         href={`/${media_type || contentType}/${id}?title=${(
           title || name
         ).toLowerCase()}`}
+        aria-label={`Link para detalhes de ${title || name}`}
       >
         <FadeInImage
           src={poster_path}

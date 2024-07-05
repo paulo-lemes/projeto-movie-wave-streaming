@@ -39,7 +39,11 @@ export function Navbar() {
     >
       <div className="flex w-full items-center justify-between p-2 lg:px-8 lg:py-4 gap-2 sm:gap-0">
         <DrawerMenu />
-        <Link href="/" data-test="logo-home-anchor">
+        <Link
+          href="/"
+          data-test="logo-home-anchor"
+          aria-label={`Link para homepage`}
+        >
           <Image
             src={LogoWhite}
             alt="Logotipo da Movie Wave"
@@ -92,18 +96,29 @@ export function Navbar() {
           </ul>
         </nav>
         <div className="flex gap-2">
-          <Link href="/search" title="Pesquisa" data-test="search-anchor">
+          <Link
+            href="/search"
+            title="Pesquisa"
+            data-test="search-anchor"
+            aria-label={`Link para página de pesquisa`}
+          >
             <CiSearch size={40} className="w-8" />
           </Link>
           <Link
             href="/profile#watchlist"
             title="Lista de interesses"
             data-test="watchlist-anchor"
+            aria-label={`Link para lista de interesses`}
           >
             <CiBookmarkPlus size={40} className="w-8" />
           </Link>
           <div className="dropdown lg:dropdown-hover dropdown-end">
-            <div tabIndex={0} role="button" data-test="user-options-button">
+            <div
+              tabIndex={0}
+              role="button"
+              data-test="user-options-button"
+              aria-label="Botão de opções para usuário"
+            >
               <CiUser size={40} className="w-8" />
             </div>
             <ul

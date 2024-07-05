@@ -23,7 +23,10 @@ export function CardPerson({
       classCSS="relative w-24 sm:w-32 flex flex-col bg-base-300 
       hover:ring-1 hover:ring-white"
     >
-      <Link href={`/person/${id}`}>
+      <Link
+        href={`/person/${id}`}
+        aria-label={`Link para detalhes de ${name}`}
+      >
         <div className="relative">
           <FadeInImage
             src={profile_path}
