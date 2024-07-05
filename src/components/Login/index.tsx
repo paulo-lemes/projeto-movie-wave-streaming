@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { ChildrenProps } from "@/types";
+import { useAuth } from "@/app/contexts/AuthContext";
+import { useModal } from "@/app/contexts/ModalContext";
 import { getRequestToken, getSessionId, postLogin } from "@/app/actions";
 import Image from "next/image";
 import TMDBLogo from "./assets/themoviedatabase-logo.svg";
@@ -10,8 +12,6 @@ import { StyledTitle } from "@/components/StyledTitle";
 import { FaUser } from "react-icons/fa";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { MdOutlineKey } from "react-icons/md";
-import { useAuth } from "@/app/contexts/AuthContext";
-import { useModal } from "@/app/contexts/ModalContext";
 
 export function Login({ children }: ChildrenProps) {
   const { login } = useAuth();
