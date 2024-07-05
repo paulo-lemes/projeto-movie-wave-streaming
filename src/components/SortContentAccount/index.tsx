@@ -10,9 +10,13 @@ export function SortContentAccount({
 }: SortContentAccountProps) {
   return (
     <div className="flex gap-2 items-center">
-      <h5 className="text-sm sm:text-base">Ordenar por:</h5>
+      <label htmlFor="sort-content" className="text-sm sm:text-base">
+        Ordenar por:
+      </label>
       <select
         className="select select-bordered select-secondary select-xs max-w-xs"
+        id="sort-content"
+        name="sort-content"
         defaultValue={""}
         onChange={(e) => {
           sortFunction(e.target.value);

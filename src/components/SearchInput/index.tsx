@@ -29,7 +29,7 @@ export function SearchInput({
           className="w-[calc(100%-30px)]"
           placeholder="Pesquisar"
         />
-        <button type="submit" className="cursor-pointer">
+        <button type="submit" className="cursor-pointer" title="Pesquisar">
           <MdOutlineManageSearch size={30} />
         </button>
       </motion.label>
