@@ -19,12 +19,20 @@ export function Footer() {
       </p>
       <ul className="flex gap-4 items-center order-first sm:order-2">
         <li className={iconStyle}>
-          <a href="https://github.com/paulo-lemes" target="_blank">
+          <a
+            href="https://github.com/paulo-lemes"
+            target="_blank"
+            aria-label="Link para o perfil de Paulo Lemes no Github"
+          >
             <SlSocialGithub size={20} />
           </a>
         </li>
         <li className={iconStyle}>
-          <a href="https://www.linkedin.com/in/-paulolemes/" target="_blank">
+          <a
+            href="https://www.linkedin.com/in/-paulolemes/"
+            target="_blank"
+            aria-label="Link para o perfil de Paulo Lemes no LinkedIn"
+          >
             <CiLinkedin size={25} />
           </a>
         </li>
@@ -32,6 +40,7 @@ export function Footer() {
           <a
             href="https://api.whatsapp.com/send/?phone=5511993385824&text&type=phone_number&app_absent=0"
             target="_blank"
+            aria-label="Link para o número de Paulo Lemes no Whatsapp"
           >
             <PiWhatsappLogoLight size={23} />
           </a>
