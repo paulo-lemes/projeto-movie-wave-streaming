@@ -99,6 +99,7 @@ export function Login({ children }: ChildrenProps) {
               <button
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}
+                title={`${showPassword ? "Ocultar" : "Mostrar"} senha`}
               >
                 {showPassword ? (
                   <IoMdEye size={18} />
