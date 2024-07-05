@@ -12,6 +12,7 @@ export function StreamingRowTitle({
       <img
         src={`https://image.tmdb.org/t/p/${logo}`}
         alt={`Logotipo de ${name}`}
+        height={24}
         className="h-5 sm:h-6"
       />
     </div>

@@ -31,7 +31,7 @@ export function DrawerMenu() {
           aria-label="fechar barra lateral"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full bg-base-200">
+        <div className="menu p-4 w-80 min-h-full bg-base-200">
           <label
             htmlFor="drawer"
             aria-label="fechar barra lateral"
@@ -40,31 +40,33 @@ export function DrawerMenu() {
           >
             <TfiClose size={16} />
           </label>
-          <li data-test="home-anchor-menu">
-            <Link href="/" className={textStyle}>
-              <CiHome size={iconSize} />
-              Home
-            </Link>
-          </li>
-          <li data-test="movies-anchor-menu">
-            <Link href="/movies" className={textStyle}>
-              <MdOutlineLocalMovies size={iconSize} />
-              Filmes
-            </Link>
-          </li>
-          <li data-test="series-anchor-menu">
-            <Link href="/series" className={textStyle}>
-              <PiTelevisionSimpleThin size={iconSize} />
-              Séries
-            </Link>
-          </li>
-          <li data-test="categories-anchor-menu">
-            <Link href="/categories" className={textStyle}>
-              <TbCategory size={iconSize} />
-              Categorias
-            </Link>
-          </li>
-        </ul>
+          <ul>
+            <li data-test="home-anchor-menu">
+              <Link href="/" className={textStyle}>
+                <CiHome size={iconSize} />
+                Home
+              </Link>
+            </li>
+            <li data-test="movies-anchor-menu">
+              <Link href="/movies" className={textStyle}>
+                <MdOutlineLocalMovies size={iconSize} />
+                Filmes
+              </Link>
+            </li>
+            <li data-test="series-anchor-menu">
+              <Link href="/series" className={textStyle}>
+                <PiTelevisionSimpleThin size={iconSize} />
+                Séries
+              </Link>
+            </li>
+            <li data-test="categories-anchor-menu">
+              <Link href="/categories" className={textStyle}>
+                <TbCategory size={iconSize} />
+                Categorias
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
