@@ -93,6 +93,7 @@ export function ContentDetails({
                 href={homepage}
                 target="_blank"
                 className="flex items-center"
+                aria-label={`Link para a página oficial de ${original_title || original_name}`}
               >
                 <CiLink size={30} />{" "}
                 <p className="text-xs lg:hidden pl-2">Página oficial</p>
