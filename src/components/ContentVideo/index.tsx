@@ -13,7 +13,8 @@ export function ContentVideo({ results }: { results: VideoProps[] }) {
             <iframe
               key={key}
               title={name}
-              src={`https://www.youtube.com/embed/${key}`}
+              rel="preconnect"
+              src={`https://www.youtube-nocookie.com/embed/${key}`}
               allowFullScreen
               width={1920}
               height={1080}
