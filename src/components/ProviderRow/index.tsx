@@ -19,7 +19,8 @@ export function ProviderRow({ providers, children }: ProviderRowProps) {
                 alt={`Logo de ${provider_name}`}
                 width={50}
                 height={50}
-                priority
+                title={provider_name}
+                unoptimized
                 className="rounded"
               />
             </LinkProvider>
