@@ -7,7 +7,7 @@
 
 Movie Wave é um projeto baseado em sites de avaliação de filmes, séries e conteúdos relacionados, como IMDb e Letterboxd. Com inspiração no design de Max e outros streamings, o projeto tem como base a TMDB (The Movie Data Base) API e aplica funcionalidades de login/logout, avaliação, exibição de recomendações e possibilita adicionar conteúdos em lista de interesses ou favoritos.
 
-<a href="https://movie-wave-streaming.vercel.app/" target="_blank"><img src="/movie-wave-demo.gif" alt="Movie Wave website view" border="0" /></a>
+<a href="https://movie-wave-streaming.vercel.app/"><img src="/movie-wave-demo.gif" alt="Movie Wave website view" border="0" /></a>
 
 [Documentação TMDB API](https://developer.themoviedb.org/docs/getting-started)
 
@@ -44,18 +44,16 @@ git clone https://github.com/paulo-lemes/projeto-movie-wave-streaming.git
    ```bash
    npm run dev
    ```
-   
+
 Para realizar o comando de testes, execute:
 
-   ```bash
-   npm run test
-   ```
-
+```bash
+npm run test
+```
 
 ## Deploy:
 
 https://movie-wave-streaming.vercel.app/
-
 
 <div id="header" align="center">
  
@@ -63,12 +61,10 @@ https://movie-wave-streaming.vercel.app/
 #### Projeto realizado por Paulo Lemes
 <br/>
  
-  <a href="https://www.linkedin.com/in/-paulolemes/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
-  <a href = "mailto:paulo-lemes@live.com"><img src="https://img.shields.io/badge/-Email-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
-   <a href="https://discordapp.com/users/430034249656172555" target="_blank">
+  <a href="https://www.linkedin.com/in/-paulolemes/"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a> 
+  <a href = "mailto:paulo-lemes@live.com"><img src="https://img.shields.io/badge/-Email-%23333?style=for-the-badge&logo=gmail&logoColor=white"></a>
+   <a href="https://discordapp.com/users/430034249656172555">
   <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white" alt="Discord Badge" width="">
 </a>
-
-
 
 </div>

@@ -17,7 +17,12 @@ export function LinkProvider({ children, provider_id }: LinkProviderProps) {
   if (!path) return children;
 
   return (
-    <motion.a whileHover={{ scale: 1.15 }} href={path} target="_blank">
+    <motion.a
+      whileHover={{ scale: 1.15 }}
+      href={path}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       {children}
     </motion.a>
   );

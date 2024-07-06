@@ -53,7 +53,7 @@ export function CardSearchContent({
         <section className="flex flex-wrap gap-1">
           {!contentType && (
             <p
-              className={`no-animation hover:bg-secondary btn btn-xs btn-secondary w-max h-max`}
+              className="no-animation hover:bg-secondary btn btn-xs btn-secondary w-max h-max"
             >
               {mediaType[media_type]}
             </p>
