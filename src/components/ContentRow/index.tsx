@@ -3,8 +3,8 @@
 import React, { UIEvent, useEffect, useRef, useState } from "react";
 import { DataProps } from "@/types";
 import { Card } from "../Card";
-import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { CardTopContent } from "../CardTopContent";
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 export function ContentRow({
   results,

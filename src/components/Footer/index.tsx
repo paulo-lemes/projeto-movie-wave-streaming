@@ -22,6 +22,7 @@ export function Footer() {
           <a
             href="https://github.com/paulo-lemes"
             target="_blank"
+            rel="noopener noreferrer"
             aria-label="Link para o perfil de Paulo Lemes no Github"
           >
             <SlSocialGithub size={20} />
@@ -31,6 +32,7 @@ export function Footer() {
           <a
             href="https://www.linkedin.com/in/-paulolemes/"
             target="_blank"
+            rel="noopener noreferrer"
             aria-label="Link para o perfil de Paulo Lemes no LinkedIn"
           >
             <CiLinkedin size={25} />
@@ -40,6 +42,7 @@ export function Footer() {
           <a
             href="https://api.whatsapp.com/send/?phone=5511993385824&text&type=phone_number&app_absent=0"
             target="_blank"
+            rel="noopener noreferrer"
             aria-label="Link para o número de Paulo Lemes no Whatsapp"
           >
             <PiWhatsappLogoLight size={23} />
@@ -51,6 +54,7 @@ export function Footer() {
           <a
             href="https://github.com/paulo-lemes/projeto-movie-wave-streaming"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Projeto GitHub
           </a>
@@ -59,6 +63,7 @@ export function Footer() {
           <a
             href="https://developer.themoviedb.org/docs/getting-started"
             target="_blank"
+            rel="noopener noreferrer"
           >
             TMDB API
           </a>
@@ -67,6 +72,7 @@ export function Footer() {
           <a
             href="https://www.themoviedb.org/?language=pt-BR"
             target="_blank"
+            rel="noopener noreferrer"
             className="flex gap-2"
           >
             The Movie Data Base

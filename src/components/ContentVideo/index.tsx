@@ -1,7 +1,7 @@
 import React from "react";
-import { VideoProps } from "@/types";
+import { ContentVideoProps } from "@/types";
 
-export function ContentVideo({ results }: { results: VideoProps[] }) {
+export function ContentVideo({ results }: ContentVideoProps) {
   const videos = results.filter(({ site }) => site.toLowerCase() === "youtube");
 
   return (

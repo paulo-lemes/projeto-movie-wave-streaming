@@ -141,7 +141,11 @@ export interface ContentImagesProps {
   randomImg: ImageContent;
 }
 
-export type VideoProps = {
+export interface ContentVideoProps {
+  results: VideoContent[];
+}
+
+export type VideoContent = {
   iso_639_1: string;
   iso_3166_1: string;
   name: string;

@@ -49,9 +49,7 @@ export function PersonDetails({
             <h3 className="font-bold text-xl sm:text-2xl text-secondary">
               Biografia
             </h3>
-            <ShowMoreText>
-              {biography}
-            </ShowMoreText>
+            <ShowMoreText>{biography}</ShowMoreText>
           </div>
         )}
         <div>
@@ -66,6 +64,7 @@ export function PersonDetails({
               <Link
                 href={homepage}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center"
               >
                 <CiLink size={30} />{" "}

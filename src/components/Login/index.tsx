@@ -122,6 +122,7 @@ export function Login({ children }: ChildrenProps) {
             <a
               href="https://www.themoviedb.org/signup?language=pt-BR"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-secondary font-semibold"
             >
               Cadastre-se
