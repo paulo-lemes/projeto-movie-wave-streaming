@@ -46,18 +46,18 @@ export function PersonDetails({
         <h2 className="font-bold text-4xl sm:text-5xl">{name}</h2>
         {biography && (
           <div className="flex flex-col gap-2">
-            <h4 className="font-bold text-xl sm:text-2xl text-secondary">
+            <h3 className="font-bold text-xl sm:text-2xl text-secondary">
               Biografia
-            </h4>
+            </h3>
             <ShowMoreText>
               {biography}
             </ShowMoreText>
           </div>
         )}
         <div>
-          <h4 className="font-bold text-xl sm:text-2xl text-secondary pb-2">
+          <h3 className="font-bold text-xl sm:text-2xl text-secondary pb-2">
             Infomações pessoais
-          </h4>
+          </h3>
           {homepage && (
             <div
               className="lg:tooltip lg:tooltip-right"
