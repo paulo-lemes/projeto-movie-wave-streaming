@@ -11,6 +11,7 @@ export function ContentSeasons({ contentType, seasons }: ContentSeasonsProps) {
         <h3 className="font-bold text-2xl">Temporadas</h3>
         {seasons.map(
           ({
+            id,
             poster_path,
             name,
             vote_average,
@@ -20,7 +21,7 @@ export function ContentSeasons({ contentType, seasons }: ContentSeasonsProps) {
           }) =>
             air_date &&
             episode_count > 0 && (
-              <div className="flex gap-4">
+              <div className="flex gap-4" key={id}>
                 {poster_path && (
                   <div className="relative min-w-[140px]">
                     <FadeInImage
