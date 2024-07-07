@@ -58,16 +58,7 @@ type Tv = {
   number_of_episodes: number;
   number_of_seasons: number;
   original_name: string;
-  seasons: {
-    air_date: string;
-    episode_count: number;
-    id: number;
-    name: string;
-    overview: string;
-    poster_path: string | null;
-    season_number: number;
-    vote_average: number;
-  }[];
+  seasons: SeasonsContent[];
   type: string;
   vote_average: number;
   vote_count: number;
@@ -298,3 +289,19 @@ export interface StreamingContentRowProps {
   category?: { id: string; categoryName: string; page: number };
   index: number;
 }
+
+export interface ContentSeasonsProps {
+  contentType: string | undefined
+  seasons: SeasonsContent[]
+}
+
+type SeasonsContent = {
+  air_date: string;
+  episode_count: number;
+  id: number;
+  name: string;
+  overview: string;
+  poster_path: string | null;
+  season_number: number;
+  vote_average: number;
+};

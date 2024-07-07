@@ -7,6 +7,7 @@ import { Loading } from "@/components/Loading";
 import { ContentRow } from "@/components/ContentRow";
 import { WatchProvider } from "@/components/WatchProvider";
 import { CreditsContent } from "@/components/CreditsContent";
+import { ContentSeasons } from "@/components/ContentSeasons";
 
 export default async function Content({
   params,
@@ -75,6 +76,7 @@ export default async function Content({
           images={contentImages}
           contentType={type}
         />
+        <ContentSeasons contentType={type} seasons={contentDetails.seasons} />
         <CreditsContent
           {...contentCredits}
           created_by={contentDetails.created_by}
