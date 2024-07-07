@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { ChildrenProps } from "@/types";
+import { ShowMoreTextProps } from "@/types";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 
-export function ShowMoreText({ children }: ChildrenProps) {
+export function ShowMoreText({ children, maxLines = 6 }: ShowMoreTextProps) {
   const textRef = useRef<HTMLParagraphElement | null>(null);
   const [lines, setLines] = useState<boolean>(false);
   const [showMore, setShowMore] = useState<boolean>(false);
@@ -14,7 +14,7 @@ export function ShowMoreText({ children }: ChildrenProps) {
     const pHeight = paragraph?.offsetHeight || 0;
     const qtyLines = pHeight / 24;
 
-    if (qtyLines > 6) setLines(true);
+    if (qtyLines > maxLines) setLines(true);
   };
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export function ShowMoreText({ children }: ChildrenProps) {
     <div className={`${!lines ? "" : "lg:-mb-4"} flex flex-col`}>
       <p
         className={`${
-          !lines ? "" : showMore ? "" : "line-clamp-6"
+          !lines ? "" : showMore ? "" : `line-clamp-${maxLines}`
         } leading-normal`}
         ref={textRef}
       >

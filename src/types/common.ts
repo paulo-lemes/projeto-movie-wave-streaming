@@ -77,3 +77,8 @@ export interface LogoutButtonProps {
   classCSS?: string;
   dataTest?: string;
 }
+
+export interface ShowMoreTextProps {
+  children: ReactNode;
+  maxLines?: number;
+}
