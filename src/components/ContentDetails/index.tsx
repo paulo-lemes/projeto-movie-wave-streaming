@@ -72,7 +72,7 @@ export function ContentDetails({
         {rating.length > 0 && <ClassificationContent {...rating[0]} />}
         {overview && <p className="mb-2 w-full sm:text-lg">{overview}</p>}
         {poster_path && (
-          <div className="relative max-w-[262.5px]">
+          <div className="relative max-w-[175px]">
             <FadeInImage
               src={poster_path}
               type="poster"
