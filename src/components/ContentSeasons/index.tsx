@@ -21,7 +21,7 @@ export function ContentSeasons({ contentType, seasons }: ContentSeasonsProps) {
           }) =>
             air_date &&
             episode_count > 0 && (
-              <div className="flex gap-4" key={id}>
+              <div className="flex gap-4 items-center" key={id}>
                 {poster_path && (
                   <div className="relative min-w-[140px]">
                     <FadeInImage
@@ -57,7 +57,9 @@ export function ContentSeasons({ contentType, seasons }: ContentSeasonsProps) {
                     </p>
                   )}
                   {overview && (
-                    <ShowMoreText maxLines={3}>{overview}</ShowMoreText>
+                    <div className="lg:pr-20">
+                      <ShowMoreText maxLines={3}>{overview}</ShowMoreText>
+                    </div>
                   )}
                 </div>
               </div>
