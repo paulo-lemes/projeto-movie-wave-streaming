@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import classNames from "classnames";
 import { ShowMoreTextProps } from "@/types";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 
@@ -9,7 +10,9 @@ export function ShowMoreText({ children, maxLines = 6 }: ShowMoreTextProps) {
   const [lines, setLines] = useState<boolean>(false);
   const [showMore, setShowMore] = useState<boolean>(false);
 
-  const lineClamp = `line-clamp-${maxLines}`
+  const paragraphStyle = classNames("leading-normal", {
+    [`line-clamp-${maxLines}`]: lines && !showMore,
+  });
 
   const countLines = () => {
     const paragraph = textRef.current;
@@ -24,13 +27,8 @@ export function ShowMoreText({ children, maxLines = 6 }: ShowMoreTextProps) {
   }, [children, textRef]);
 
   return (
-    <div className={`${!lines ? "" : "lg:-mb-4"} flex flex-col`}>
-      <p
-        className={`${
-          !lines ? "" : showMore ? "" : lineClamp
-        } leading-normal`}
-        ref={textRef}
-      >
+    <div className={classNames("flex flex-col", { "lg:-mb-4": lines })}>
+      <p className={paragraphStyle} ref={textRef}>
         {children}
       </p>
       {lines && (
