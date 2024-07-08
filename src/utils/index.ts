@@ -20,9 +20,7 @@ const defaultImageContent = {
 export function randomImage(arr: ImageContent[]): ImageContent {
   const img = arr[Math.floor(Math.random() * arr.length)];
 
-  if (img && img.file_path) return img;
-
-  return defaultImageContent;
+  return img && img.file_path ? img : defaultImageContent;
 }
 
 export function randomContent(arr: Content[]): Content {

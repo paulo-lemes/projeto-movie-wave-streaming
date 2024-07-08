@@ -39,6 +39,10 @@ export function ContentDetails({
 }: Content) {
   const bannerImg = randomImage(images.backdrops);
   const rating = getClassification(classification);
+  
+  if (!bannerImg.file_path) {
+    bannerImg.file_path = backdrop_path || poster_path;
+  }
 
   if (process.env.NODE_ENV === "development") {
     console.log(bannerImg);
