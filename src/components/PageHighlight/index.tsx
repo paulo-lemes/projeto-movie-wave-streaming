@@ -60,7 +60,7 @@ export function PageHighlight({ results, contentType }: DataProps) {
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
-    if (autoChange)
+    if (autoChange && slideshowList?.length)
       timeout = setTimeout(() => {
         handleSlideChange("next");
       }, 13000);
