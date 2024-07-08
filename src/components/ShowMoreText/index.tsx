@@ -10,18 +10,10 @@ export function ShowMoreText({ children, maxLines }: ShowMoreTextProps) {
   const [lines, setLines] = useState<boolean>(false);
   const [showMore, setShowMore] = useState<boolean>(false);
 
-  const paragraphStyle = classNames("leading-normal", {
-    [`line-clamp-${maxLines}`]: lines && !showMore,
-    "border border-red-500": true,
-  });
-
   const countLines = () => {
     const paragraph = textRef.current;
     const pHeight = paragraph?.offsetHeight || 0;
     const qtyLines = pHeight / 24;
-    console.log(
-      `pHeight: ${pHeight}, qtyLines: ${qtyLines}, maxLines: ${maxLines}`
-    );
 
     if (qtyLines > maxLines) setLines(true);
   };
@@ -33,14 +25,10 @@ export function ShowMoreText({ children, maxLines }: ShowMoreTextProps) {
   return (
     <div className={classNames("flex flex-col", { "lg:-mb-4": lines })}>
       <p
-        className={paragraphStyle}
+        className={classNames("leading-normal", {
+          [`line-clamp-${maxLines}`]: lines && !showMore,
+        })}
         ref={textRef}
-        style={{
-          display: "-webkit-box",
-          WebkitLineClamp: maxLines,
-          WebkitBoxOrient: "vertical",
-          overflow: "hidden",
-        }}
       >
         {children}
       </p>
