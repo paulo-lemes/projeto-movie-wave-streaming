@@ -6,13 +6,6 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  options: {
-    safelist: [
-      {
-        pattern: /line-clamp-./,
-      },
-    ],
-  },
   theme: {
     extend: {
       backgroundImage: {
@@ -22,7 +15,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("daisyui"), require("@tailwindcss/line-clamp")],
+  plugins: [require("daisyui")],
   daisyui: {
     themes: ["forest"],
   },

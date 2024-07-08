@@ -29,9 +29,9 @@ export function PersonDetails({
   place_of_birth,
 }: PersonDetailsProps) {
   return (
-    <section className="mt-20 lg:mt-28 mb-10 px-4 sm:px-16 flex flex-wrap lg:flex-nowrap gap-8 items-center">
+    <section className={`mt-20 lg:mt-28 mb-10 px-4 sm:px-16 flex flex-wrap lg:flex-nowrap gap-8 ${biography ? "" : "items-center"}`}>
       {profile_path && (
-        <div className="relative shadow-2xl shadow-neutral">
+        <div className="relative shadow-2xl shadow-neutral h-max">
           <FadeInImage
             src={profile_path}
             type="profile"

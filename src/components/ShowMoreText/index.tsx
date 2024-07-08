@@ -10,6 +10,12 @@ export function ShowMoreText({ children, maxLines }: ShowMoreTextProps) {
   const [lines, setLines] = useState<boolean>(false);
   const [showMore, setShowMore] = useState<boolean>(false);
 
+  const paragraphStyle = classNames("leading-normal", {
+    [`line-clamp-${maxLines}`]: lines && !showMore && maxLines < 5,
+    "clamp-line-6": lines && !showMore && maxLines === 6,
+    "line-clamp-none": showMore,
+  });
+
   const countLines = () => {
     const paragraph = textRef.current;
     const pHeight = paragraph?.offsetHeight || 0;
@@ -24,12 +30,7 @@ export function ShowMoreText({ children, maxLines }: ShowMoreTextProps) {
 
   return (
     <div className={classNames("flex flex-col", { "lg:-mb-4": lines })}>
-      <p
-        className={classNames("leading-normal", {
-          [`line-clamp-${maxLines}`]: lines && !showMore,
-        })}
-        ref={textRef}
-      >
+      <p className={paragraphStyle} ref={textRef}>
         {children}
       </p>
       {lines && (
