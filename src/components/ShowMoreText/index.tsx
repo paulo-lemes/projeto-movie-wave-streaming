@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { ShowMoreTextProps } from "@/types";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 
-export function ShowMoreText({ children, maxLines = 6 }: ShowMoreTextProps) {
+export function ShowMoreText({ children, maxLines }: ShowMoreTextProps) {
   const textRef = useRef<HTMLParagraphElement | null>(null);
   const [lines, setLines] = useState<boolean>(false);
   const [showMore, setShowMore] = useState<boolean>(false);
