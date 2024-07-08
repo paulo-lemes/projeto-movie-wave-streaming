@@ -80,5 +80,5 @@ export interface LogoutButtonProps {
 
 export interface ShowMoreTextProps {
   children: ReactNode;
-  maxLines?: number;
+  maxLines: number;
 }

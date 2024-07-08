@@ -49,7 +49,7 @@ export function PersonDetails({
             <h3 className="font-bold text-xl sm:text-2xl text-secondary">
               Biografia
             </h3>
-            <ShowMoreText>{biography}</ShowMoreText>
+            <ShowMoreText maxLines={6}>{biography}</ShowMoreText>
           </div>
         )}
         <div>
