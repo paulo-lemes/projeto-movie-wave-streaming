@@ -9,6 +9,8 @@ export function ShowMoreText({ children, maxLines = 6 }: ShowMoreTextProps) {
   const [lines, setLines] = useState<boolean>(false);
   const [showMore, setShowMore] = useState<boolean>(false);
 
+  const lineClamp = `line-clamp-${maxLines}`
+
   const countLines = () => {
     const paragraph = textRef.current;
     const pHeight = paragraph?.offsetHeight || 0;
@@ -25,7 +27,7 @@ export function ShowMoreText({ children, maxLines = 6 }: ShowMoreTextProps) {
     <div className={`${!lines ? "" : "lg:-mb-4"} flex flex-col`}>
       <p
         className={`${
-          !lines ? "" : showMore ? "" : `line-clamp-${maxLines}`
+          !lines ? "" : showMore ? "" : lineClamp
         } leading-normal`}
         ref={textRef}
       >
@@ -33,6 +35,7 @@ export function ShowMoreText({ children, maxLines = 6 }: ShowMoreTextProps) {
       </p>
       {lines && (
         <button
+          type="button"
           onClick={() => setShowMore((prev) => !prev)}
           className="text-secondary self-end flex items-center gap-2 opacity-85 hover:opacity-100"
         >
