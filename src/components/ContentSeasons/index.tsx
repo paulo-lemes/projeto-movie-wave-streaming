@@ -1,7 +1,6 @@
-import React from "react";
 import { ContentSeasonsProps } from "@/types";
-import { FadeInImage } from "../FadeInImage";
 import { MdStarRate } from "react-icons/md";
+import { FadeInImage } from "../FadeInImage";
 import { ShowMoreText } from "../ShowMoreText";
 
 export function ContentSeasons({ contentType, seasons }: ContentSeasonsProps) {
@@ -21,7 +20,10 @@ export function ContentSeasons({ contentType, seasons }: ContentSeasonsProps) {
           }) =>
             air_date &&
             episode_count > 0 && (
-              <div className="flex gap-4 lg:pr-20" key={id}>
+              <div
+                className="flex flex-wrap sm:flex-nowrap gap-4 lg:pr-20"
+                key={id}
+              >
                 {poster_path && (
                   <div className="relative min-w-[140px]">
                     <FadeInImage
@@ -34,7 +36,7 @@ export function ContentSeasons({ contentType, seasons }: ContentSeasonsProps) {
                     />
                   </div>
                 )}
-                <div className="flex flex-col pt-1">
+                <div className="flex w-full sm:w-max flex-col pt-1">
                   <h4 className="font-bold sm:text-lg">{name}</h4>
                   {vote_average > 0 && (
                     <div className="flex gap-1 mb-1">
