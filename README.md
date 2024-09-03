@@ -39,7 +39,12 @@ git clone https://github.com/paulo-lemes/projeto-movie-wave-streaming.git
    npm install
    ```
 
-4. Após a instalação, inicie o servidor de desenvolvimento executando:
+4. Crie um arquivo .env contendo as variáveis de ambiente:
+
+  - API_TOKEN="<chave_api_tmdb>"
+  - BASE_URL="<tmdb_api_url>"
+
+5. Após a instalação, inicie o servidor de desenvolvimento executando:
 
    ```bash
    npm run dev
