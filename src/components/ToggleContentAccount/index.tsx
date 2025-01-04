@@ -16,10 +16,9 @@ export function ToggleContentAccount({
   toggle,
   id,
   contentType,
+  isInAccount,
+  setIsInAccount
 }: ToggleContentAccountProps) {
-  const [isInAccount, setIsInAccount] = useState<boolean | undefined | null>(
-    null
-  );
   const { user } = useAuth();
   const { openModal, setRedirectAfterClose } = useModal();
 

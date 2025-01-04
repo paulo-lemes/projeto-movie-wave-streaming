@@ -1,14 +1,18 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { RatingContentProps, Content } from "@/types";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useModal } from "@/app/contexts/ModalContext";
+import { fetchAllData } from "@/app/fetchData";
+import { Content, RatingContentProps } from "@/types";
+import { useEffect, useState } from "react";
 import { MdStarOutline, MdStarRate } from "react-icons/md";
 import { RatingStars } from "../RatingsStars";
-import { fetchAllData } from "@/app/fetchData";
 
-export function RatingContent({ id, contentType }: RatingContentProps) {
+export function RatingContent({
+  id,
+  contentType,
+  setIsInAccountWatchlist,
+}: RatingContentProps) {
   const [isRated, setIsRated] = useState<boolean | null>(null);
   const [rating, setRating] = useState<number | string>(0);
   const [showRatingStars, setShowRatingStars] = useState<boolean>(false);
@@ -60,6 +64,7 @@ export function RatingContent({ id, contentType }: RatingContentProps) {
       switch (response.status_code) {
         case 1:
           openModal("Avaliação feita!");
+          setIsInAccountWatchlist(false);
           setIsRated((prev) => !prev);
           break;
         case 12:
