@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, type Dispatch, type SetStateAction } from "react";
 import { CreatedBy, Person } from "./person";
 
 type Movie = {
@@ -245,6 +245,7 @@ export interface RatingStarsProps {
 export interface RatingContentProps {
   id: number;
   contentType: string | undefined;
+  setIsInAccountWatchlist: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface PostContentObj {
@@ -255,6 +256,8 @@ export interface ToggleContentAccountProps {
   toggle: string;
   id: number;
   contentType: string | undefined;
+  isInAccount: boolean;
+  setIsInAccount: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface ContentAccountProps {
@@ -291,8 +294,8 @@ export interface StreamingContentRowProps {
 }
 
 export interface ContentSeasonsProps {
-  contentType: string | undefined
-  seasons: SeasonsContent[]
+  contentType: string | undefined;
+  seasons: SeasonsContent[];
 }
 
 type SeasonsContent = {

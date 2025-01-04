@@ -1,17 +1,18 @@
-import React from "react";
-import Link from "next/link";
+"use client";
+
 import { Content } from "@/types";
-import { Banner } from "../Banner";
-import { GenreName } from "../GenreName";
-import { FadeInImage } from "../FadeInImage";
+import { getClassification, randomImage } from "@/utils";
+import Link from "next/link";
+import { useState } from "react";
 import { CiLink } from "react-icons/ci";
 import { MdStarRate } from "react-icons/md";
-import { InfoContentDetails } from "../InfoContentDetails";
-import { randomImage, getClassification } from "@/utils";
 import { ClassificationContent } from "../ClassificationContent";
-import { ToggleContentAccount } from "../ToggleContentAccount";
-import { RatingContent } from "../RatingContent";
 import { ContentImages } from "../ContentImages";
+import { FadeInImage } from "../FadeInImage";
+import { GenreName } from "../GenreName";
+import { InfoContentDetails } from "../InfoContentDetails";
+import { RatingContent } from "../RatingContent";
+import { ToggleContentAccount } from "../ToggleContentAccount";
 
 export function ContentDetails({
   poster_path,
@@ -37,9 +38,14 @@ export function ContentDetails({
   id,
   contentType,
 }: Content) {
+  const [isInAccountWatchList, setIsInAccountWatchlist] =
+    useState<boolean>(false);
+  const [isInAccountFavorites, setIsInAccountFavorites] =
+    useState<boolean>(false);
+
   const bannerImg = randomImage(images.backdrops);
   const rating = getClassification(classification);
-  
+
   if (!bannerImg.file_path) {
     bannerImg.file_path = backdrop_path || poster_path;
   }
@@ -114,7 +120,11 @@ export function ContentDetails({
               <p className="font-light text-sm mt-1">({vote_count})</p>
             </div>
           )}
-          <RatingContent contentType={contentType} id={id} />
+          <RatingContent
+            contentType={contentType}
+            id={id}
+            setIsInAccountWatchlist={setIsInAccountWatchlist}
+          />
           {(original_title || original_name) && (
             <InfoContentDetails title="Título original:">
               {original_title || original_name}
@@ -150,11 +160,15 @@ export function ContentDetails({
               toggle="favorite"
               id={id}
               contentType={contentType}
+              isInAccount={isInAccountFavorites}
+              setIsInAccount={setIsInAccountFavorites}
             />
             <ToggleContentAccount
               toggle="watchlist"
               id={id}
               contentType={contentType}
+              isInAccount={isInAccountWatchList}
+              setIsInAccount={setIsInAccountWatchlist}
             />
           </div>
         </div>
