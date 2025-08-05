@@ -39,13 +39,13 @@ export function useSlideshow() {
       let nextContent;
       switch (order) {
         case "next":
-          currentIndex === slideshowList.length - 1
+          currentIndex === slideshowList?.length - 1
             ? (nextContent = slideshowList[0])
             : (nextContent = slideshowList[currentIndex + 1]);
           break;
         case "prev":
           currentIndex === 0
-            ? (nextContent = slideshowList[slideshowList.length - 1])
+            ? (nextContent = slideshowList[slideshowList?.length - 1])
             : (nextContent = slideshowList[currentIndex - 1]);
           break;
         default:

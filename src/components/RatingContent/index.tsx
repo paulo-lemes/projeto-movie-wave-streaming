@@ -94,7 +94,7 @@ export function RatingContent({
       );
       if (process.env.NODE_ENV === "development") console.log(ratingContent);
 
-      if (ratingContent.length > 0) {
+      if (ratingContent?.length > 0) {
         setIsRated(true);
         setRating(ratingContent[0].rating);
         return;

@@ -64,7 +64,7 @@ async function StreamingContentRow({
         </ContentRow>
       )}
       {!type ? (
-        moviesData.results.length ? (
+        moviesData.results?.length ? (
           <SpotlightContent {...moviesData} contentType="movie" />
         ) : (
           <SpotlightContent {...seriesData} contentType="tv" />

@@ -45,11 +45,11 @@ export function PageHighlight({ results, contentType }: DataProps) {
       ({ backdrop_path, overview }) => backdrop_path && overview
     );
 
-    const highlightContent = filterWithBackdropAndOverview.length
+    const highlightContent = filterWithBackdropAndOverview?.length
       ? filterWithBackdropAndOverview
       : results.filter(({ backdrop_path }) => backdrop_path);
 
-    if (highlightContent.length) {
+    if (highlightContent?.length) {
       setSlideshowList(highlightContent);
       setContent(randomContent(highlightContent));
     } else {
@@ -72,7 +72,7 @@ export function PageHighlight({ results, contentType }: DataProps) {
       carousel={slideshowList}
       changeContent={manualSlideChange}
     >
-      {slideshowList.length > 1 && (
+      {slideshowList?.length > 1 && (
         <div className="absolute -bottom-6 right-0 left-0 hidden sm:flex sm:justify-center">
           <div className="flex justify-center w-max">
             {slideshowList.map(({ id, title, name }) => (
