@@ -14,7 +14,7 @@ export function SpotlightContent({ results, contentType }: DataProps) {
       ({ backdrop_path, overview }) => backdrop_path && overview
     );
 
-    const spotlightContent = filterWithBackdropAndOverview.length
+    const spotlightContent = filterWithBackdropAndOverview?.length
       ? filterWithBackdropAndOverview
       : results.filter(({ backdrop_path }) => backdrop_path);
     setContent(randomContent(spotlightContent));

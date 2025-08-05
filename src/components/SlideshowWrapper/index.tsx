@@ -14,7 +14,7 @@ export function SlideshowWrapper({
 }: SlideshowWrapperProps) {
   return (
     <div className="relative h-[70vh] sm:h-[90vh] max-h-[735px] w-full mb-6">
-      {carousel.length > 1 && (
+      {carousel?.length > 1 && (
         <>
           <button
             type="button"

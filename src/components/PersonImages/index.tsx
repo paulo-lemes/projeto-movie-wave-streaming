@@ -7,7 +7,7 @@ export function PersonImages({ name, profiles }: PersonImagesProps) {
   const photos = profiles.slice(1);
 
   return (
-    photos.length > 0 && (
+    photos?.length > 0 && (
       <section className="px-4 sm:px-16 mb-10 flex flex-col gap-2">
         <h3 className="font-bold text-xl sm:text-2xl text-secondary">Fotos</h3>
         <div className="flex flex-wrap gap-2">

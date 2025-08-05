@@ -57,7 +57,7 @@ export function ContentRow({
   }, [results]);
 
   return (
-    results.length > 0 && (
+    results?.length > 0 && (
       <section className="py-4">
         {children && (
           <h3 className="font-semibold text-xl sm:text-2xl ml-4 sm:ml-16 -mb-2">

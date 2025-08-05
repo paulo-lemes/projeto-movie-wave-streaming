@@ -28,7 +28,7 @@ export function CreditsContent({
 
   return (
     <section className="flex flex-col gap-3 mb-6">
-      {actors.length > 0 && (
+      {actors?.length > 0 && (
         <>
           <h3 className={titleStyle}>Elenco principal</h3>
           <div className={divStyle}>

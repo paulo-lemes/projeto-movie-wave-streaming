@@ -66,7 +66,7 @@ export function ToggleContentAccount({
       );
 
       const contentIsTrue =
-        data.filter((content: Content) => content.id == id).length > 0;
+        data.filter((content: Content) => content.id == id)?.length > 0;
 
       setIsInAccount(contentIsTrue);
     } catch (error) {

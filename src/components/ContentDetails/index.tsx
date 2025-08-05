@@ -79,7 +79,7 @@ export function ContentDetails({
         </div>
       </ContentImages>
       <div className="flex flex-wrap gap-4 px-4 sm:px-16 mb-6">
-        {rating.length > 0 && <ClassificationContent {...rating[0]} />}
+        {rating?.length > 0 && <ClassificationContent {...rating[0]} />}
         {overview && <p className="mb-2 w-full sm:text-lg">{overview}</p>}
         {poster_path && (
           <div className="relative max-w-[175px]">
