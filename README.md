@@ -7,7 +7,7 @@
 
 Movie Wave é um projeto baseado em sites de avaliação de filmes, séries e conteúdos relacionados, como IMDb e Letterboxd. Com inspiração no design de Max e outros streamings, o projeto tem como base a TMDB (The Movie Data Base) API e aplica funcionalidades de login/logout, avaliação, exibição de recomendações e possibilita adicionar conteúdos em lista de interesses ou favoritos.
 
-<a href="https://movie-wave-streaming.vercel.app/"><img src="/movie-wave-demo.gif" alt="Movie Wave website view" border="0" /></a>
+<a href="https://moviewave-streaming.netlify.app/"><img src="/movie-wave-demo.gif" alt="Movie Wave website view" border="0" /></a>
 
 [Documentação TMDB API](https://developer.themoviedb.org/docs/getting-started)
 
@@ -58,7 +58,7 @@ npm run test
 
 ## Deploy:
 
-https://movie-wave-streaming.vercel.app/
+[https://moviewave-streaming.netlify.app/](https://moviewave-streaming.netlify.app/)
 
 <div id="header" align="center">
  
