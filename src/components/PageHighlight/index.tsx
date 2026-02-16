@@ -1,28 +1,30 @@
-"use client";
+'use client';
 
-import React, { useEffect } from "react";
-import { DataProps } from "@/types";
-import { randomContent } from "@/utils";
-import { Loading } from "../Loading";
-import { motion } from "framer-motion";
-import { SlideshowWrapper } from "../SlideshowWrapper";
-import { Banner } from "../Banner";
-import { GoDot, GoDotFill } from "react-icons/go";
-import Link from "next/link";
-import { useSlideshow } from "@/hooks/slideshow";
+import { motion, Variants } from 'framer-motion';
+import Link from 'next/link';
+import { useEffect } from 'react';
+import { GoDot, GoDotFill } from 'react-icons/go';
 
-const dotIconStyle = "fill-secondary opacity-40 hover:opacity-100";
+import { useSlideshow } from '@/hooks/slideshow';
+import { DataProps } from '@/types';
+import { randomContent } from '@/utils';
 
-const fadeSlideUp = (yStart: number, duration?: number) => {
+import { Banner } from '../Banner';
+import { Loading } from '../Loading';
+import { SlideshowWrapper } from '../SlideshowWrapper';
+
+const dotIconStyle = 'fill-secondary opacity-40 hover:opacity-100';
+
+const fadeSlideUp = (yStart: number, duration?: number): Variants => {
   return {
     hidden: { opacity: 0, y: `${yStart}%` },
     visible: {
       opacity: 1,
-      y: "0%",
+      y: '0%',
       transition: {
         duration: duration || 0.4,
         delay: 0.4,
-        ease: "easeOut",
+        ease: 'easeOut',
       },
     },
   };
@@ -42,7 +44,7 @@ export function PageHighlight({ results, contentType }: DataProps) {
 
   useEffect(() => {
     const filterWithBackdropAndOverview = results.filter(
-      ({ backdrop_path, overview }) => backdrop_path && overview
+      ({ backdrop_path, overview }) => backdrop_path && overview,
     );
 
     const highlightContent = filterWithBackdropAndOverview?.length
@@ -59,19 +61,19 @@ export function PageHighlight({ results, contentType }: DataProps) {
   }, [results]);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    if (autoChange && slideshowList?.length)
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    if (autoChange && slideshowList?.length) {
       timeout = setTimeout(() => {
-        handleSlideChange("next");
+        handleSlideChange('next');
       }, 13000);
-    return () => clearTimeout(timeout);
+    }
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
   }, [autoChange, content, slideshowList]);
 
   return content && isContentList(slideshowList) ? (
-    <SlideshowWrapper
-      carousel={slideshowList}
-      changeContent={manualSlideChange}
-    >
+    <SlideshowWrapper carousel={slideshowList} changeContent={manualSlideChange}>
       {slideshowList?.length > 1 && (
         <div className="absolute -bottom-6 right-0 left-0 hidden sm:flex sm:justify-center">
           <div className="flex justify-center w-max">
@@ -92,10 +94,7 @@ export function PageHighlight({ results, contentType }: DataProps) {
           </div>
         </div>
       )}
-      <Banner
-        backdrop={content.backdrop_path}
-        title={content.title || content.name}
-      >
+      <Banner backdrop={content.backdrop_path} title={content.title || content.name}>
         <div className="flex flex-col gap-2 sm:w-[60vw] lg:w-[40vw]">
           <motion.h2
             className="text-3xl lg:text-5xl font-bold drop-shadow-2xl line-clamp-4 py-1.5"
@@ -115,11 +114,7 @@ export function PageHighlight({ results, contentType }: DataProps) {
               {content.overview}
             </motion.p>
           )}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeSlideUp(15)}
-          >
+          <motion.div initial="hidden" animate="visible" variants={fadeSlideUp(15)}>
             <Link
               href={`/${contentType}/${content.id}?title=${(
                 content.title || content.name
