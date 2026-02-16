@@ -1,42 +1,34 @@
-import React, { Suspense } from "react";
-import { getApiContent } from "@/api";
-import { FadeInContent } from "@/components/FadeInContent";
-import { ContentDetails } from "@/components/ContentDetails";
-import { ContentVideo } from "@/components/ContentVideo";
-import { Loading } from "@/components/Loading";
-import { ContentRow } from "@/components/ContentRow";
-import { WatchProvider } from "@/components/WatchProvider";
-import { CreditsContent } from "@/components/CreditsContent";
-import { ContentSeasons } from "@/components/ContentSeasons";
+import { Suspense } from 'react';
 
-export default async function Content({
-  params,
-}: {
+import { getApiContent } from '@/api';
+
+import { ContentDetails } from '@/components/ContentDetails';
+import { ContentRow } from '@/components/ContentRow';
+import { ContentSeasons } from '@/components/ContentSeasons';
+import { ContentVideo } from '@/components/ContentVideo';
+import { CreditsContent } from '@/components/CreditsContent';
+import { FadeInContent } from '@/components/FadeInContent';
+import { Loading } from '@/components/Loading';
+import { WatchProvider } from '@/components/WatchProvider';
+
+interface Props {
   params: { type: string; id: string };
-}) {
-  const { type, id } = params;
-  const credits = type === "tv" ? "aggregate_credits" : "credits";
+}
 
-  const contentDetailsData = getApiContent(
-    `${type}/${id}?language=pt-BR`
-  );
+export default async function Content({ params }: Props) {
+  const { type, id } = await params;
+  const credits = type === 'tv' ? 'aggregate_credits' : 'credits';
+
+  const contentDetailsData = getApiContent(`${type}/${id}?language=pt-BR`);
   const contentClassificationData = getApiContent(
-    `${type}/${id}/${type === "movie" ? "release_dates" : "content_ratings"}`
+    `${type}/${id}/${type === 'movie' ? 'release_dates' : 'content_ratings'}`,
   );
-  const contentImagesData = getApiContent(
-    `${type}/${id}/images?language=null`
-  );
-  const contentCreditsData = getApiContent(
-    `${type}/${id}/${credits}?language=pt-BR`
-  );
-  const contentVideosData = getApiContent(
-    `${type}/${id}/videos?language=pt-BR`
-  );
-  const contentProvidersData = getApiContent(
-    `${type}/${id}/watch/providers`
-  );
+  const contentImagesData = getApiContent(`${type}/${id}/images?language=null`);
+  const contentCreditsData = getApiContent(`${type}/${id}/${credits}?language=pt-BR`);
+  const contentVideosData = getApiContent(`${type}/${id}/videos?language=pt-BR`);
+  const contentProvidersData = getApiContent(`${type}/${id}/watch/providers`);
   const recommendedContentData = getApiContent(
-    `${type}/${id}/recommendations?language=pt-BR&page=1`
+    `${type}/${id}/recommendations?language=pt-BR&page=1`,
   );
 
   const [
@@ -57,7 +49,7 @@ export default async function Content({
     recommendedContentData,
   ]);
 
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === 'development') {
     console.log(contentDetails);
     console.log(contentClassification);
     console.log(contentImages);

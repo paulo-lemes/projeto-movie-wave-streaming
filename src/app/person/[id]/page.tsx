@@ -1,28 +1,24 @@
-import React, { Suspense } from "react";
-import { Content } from "@/types";
-import { getApiContent } from "@/api";
-import { FadeInContent } from "@/components/FadeInContent";
-import { Loading } from "@/components/Loading";
-import { ContentRow } from "@/components/ContentRow";
-import { PersonDetails } from "@/components/PersonDetails";
-import { PersonImages } from "@/components/PersonImages";
+import { Suspense } from 'react';
 
-export default async function ContentPage({
-  params,
-}: {
+import { getApiContent } from '@/api';
+import { Content } from '@/types';
+
+import { ContentRow } from '@/components/ContentRow';
+import { FadeInContent } from '@/components/FadeInContent';
+import { Loading } from '@/components/Loading';
+import { PersonDetails } from '@/components/PersonDetails';
+import { PersonImages } from '@/components/PersonImages';
+
+interface Props {
   params: { id: string };
-}) {
-  const { id } = params;
+}
 
-  const personDetailsData = getApiContent(
-    `person/${id}?language=pt-BR`
-  );
-  const personImagesData = getApiContent(
-    `person/${id}/images?language=pt-BR`
-  );
-  const personCreditsData = getApiContent(
-    `person/${id}/combined_credits?language=pt-BR`
-  );
+export default async function ContentPage({ params }: Props) {
+  const { id } = await params;
+
+  const personDetailsData = getApiContent(`person/${id}?language=pt-BR`);
+  const personImagesData = getApiContent(`person/${id}/images?language=pt-BR`);
+  const personCreditsData = getApiContent(`person/${id}/combined_credits?language=pt-BR`);
 
   const [personDetails, personImages, personCredits] = await Promise.all([
     personDetailsData,
@@ -30,7 +26,7 @@ export default async function ContentPage({
     personCreditsData,
   ]);
 
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === 'development') {
     console.log(personDetails);
     console.log(personImages);
     console.log(personCredits);
@@ -39,20 +35,18 @@ export default async function ContentPage({
   const sortedCastContent = personCredits.cast
     .sort(
       (a: Content, b: Content) =>
-        b.order - a.order &&
-        b.vote_average - a.vote_average &&
-        b.vote_count - a.vote_count
+        b.order - a.order && b.vote_average - a.vote_average && b.vote_count - a.vote_count,
     )
     .slice(0, 30);
-  if (process.env.NODE_ENV === "development") console.log(sortedCastContent);
+  if (process.env.NODE_ENV === 'development') console.log(sortedCastContent);
 
   const filteredCrewContent = personCredits.crew
     .filter(
       (value: Content, index: number, self: Content[]) =>
-        index === self.findIndex((t) => t.id === value.id)
+        index === self.findIndex((t) => t.id === value.id),
     )
     .slice(0, 30);
-  if (process.env.NODE_ENV === "development") console.log(filteredCrewContent);
+  if (process.env.NODE_ENV === 'development') console.log(filteredCrewContent);
 
   return (
     <Suspense fallback={<Loading />}>
